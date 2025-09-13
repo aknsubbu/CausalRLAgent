@@ -1,0 +1,6 @@
+.venv
+logs
+models
+nethack_tensorboard
+nethack_ppo_tensorboard
+ppo_nethack_fixed.zip
