@@ -880,47 +880,72 @@ class LLMStrategicAdvisor:
         return self.step_count % self.call_frequency == 0
     
     async def get_strategic_advice(self, semantic_description, recent_performance):
-        """Get strategic advice from Ollama Phi model"""
+        """Get strategic advice from Ollama Phi model with robust parsing"""
         try:
             # Simplified prompt optimized for Phi model's context window
             prompt = f"""You are a NetHack expert. Analyze this game state and provide strategic advice.
 
-GAME STATE:
-{semantic_description}
+    GAME STATE:
+    {semantic_description}
 
-PERFORMANCE:
-Avg reward: {recent_performance.get('avg_reward', 0):.1f}
-Survival: {recent_performance.get('avg_length', 0):.0f} steps
+    PERFORMANCE:
+    Avg reward: {recent_performance.get('avg_reward', 0):.1f}
+    Survival: {recent_performance.get('avg_length', 0):.0f} steps
 
-TASK: Respond with valid JSON only. No other text.
+    CRITICAL: Respond ONLY with valid JSON. No text before or after. No explanations.
 
-{{
-    "immediate_priority": "what to do now",
-    "risk_assessment": "main danger",
-    "opportunities": "beneficial action",
-    "strategy": "overall approach", 
-    "action_suggestions": ["action1", "action2", "action3"]
-}}"""
+    {{
+        "immediate_priority": "what to do now",
+        "risk_assessment": "main danger",
+        "opportunities": "beneficial action",
+        "strategy": "overall approach", 
+        "action_suggestions": ["action1", "action2", "action3"]
+    }}"""
             
             # Call Ollama API
             response = await self._call_llm_api(prompt)
             
             # Clean and parse response
             response = response.strip()
-            # Remove any markdown code blocks
-            if response.startswith("```json"):
-                response = response.replace("```json", "").replace("```", "").strip()
-            elif response.startswith("```"):
-                response = response.replace("```", "").strip()
+            
+            # Remove markdown code blocks
+            response = re.sub(r'```json\s*', '', response)
+            response = re.sub(r'```\s*', '', response)
+            response = response.strip()
+            
+            # Try to find JSON object in response
+            json_match = re.search(r'\{[^}]*\}', response, re.DOTALL)
+            if json_match:
+                response = json_match.group(0)
             
             try:
                 advice = json.loads(response)
+                
+                # Validate structure
+                required_keys = ['immediate_priority', 'risk_assessment', 
+                            'opportunities', 'strategy', 'action_suggestions']
+                
+                for key in required_keys:
+                    if key not in advice:
+                        advice[key] = "unknown" if key != 'action_suggestions' else []
+                
+                # Ensure action_suggestions is a list of strings
+                if not isinstance(advice['action_suggestions'], list):
+                    advice['action_suggestions'] = []
+                
+                # Clean action suggestions
+                advice['action_suggestions'] = [
+                    str(action) for action in advice['action_suggestions']
+                    if action  # Filter out None/empty values
+                ][:5]  # Limit to 5
+                
                 self.last_advice = advice
                 self.advice_history.append(advice.get('strategy', 'Unknown strategy'))
                 return advice
+                
             except json.JSONDecodeError as e:
                 print(f"JSON parse error: {e}")
-                print(f"Raw response: {response[:200]}...")
+                print(f"Raw response: {response[:300]}...")
                 return self._get_fallback_advice()
                 
         except Exception as e:
@@ -1031,18 +1056,35 @@ class LLMGuidedPPOActor(nn.Module):
             
             # Create weighted action preferences
             for i, suggestion in enumerate(suggestions[:5]):  # Top 5 suggestions
-                action_id = self.action_name_to_id.get(suggestion.lower())
+                # FIX: Ensure suggestion is a string
+                if not isinstance(suggestion, str):
+                    # Skip non-string suggestions or convert dict to string
+                    if isinstance(suggestion, dict):
+                        # Try to extract a meaningful string from dict
+                        suggestion = str(suggestion.get('action', suggestion.get('name', '')))
+                    else:
+                        suggestion = str(suggestion)
+                
+                # Now safely call lower()
+                suggestion_lower = suggestion.lower().strip()
+                
+                if not suggestion_lower:
+                    continue
+                    
+                action_id = self.action_name_to_id.get(suggestion_lower)
                 if action_id is not None and action_id < 23:
                     # Weight decreases for later suggestions
                     weight = (5 - i) / 5.0
                     guidance_vector[action_id] = weight
             
             # Add strategic indicators
-            priority = llm_advice.get('immediate_priority', '').lower()
-            if 'combat' in priority:
-                guidance_vector[30] = 1.0
-            elif 'explore' in priority:
-                guidance_vector[31] = 1.0
+            priority = llm_advice.get('immediate_priority', '')
+            if isinstance(priority, str):
+                priority_lower = priority.lower()
+                if 'combat' in priority_lower or 'fight' in priority_lower:
+                    guidance_vector[30] = 1.0
+                elif 'explore' in priority_lower or 'search' in priority_lower:
+                    guidance_vector[31] = 1.0
         
         return guidance_vector
     
@@ -1158,53 +1200,85 @@ class LLMGuidedNetHackAgent:
         return tensor_obs, processed
     
     async def select_action(self, obs, processed_obs, reset_hidden=False):
-        """Select action with LLM guidance"""
-        # Check if we should get new LLM advice
-        if self.llm_advisor.should_call_llm():
-            # Generate semantic description
-            semantic_desc = self.semantic_descriptor.generate_full_description(obs, processed_obs)
+        """Select action with LLM guidance and robust error handling"""
+        try:
+            # Check if we should get new LLM advice
+            if self.llm_advisor.should_call_llm():
+                try:
+                    # Generate semantic description
+                    semantic_desc = self.semantic_descriptor.generate_full_description(obs, processed_obs)
+                    
+                    # Calculate recent performance
+                    recent_performance = {
+                        'avg_reward': np.mean(list(self.episode_rewards)) if self.episode_rewards else 0,
+                        'avg_length': np.mean(list(self.episode_lengths)) if self.episode_lengths else 0,
+                        'death_rate': len([r for r in list(self.episode_rewards) if r < 5]) / max(len(self.episode_rewards), 1)
+                    }
+                    
+                    # Get LLM advice
+                    self.current_llm_advice = await self.llm_advisor.get_strategic_advice(
+                        semantic_desc, recent_performance
+                    )
+                    
+                    # Validate advice structure
+                    if not isinstance(self.current_llm_advice, dict):
+                        print(f"Warning: LLM advice is not a dict: {type(self.current_llm_advice)}")
+                        self.current_llm_advice = self.llm_advisor._get_fallback_advice()
+                    
+                    # Log the advice
+                    self.llm_advice_log.append({
+                        'step': self.llm_advisor.step_count,
+                        'advice': self.current_llm_advice,
+                        'description': semantic_desc[:200] + "..."
+                    })
+                    
+                    priority = self.current_llm_advice.get('immediate_priority', 'No advice')
+                    print(f"LLM Advice: {priority}")
+                    
+                except Exception as e:
+                    print(f"Error getting LLM advice: {e}")
+                    self.current_llm_advice = self.llm_advisor._get_fallback_advice()
             
-            # Calculate recent performance
-            recent_performance = {
-                'avg_reward': np.mean(list(self.episode_rewards)) if self.episode_rewards else 0,
-                'avg_length': np.mean(list(self.episode_lengths)) if self.episode_lengths else 0,
-                'death_rate': len([r for r in list(self.episode_rewards) if r < 5]) / max(len(self.episode_rewards), 1)
-            }
-            
-            # Get LLM advice
-            self.current_llm_advice = await self.llm_advisor.get_strategic_advice(
-                semantic_desc, recent_performance
-            )
-            
-            # Log the advice
-            self.llm_advice_log.append({
-                'step': self.llm_advisor.step_count,
-                'advice': self.current_llm_advice,
-                'description': semantic_desc[:200] + "..."
-            })
-            
-            print(f"LLM Advice: {self.current_llm_advice.get('immediate_priority', 'No advice')}")
-        
-        # Select action with current advice
-        with torch.no_grad():
-            tensor_obs = {}
-            for key, value in processed_obs.items():
-                tensor_obs[key] = torch.FloatTensor(value).unsqueeze(0).to(self.device)
-            
-            action_logits = self.actor(tensor_obs, reset_hidden, self.current_llm_advice)
-            action_dist = Categorical(logits=action_logits)
-            action = action_dist.sample()
-            log_prob = action_dist.log_prob(action)
-            value = self.critic(tensor_obs, reset_hidden)
-            
-            return action.item(), log_prob.item(), value.item()
-    
-    def save_llm_advice_log(self, filepath):
-        """Save LLM advice log for analysis"""
-        with open(filepath, 'w') as f:
-            json.dump(self.llm_advice_log, f, indent=2)
-    
-    # [Rest of the training methods would be similar to the enhanced agent but with async action selection]
+            # Select action with current advice
+            with torch.no_grad():
+                tensor_obs = {}
+                for key, value in processed_obs.items():
+                    if not isinstance(value, np.ndarray):
+                        print(f"Warning: {key} is not numpy array: {type(value)}")
+                        continue
+                    tensor_obs[key] = torch.FloatTensor(value).unsqueeze(0).to(self.device)
+                
+                # Ensure we have all required observation keys
+                required_keys = ['glyphs', 'stats', 'message', 'inventory', 'action_history']
+                for key in required_keys:
+                    if key not in tensor_obs:
+                        print(f"Warning: Missing observation key: {key}")
+                        # Add dummy tensor with appropriate shape
+                        if key == 'glyphs':
+                            tensor_obs[key] = torch.zeros(1, 21, 79).to(self.device)
+                        elif key == 'stats':
+                            tensor_obs[key] = torch.zeros(1, 26).to(self.device)
+                        elif key == 'message':
+                            tensor_obs[key] = torch.zeros(1, 256).to(self.device)
+                        elif key == 'inventory':
+                            tensor_obs[key] = torch.zeros(1, 55).to(self.device)
+                        elif key == 'action_history':
+                            tensor_obs[key] = torch.zeros(1, 50).to(self.device)
+                
+                action_logits = self.actor(tensor_obs, reset_hidden, self.current_llm_advice)
+                action_dist = Categorical(logits=action_logits)
+                action = action_dist.sample()
+                log_prob = action_dist.log_prob(action)
+                value = self.critic(tensor_obs, reset_hidden)
+                
+                return action.item(), log_prob.item(), value.item()
+                
+        except Exception as e:
+            print(f"Critical error in select_action: {e}")
+            import traceback
+            traceback.print_exc()
+            # Return safe fallback action (wait/search)
+            return 8, 0.0, 0.0  # wait action
     
     async def train_episode(self, env):
         """Train single episode with LLM guidance"""
@@ -1269,51 +1343,494 @@ def create_nethack_env():
     
     return env
 
-async def main():
-    """Main training function for LLM-guided agent"""
-    print("Setting up LLM-Guided NetHack PPO Training...")
+
+import sys
+import time
+from collections import defaultdict
+from datetime import datetime
+import json
+
+class TrainingMonitor:
+    """Rich terminal monitoring for training with comparison metrics"""
+    
+    def __init__(self, agent_name="LLM-Guided", baseline_metrics_path=None):
+        self.agent_name = agent_name
+        self.start_time = time.time()
+        self.episode_data = []
+        self.current_episode_actions = []
+        self.baseline_metrics = self._load_baseline_metrics(baseline_metrics_path)
+        
+        # Terminal colors
+        self.HEADER = '\033[95m'
+        self.BLUE = '\033[94m'
+        self.CYAN = '\033[96m'
+        self.GREEN = '\033[92m'
+        self.YELLOW = '\033[93m'
+        self.RED = '\033[91m'
+        self.ENDC = '\033[0m'
+        self.BOLD = '\033[1m'
+        self.UNDERLINE = '\033[4m'
+        
+    def _load_baseline_metrics(self, path):
+        """Load baseline RL agent metrics for comparison"""
+        if path and os.path.exists(path):
+            with open(path, 'r') as f:
+                return json.load(f)
+        return None
+    
+    def print_header(self):
+        """Print training session header"""
+        print("\n" + "="*80)
+        print(f"{self.BOLD}{self.CYAN}NetHack RL Training Monitor - {self.agent_name}{self.ENDC}")
+        print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print("="*80 + "\n")
+    
+    def print_episode_start(self, episode):
+        """Print episode start"""
+        print(f"\n{self.BOLD}{self.BLUE}{'─'*80}")
+        print(f"Episode {episode} Starting...")
+        print(f"{'─'*80}{self.ENDC}\n")
+        self.current_episode_actions = []
+    
+    def print_llm_advice(self, advice, step):
+        """Print LLM advice in a formatted box"""
+        if not advice:
+            return
+            
+        print(f"\n{self.YELLOW}╔{'═'*78}╗")
+        print(f"║ {self.BOLD}LLM STRATEGIC ADVICE (Step {step}){' '*44}{self.ENDC}{self.YELLOW}║")
+        print(f"╠{'═'*78}╣{self.ENDC}")
+        
+        # Priority
+        priority = advice.get('immediate_priority', 'N/A')
+        print(f"{self.YELLOW}║{self.ENDC} {self.BOLD}Priority:{self.ENDC} {priority:<65} {self.YELLOW}║{self.ENDC}")
+        
+        # Risk assessment
+        risk = advice.get('risk_assessment', 'N/A')
+        risk_display = risk[:65] if len(risk) > 65 else risk
+        print(f"{self.YELLOW}║{self.ENDC} {self.BOLD}Risk:{self.ENDC} {risk_display:<68} {self.YELLOW}║{self.ENDC}")
+        
+        # Opportunities
+        opps = advice.get('opportunities', 'N/A')
+        opps_display = opps[:65] if len(opps) > 65 else opps
+        print(f"{self.YELLOW}║{self.ENDC} {self.BOLD}Opportunity:{self.ENDC} {opps_display:<61} {self.YELLOW}║{self.ENDC}")
+        
+        # Action suggestions
+        actions = advice.get('action_suggestions', [])
+        if actions:
+            actions_str = ", ".join(str(a) for a in actions[:5])
+            actions_display = actions_str[:65] if len(actions_str) > 65 else actions_str
+            print(f"{self.YELLOW}║{self.ENDC} {self.BOLD}Suggested Actions:{self.ENDC} {actions_display:<56} {self.YELLOW}║{self.ENDC}")
+        
+        print(f"{self.YELLOW}╚{'═'*78}╝{self.ENDC}\n")
+    
+    def print_step_info(self, step, action, action_name, reward, shaped_reward, health, level):
+        """Print information about current step"""
+        # Track action
+        self.current_episode_actions.append(action_name)
+        
+        # Color code reward
+        if reward > 0:
+            reward_color = self.GREEN
+        elif reward < 0:
+            reward_color = self.RED
+        else:
+            reward_color = self.ENDC
+        
+        # Color code health
+        if health < 0.3:
+            health_color = self.RED
+        elif health < 0.6:
+            health_color = self.YELLOW
+        else:
+            health_color = self.GREEN
+        
+        print(f"Step {step:4d} | "
+              f"Action: {action_name:15s} | "
+              f"R: {reward_color}{reward:6.2f}{self.ENDC} | "
+              f"SR: {shaped_reward:7.3f} | "
+              f"HP: {health_color}{health*100:5.1f}%{self.ENDC} | "
+              f"Lvl: {level}")
+    
+    def print_episode_summary(self, episode, metrics, llm_advice_count):
+        """Print detailed episode summary with comparison"""
+        print(f"\n{self.BOLD}{self.GREEN}{'─'*80}")
+        print(f"Episode {episode} Complete")
+        print(f"{'─'*80}{self.ENDC}\n")
+        
+        # Episode metrics
+        print(f"{self.BOLD}Episode Metrics:{self.ENDC}")
+        print(f"  Raw Reward:    {metrics['raw_reward']:8.2f}")
+        print(f"  Shaped Reward: {metrics['shaped_reward']:8.2f}")
+        print(f"  Length:        {metrics['length']:8d} steps")
+        print(f"  Survival Time: {metrics['length']/60:8.1f} minutes (simulated)")
+        print(f"  LLM Calls:     {llm_advice_count:8d}")
+        
+        # Action distribution
+        print(f"\n{self.BOLD}Action Distribution:{self.ENDC}")
+        action_counts = defaultdict(int)
+        for action in self.current_episode_actions:
+            action_counts[action] += 1
+        
+        # Show top 5 actions
+        top_actions = sorted(action_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+        for action, count in top_actions:
+            pct = (count / len(self.current_episode_actions)) * 100
+            bar_length = int(pct / 2)  # Scale to 50 chars max
+            bar = '█' * bar_length
+            print(f"  {action:15s}: {bar} {count:4d} ({pct:5.1f}%)")
+        
+        # Store episode data
+        self.episode_data.append(metrics)
+    
+    def print_training_progress(self, episode, window=10):
+        """Print rolling average training progress"""
+        if len(self.episode_data) < window:
+            return
+        
+        recent_data = self.episode_data[-window:]
+        
+        avg_raw = sum(d['raw_reward'] for d in recent_data) / window
+        avg_shaped = sum(d['shaped_reward'] for d in recent_data) / window
+        avg_length = sum(d['length'] for d in recent_data) / window
+        
+        print(f"\n{self.BOLD}{self.CYAN}{'─'*80}")
+        print(f"Training Progress (Last {window} Episodes)")
+        print(f"{'─'*80}{self.ENDC}")
+        
+        print(f"  Avg Raw Reward:    {avg_raw:8.2f}")
+        print(f"  Avg Shaped Reward: {avg_shaped:8.2f}")
+        print(f"  Avg Length:        {avg_length:8.1f} steps")
+        
+        # Comparison with baseline
+        if self.baseline_metrics:
+            baseline_window = self.baseline_metrics.get('rolling_averages', {}).get(str(episode), {})
+            if baseline_window:
+                baseline_reward = baseline_window.get('avg_reward', 0)
+                baseline_length = baseline_window.get('avg_length', 0)
+                
+                print(f"\n{self.BOLD}Comparison with Baseline RL Agent:{self.ENDC}")
+                
+                # Reward comparison
+                reward_diff = avg_raw - baseline_reward
+                reward_pct = (reward_diff / abs(baseline_reward)) * 100 if baseline_reward != 0 else 0
+                reward_symbol = "↑" if reward_diff > 0 else "↓"
+                reward_color = self.GREEN if reward_diff > 0 else self.RED
+                
+                print(f"  Reward:  {self.agent_name}: {avg_raw:8.2f} vs Baseline: {baseline_reward:8.2f} "
+                      f"{reward_color}({reward_symbol} {abs(reward_pct):5.1f}%){self.ENDC}")
+                
+                # Length comparison
+                length_diff = avg_length - baseline_length
+                length_pct = (length_diff / baseline_length) * 100 if baseline_length != 0 else 0
+                length_symbol = "↑" if length_diff > 0 else "↓"
+                length_color = self.GREEN if length_diff > 0 else self.RED
+                
+                print(f"  Length:  {self.agent_name}: {avg_length:8.1f} vs Baseline: {baseline_length:8.1f} "
+                      f"{length_color}({length_symbol} {abs(length_pct):5.1f}%){self.ENDC}")
+        
+        # Time stats
+        elapsed = time.time() - self.start_time
+        eps_per_hour = (episode / elapsed) * 3600 if elapsed > 0 else 0
+        print(f"\n  Episodes Completed: {episode}")
+        print(f"  Training Time:      {elapsed/60:6.1f} minutes")
+        print(f"  Episodes/Hour:      {eps_per_hour:6.1f}")
+    
+    def print_final_summary(self):
+        """Print final training summary"""
+        print(f"\n\n{self.BOLD}{self.HEADER}{'='*80}")
+        print(f"TRAINING COMPLETE - FINAL SUMMARY")
+        print(f"{'='*80}{self.ENDC}\n")
+        
+        if not self.episode_data:
+            print("No episode data collected.")
+            return
+        
+        # Overall statistics
+        total_episodes = len(self.episode_data)
+        total_raw = sum(d['raw_reward'] for d in self.episode_data)
+        total_shaped = sum(d['shaped_reward'] for d in self.episode_data)
+        avg_raw = total_raw / total_episodes
+        avg_shaped = total_shaped / total_episodes
+        avg_length = sum(d['length'] for d in self.episode_data) / total_episodes
+        
+        print(f"{self.BOLD}Overall Performance:{self.ENDC}")
+        print(f"  Total Episodes:     {total_episodes}")
+        print(f"  Avg Raw Reward:     {avg_raw:8.2f}")
+        print(f"  Avg Shaped Reward:  {avg_shaped:8.2f}")
+        print(f"  Avg Length:         {avg_length:8.1f} steps")
+        
+        # Best episode
+        best_episode = max(self.episode_data, key=lambda x: x['raw_reward'])
+        best_idx = self.episode_data.index(best_episode)
+        print(f"\n{self.BOLD}Best Episode: #{best_idx}{self.ENDC}")
+        print(f"  Raw Reward:    {best_episode['raw_reward']:8.2f}")
+        print(f"  Shaped Reward: {best_episode['shaped_reward']:8.2f}")
+        print(f"  Length:        {best_episode['length']:8d} steps")
+        
+        # Training time
+        total_time = time.time() - self.start_time
+        print(f"\n{self.BOLD}Training Time:{self.ENDC}")
+        print(f"  Total:         {total_time/60:8.1f} minutes")
+        print(f"  Per Episode:   {total_time/total_episodes:8.1f} seconds")
+        
+        # Save metrics
+        self.save_metrics()
+    
+    def save_metrics(self):
+        """Save metrics to JSON for future comparison"""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"metrics_{self.agent_name.lower().replace(' ', '_')}_{timestamp}.json"
+        
+        # Calculate rolling averages for comparison
+        rolling_averages = {}
+        window = 10
+        for i in range(window, len(self.episode_data) + 1):
+            recent = self.episode_data[i-window:i]
+            rolling_averages[i] = {
+                'avg_reward': sum(d['raw_reward'] for d in recent) / window,
+                'avg_shaped_reward': sum(d['shaped_reward'] for d in recent) / window,
+                'avg_length': sum(d['length'] for d in recent) / window,
+            }
+        
+        metrics = {
+            'agent_name': self.agent_name,
+            'timestamp': timestamp,
+            'total_episodes': len(self.episode_data),
+            'episode_data': self.episode_data,
+            'rolling_averages': rolling_averages,
+            'summary': {
+                'avg_raw_reward': sum(d['raw_reward'] for d in self.episode_data) / len(self.episode_data),
+                'avg_shaped_reward': sum(d['shaped_reward'] for d in self.episode_data) / len(self.episode_data),
+                'avg_length': sum(d['length'] for d in self.episode_data) / len(self.episode_data),
+            }
+        }
+        
+        with open(filename, 'w') as f:
+            json.dump(metrics, f, indent=2)
+        
+        print(f"\n{self.GREEN}Metrics saved to: {filename}{self.ENDC}")
+
+
+# Enhanced agent class with monitoring integration
+class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
+    """LLM-Guided agent with integrated monitoring"""
+    
+    def __init__(self, *args, baseline_metrics_path=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.monitor = TrainingMonitor(
+            agent_name="LLM-Guided PPO",
+            baseline_metrics_path=baseline_metrics_path
+        )
+        self.action_meanings = {
+            0: "move_north", 1: "move_south", 2: "move_east", 3: "move_west",
+            4: "move_northeast", 5: "move_northwest", 6: "move_southeast", 7: "move_southwest",
+            8: "wait", 9: "pickup", 10: "drop", 11: "search", 12: "open_door",
+            13: "close_door", 14: "kick", 15: "eat", 16: "drink", 17: "read",
+            18: "apply", 19: "throw", 20: "wear", 21: "take_off", 22: "wield"
+        }
+    
+    async def train_episode_monitored(self, env, episode):
+        """Train episode with monitoring"""
+        self.monitor.print_episode_start(episode)
+        
+        obs = env.reset()
+        episode_reward = 0
+        episode_shaped_reward = 0
+        episode_length = 0
+        llm_call_count = 0
+        
+        # Reset states
+        self.actor.reset_hidden_states()
+        self.critic.reset_hidden_states()
+        self.reward_shaper.reset()
+        self.last_action = None
+        
+        reset_hidden = True
+        
+        while True:
+            # Check for LLM advice
+            should_get_advice = self.llm_advisor.should_call_llm()
+            
+            tensor_obs, processed_obs = self.process_observation(obs)
+            action, log_prob, value = await self.select_action(obs, processed_obs, reset_hidden)
+            reset_hidden = False
+            
+            # Display LLM advice if it was just received
+            if should_get_advice and self.current_llm_advice:
+                self.monitor.print_llm_advice(self.current_llm_advice, episode_length)
+                llm_call_count += 1
+            
+            # Store action
+            self.last_action = action
+            action_name = self.action_meanings.get(action, f"action_{action}")
+            
+            # Take environment step
+            step_result = env.step(action)
+            
+            if len(step_result) == 4:
+                next_obs, reward, done, info = step_result
+            else:
+                next_obs, reward, terminated, truncated, info = step_result
+                done = terminated or truncated
+            
+            # Apply reward shaping
+            shaped_reward = self.reward_shaper.shape_reward(next_obs, reward, done, info)
+            
+            # Get health for display
+            if isinstance(next_obs, tuple):
+                next_obs_dict = next_obs[0]
+            else:
+                next_obs_dict = next_obs
+                
+            stats = next_obs_dict.get('blstats', np.zeros(26))
+            health_ratio = stats[0] / stats[1] if len(stats) > 1 and stats[1] > 0 else 0
+            level = int(stats[7]) if len(stats) > 7 else 1
+            
+            # Print step info every N steps (to avoid clutter)
+            if episode_length % 5 == 0:
+                self.monitor.print_step_info(
+                    episode_length, action, action_name, 
+                    reward, shaped_reward, health_ratio, level
+                )
+            
+            # Store experience
+            processed_obs_for_buffer = {}
+            for key, tensor_val in tensor_obs.items():
+                processed_obs_for_buffer[key] = tensor_val.squeeze(0).cpu()
+            
+            self.buffer.add(processed_obs_for_buffer, action, shaped_reward, value, log_prob, done)
+            
+            obs = next_obs
+            episode_reward += reward
+            episode_shaped_reward += shaped_reward
+            episode_length += 1
+            
+            if done:
+                break
+        
+        # Episode metrics
+        metrics = {
+            'raw_reward': episode_reward,
+            'shaped_reward': episode_shaped_reward,
+            'length': episode_length,
+            'llm_calls': llm_call_count
+        }
+        
+        self.monitor.print_episode_summary(episode, metrics, llm_call_count)
+        
+        return episode_reward, episode_shaped_reward, episode_length
+
+
+async def main_monitored():
+    """Main training function with monitoring"""
+    import os
+    
+    # Check for baseline metrics
+    baseline_path = None
+    if len(sys.argv) > 1:
+        baseline_path = sys.argv[1]
+        if not os.path.exists(baseline_path):
+            print(f"Warning: Baseline metrics file not found: {baseline_path}")
+            baseline_path = None
+    
+    print("Setting up LLM-Guided NetHack PPO Training with Monitoring...")
     
     # Create environment
     env = create_nethack_env()
     print(f"Environment action space: {env.action_space.n}")
     
-    # Create LLM-guided agent
-    agent = LLMGuidedNetHackAgent(
+    # Create monitored agent
+    agent = MonitoredLLMGuidedNetHackAgent(
         action_dim=env.action_space.n,
-        llm_guidance_weight=0.3,  # 30% LLM influence
-        llm_call_frequency=20     # Get advice every 20 steps
+        llm_guidance_weight=0.3,
+        llm_call_frequency=20,
+        baseline_metrics_path=baseline_path
     )
     
-    print("Starting LLM-guided training...")
+    agent.monitor.print_header()
     
     # Training loop
-    for episode in range(100):  # Reduced for testing
-        episode_reward, episode_shaped_reward, episode_length = await agent.train_episode(env)
+    num_episodes = 100
+    update_frequency = 2048
+    
+    for episode in range(num_episodes):
+        episode_reward, episode_shaped_reward, episode_length = \
+            await agent.train_episode_monitored(env, episode)
         
         agent.episode_rewards.append(episode_reward)
         agent.shaped_rewards.append(episode_shaped_reward)
         agent.episode_lengths.append(episode_length)
         
-        if episode % 10 == 0:
-            avg_reward = np.mean(list(agent.episode_rewards))
-            avg_shaped_reward = np.mean(list(agent.shaped_rewards))
-            avg_length = np.mean(list(agent.episode_lengths))
-            print(f"Episode {episode}: Raw: {avg_reward:.3f}, "
-                  f"Shaped: {avg_shaped_reward:.3f}, Length: {avg_length:.1f}")
+        # Print progress every 10 episodes
+        if (episode + 1) % 10 == 0:
+            agent.monitor.print_training_progress(episode + 1, window=10)
         
         # Update networks periodically
-        if len(agent.buffer) >= 2048:
-            print(f"Updating networks after episode {episode}")
-            # agent.update()  # You'd implement this similar to the enhanced agent
+        if len(agent.buffer) >= update_frequency:
+            print(f"\n{agent.monitor.CYAN}Updating neural networks...{agent.monitor.ENDC}")
+            # agent.update()  # Uncomment when you have the update method
             agent.buffer.clear()
     
-    # Save results
+    # Final summary
+    agent.monitor.print_final_summary()
+    
+    # Save model and advice log
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
     
     env.close()
-    print("LLM-guided training completed!")
+
 
 if __name__ == "__main__":
     import asyncio
-    asyncio.run(main())
+    asyncio.run(main_monitored())
+
+# async def main():
+#     """Main training function for LLM-guided agent"""
+#     print("Setting up LLM-Guided NetHack PPO Training...")
+    
+#     # Create environment
+#     env = create_nethack_env()
+#     print(f"Environment action space: {env.action_space.n}")
+    
+#     # Create LLM-guided agent
+#     agent = LLMGuidedNetHackAgent(
+#         action_dim=env.action_space.n,
+#         llm_guidance_weight=0.3,  # 30% LLM influence
+#         llm_call_frequency=20     # Get advice every 20 steps
+#     )
+    
+#     print("Starting LLM-guided training...")
+    
+#     # Training loop
+#     for episode in range(100):  # Reduced for testing
+#         episode_reward, episode_shaped_reward, episode_length = await agent.train_episode(env)
+        
+#         agent.episode_rewards.append(episode_reward)
+#         agent.shaped_rewards.append(episode_shaped_reward)
+#         agent.episode_lengths.append(episode_length)
+        
+#         if episode % 10 == 0:
+#             avg_reward = np.mean(list(agent.episode_rewards))
+#             avg_shaped_reward = np.mean(list(agent.shaped_rewards))
+#             avg_length = np.mean(list(agent.episode_lengths))
+#             print(f"Episode {episode}: Raw: {avg_reward:.3f}, "
+#                   f"Shaped: {avg_shaped_reward:.3f}, Length: {avg_length:.1f}")
+        
+#         # Update networks periodically
+#         if len(agent.buffer) >= 2048:
+#             print(f"Updating networks after episode {episode}")
+#             # agent.update()  # You'd implement this similar to the enhanced agent
+#             agent.buffer.clear()
+    
+#     # Save results
+#     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+#     agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
+    
+#     env.close()
+#     print("LLM-guided training completed!")
+
+# if __name__ == "__main__":
+#     import asyncio
+#     asyncio.run(main())
