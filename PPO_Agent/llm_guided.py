@@ -10,6 +10,10 @@ from collections import deque, defaultdict
 import matplotlib.pyplot as plt
 from datetime import datetime
 import os
+import json
+import re
+import sys
+import time
 
 class NetHackRewardShaper:
     """Advanced reward shaping for NetHack"""
@@ -167,12 +171,29 @@ class NetHackObservationProcessor:
             inv_features = np.zeros(self.inventory_dim, dtype=np.float32)
             for i, item in enumerate(inventory):
                 if i < len(inv_features):
-                    item_str = str(item) if item is not None else ""
-                    if len(item_str.strip()) > 0 and item_str.strip() != "b''":
-                        inv_features[i] = 1.0
+                    try:
+                        # FIX: Handle numpy arrays and bytes properly
+                        if isinstance(item, np.ndarray):
+                            if item.dtype.kind in ('U', 'S', 'O'):  # String-like types
+                                item_str = str(item.item()) if item.size == 1 else ""
+                            else:
+                                item_str = ""
+                        elif isinstance(item, bytes):
+                            item_str = item.decode('ascii', errors='ignore')
+                        elif item is not None:
+                            item_str = str(item)
+                        else:
+                            item_str = ""
+                        
+                        if len(item_str.strip()) > 0 and item_str.strip() not in ["b''", ""]:
+                            inv_features[i] = 1.0
+                    except Exception as e:
+                        # Silently skip problematic items
+                        continue
             processed['inventory'] = inv_features
         else:
             processed['inventory'] = np.zeros(self.inventory_dim, dtype=np.float32)
+
         
         # Add action history
         if last_action is not None:
@@ -552,7 +573,7 @@ class EnhancedNetHackPPOAgent:
             torch.nn.utils.clip_grad_norm_(self.critic.parameters(), 0.5)
             self.critic_optimizer.step()
     
-    def train(self, env, num_episodes=1000, update_freq=2048):
+    def train(self, env, num_episodes=100, update_freq=2048):
         """Train the enhanced PPO agent"""
         step_count = 0
         
@@ -653,27 +674,6 @@ def create_nethack_env():
         env = gym.make("NetHack-v0")
     
     return env
-
-
-
-import gymnasium as gym
-import nle.env
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
-from torch.distributions import Categorical
-import numpy as np
-from collections import deque, defaultdict
-import matplotlib.pyplot as plt
-from datetime import datetime
-import os
-import json
-import re
-
-# Import your existing enhanced agent components
-# [The existing classes would be imported here - NetHackRewardShaper, NetHackObservationProcessor, etc.]
-# For brevity, I'm showing the new LLM components and integration
 
 class NetHackSemanticDescriptor:
     """Converts NetHack game state into natural language descriptions"""
@@ -883,61 +883,98 @@ class LLMStrategicAdvisor:
         """Get strategic advice from Ollama Phi model with robust parsing"""
         try:
             # Simplified prompt optimized for Phi model's context window
-            prompt = f"""You are a NetHack expert. Analyze this game state and provide strategic advice.
+            prompt = f"""Analyze the NetHack game state and provide advice in strict JSON format.
 
-    GAME STATE:
-    {semantic_description}
+GAME STATE:
+{semantic_description}
 
-    PERFORMANCE:
-    Avg reward: {recent_performance.get('avg_reward', 0):.1f}
-    Survival: {recent_performance.get('avg_length', 0):.0f} steps
+PERFORMANCE: Reward {recent_performance.get('avg_reward', 0):.1f}, Survival {recent_performance.get('avg_length', 0):.0f} steps
 
-    CRITICAL: Respond ONLY with valid JSON. No text before or after. No explanations.
+Respond ONLY with this exact JSON structure (use double quotes, no variables):
+{{
+  "immediate_priority": "describe priority here",
+  "risk_assessment": "describe risk here",
+  "opportunities": "describe opportunities here",
+  "strategy": "describe strategy here",
+  "action_suggestions": ["move", "search", "pickup"]
+}}
 
-    {{
-        "immediate_priority": "what to do now",
-        "risk_assessment": "main danger",
-        "opportunities": "beneficial action",
-        "strategy": "overall approach", 
-        "action_suggestions": ["action1", "action2", "action3"]
-    }}"""
+You MUST respond with ONLY valid JSON. Do not include any explanations, code, or other text.
+
+
+Your JSON response:
+"""
             
             # Call Ollama API
             response = await self._call_llm_api(prompt)
             
-            # Clean and parse response
+            # Debug: show raw response
+            print(f"\n[DEBUG] Raw LLM response (first 300 chars):\n{response[:300]}\n")
+            
+            # Aggressive JSON extraction
             response = response.strip()
             
-            # Remove markdown code blocks
+            # Remove markdown
             response = re.sub(r'```json\s*', '', response)
             response = re.sub(r'```\s*', '', response)
             response = response.strip()
             
-            # Try to find JSON object in response
-            json_match = re.search(r'\{[^}]*\}', response, re.DOTALL)
+            # Find JSON object
+            json_match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', response, re.DOTALL)
             if json_match:
                 response = json_match.group(0)
+            
+            # Fix common JSON errors
+            # Replace single quotes with double quotes (common LLM error)
+            response = response.replace("'", '"')
+            
+            # Fix unquoted keys (e.g., {immediate_priority: "value"} -> {"immediate_priority": "value"})
+            response = re.sub(r'(\{|,)\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*:', r'\1"\2":', response)
+            
+            # Fix unquoted values that are exactly variable names (no spaces/special chars)
+            # This handles: "key": immediate_priority, -> "key": "immediate_priority",
+            # But avoids matching already quoted strings
+            response = re.sub(r':\s*([a-zA-Z_][a-zA-Z0-9_]+)\s*([,}\n])', r': "\1"\2', response)
+            
+            # Fix cases where the value is repeated from key: "immediate_priority": "immediate_priority"
+            # Replace with generic text based on key name
+            response = re.sub(r'"immediate_priority"\s*:\s*"immediate_priority"', '"immediate_priority": "explore safely"', response)
+            response = re.sub(r'"risk_assessment"\s*:\s*"risk_assessment"', '"risk_assessment": "moderate risk"', response)
+            response = re.sub(r'"opportunities"\s*:\s*"opportunities"', '"opportunities": "collect items"', response)
+            response = re.sub(r'"strategy"\s*:\s*"strategy"', '"strategy": "careful exploration"', response)
+            
+            # Fix missing commas between fields
+            response = re.sub(r'"\s*\n\s*"', '", "', response)
+            # Fix trailing commas
+            response = re.sub(r',\s*}', '}', response)
+            response = re.sub(r',\s*]', ']', response)
             
             try:
                 advice = json.loads(response)
                 
-                # Validate structure
+                # Validate and fix structure
                 required_keys = ['immediate_priority', 'risk_assessment', 
-                            'opportunities', 'strategy', 'action_suggestions']
+                                'opportunities', 'strategy', 'action_suggestions']
                 
                 for key in required_keys:
                     if key not in advice:
                         advice[key] = "unknown" if key != 'action_suggestions' else []
+                    # Ensure strings for text fields
+                    if key != 'action_suggestions' and not isinstance(advice[key], str):
+                        advice[key] = str(advice[key])
                 
-                # Ensure action_suggestions is a list of strings
+                # Fix action_suggestions
                 if not isinstance(advice['action_suggestions'], list):
                     advice['action_suggestions'] = []
-                
-                # Clean action suggestions
-                advice['action_suggestions'] = [
-                    str(action) for action in advice['action_suggestions']
-                    if action  # Filter out None/empty values
-                ][:5]  # Limit to 5
+                else:
+                    # Flatten nested structures
+                    flat_actions = []
+                    for action in advice['action_suggestions']:
+                        if isinstance(action, dict):
+                            flat_actions.append(action.get('name', action.get('action', 'explore')))
+                        elif action:
+                            flat_actions.append(str(action))
+                    advice['action_suggestions'] = flat_actions[:5]
                 
                 self.last_advice = advice
                 self.advice_history.append(advice.get('strategy', 'Unknown strategy'))
@@ -945,7 +982,17 @@ class LLMStrategicAdvisor:
                 
             except json.JSONDecodeError as e:
                 print(f"JSON parse error: {e}")
-                print(f"Raw response: {response[:300]}...")
+                print(f"Attempted to parse: {response[:200]}...")
+                
+                # Try regex-based extraction as fallback
+                print("Attempting regex-based extraction...")
+                advice = self._extract_advice_with_regex(response)
+                if advice:
+                    print(f"Successfully extracted advice via regex")
+                    self.last_advice = advice
+                    self.advice_history.append(advice.get('strategy', 'Unknown strategy'))
+                    return advice
+                
                 return self._get_fallback_advice()
                 
         except Exception as e:
@@ -960,11 +1007,11 @@ class LLMStrategicAdvisor:
         try:
             async with aiohttp.ClientSession() as session:
                 ollama_payload = {
-                    "model": "phi",  # or "phi3" depending on your Ollama setup
+                    "model": "llama3:8b",  # or "phi3" depending on your Ollama setup
                     "prompt": prompt,
                     "stream": False,
                     "options": {
-                        "temperature": 0.3,  # Lower temperature for more consistent JSON
+                        "temperature": 0.2,  # Lower temperature for more consistent JSON
                         "top_k": 10,
                         "top_p": 0.9,
                         "num_predict": 512   # Limit response length
@@ -999,6 +1046,69 @@ class LLMStrategicAdvisor:
             "strategy": "cautious exploration",
             "action_suggestions": ["search", "move", "pickup"]
         })
+    
+    def _extract_advice_with_regex(self, text):
+        """Extract advice fields using regex when JSON parsing fails"""
+        try:
+            advice = {}
+            
+            # Try to extract each field using regex patterns
+            # Pattern 1: "field_name": "value" or "field_name":value
+            # Pattern 2: field_name: "value" or field_name:value
+            
+            # Extract immediate_priority
+            priority_match = re.search(r'["\']?immediate_priority["\']?\s*:\s*["\']([^"\',}]+)["\']?', text, re.IGNORECASE)
+            if priority_match:
+                advice['immediate_priority'] = priority_match.group(1).strip()
+            else:
+                advice['immediate_priority'] = "explore safely"
+            
+            # Extract risk_assessment
+            risk_match = re.search(r'["\']?risk_assessment["\']?\s*:\s*["\']([^"\',}]+)["\']?', text, re.IGNORECASE)
+            if risk_match:
+                advice['risk_assessment'] = risk_match.group(1).strip()
+            else:
+                advice['risk_assessment'] = "unknown dangers"
+            
+            # Extract opportunities
+            opp_match = re.search(r'["\']?opportunities["\']?\s*:\s*["\']([^"\',}]+)["\']?', text, re.IGNORECASE)
+            if opp_match:
+                advice['opportunities'] = opp_match.group(1).strip()
+            else:
+                advice['opportunities'] = "search for items"
+            
+            # Extract strategy
+            strategy_match = re.search(r'["\']?strategy["\']?\s*:\s*["\']([^"\',}]+)["\']?', text, re.IGNORECASE)
+            if strategy_match:
+                advice['strategy'] = strategy_match.group(1).strip()
+            else:
+                advice['strategy'] = "cautious exploration"
+            
+            # Extract action_suggestions (array)
+            actions = []
+            # Try to find array format first
+            action_array_match = re.search(r'["\']?action_suggestions["\']?\s*:\s*\[([^\]]+)\]', text, re.IGNORECASE)
+            if action_array_match:
+                action_str = action_array_match.group(1)
+                # Extract individual actions
+                action_items = re.findall(r'["\']([^"\',]+)["\']', action_str)
+                actions = [a.strip() for a in action_items if a.strip()]
+            
+            # If no valid actions found, use defaults
+            if not actions:
+                actions = ["search", "move", "pickup"]
+            
+            advice['action_suggestions'] = actions[:5]  # Limit to 5
+            
+            # Validate we got at least some fields
+            if len([v for v in advice.values() if v]) >= 3:
+                return advice
+            else:
+                return None
+                
+        except Exception as e:
+            print(f"Regex extraction failed: {e}")
+            return None
     
     def _get_fallback_advice(self):
         """Fallback advice when LLM is unavailable"""
@@ -1331,24 +1441,16 @@ class LLMGuidedNetHackAgent:
                 break
         
         return episode_reward, episode_shaped_reward, episode_length
-
-def create_nethack_env():
-    """Create and configure NetHack environment"""
-    import nle.env
     
-    try:
-        env = gym.make("NetHackScore-v0")
-    except:
-        env = gym.make("NetHack-v0")
-    
-    return env
-
-
-import sys
-import time
-from collections import defaultdict
-from datetime import datetime
-import json
+    def save_llm_advice_log(self, filename):
+        """Save LLM advice log to file"""
+        with open(filename, 'w') as f:
+            json.dump({
+                'llm_advice_log': self.llm_advice_log,
+                'total_calls': len(self.llm_advice_log),
+                'timestamp': datetime.now().isoformat()
+            }, f, indent=2)
+        print(f"LLM advice log saved to: {filename}")
 
 class TrainingMonitor:
     """Rich terminal monitoring for training with comparison metrics"""
@@ -1622,6 +1724,9 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             agent_name="LLM-Guided PPO",
             baseline_metrics_path=baseline_metrics_path
         )
+        # ADD THIS:
+        self.causal_logger = CausalModelLogger(log_file_prefix="llm_guided_causal")
+        
         self.action_meanings = {
             0: "move_north", 1: "move_south", 2: "move_east", 3: "move_west",
             4: "move_northeast", 5: "move_northwest", 6: "move_southeast", 7: "move_southwest",
@@ -1634,7 +1739,10 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
         """Train episode with monitoring"""
         self.monitor.print_episode_start(episode)
         
+        # FIX: Get observation BEFORE trying to use it
         obs = env.reset()
+        self.causal_logger.start_episode(episode, obs)  # NOW START LOGGING
+        
         episode_reward = 0
         episode_shaped_reward = 0
         episode_length = 0
@@ -1650,20 +1758,28 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
         
         while True:
             # Check for LLM advice
-            should_get_advice = self.llm_advisor.should_call_llm()
+            llm_calls_before = len(self.llm_advisor.advice_history)
             
             tensor_obs, processed_obs = self.process_observation(obs)
             action, log_prob, value = await self.select_action(obs, processed_obs, reset_hidden)
             reset_hidden = False
             
-            # Display LLM advice if it was just received
-            if should_get_advice and self.current_llm_advice:
-                self.monitor.print_llm_advice(self.current_llm_advice, episode_length)
-                llm_call_count += 1
+            # Check if LLM was called during select_action
+            llm_was_called = len(self.llm_advisor.advice_history) > llm_calls_before
             
             # Store action
             self.last_action = action
             action_name = self.action_meanings.get(action, f"action_{action}")
+            
+            # Display and log LLM advice if it was just received
+            if llm_was_called and self.current_llm_advice:
+                self.monitor.print_llm_advice(self.current_llm_advice, episode_length)
+                self.causal_logger.log_llm_intervention(
+                    episode_length, 
+                    self.current_llm_advice, 
+                    obs
+                )
+                llm_call_count += 1
             
             # Take environment step
             step_result = env.step(action)
@@ -1686,6 +1802,25 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             stats = next_obs_dict.get('blstats', np.zeros(26))
             health_ratio = stats[0] / stats[1] if len(stats) > 1 and stats[1] > 0 else 0
             level = int(stats[7]) if len(stats) > 7 else 1
+            
+            # LOG STEP FOR CAUSAL ANALYSIS
+            with torch.no_grad():
+                action_logits = self.actor(tensor_obs, False, self.current_llm_advice)
+                action_probs = F.softmax(action_logits, dim=-1).cpu().numpy()[0]
+            
+            self.causal_logger.log_step({
+                'obs': obs,
+                'action': action,
+                'action_name': action_name,
+                'next_obs': next_obs,
+                'reward': reward,
+                'shaped_reward': shaped_reward,
+                'value_estimate': value,
+                'action_probs': action_probs.tolist(),
+                'llm_advice_active': self.current_llm_advice is not None,
+                'llm_guidance_weight': self.actor.llm_guidance_weight if self.current_llm_advice else 0.0,
+                'done': done
+            })
             
             # Print step info every N steps (to avoid clutter)
             if episode_length % 5 == 0:
@@ -1717,9 +1852,418 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             'llm_calls': llm_call_count
         }
         
+        # End episode logging (get final stats for death detection)
+        self.causal_logger.end_episode(episode_reward, episode_shaped_reward, death=stats[0] <= 0)
+        
         self.monitor.print_episode_summary(episode, metrics, llm_call_count)
         
         return episode_reward, episode_shaped_reward, episode_length
+
+
+class CausalModelLogger:
+    """
+    Comprehensive logging system for building causal models of NetHack RL agent.
+    Captures state transitions, actions, rewards, and LLM interventions.
+    """
+    
+    def __init__(self, log_file_prefix="causal_log"):
+        self.log_file_prefix = log_file_prefix
+        self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Transition logs: (state_t, action_t, state_t+1, reward_t+1)
+        self.transitions = []
+        
+        # Episode-level logs
+        self.episodes = []
+        self.current_episode = None
+        
+        # LLM intervention logs
+        self.llm_interventions = []
+        
+        # Causal feature tracking
+        self.feature_correlations = defaultdict(list)
+        
+        # Action outcome tracking for causal discovery
+        self.action_outcomes = defaultdict(lambda: {
+            'count': 0,
+            'total_reward': 0.0,
+            'total_shaped_reward': 0.0,
+            'health_changes': [],
+            'level_changes': [],
+            'death_count': 0
+        })
+        
+    def start_episode(self, episode_id, initial_obs):
+        """Start logging a new episode"""
+        self.current_episode = {
+            'episode_id': episode_id,
+            'start_time': datetime.now().isoformat(),
+            'initial_state': self._extract_state_features(initial_obs),
+            'steps': [],
+            'llm_calls': [],
+            'final_reward': 0.0,
+            'final_shaped_reward': 0.0,
+            'length': 0,
+            'death': False
+        }
+    
+    def log_step(self, step_data):
+        """
+        Log a single step with all relevant information.
+        
+        step_data should contain:
+        - obs: current observation
+        - action: action taken
+        - action_name: human-readable action name
+        - next_obs: next observation
+        - reward: raw reward
+        - shaped_reward: shaped reward
+        - value_estimate: critic's value estimate
+        - action_probs: full action probability distribution
+        - llm_advice_active: whether LLM advice influenced this action
+        - done: whether episode ended
+        """
+        if self.current_episode is None:
+            raise ValueError("Must call start_episode() before logging steps")
+        
+        # Extract state features
+        state_t = self._extract_state_features(step_data['obs'])
+        state_t1 = self._extract_state_features(step_data['next_obs'])
+        
+        # Calculate state differences (causal effects)
+        state_diff = self._calculate_state_diff(state_t, state_t1)
+        
+        # Build comprehensive step record
+        step_record = {
+            'step': len(self.current_episode['steps']),
+            'timestamp': datetime.now().isoformat(),
+            
+            # State information
+            'state_t': state_t,
+            'state_t1': state_t1,
+            'state_diff': state_diff,
+            
+            # Action information
+            'action': step_data['action'],
+            'action_name': step_data['action_name'],
+            'action_probs': step_data.get('action_probs', []),
+            'action_entropy': self._calculate_entropy(step_data.get('action_probs', [])),
+            
+            # Reward information
+            'reward': float(step_data['reward']),
+            'shaped_reward': float(step_data['shaped_reward']),
+            'reward_shaping_delta': float(step_data['shaped_reward'] - step_data['reward']),
+            
+            # Value estimation
+            'value_estimate': float(step_data.get('value_estimate', 0.0)),
+            
+            # LLM influence
+            'llm_advice_active': step_data.get('llm_advice_active', False),
+            'llm_guidance_weight': step_data.get('llm_guidance_weight', 0.0),
+            
+            # Episode status
+            'done': step_data['done'],
+            'death': state_t1.get('health', 1.0) <= 0
+        }
+        
+        self.current_episode['steps'].append(step_record)
+        
+        # Add to transitions for causal analysis
+        self.transitions.append({
+            'state_t': state_t,
+            'action': step_data['action'],
+            'action_name': step_data['action_name'],
+            'state_t1': state_t1,
+            'reward': step_data['reward'],
+            'shaped_reward': step_data['shaped_reward'],
+            'llm_active': step_data.get('llm_advice_active', False)
+        })
+        
+        # Update action outcome statistics
+        self._update_action_outcomes(step_data['action_name'], step_record)
+        
+        # Track feature correlations
+        self._track_correlations(step_record)
+    
+    def log_llm_intervention(self, step, advice, state_before, state_after=None):
+        """Log when LLM provides strategic advice"""
+        intervention = {
+            'step': step,
+            'timestamp': datetime.now().isoformat(),
+            'advice': advice,
+            'state_before': self._extract_state_features(state_before),
+            'immediate_priority': advice.get('immediate_priority', ''),
+            'risk_assessment': advice.get('risk_assessment', ''),
+            'suggested_actions': advice.get('action_suggestions', [])
+        }
+        
+        if state_after:
+            intervention['state_after'] = self._extract_state_features(state_after)
+        
+        self.llm_interventions.append(intervention)
+        
+        if self.current_episode:
+            self.current_episode['llm_calls'].append(intervention)
+    
+    def end_episode(self, final_reward, final_shaped_reward, death=False):
+        """Finalize episode logging"""
+        if self.current_episode is None:
+            return
+        
+        self.current_episode['end_time'] = datetime.now().isoformat()
+        self.current_episode['final_reward'] = float(final_reward)
+        self.current_episode['final_shaped_reward'] = float(final_shaped_reward)
+        self.current_episode['length'] = len(self.current_episode['steps'])
+        self.current_episode['death'] = death
+        
+        # Calculate episode-level causal metrics
+        self.current_episode['causal_metrics'] = self._calculate_episode_causal_metrics()
+        
+        self.episodes.append(self.current_episode)
+        self.current_episode = None
+    
+    def _extract_state_features(self, obs):
+        """Extract key state features for causal analysis"""
+        if isinstance(obs, tuple):
+            obs = obs[0]
+        
+        if not isinstance(obs, dict):
+            return {}
+        
+        stats = obs.get('blstats', np.zeros(26))
+        glyphs = obs.get('glyphs', np.zeros((21, 79)))
+        
+        features = {
+            # Health status
+            'health': float(stats[0]) if len(stats) > 0 else 0.0,
+            'max_health': float(stats[1]) if len(stats) > 1 else 1.0,
+            'health_ratio': float(stats[0] / stats[1]) if len(stats) > 1 and stats[1] > 0 else 0.0,
+            
+            # Position
+            'pos_x': float(stats[0]) if len(stats) > 0 else 0.0,
+            'pos_y': float(stats[1]) if len(stats) > 1 else 0.0,
+            
+            # Character stats
+            'level': int(stats[7]) if len(stats) > 7 else 1,
+            'experience': int(stats[8]) if len(stats) > 8 else 0,
+            'strength': int(stats[2]) if len(stats) > 2 else 10,
+            'dexterity': int(stats[3]) if len(stats) > 3 else 10,
+            
+            # Dungeon depth
+            'dungeon_level': int(stats[12]) if len(stats) > 12 else 1,
+            
+            # Environment complexity
+            'unique_glyphs': int(len(np.unique(glyphs))),
+            'empty_tiles': int(np.sum(glyphs == 0)),
+            'wall_tiles': int(np.sum(glyphs == 2359)),
+            
+            # Spatial awareness (simplified)
+            'nearby_entities': int(np.sum(glyphs > 2370)),  # Likely monsters/items
+        }
+        
+        return features
+    
+    def _calculate_state_diff(self, state_t, state_t1):
+        """Calculate differences between consecutive states"""
+        diff = {}
+        for key in state_t.keys():
+            if key in state_t1 and isinstance(state_t[key], (int, float)):
+                diff[f'delta_{key}'] = state_t1[key] - state_t[key]
+        return diff
+    
+    def _calculate_entropy(self, probs):
+        """Calculate entropy of action probability distribution"""
+        if not probs or len(probs) == 0:
+            return 0.0
+        probs = np.array(probs)
+        probs = probs[probs > 0]  # Remove zeros
+        return float(-np.sum(probs * np.log(probs + 1e-10)))
+    
+    def _update_action_outcomes(self, action_name, step_record):
+        """Update statistics for action outcomes"""
+        outcome = self.action_outcomes[action_name]
+        outcome['count'] += 1
+        outcome['total_reward'] += step_record['reward']
+        outcome['total_shaped_reward'] += step_record['shaped_reward']
+        
+        if 'delta_health' in step_record['state_diff']:
+            outcome['health_changes'].append(step_record['state_diff']['delta_health'])
+        
+        if 'delta_level' in step_record['state_diff']:
+            outcome['level_changes'].append(step_record['state_diff']['delta_level'])
+        
+        if step_record['death']:
+            outcome['death_count'] += 1
+    
+    def _track_correlations(self, step_record):
+        """Track correlations between features for causal discovery"""
+        # Track reward correlations with state changes
+        for key, value in step_record['state_diff'].items():
+            self.feature_correlations[key].append({
+                'reward': step_record['reward'],
+                'value': value,
+                'action': step_record['action_name']
+            })
+    
+    def _calculate_episode_causal_metrics(self):
+        """Calculate causal metrics for the episode"""
+        if not self.current_episode or not self.current_episode['steps']:
+            return {}
+        
+        steps = self.current_episode['steps']
+        
+        # Action distribution
+        action_counts = defaultdict(int)
+        for step in steps:
+            action_counts[step['action_name']] += 1
+        
+        # LLM impact analysis
+        llm_steps = [s for s in steps if s['llm_advice_active']]
+        non_llm_steps = [s for s in steps if not s['llm_advice_active']]
+        
+        llm_avg_reward = np.mean([s['reward'] for s in llm_steps]) if llm_steps else 0.0
+        non_llm_avg_reward = np.mean([s['reward'] for s in non_llm_steps]) if non_llm_steps else 0.0
+        
+        # Health trajectory
+        health_trajectory = [s['state_t']['health_ratio'] for s in steps]
+        health_volatility = np.std(health_trajectory) if len(health_trajectory) > 1 else 0.0
+        
+        return {
+            'total_steps': len(steps),
+            'unique_actions': len(action_counts),
+            'action_distribution': dict(action_counts),
+            'llm_step_count': len(llm_steps),
+            'llm_step_ratio': len(llm_steps) / len(steps) if steps else 0.0,
+            'llm_avg_reward': float(llm_avg_reward),
+            'non_llm_avg_reward': float(non_llm_avg_reward),
+            'llm_reward_advantage': float(llm_avg_reward - non_llm_avg_reward),
+            'health_volatility': float(health_volatility),
+            'final_health_ratio': float(steps[-1]['state_t1']['health_ratio']) if steps else 0.0,
+            'avg_action_entropy': float(np.mean([s['action_entropy'] for s in steps])),
+        }
+    
+    def save_logs(self):
+        """Save all logs to disk"""
+        base_filename = f"{self.log_file_prefix}_{self.timestamp}"
+        
+        # Save episodes
+        with open(f"{base_filename}_episodes.json", 'w') as f:
+            json.dump({
+                'episodes': self.episodes,
+                'total_episodes': len(self.episodes),
+                'timestamp': self.timestamp
+            }, f, indent=2)
+        
+        # Save transitions (for causal discovery algorithms)
+        with open(f"{base_filename}_transitions.json", 'w') as f:
+            json.dump({
+                'transitions': self.transitions,
+                'total_transitions': len(self.transitions)
+            }, f, indent=2)
+        
+        # Save LLM interventions
+        with open(f"{base_filename}_llm_interventions.json", 'w') as f:
+            json.dump({
+                'interventions': self.llm_interventions,
+                'total_interventions': len(self.llm_interventions)
+            }, f, indent=2)
+        
+        # Save action outcome statistics
+        action_stats = {}
+        for action, stats in self.action_outcomes.items():
+            action_stats[action] = {
+                'count': stats['count'],
+                'avg_reward': stats['total_reward'] / stats['count'] if stats['count'] > 0 else 0.0,
+                'avg_shaped_reward': stats['total_shaped_reward'] / stats['count'] if stats['count'] > 0 else 0.0,
+                'avg_health_change': float(np.mean(stats['health_changes'])) if stats['health_changes'] else 0.0,
+                'death_rate': stats['death_count'] / stats['count'] if stats['count'] > 0 else 0.0
+            }
+        
+        with open(f"{base_filename}_action_statistics.json", 'w') as f:
+            json.dump(action_stats, f, indent=2)
+        
+        # Save feature correlations for causal discovery
+        correlation_summary = {}
+        for feature, data_points in self.feature_correlations.items():
+            if len(data_points) > 1:
+                rewards = [d['reward'] for d in data_points]
+                values = [d['value'] for d in data_points]
+                correlation = np.corrcoef(rewards, values)[0, 1] if len(rewards) > 1 else 0.0
+                correlation_summary[feature] = {
+                    'correlation_with_reward': float(correlation),
+                    'sample_size': len(data_points),
+                    'mean_value': float(np.mean(values)),
+                    'std_value': float(np.std(values))
+                }
+        
+        with open(f"{base_filename}_correlations.json", 'w') as f:
+            json.dump(correlation_summary, f, indent=2)
+        
+        print(f"\nCausal logs saved with prefix: {base_filename}")
+        print(f"  - Episodes: {len(self.episodes)}")
+        print(f"  - Transitions: {len(self.transitions)}")
+        print(f"  - LLM Interventions: {len(self.llm_interventions)}")
+        print(f"  - Actions tracked: {len(self.action_outcomes)}")
+    
+    def generate_causal_graph_data(self):
+        """
+        Generate data structure suitable for causal graph construction.
+        Returns nodes and edges that can be used with causal discovery algorithms.
+        """
+        # Define causal variables (nodes)
+        nodes = [
+            # State variables
+            'health_ratio', 'level', 'experience', 'dungeon_level',
+            'unique_glyphs', 'nearby_entities',
+            
+            # Action variable
+            'action',
+            
+            # LLM intervention
+            'llm_active',
+            
+            # Outcomes
+            'reward', 'shaped_reward', 'health_change', 'death'
+        ]
+        
+        # Collect data for each variable across all transitions
+        data_matrix = []
+        for trans in self.transitions:
+            row = [
+                trans['state_t'].get('health_ratio', 0.0),
+                trans['state_t'].get('level', 0),
+                trans['state_t'].get('experience', 0),
+                trans['state_t'].get('dungeon_level', 0),
+                trans['state_t'].get('unique_glyphs', 0),
+                trans['state_t'].get('nearby_entities', 0),
+                trans['action'],
+                1 if trans['llm_active'] else 0,
+                trans['reward'],
+                trans['shaped_reward'],
+                trans['state_t1'].get('health', 0) - trans['state_t'].get('health', 0),
+                1 if trans['state_t1'].get('health', 1) <= 0 else 0
+            ]
+            data_matrix.append(row)
+        
+        return {
+            'nodes': nodes,
+            'data_matrix': data_matrix,
+            'variable_descriptions': {
+                'health_ratio': 'Current health as ratio of maximum',
+                'level': 'Character level',
+                'experience': 'Experience points',
+                'dungeon_level': 'Depth in dungeon',
+                'unique_glyphs': 'Environmental complexity',
+                'nearby_entities': 'Number of nearby entities',
+                'action': 'Action taken (encoded)',
+                'llm_active': 'Whether LLM advice was active',
+                'reward': 'Raw environment reward',
+                'shaped_reward': 'Reward after shaping',
+                'health_change': 'Change in health',
+                'death': 'Whether agent died'
+            }
+        }
+
 
 
 async def main_monitored():
@@ -1743,8 +2287,8 @@ async def main_monitored():
     # Create monitored agent
     agent = MonitoredLLMGuidedNetHackAgent(
         action_dim=env.action_space.n,
-        llm_guidance_weight=0.3,
-        llm_call_frequency=20,
+        llm_guidance_weight=0.5,
+        llm_call_frequency=10,
         baseline_metrics_path=baseline_path
     )
     
@@ -1773,11 +2317,19 @@ async def main_monitored():
             agent.buffer.clear()
     
     # Final summary
-    agent.monitor.print_final_summary()
     
     # Save model and advice log
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
+
+    agent.monitor.print_final_summary()
+    agent.causal_logger.save_logs()  # SAVE CAUSAL LOGS
+    
+    # Generate causal graph data
+    causal_graph_data = agent.causal_logger.generate_causal_graph_data()
+    with open(f"causal_graph_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json", 'w') as f:
+        json.dump(causal_graph_data, f, indent=2)
+    
     
     env.close()
 
@@ -1786,51 +2338,4 @@ if __name__ == "__main__":
     import asyncio
     asyncio.run(main_monitored())
 
-# async def main():
-#     """Main training function for LLM-guided agent"""
-#     print("Setting up LLM-Guided NetHack PPO Training...")
-    
-#     # Create environment
-#     env = create_nethack_env()
-#     print(f"Environment action space: {env.action_space.n}")
-    
-#     # Create LLM-guided agent
-#     agent = LLMGuidedNetHackAgent(
-#         action_dim=env.action_space.n,
-#         llm_guidance_weight=0.3,  # 30% LLM influence
-#         llm_call_frequency=20     # Get advice every 20 steps
-#     )
-    
-#     print("Starting LLM-guided training...")
-    
-#     # Training loop
-#     for episode in range(100):  # Reduced for testing
-#         episode_reward, episode_shaped_reward, episode_length = await agent.train_episode(env)
-        
-#         agent.episode_rewards.append(episode_reward)
-#         agent.shaped_rewards.append(episode_shaped_reward)
-#         agent.episode_lengths.append(episode_length)
-        
-#         if episode % 10 == 0:
-#             avg_reward = np.mean(list(agent.episode_rewards))
-#             avg_shaped_reward = np.mean(list(agent.shaped_rewards))
-#             avg_length = np.mean(list(agent.episode_lengths))
-#             print(f"Episode {episode}: Raw: {avg_reward:.3f}, "
-#                   f"Shaped: {avg_shaped_reward:.3f}, Length: {avg_length:.1f}")
-        
-#         # Update networks periodically
-#         if len(agent.buffer) >= 2048:
-#             print(f"Updating networks after episode {episode}")
-#             # agent.update()  # You'd implement this similar to the enhanced agent
-#             agent.buffer.clear()
-    
-#     # Save results
-#     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-#     agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
-    
-#     env.close()
-#     print("LLM-guided training completed!")
 
-# if __name__ == "__main__":
-#     import asyncio
-#     asyncio.run(main())
