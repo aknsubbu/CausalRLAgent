@@ -3,18 +3,103 @@ import json
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Set
 from collections import defaultdict
 
 
 class NetHackLogParser:
-    """Parse NetHack LLM+RL agent logs for causal analysis with proper temporal alignment."""
+    """Parse NetHack LLM+RL agent logs with semantic action matching."""
     
-    def __init__(self, log_file: str):
+    def __init__(self, log_file: str, alignment_window: int = 10):
         self.log_file = log_file
         self.data = []
-        self.advice_episodes = []  # Track advice episodes
+        self.alignment_window = alignment_window
         
+        # CRITICAL: Semantic mapping of advice to actual game actions
+        self.semantic_mappings = {
+            'search': ['move_north', 'move_south', 'move_east', 'move_west', 
+                      'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest',
+                      'search', 'look'],
+            'explore': ['move_north', 'move_south', 'move_east', 'move_west',
+                       'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest',
+                       'search', 'look', 'open'],
+            'move': ['move_north', 'move_south', 'move_east', 'move_west',
+                    'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest'],
+            'eat': ['eat', 'apply', 'drop'],  # apply often used for eating in NetHack
+            'food': ['eat', 'apply', 'drop'],
+            'heal': ['eat', 'apply', 'quaff', 'drink'],
+            'drink': ['quaff', 'apply', 'drink'],
+            'rest': ['wait', 'search', 'move_north'],  # resting often = moving/waiting
+            'take': ['take', 'pickup', 'pick'],
+            'inventory': ['take', 'drop', 'pickup', 'pick', 'apply'],
+            'attack': ['attack', 'fight', 'fire', 'throw', 'kick'],
+            'fight': ['attack', 'fight', 'fire', 'throw', 'kick'],
+            'flee': ['move_north', 'move_south', 'move_east', 'move_west',
+                    'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest'],
+            'escape': ['move_north', 'move_south', 'move_east', 'move_west',
+                      'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest'],
+            'equip': ['wear', 'wield', 'takeoff', 'take_off', 'put_on'],
+            'wear': ['wear', 'put_on'],
+            'wield': ['wield'],
+            'read': ['read'],
+            'open': ['open', 'open_door'],
+            'close': ['close', 'close_door'],
+        }
+        
+    def _semantically_matches(self, action: str, suggestion: str) -> bool:
+        """
+        Check if action semantically matches suggestion.
+        
+        Examples:
+        - suggestion="search", action="move_northeast" -> True (moving is searching)
+        - suggestion="eat", action="apply" -> True (applying food is eating)
+        - suggestion="take", action="drop" -> False
+        """
+        action_lower = action.lower()
+        suggestion_lower = suggestion.lower()
+        
+        # Direct match
+        if suggestion_lower in action_lower or action_lower in suggestion_lower:
+            return True
+        
+        # Semantic match via mapping
+        if suggestion_lower in self.semantic_mappings:
+            valid_actions = self.semantic_mappings[suggestion_lower]
+            for valid_action in valid_actions:
+                if action_lower.startswith(valid_action.lower()) or valid_action.lower() in action_lower:
+                    return True
+        
+        # Check if action category matches suggestion category
+        action_cat = self._categorize_action(action)
+        suggestion_cat = self._categorize_advice_keyword(suggestion)
+        
+        if action_cat != 'other' and suggestion_cat != 'other' and action_cat == suggestion_cat:
+            return True
+        
+        return False
+    
+    def _categorize_advice_keyword(self, keyword: str) -> str:
+        """Categorize advice keywords."""
+        if not keyword or pd.isna(keyword):
+            return 'other'
+        
+        keyword_lower = keyword.lower()
+        
+        if keyword_lower in ['search', 'explore', 'look', 'find']:
+            return 'exploration'
+        elif keyword_lower in ['move', 'go', 'navigate', 'flee', 'escape', 'run']:
+            return 'movement'
+        elif keyword_lower in ['eat', 'food', 'heal', 'restore', 'drink', 'quaff']:
+            return 'item_use'
+        elif keyword_lower in ['attack', 'fight', 'kill', 'combat']:
+            return 'combat'
+        elif keyword_lower in ['take', 'drop', 'pickup', 'inventory']:
+            return 'inventory'
+        elif keyword_lower in ['equip', 'wear', 'wield']:
+            return 'equipment'
+        else:
+            return 'other'
+    
     def parse_logs(self) -> pd.DataFrame:
         """Main parsing function with temporal tracking."""
         with open(self.log_file, 'r') as f:
@@ -32,13 +117,12 @@ class NetHackLogParser:
             if line.startswith("LLM Advice:"):
                 current_advice = line.replace("LLM Advice:", "").strip()
                 current_llm_data = None
-                advice_given_at_step = None  # Will be set at next step
+                advice_given_at_step = None
                 
             # Parse step action line
             elif line.startswith("Step"):
                 step_data = self._parse_step_line(line)
                 if step_data:
-                    # Mark when advice was given
                     if current_advice and advice_given_at_step is None:
                         advice_given_at_step = step_data['step']
                     
@@ -51,7 +135,6 @@ class NetHackLogParser:
             
             # Parse debug LLM response
             elif line.startswith("[DEBUG] Raw LLM response"):
-                # Look ahead to get the JSON
                 j = i + 1
                 json_lines = []
                 while j < len(lines) and not lines[j].strip().startswith("LLM Advice:") and not lines[j].strip().startswith("Step"):
@@ -70,12 +153,11 @@ class NetHackLogParser:
         
         df = pd.DataFrame(self.data)
         df = self._enrich_dataframe(df)
-        df = self._compute_temporal_alignment(df)
+        df = self._compute_semantic_alignment(df)
         return df
     
     def _parse_step_line(self, line: str) -> Optional[Dict]:
         """Parse a step line into structured data."""
-        # Pattern: Step 1100 | Action: drink | R: -0.01 | SR: -0.010 | HP: 180.0% | Lvl: 14
         pattern = r'Step\s+(\d+)\s+\|\s+Action:\s+(\w+)\s+\|\s+R:\s+([-\d.]+)\s+\|\s+SR:\s+([-\d.]+)\s+\|\s+HP:\s+([\d.]+)%\s+\|\s+Lvl:\s+(\d+)'
         match = re.match(pattern, line)
         
@@ -90,89 +172,138 @@ class NetHackLogParser:
             }
         return None
     
-    def _compute_temporal_alignment(self, df: pd.DataFrame) -> pd.DataFrame:
+    def _compute_semantic_alignment(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Compute proper temporal alignment between advice and actions.
+        Compute alignment using SEMANTIC matching, not just string matching.
         
-        Key insight: An action "follows advice" if it matches suggestions 
-        within a reasonable time window after advice is given.
+        KEY: When LLM says "search", agent doing "move_east" IS following advice!
         """
         if df.empty:
             return df
         
-        # Extract LLM suggestions
+        # Extract suggestions and advice text
         df['llm_suggestions'] = df['llm_data'].apply(
             lambda x: x.get('action_suggestions', []) if isinstance(x, dict) else []
         )
         
-        # For each step, check if action matches ANY suggestion in the current advice window
-        df['action_matches_any_suggestion'] = df.apply(
-            lambda row: any(
-                row['action'].startswith(sugg) or sugg in row['action'] 
-                for sugg in row['llm_suggestions']
-            ) if row['llm_suggestions'] else False,
-            axis=1
+        df['llm_priority'] = df['llm_data'].apply(
+            lambda x: x.get('immediate_priority', '') if isinstance(x, dict) else ''
         )
         
-        # More sophisticated matching: exact match, partial match, semantic match
-        df['action_exact_match'] = df.apply(
-            lambda row: row['action'] in row['llm_suggestions'] if row['llm_suggestions'] else False,
-            axis=1
-        )
+        # Extract keywords from advice text and priority
+        df['advice_keywords'] = df.apply(self._extract_advice_keywords, axis=1)
         
-        df['action_partial_match'] = df.apply(
-            lambda row: any(
-                sugg in row['action'] or row['action'] in sugg
-                for sugg in row['llm_suggestions']
-            ) if row['llm_suggestions'] else False,
-            axis=1
-        )
+        # Check semantic matches at step level
+        df['action_matches_any_suggestion'] = False
+        df['action_matches_semantic'] = False
+        df['matched_suggestion'] = None
         
-        # Compute alignment score: how well actions align with advice over time window
-        window_size = 5  # Consider 5 steps after advice
-        
-        df['alignment_score'] = 0.0
         for idx in df.index:
-            if pd.isna(df.loc[idx, 'advice_given_at_step']):
-                continue
+            action = df.loc[idx, 'action']
+            suggestions = df.loc[idx, 'llm_suggestions']
+            keywords = df.loc[idx, 'advice_keywords']
             
-            steps_since = df.loc[idx, 'steps_since_advice']
-            if steps_since is not None and 0 <= steps_since <= window_size:
-                # Weight decreases with time since advice
-                time_weight = 1.0 - (steps_since / window_size)
-                
-                if df.loc[idx, 'action_exact_match']:
-                    df.loc[idx, 'alignment_score'] = 1.0 * time_weight
-                elif df.loc[idx, 'action_partial_match']:
-                    df.loc[idx, 'alignment_score'] = 0.5 * time_weight
+            # Check against explicit suggestions
+            for sugg in suggestions:
+                if self._semantically_matches(action, sugg):
+                    df.loc[idx, 'action_matches_any_suggestion'] = True
+                    df.loc[idx, 'action_matches_semantic'] = True
+                    df.loc[idx, 'matched_suggestion'] = sugg
+                    break
+            
+            # Check against advice keywords (priority and advice text)
+            if not df.loc[idx, 'action_matches_semantic']:
+                for keyword in keywords:
+                    if self._semantically_matches(action, keyword):
+                        df.loc[idx, 'action_matches_semantic'] = True
+                        df.loc[idx, 'matched_suggestion'] = keyword
+                        break
         
-        # Create advice episodes: group steps by advice period
+        # Create advice episodes
         advice_changes = (df['advice_given_at_step'] != df['advice_given_at_step'].shift(1)).cumsum()
         df['advice_episode'] = advice_changes
         
-        # Compute episode-level statistics
-        df['episode_alignment_rate'] = df.groupby('advice_episode')['action_matches_any_suggestion'].transform('mean')
+        # For each episode, check if ANY action in window matches
+        df['alignment_window_matched'] = False
+        df['steps_until_match'] = None
+        
+        for episode_id in df['advice_episode'].unique():
+            if pd.isna(episode_id):
+                continue
+            
+            episode_mask = df['advice_episode'] == episode_id
+            episode_indices = df[episode_mask].index
+            
+            if len(episode_indices) == 0:
+                continue
+            
+            # Check semantic matches within window
+            window_size = min(len(episode_indices), self.alignment_window)
+            window_indices = episode_indices[:window_size]
+            
+            matches = df.loc[window_indices, 'action_matches_semantic'].values
+            
+            if matches.any():
+                first_match_idx = np.where(matches)[0][0]
+                df.loc[episode_indices, 'alignment_window_matched'] = True
+                df.loc[episode_indices, 'steps_until_match'] = first_match_idx
+        
+        # Episode-level metrics
+        df['episode_alignment_rate'] = df.groupby('advice_episode')['action_matches_semantic'].transform('mean')
+        df['episode_matched_in_window'] = df.groupby('advice_episode')['alignment_window_matched'].transform('first')
+        
+        # Treatment definitions
+        df['followed_advice_strict'] = (df['episode_alignment_rate'] >= 0.3).astype(int)
+        df['followed_advice_lenient'] = df['episode_matched_in_window'].fillna(False).astype(int)
+        df['alignment_strength'] = df['episode_alignment_rate']
+        df['followed_advice'] = df['followed_advice_lenient']
+        
+        # Episode stats
         df['episode_avg_reward'] = df.groupby('advice_episode')['reward'].transform('mean')
         df['episode_reward_sum'] = df.groupby('advice_episode')['reward'].transform('sum')
         df['episode_length'] = df.groupby('advice_episode')['step'].transform('count')
         
-        # Binary treatment: Did agent follow advice within reasonable time window?
-        # Consider an episode as "treated" if alignment rate > threshold
-        alignment_threshold = 0.3
-        df['followed_advice'] = (df['episode_alignment_rate'] >= alignment_threshold).astype(int)
-        
-        # Alternative treatment: First action after advice
-        df['is_first_action_after_advice'] = (df['steps_since_advice'] == 0).astype(int)
-        df['first_action_matches'] = (df['is_first_action_after_advice'] & df['action_matches_any_suggestion']).astype(int)
-        
         return df
+    
+    def _extract_advice_keywords(self, row) -> Set[str]:
+        """Extract actionable keywords from advice and priority."""
+        keywords = set()
+        
+        # From priority
+        priority = row.get('llm_priority', '')
+        if priority and not pd.isna(priority):
+            # Common action keywords
+            action_words = ['search', 'explore', 'eat', 'drink', 'attack', 'fight', 
+                          'move', 'take', 'drop', 'wear', 'wield', 'read', 'flee',
+                          'heal', 'rest', 'open', 'close', 'look', 'find']
+            
+            priority_lower = priority.lower()
+            for word in action_words:
+                if word in priority_lower:
+                    keywords.add(word)
+        
+        # From suggestions
+        suggestions = row.get('llm_suggestions', [])
+        if suggestions:
+            keywords.update(suggestions)
+        
+        # From advice text
+        advice = row.get('llm_advice', '')
+        if advice and not pd.isna(advice):
+            advice_lower = advice.lower()
+            for word in ['search', 'explore', 'eat', 'drink', 'attack', 'fight', 
+                        'move', 'take', 'drop', 'wear', 'wield', 'read', 'flee',
+                        'heal', 'rest', 'open', 'close', 'look', 'find']:
+                if word in advice_lower:
+                    keywords.add(word)
+        
+        return keywords
     
     def _enrich_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
         """Add derived features and causal variables."""
         if df.empty:
             return df
         
-        # Sort by step
         df = df.sort_values('step').reset_index(drop=True)
         
         # Extract LLM structured data
@@ -185,59 +316,32 @@ class NetHackLogParser:
         df['llm_strategy'] = df['llm_data'].apply(
             lambda x: x.get('strategy', '') if isinstance(x, dict) else ''
         )
-        df['llm_opportunities'] = df['llm_data'].apply(
-            lambda x: x.get('opportunities', '') if isinstance(x, dict) else ''
-        )
         
-        # Change metrics (outcomes)
+        # Change metrics
         df['hp_change'] = df['hp'].diff()
         df['reward_change'] = df['reward'].diff()
         df['sr_change'] = df['smoothed_reward'].diff()
         df['level_up'] = (df['level'].diff() > 0).astype(int)
         
-        # Lag features (confounders - state before advice)
+        # Lag features (confounders)
         df['hp_lag1'] = df['hp'].shift(1)
-        df['hp_lag2'] = df['hp'].shift(2)
         df['reward_lag1'] = df['reward'].shift(1)
         df['sr_lag1'] = df['smoothed_reward'].shift(1)
         df['level_lag1'] = df['level'].shift(1)
         
-        # Rolling statistics (context)
+        # Rolling statistics
         df['reward_ma5'] = df['reward'].rolling(window=5, min_periods=1).mean()
-        df['reward_ma10'] = df['reward'].rolling(window=10, min_periods=1).mean()
         df['hp_ma5'] = df['hp'].rolling(window=5, min_periods=1).mean()
         df['reward_std5'] = df['reward'].rolling(window=5, min_periods=1).std()
-        df['hp_std5'] = df['hp'].rolling(window=5, min_periods=1).std()
         
-        # Volatility measures
-        df['reward_volatility'] = df['reward_std5'] / (abs(df['reward_ma5']) + 0.001)
-        df['hp_volatility'] = df['hp_std5'] / (df['hp_ma5'] + 0.001)
-        
-        # Categorize advice
+        # Categorize
         df['advice_category'] = df['llm_advice'].apply(self._categorize_advice)
-        df['priority_category'] = df['llm_priority'].apply(self._categorize_advice)
         df['action_category'] = df['action'].apply(self._categorize_action)
         
-        # Critical states (confounders)
+        # Critical states
         df['critical_hp'] = (df['hp'] < 50).astype(int)
         df['low_hp'] = (df['hp'] < 100).astype(int)
         df['high_hp'] = (df['hp'] > 150).astype(int)
-        df['very_high_hp'] = (df['hp'] > 200).astype(int)
-        
-        # Performance states
-        df['positive_reward_trend'] = (df['reward_ma5'] > 0).astype(int)
-        df['improving_performance'] = (df['smoothed_reward'].diff() > 0).astype(int)
-        
-        # Reward momentum
-        df['reward_momentum'] = df['smoothed_reward'].diff().rolling(window=3, min_periods=1).mean()
-        df['reward_acceleration'] = df['reward_momentum'].diff()
-        
-        # Episode stage (early, mid, late game)
-        df['episode_stage'] = pd.cut(df['step'], bins=3, labels=['early', 'mid', 'late'])
-        
-        # Progress metrics
-        df['steps_per_level'] = df['step'] / (df['level'] + 1)
-        df['hp_per_level'] = df['hp'] / (df['level'] + 1)
         
         return df
     
@@ -248,7 +352,6 @@ class NetHackLogParser:
         
         advice_lower = advice.lower()
         
-        # Priority-based categorization
         if any(word in advice_lower for word in ['eat', 'health', 'restore', 'heal', 'food', 'hunger']):
             return 'survival'
         elif any(word in advice_lower for word in ['attack', 'fight', 'combat', 'kill', 'enemy', 'monster']):
@@ -261,10 +364,6 @@ class NetHackLogParser:
             return 'equipment'
         elif any(word in advice_lower for word in ['read', 'drink', 'use', 'apply', 'potion', 'scroll']):
             return 'item_use'
-        elif any(word in advice_lower for word in ['move', 'go', 'navigate', 'direction']):
-            return 'movement'
-        elif any(word in advice_lower for word in ['drop', 'pick', 'inventory', 'take']):
-            return 'inventory'
         else:
             return 'other'
     
@@ -292,81 +391,119 @@ class NetHackLogParser:
         
         return 'other'
     
+    def generate_alignment_report(self, df: pd.DataFrame) -> str:
+        """Generate detailed alignment report with examples."""
+        report = []
+        report.append("=" * 80)
+        report.append("SEMANTIC ALIGNMENT DETECTION REPORT")
+        report.append("=" * 80)
+        
+        total_episodes = df['advice_episode'].nunique()
+        matched_lenient = (df.groupby('advice_episode')['followed_advice_lenient'].first() == 1).sum()
+        matched_strict = (df.groupby('advice_episode')['followed_advice_strict'].first() == 1).sum()
+        
+        report.append(f"\nTotal advice episodes: {total_episodes}")
+        report.append(f"\nAlignment Detection (semantic matching, {self.alignment_window}-step window):")
+        report.append(f"  Lenient (≥1 semantic match):  {matched_lenient} episodes ({matched_lenient/total_episodes*100:.1f}%)")
+        report.append(f"  Strict (≥30% actions match):  {matched_strict} episodes ({matched_strict/total_episodes*100:.1f}%)")
+        
+        report.append(f"\nStep-level semantic alignment:")
+        report.append(f"  Actions semantically matching advice: {df['action_matches_semantic'].sum()} / {len(df)} ({df['action_matches_semantic'].mean()*100:.1f}%)")
+        
+        # Show what gets matched
+        matched_df = df[df['action_matches_semantic'] == True]
+        if len(matched_df) > 0:
+            report.append(f"\nTop semantic matches:")
+            match_counts = matched_df.groupby(['matched_suggestion', 'action']).size().sort_values(ascending=False).head(10)
+            for (sugg, action), count in match_counts.items():
+                report.append(f"  '{sugg}' → {action}: {count} times")
+        
+        # Distribution of match timing
+        matched_episodes = df[df['episode_matched_in_window'] == True].groupby('advice_episode')['steps_until_match'].first()
+        if len(matched_episodes) > 0:
+            report.append(f"\nWhen advice IS followed:")
+            report.append(f"  Average steps until match: {matched_episodes.mean():.1f}")
+            report.append(f"  Immediate (step 0): {(matched_episodes == 0).sum()} episodes")
+            report.append(f"  Delayed (step 1-5): {((matched_episodes >= 1) & (matched_episodes <= 5)).sum()} episodes")
+        
+        # Sample matched episodes
+        report.append(f"\n" + "="*80)
+        report.append("SAMPLE MATCHED EPISODES:")
+        report.append("="*80)
+        
+        matched_eps = df[df['episode_matched_in_window'] == True]['advice_episode'].unique()[:5]
+        for ep_id in matched_eps:
+            ep_df = df[df['advice_episode'] == ep_id].head(min(10, self.alignment_window))
+            if len(ep_df) > 0:
+                advice = ep_df['llm_advice'].iloc[0]
+                keywords = ep_df['advice_keywords'].iloc[0]
+                
+                report.append(f"\nEpisode {ep_id}:")
+                report.append(f"  Advice: {advice[:80]}...")
+                report.append(f"  Keywords: {keywords}")
+                report.append(f"  Actions:")
+                for _, row in ep_df.iterrows():
+                    match_mark = "✓" if row['action_matches_semantic'] else " "
+                    matched_on = f" (matched '{row['matched_suggestion']}')" if row['matched_suggestion'] else ""
+                    report.append(f"    [{match_mark}] {row['action']}{matched_on}")
+        
+        return "\n".join(report)
+    
     def save_processed_data(self, output_path: str, df: pd.DataFrame):
-        """Save processed data in multiple formats."""
+        """Save processed data with alignment report."""
         output_path = Path(output_path)
         output_path.mkdir(parents=True, exist_ok=True)
         
-        # CSV for general use
         df.to_csv(output_path / 'processed_data.csv', index=False)
-        
-        # Parquet for efficient storage
         df.to_parquet(output_path / 'processed_data.parquet', index=False)
         
-        # Episode-level summary
         episode_summary = self._create_episode_summary(df)
         episode_summary.to_csv(output_path / 'episode_summary.csv', index=False)
         
-        # Summary statistics
-        summary = self._generate_summary(df)
-        with open(output_path / 'summary_stats.txt', 'w') as f:
-            f.write(summary)
+        alignment_report = self.generate_alignment_report(df)
+        with open(output_path / 'alignment_report.txt', 'w') as f:
+            f.write(alignment_report)
         
-        # Metadata about temporal structure
         metadata = self._generate_metadata(df)
         with open(output_path / 'metadata.json', 'w') as f:
             json.dump(metadata, f, indent=2)
         
-        print(f"Data saved to {output_path}")
-        print(f"Total steps: {len(df)}")
-        print(f"Total advice episodes: {df['advice_episode'].nunique()}")
-        print(f"Columns: {len(df.columns)}")
+        print(f"✓ Data saved to {output_path}")
+        print(f"✓ Episodes following advice: {df['followed_advice'].sum()} / {df['advice_episode'].nunique()} ({df['followed_advice'].sum()/df['advice_episode'].nunique()*100:.1f}%)")
+        print(f"\n📊 See alignment_report.txt for semantic matching details")
     
     def _create_episode_summary(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Create episode-level summary for episode-level causal analysis."""
-        
+        """Create episode-level summary."""
         episode_stats = []
         
         for episode_id in df['advice_episode'].unique():
             if pd.isna(episode_id):
                 continue
             
-            episode_df = df[df['advice_episode'] == episode_id]
+            ep = df[df['advice_episode'] == episode_id]
             
             stats = {
                 'advice_episode': episode_id,
-                'start_step': episode_df['step'].min(),
-                'end_step': episode_df['step'].max(),
-                'episode_length': len(episode_df),
-                'llm_advice': episode_df['llm_advice'].iloc[0] if len(episode_df) > 0 else '',
-                'advice_category': episode_df['advice_category'].iloc[0] if len(episode_df) > 0 else '',
-                'llm_priority': episode_df['llm_priority'].iloc[0] if len(episode_df) > 0 else '',
+                'start_step': ep['step'].min(),
+                'episode_length': len(ep),
+                'llm_advice': ep['llm_advice'].iloc[0] if len(ep) > 0 else '',
+                'advice_category': ep['advice_category'].iloc[0] if len(ep) > 0 else '',
                 
-                # Treatment
-                'alignment_rate': episode_df['action_matches_any_suggestion'].mean(),
-                'followed_advice': episode_df['followed_advice'].iloc[0] if len(episode_df) > 0 else 0,
-                'first_action_matches': episode_df['first_action_matches'].sum() > 0,
+                'followed_advice_lenient': ep['followed_advice_lenient'].iloc[0],
+                'followed_advice_strict': ep['followed_advice_strict'].iloc[0],
+                'alignment_rate': ep['episode_alignment_rate'].iloc[0],
+                'matched_in_window': ep['episode_matched_in_window'].iloc[0] if len(ep) > 0 else False,
                 
-                # Outcomes
-                'total_reward': episode_df['reward'].sum(),
-                'avg_reward': episode_df['reward'].mean(),
-                'final_sr': episode_df['smoothed_reward'].iloc[-1] if len(episode_df) > 0 else None,
-                'sr_change': episode_df['smoothed_reward'].iloc[-1] - episode_df['smoothed_reward'].iloc[0] if len(episode_df) > 0 else 0,
-                'hp_start': episode_df['hp'].iloc[0] if len(episode_df) > 0 else None,
-                'hp_end': episode_df['hp'].iloc[-1] if len(episode_df) > 0 else None,
-                'hp_change': episode_df['hp_change'].sum(),
-                'level_ups': episode_df['level_up'].sum(),
+                'total_reward': ep['reward'].sum(),
+                'avg_reward': ep['reward'].mean(),
+                'sr_change': ep['smoothed_reward'].iloc[-1] - ep['smoothed_reward'].iloc[0] if len(ep) > 0 else 0,
+                'hp_change': ep['hp'].iloc[-1] - ep['hp'].iloc[0] if len(ep) > 0 else 0,
                 
-                # Confounders (pre-treatment state)
-                'hp_at_advice': episode_df['hp_lag1'].iloc[0] if len(episode_df) > 0 else None,
-                'reward_before': episode_df['reward_lag1'].iloc[0] if len(episode_df) > 0 else None,
-                'sr_before': episode_df['sr_lag1'].iloc[0] if len(episode_df) > 0 else None,
-                'critical_hp_at_start': episode_df['critical_hp'].iloc[0] if len(episode_df) > 0 else 0,
-                'level_at_start': episode_df['level'].iloc[0] if len(episode_df) > 0 else None,
-                
-                # Action distribution
-                'most_common_action': episode_df['action_category'].mode()[0] if len(episode_df) > 0 else 'none',
-                'unique_actions': episode_df['action'].nunique(),
+                'hp_before': ep['hp'].iloc[0] if len(ep) > 0 else None,
+                'reward_before': ep['reward_lag1'].iloc[0] if len(ep) > 0 and not pd.isna(ep['reward_lag1'].iloc[0]) else 0,
+                'sr_before': ep['smoothed_reward'].iloc[0] if len(ep) > 0 else None,
+                'level_before': ep['level'].iloc[0] if len(ep) > 0 else None,
+                'critical_hp': int(ep['hp'].iloc[0] < 50) if len(ep) > 0 else 0,
             }
             
             episode_stats.append(stats)
@@ -374,114 +511,34 @@ class NetHackLogParser:
         return pd.DataFrame(episode_stats)
     
     def _generate_metadata(self, df: pd.DataFrame) -> dict:
-        """Generate metadata about temporal structure."""
+        """Generate metadata."""
         return {
             'total_steps': len(df),
             'total_advice_episodes': int(df['advice_episode'].nunique()),
-            'avg_episode_length': float(df['episode_length'].mean()),
-            'median_episode_length': float(df['episode_length'].median()),
-            'avg_steps_since_advice': float(df['steps_since_advice'].mean()),
-            'overall_alignment_rate': float(df['action_matches_any_suggestion'].mean()),
+            'alignment_window': self.alignment_window,
+            'semantic_alignment_rate': float(df['action_matches_semantic'].mean()),
             'episodes_following_advice': int(df['followed_advice'].sum()),
             'treatment_balance': {
-                'followed_advice': int((df['followed_advice'] == 1).sum()),
+                'followed': int(df['followed_advice'].sum()),
                 'not_followed': int((df['followed_advice'] == 0).sum())
             }
         }
-    
-    def _generate_summary(self, df: pd.DataFrame) -> str:
-        """Generate summary statistics."""
-        summary = []
-        summary.append("=" * 70)
-        summary.append("NetHack LLM+RL Agent Log Summary (Temporally Aligned)")
-        summary.append("=" * 70)
-        summary.append(f"\nTotal Steps: {len(df)}")
-        summary.append(f"Step Range: {df['step'].min()} - {df['step'].max()}")
-        summary.append(f"Total Advice Episodes: {df['advice_episode'].nunique()}")
-        summary.append(f"Average Episode Length: {df['episode_length'].mean():.1f} steps")
-        
-        summary.append(f"\n\nTemporal Alignment Metrics:")
-        summary.append(f"  Overall alignment rate: {df['action_matches_any_suggestion'].mean():.2%}")
-        summary.append(f"  Episodes following advice (>{0.3:.0%} alignment): {df['followed_advice'].mean():.2%}")
-        summary.append(f"  First action matches advice: {df['first_action_matches'].sum()} times")
-        summary.append(f"  Average steps until action: {df['steps_since_advice'].mean():.1f}")
-        
-        summary.append(f"\n\nPerformance Metrics:")
-        summary.append(f"  Level Range: {df['level'].min()} - {df['level'].max()}")
-        summary.append(f"  HP Range: {df['hp'].min():.1f}% - {df['hp'].max():.1f}%")
-        summary.append(f"  Total Reward: {df['reward'].sum():.3f}")
-        summary.append(f"  Smoothed Reward Range: {df['smoothed_reward'].min():.3f} - {df['smoothed_reward'].max():.3f}")
-        
-        summary.append(f"\n\nAdvice Categories:")
-        for cat, count in df.groupby('advice_episode')['advice_category'].first().value_counts().items():
-            summary.append(f"  {cat}: {count}")
-        
-        summary.append(f"\n\nAction Categories:")
-        for cat, count in df['action_category'].value_counts().head(10).items():
-            summary.append(f"  {cat}: {count}")
-        
-        summary.append(f"\n\nCritical States:")
-        summary.append(f"  Critical HP episodes: {df['critical_hp'].sum()}")
-        summary.append(f"  Level ups: {df['level_up'].sum()}")
-        
-        # Compare outcomes by treatment
-        followed = df[df['followed_advice'] == 1]
-        not_followed = df[df['followed_advice'] == 0]
-        
-        if len(followed) > 0 and len(not_followed) > 0:
-            summary.append(f"\n\nOutcome Comparison (Raw):")
-            summary.append(f"  When advice followed:")
-            summary.append(f"    - Avg reward: {followed['reward'].mean():.4f}")
-            summary.append(f"    - Avg HP change: {followed['hp_change'].mean():.4f}")
-            summary.append(f"  When advice not followed:")
-            summary.append(f"    - Avg reward: {not_followed['reward'].mean():.4f}")
-            summary.append(f"    - Avg HP change: {not_followed['hp_change'].mean():.4f}")
-            summary.append(f"  Naive difference: {followed['reward'].mean() - not_followed['reward'].mean():.4f}")
-            summary.append(f"  (Note: This is not causal - need to control for confounders)")
-        
-        return "\n".join(summary)
 
 
-# Main execution
 if __name__ == "__main__":
     import argparse
     
-    parser = argparse.ArgumentParser(description='Parse NetHack LLM+RL logs')
-    parser.add_argument('--log_file', type=str, default='nethack_logs.txt',
-                       help='Path to log file')
-    parser.add_argument('--output_dir', type=str, default='processed_data',
-                       help='Output directory')
+    parser = argparse.ArgumentParser(description='Parse NetHack logs with semantic alignment')
+    parser.add_argument('--log_file', type=str, default='nethack_logs.txt')
+    parser.add_argument('--output_dir', type=str, default='processed_data')
+    parser.add_argument('--window', type=int, default=10)
     
     args = parser.parse_args()
     
-    # Parse logs
-    log_parser = NetHackLogParser(args.log_file)
+    log_parser = NetHackLogParser(args.log_file, alignment_window=args.window)
     
-    print("Parsing logs with temporal alignment...")
+    print(f"Parsing with SEMANTIC matching (window={args.window})...")
     df = log_parser.parse_logs()
     
-    print(f"\nParsed {len(df)} steps across {df['advice_episode'].nunique()} advice episodes")
-    print(f"Columns: {len(df.columns)}")
-    
-    # Save processed data
+    print(f"\n✓ Parsed {len(df)} steps")
     log_parser.save_processed_data(args.output_dir, df)
-    
-    # Display sample
-    print("\n" + "="*70)
-    print("Sample of processed data:")
-    print("="*70)
-    print(df[['step', 'action', 'reward', 'hp', 'steps_since_advice',
-              'action_matches_any_suggestion', 'alignment_score', 
-              'followed_advice']].head(15))
-    
-    print("\n" + "="*70)
-    print("Causal Variables for Analysis:")
-    print("="*70)
-    print("\nStep-level Analysis:")
-    print("  Treatment: action_matches_any_suggestion, alignment_score")
-    print("  Outcome: reward, hp_change, sr_change")
-    print("  Confounders: hp_lag1, reward_lag1, sr_lag1, critical_hp, level_lag1")
-    print("\nEpisode-level Analysis (recommended):")
-    print("  Treatment: followed_advice, alignment_rate, first_action_matches")
-    print("  Outcome: total_reward, sr_change, hp_change")
-    print("  Confounders: hp_at_advice, reward_before, sr_before, critical_hp_at_start")

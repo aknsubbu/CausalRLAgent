@@ -1,0 +1,64 @@
+================================================================================
+SEMANTIC ALIGNMENT DETECTION REPORT
+================================================================================
+
+Total advice episodes: 1388
+
+Alignment Detection (semantic matching, 10-step window):
+  Lenient (≥1 semantic match):  750 episodes (54.0%)
+  Strict (≥30% actions match):  682 episodes (49.1%)
+
+Step-level semantic alignment:
+  Actions semantically matching advice: 1112 / 2741 (40.6%)
+
+Top semantic matches:
+  'search' → search: 102 times
+  'search' → move_south: 79 times
+  'eat' → read: 78 times
+  'search' → move_east: 78 times
+  'eat' → drop: 74 times
+  'eat' → apply: 74 times
+  'search' → move_southwest: 72 times
+  'search' → move_northeast: 67 times
+  'eat' → eat: 66 times
+  'eat' → drink: 64 times
+
+When advice IS followed:
+  Average steps until match: 0.4
+  Immediate (step 0): 537 episodes
+  Delayed (step 1-5): 213 episodes
+
+================================================================================
+SAMPLE MATCHED EPISODES:
+================================================================================
+
+Episode 3:
+  Advice: Search for food and water to avoid fainting again...
+  Keywords: {'search'}
+  Actions:
+    [✓] move_east (matched 'search')
+
+Episode 6:
+  Advice: Avoid kobold attacks and focus on survival...
+  Keywords: {'attack'}
+  Actions:
+    [✓] throw (matched 'attack')
+
+Episode 7:
+  Advice: Search for items and potential threats...
+  Keywords: {'eat', 'search'}
+  Actions:
+    [✓] read (matched 'eat')
+
+Episode 14:
+  Advice: Search for items and potential threats...
+  Keywords: {'eat', 'search'}
+  Actions:
+    [✓] move_south (matched 'search')
+    [ ] move_north
+
+Episode 18:
+  Advice: Search the area for items and potential threats...
+  Keywords: {'eat', 'search'}
+  Actions:
+    [✓] drop (matched 'eat')
