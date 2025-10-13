@@ -1,0 +1,13 @@
+{
+  "total_steps": 2741,
+  "total_advice_episodes": 1388,
+  "avg_episode_length": 2.8358263407515505,
+  "median_episode_length": 3.0,
+  "avg_steps_since_advice": -4.037970062066448,
+  "overall_alignment_rate": 0.0,
+  "episodes_following_advice": 0,
+  "treatment_balance": {
+    "followed_advice": 0,
+    "not_followed": 2741
+  }
+}
