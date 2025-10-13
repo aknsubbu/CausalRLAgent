@@ -2,31 +2,36 @@
 SEMANTIC ALIGNMENT DETECTION REPORT
 ================================================================================
 
-Total advice episodes: 1388
+Total advice episodes: 2460
 
 Alignment Detection (semantic matching, 10-step window):
-  Lenient (≥1 semantic match):  750 episodes (54.0%)
-  Strict (≥30% actions match):  682 episodes (49.1%)
+  Lenient (≥1 semantic match):  966 episodes (39.3%)
+  Strict (≥30% actions match):  963 episodes (39.1%)
 
 Step-level semantic alignment:
-  Actions semantically matching advice: 1112 / 2741 (40.6%)
+  Actions semantically matching advice: 1032 / 2741 (37.7%)
 
 Top semantic matches:
   'search' → search: 102 times
   'search' → move_south: 79 times
-  'eat' → read: 78 times
-  'search' → move_east: 78 times
-  'eat' → drop: 74 times
-  'eat' → apply: 74 times
-  'search' → move_southwest: 72 times
+  'search' → move_east: 79 times
+  'search' → move_southwest: 73 times
   'search' → move_northeast: 67 times
-  'eat' → eat: 66 times
-  'eat' → drink: 64 times
+  'search' → move_north: 65 times
+  'search' → move_southeast: 61 times
+  'search' → move_northwest: 58 times
+  'eat' → apply: 55 times
+  'search' → move_west: 55 times
+  'eat' → read: 52 times
+  'eat' → drink: 44 times
+  'eat' → eat: 44 times
+  'heal' → read: 26 times
+  'heal' → apply: 22 times
 
 When advice IS followed:
-  Average steps until match: 0.4
-  Immediate (step 0): 537 episodes
-  Delayed (step 1-5): 213 episodes
+  Average steps until match: 0.1
+  Immediate (step 0): 913 episodes
+  Delayed (step 1-5): 53 episodes
 
 ================================================================================
 SAMPLE MATCHED EPISODES:
@@ -36,29 +41,50 @@ Episode 3:
   Advice: Search for food and water to avoid fainting again...
   Keywords: {'search'}
   Actions:
-    [✓] move_east (matched 'search')
+    [✓] Step 0: move_east (matched 'search')
 
 Episode 6:
   Advice: Avoid kobold attacks and focus on survival...
   Keywords: {'attack'}
   Actions:
-    [✓] throw (matched 'attack')
+    [✓] Step 0: throw (matched 'attack')
 
 Episode 7:
   Advice: Search for items and potential threats...
-  Keywords: {'eat', 'search'}
+  Keywords: {'search', 'eat'}
   Actions:
-    [✓] read (matched 'eat')
+    [✓] Step 5: read (matched 'eat')
 
-Episode 14:
+Episode 17:
   Advice: Search for items and potential threats...
-  Keywords: {'eat', 'search'}
+  Keywords: {'search', 'eat'}
   Actions:
-    [✓] move_south (matched 'search')
-    [ ] move_north
+    [✓] Step 10: move_south (matched 'search')
 
-Episode 18:
+Episode 27:
   Advice: Search the area for items and potential threats...
-  Keywords: {'eat', 'search'}
+  Keywords: {'search', 'eat'}
   Actions:
-    [✓] drop (matched 'eat')
+    [✓] Step 20: read (matched 'eat')
+
+================================================================================
+SAMPLE NON-MATCHED EPISODES:
+================================================================================
+
+Episode 1:
+  Advice: ...
+  Keywords: set()
+  Actions:
+    [ ] Step 0: read
+
+Episode 2:
+  Advice: Search the area for items and clues...
+  Keywords: {'search'}
+  Actions:
+    [ ] Step 0: drink
+
+Episode 4:
+  Advice: Eat something to restore health...
+  Keywords: {'rest', 'heal', 'eat'}
+  Actions:
+    [ ] Step 0: move_south

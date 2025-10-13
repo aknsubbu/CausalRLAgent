@@ -25,15 +25,18 @@ class NetHackLogParser:
                        'search', 'look', 'open'],
             'move': ['move_north', 'move_south', 'move_east', 'move_west',
                     'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest'],
-            'eat': ['eat', 'apply', 'drop'],  # apply often used for eating in NetHack
-            'food': ['eat', 'apply', 'drop'],
+            'eat': ['eat', 'apply', 'quaff'],  # apply and quaff often used for eating
+            'food': ['eat', 'apply', 'quaff'],
             'heal': ['eat', 'apply', 'quaff', 'drink'],
             'drink': ['quaff', 'apply', 'drink'],
-            'rest': ['wait', 'search', 'move_north'],  # resting often = moving/waiting
+            'rest': ['wait', 'search'],
+            'wait': ['wait', 'search'],
             'take': ['take', 'pickup', 'pick'],
+            'pickup': ['take', 'pickup', 'pick'],
             'inventory': ['take', 'drop', 'pickup', 'pick', 'apply'],
             'attack': ['attack', 'fight', 'fire', 'throw', 'kick'],
             'fight': ['attack', 'fight', 'fire', 'throw', 'kick'],
+            'kick': ['kick'],
             'flee': ['move_north', 'move_south', 'move_east', 'move_west',
                     'move_northeast', 'move_northwest', 'move_southeast', 'move_southwest'],
             'escape': ['move_north', 'move_south', 'move_east', 'move_west',
@@ -46,7 +49,7 @@ class NetHackLogParser:
             'close': ['close', 'close_door'],
         }
         
-    def _semantically_matches(self, action: str, suggestion: str) -> bool:
+    def _semantically_matches(self, action: str, suggestion: str, debug: bool = False) -> bool:
         """
         Check if action semantically matches suggestion.
         
@@ -55,11 +58,16 @@ class NetHackLogParser:
         - suggestion="eat", action="apply" -> True (applying food is eating)
         - suggestion="take", action="drop" -> False
         """
+        if not action or pd.isna(action) or not suggestion or pd.isna(suggestion):
+            return False
+            
         action_lower = action.lower()
         suggestion_lower = suggestion.lower()
         
         # Direct match
         if suggestion_lower in action_lower or action_lower in suggestion_lower:
+            if debug:
+                print(f"  ✓ Direct match: '{action}' ↔ '{suggestion}'")
             return True
         
         # Semantic match via mapping
@@ -67,6 +75,8 @@ class NetHackLogParser:
             valid_actions = self.semantic_mappings[suggestion_lower]
             for valid_action in valid_actions:
                 if action_lower.startswith(valid_action.lower()) or valid_action.lower() in action_lower:
+                    if debug:
+                        print(f"  ✓ Semantic match: '{action}' ↔ '{suggestion}' (via '{valid_action}')")
                     return True
         
         # Check if action category matches suggestion category
@@ -74,6 +84,8 @@ class NetHackLogParser:
         suggestion_cat = self._categorize_advice_keyword(suggestion)
         
         if action_cat != 'other' and suggestion_cat != 'other' and action_cat == suggestion_cat:
+            if debug:
+                print(f"  ✓ Category match: '{action}' ↔ '{suggestion}' (category: {action_cat})")
             return True
         
         return False
@@ -117,19 +129,25 @@ class NetHackLogParser:
             if line.startswith("LLM Advice:"):
                 current_advice = line.replace("LLM Advice:", "").strip()
                 current_llm_data = None
+                # Don't reset advice_given_at_step here - let it be set by next step
                 advice_given_at_step = None
                 
             # Parse step action line
             elif line.startswith("Step"):
                 step_data = self._parse_step_line(line)
                 if step_data:
+                    # Set advice_given_at_step when we see first step after new advice
                     if current_advice and advice_given_at_step is None:
                         advice_given_at_step = step_data['step']
                     
                     step_data['llm_advice'] = current_advice
                     step_data['llm_data'] = current_llm_data
                     step_data['advice_given_at_step'] = advice_given_at_step
-                    step_data['steps_since_advice'] = step_data['step'] - advice_given_at_step if advice_given_at_step else None
+                    
+                    if advice_given_at_step is not None:
+                        step_data['steps_since_advice'] = step_data['step'] - advice_given_at_step
+                    else:
+                        step_data['steps_since_advice'] = None
                     
                     self.data.append(step_data)
             
@@ -152,6 +170,14 @@ class NetHackLogParser:
             i += 1
         
         df = pd.DataFrame(self.data)
+        
+        if df.empty:
+            return df
+        
+        print(f"\n✓ Parsed {len(df)} steps")
+        print(f"✓ Found {df['llm_advice'].notna().sum()} steps with advice")
+        print(f"\nSample actions: {df['action'].unique()[:10].tolist()}")
+        
         df = self._enrich_dataframe(df)
         df = self._compute_semantic_alignment(df)
         return df
@@ -181,7 +207,11 @@ class NetHackLogParser:
         if df.empty:
             return df
         
-        # Extract suggestions and advice text
+        print("\n" + "="*80)
+        print("COMPUTING SEMANTIC ALIGNMENT")
+        print("="*80)
+        
+        # FIRST: Extract LLM structured data (BEFORE extracting keywords)
         df['llm_suggestions'] = df['llm_data'].apply(
             lambda x: x.get('action_suggestions', []) if isinstance(x, dict) else []
         )
@@ -190,63 +220,82 @@ class NetHackLogParser:
             lambda x: x.get('immediate_priority', '') if isinstance(x, dict) else ''
         )
         
-        # Extract keywords from advice text and priority
+        # THEN: Extract keywords (now has access to llm_priority)
         df['advice_keywords'] = df.apply(self._extract_advice_keywords, axis=1)
+        
+        print(f"\nKeyword extraction stats:")
+        print(f"  Rows with keywords: {df['advice_keywords'].apply(lambda x: len(x) > 0).sum()} / {len(df)}")
+        print(f"  Sample keywords: {list(df[df['advice_keywords'].apply(len) > 0]['advice_keywords'].head(3))}")
         
         # Check semantic matches at step level
         df['action_matches_any_suggestion'] = False
         df['action_matches_semantic'] = False
         df['matched_suggestion'] = None
         
+        match_count = 0
         for idx in df.index:
             action = df.loc[idx, 'action']
             suggestions = df.loc[idx, 'llm_suggestions']
             keywords = df.loc[idx, 'advice_keywords']
             
             # Check against explicit suggestions
-            for sugg in suggestions:
-                if self._semantically_matches(action, sugg):
-                    df.loc[idx, 'action_matches_any_suggestion'] = True
-                    df.loc[idx, 'action_matches_semantic'] = True
-                    df.loc[idx, 'matched_suggestion'] = sugg
-                    break
+            if suggestions and len(suggestions) > 0:
+                for sugg in suggestions:
+                    if self._semantically_matches(action, sugg):
+                        df.loc[idx, 'action_matches_any_suggestion'] = True
+                        df.loc[idx, 'action_matches_semantic'] = True
+                        df.loc[idx, 'matched_suggestion'] = sugg
+                        match_count += 1
+                        break
             
             # Check against advice keywords (priority and advice text)
             if not df.loc[idx, 'action_matches_semantic']:
-                for keyword in keywords:
-                    if self._semantically_matches(action, keyword):
-                        df.loc[idx, 'action_matches_semantic'] = True
-                        df.loc[idx, 'matched_suggestion'] = keyword
-                        break
+                if keywords and len(keywords) > 0:
+                    for keyword in keywords:
+                        if self._semantically_matches(action, keyword):
+                            df.loc[idx, 'action_matches_semantic'] = True
+                            df.loc[idx, 'matched_suggestion'] = keyword
+                            match_count += 1
+                            break
         
-        # Create advice episodes
-        advice_changes = (df['advice_given_at_step'] != df['advice_given_at_step'].shift(1)).cumsum()
-        df['advice_episode'] = advice_changes
+        print(f"\n✓ Found {match_count} semantic matches ({match_count/len(df)*100:.1f}% of steps)")
+        
+        # Create advice episodes based on when advice TEXT changes
+        df['advice_text'] = df['llm_advice'].fillna('')
+        advice_changes = (df['advice_text'] != df['advice_text'].shift(1))
+        df['advice_episode'] = advice_changes.cumsum()
+        
+        total_episodes = df['advice_episode'].nunique()
+        print(f"\n✓ Created {total_episodes} advice episodes")
         
         # For each episode, check if ANY action in window matches
         df['alignment_window_matched'] = False
         df['steps_until_match'] = None
         
+        episodes_with_matches = 0
         for episode_id in df['advice_episode'].unique():
             if pd.isna(episode_id):
                 continue
             
             episode_mask = df['advice_episode'] == episode_id
-            episode_indices = df[episode_mask].index
+            episode_df = df[episode_mask].copy()
             
-            if len(episode_indices) == 0:
+            if len(episode_df) == 0:
                 continue
             
-            # Check semantic matches within window
-            window_size = min(len(episode_indices), self.alignment_window)
-            window_indices = episode_indices[:window_size]
+            # Take first N steps as the window
+            window_size = min(len(episode_df), self.alignment_window)
+            window_df = episode_df.head(window_size)
             
-            matches = df.loc[window_indices, 'action_matches_semantic'].values
+            matches = window_df['action_matches_semantic'].values
             
             if matches.any():
                 first_match_idx = np.where(matches)[0][0]
-                df.loc[episode_indices, 'alignment_window_matched'] = True
-                df.loc[episode_indices, 'steps_until_match'] = first_match_idx
+                df.loc[episode_mask, 'alignment_window_matched'] = True
+                df.loc[episode_mask, 'steps_until_match'] = first_match_idx
+                episodes_with_matches += 1
+        
+        print(f"✓ Episodes with matches in {self.alignment_window}-step window: {episodes_with_matches} / {total_episodes} ({episodes_with_matches/total_episodes*100:.1f}%)")
         
         # Episode-level metrics
         df['episode_alignment_rate'] = df.groupby('advice_episode')['action_matches_semantic'].transform('mean')
@@ -269,14 +318,15 @@ class NetHackLogParser:
         """Extract actionable keywords from advice and priority."""
         keywords = set()
         
-        # From priority
+        # Action keywords to look for
+        action_words = ['search', 'explore', 'eat', 'drink', 'attack', 'fight', 
+                      'move', 'take', 'drop', 'wear', 'wield', 'read', 'flee',
+                      'heal', 'rest', 'open', 'close', 'look', 'find', 'wait',
+                      'kick', 'apply', 'quaff', 'pickup', 'equip']
+        
+        # From priority (now available because we call this after extracting llm_priority)
         priority = row.get('llm_priority', '')
         if priority and not pd.isna(priority):
-            # Common action keywords
-            action_words = ['search', 'explore', 'eat', 'drink', 'attack', 'fight', 
-                          'move', 'take', 'drop', 'wear', 'wield', 'read', 'flee',
-                          'heal', 'rest', 'open', 'close', 'look', 'find']
-            
             priority_lower = priority.lower()
             for word in action_words:
                 if word in priority_lower:
@@ -285,15 +335,15 @@ class NetHackLogParser:
         # From suggestions
         suggestions = row.get('llm_suggestions', [])
         if suggestions:
-            keywords.update(suggestions)
+            for sugg in suggestions:
+                if isinstance(sugg, str):
+                    keywords.add(sugg.lower())
         
         # From advice text
         advice = row.get('llm_advice', '')
         if advice and not pd.isna(advice):
             advice_lower = advice.lower()
-            for word in ['search', 'explore', 'eat', 'drink', 'attack', 'fight', 
-                        'move', 'take', 'drop', 'wear', 'wield', 'read', 'flee',
-                        'heal', 'rest', 'open', 'close', 'look', 'find']:
+            for word in action_words:
                 if word in advice_lower:
                     keywords.add(word)
         
@@ -382,7 +432,8 @@ class NetHackLogParser:
             'equipment': ['wear', 'take_off', 'takeoff', 'wield', 'remove', 'put_on'],
             'interaction': ['open', 'close', 'open_door', 'close_door'],
             'exploration': ['search', 'look'],
-            'inventory': ['take', 'drop', 'pickup', 'pick']
+            'inventory': ['take', 'drop', 'pickup', 'pick'],
+            'waiting': ['wait']
         }
         
         for category, actions in action_map.items():
@@ -414,7 +465,7 @@ class NetHackLogParser:
         matched_df = df[df['action_matches_semantic'] == True]
         if len(matched_df) > 0:
             report.append(f"\nTop semantic matches:")
-            match_counts = matched_df.groupby(['matched_suggestion', 'action']).size().sort_values(ascending=False).head(10)
+            match_counts = matched_df.groupby(['matched_suggestion', 'action']).size().sort_values(ascending=False).head(15)
             for (sugg, action), count in match_counts.items():
                 report.append(f"  '{sugg}' → {action}: {count} times")
         
@@ -435,7 +486,7 @@ class NetHackLogParser:
         for ep_id in matched_eps:
             ep_df = df[df['advice_episode'] == ep_id].head(min(10, self.alignment_window))
             if len(ep_df) > 0:
-                advice = ep_df['llm_advice'].iloc[0]
+                advice = ep_df['llm_advice'].iloc[0] or ''
                 keywords = ep_df['advice_keywords'].iloc[0]
                 
                 report.append(f"\nEpisode {ep_id}:")
@@ -445,7 +496,26 @@ class NetHackLogParser:
                 for _, row in ep_df.iterrows():
                     match_mark = "✓" if row['action_matches_semantic'] else " "
                     matched_on = f" (matched '{row['matched_suggestion']}')" if row['matched_suggestion'] else ""
-                    report.append(f"    [{match_mark}] {row['action']}{matched_on}")
+                    report.append(f"    [{match_mark}] Step {row['step']}: {row['action']}{matched_on}")
+        
+        # Sample non-matched episodes
+        report.append(f"\n" + "="*80)
+        report.append("SAMPLE NON-MATCHED EPISODES:")
+        report.append("="*80)
+        
+        non_matched_eps = df[df['episode_matched_in_window'] == False]['advice_episode'].unique()[:3]
+        for ep_id in non_matched_eps:
+            ep_df = df[df['advice_episode'] == ep_id].head(min(10, self.alignment_window))
+            if len(ep_df) > 0:
+                advice = ep_df['llm_advice'].iloc[0] or ''
+                keywords = ep_df['advice_keywords'].iloc[0]
+                
+                report.append(f"\nEpisode {ep_id}:")
+                report.append(f"  Advice: {advice[:80]}...")
+                report.append(f"  Keywords: {keywords}")
+                report.append(f"  Actions:")
+                for _, row in ep_df.iterrows():
+                    report.append(f"    [ ] Step {row['step']}: {row['action']}")
         
         return "\n".join(report)
     
@@ -468,8 +538,9 @@ class NetHackLogParser:
         with open(output_path / 'metadata.json', 'w') as f:
             json.dump(metadata, f, indent=2)
         
-        print(f"✓ Data saved to {output_path}")
-        print(f"✓ Episodes following advice: {df['followed_advice'].sum()} / {df['advice_episode'].nunique()} ({df['followed_advice'].sum()/df['advice_episode'].nunique()*100:.1f}%)")
+        print(f"\n✓ Data saved to {output_path}")
+        print(f"✓ Episodes following advice (lenient): {df['followed_advice_lenient'].sum()} / {df['advice_episode'].nunique()} ({df['followed_advice_lenient'].sum()/df['advice_episode'].nunique()*100:.1f}%)")
+        print(f"✓ Episodes following advice (strict): {df['followed_advice_strict'].sum()} / {df['advice_episode'].nunique()} ({df['followed_advice_strict'].sum()/df['advice_episode'].nunique()*100:.1f}%)")
         print(f"\n📊 See alignment_report.txt for semantic matching details")
     
     def _create_episode_summary(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -517,10 +588,13 @@ class NetHackLogParser:
             'total_advice_episodes': int(df['advice_episode'].nunique()),
             'alignment_window': self.alignment_window,
             'semantic_alignment_rate': float(df['action_matches_semantic'].mean()),
-            'episodes_following_advice': int(df['followed_advice'].sum()),
+            'episodes_following_advice_lenient': int(df.groupby('advice_episode')['followed_advice_lenient'].first().sum()),
+            'episodes_following_advice_strict': int(df.groupby('advice_episode')['followed_advice_strict'].first().sum()),
             'treatment_balance': {
-                'followed': int(df['followed_advice'].sum()),
-                'not_followed': int((df['followed_advice'] == 0).sum())
+                'followed_lenient': int(df.groupby('advice_episode')['followed_advice_lenient'].first().sum()),
+                'not_followed_lenient': int((df.groupby('advice_episode')['followed_advice_lenient'].first() == 0).sum()),
+                'followed_strict': int(df.groupby('advice_episode')['followed_advice_strict'].first().sum()),
+                'not_followed_strict': int((df.groupby('advice_episode')['followed_advice_strict'].first() == 0).sum())
             }
         }
 
@@ -532,6 +606,7 @@ if __name__ == "__main__":
     parser.add_argument('--log_file', type=str, default='nethack_logs.txt')
     parser.add_argument('--output_dir', type=str, default='processed_data')
     parser.add_argument('--window', type=int, default=10)
+    parser.add_argument('--debug', action='store_true', help='Enable debug output for matching')
     
     args = parser.parse_args()
     
@@ -540,5 +615,28 @@ if __name__ == "__main__":
     print(f"Parsing with SEMANTIC matching (window={args.window})...")
     df = log_parser.parse_logs()
     
-    print(f"\n✓ Parsed {len(df)} steps")
-    log_parser.save_processed_data(args.output_dir, df)
+    if len(df) > 0:
+        print(f"\n" + "="*80)
+        print("QUICK STATS")
+        print("="*80)
+        print(f"Total steps parsed: {len(df)}")
+        print(f"Total episodes: {df['advice_episode'].nunique()}")
+        print(f"Steps with advice: {df['llm_advice'].notna().sum()}")
+        print(f"Semantic matches: {df['action_matches_semantic'].sum()} ({df['action_matches_semantic'].mean()*100:.1f}%)")
+        
+        # Show sample of what's being matched
+        if args.debug and df['action_matches_semantic'].sum() > 0:
+            print(f"\n" + "="*80)
+            print("DEBUG: Sample matches")
+            print("="*80)
+            matched = df[df['action_matches_semantic'] == True].head(10)
+            for _, row in matched.iterrows():
+                print(f"\nStep {row['step']}:")
+                print(f"  Advice: {row['llm_advice'][:60]}...")
+                print(f"  Action: {row['action']}")
+                print(f"  Matched on: {row['matched_suggestion']}")
+                print(f"  Keywords: {row['advice_keywords']}")
+        
+        log_parser.save_processed_data(args.output_dir, df)
+    else:
+        print("ERROR: No data parsed. Check log file format.")
