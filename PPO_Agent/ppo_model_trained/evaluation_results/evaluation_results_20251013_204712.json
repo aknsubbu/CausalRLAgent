@@ -1,0 +1,59 @@
+{
+  "timestamp": "20251013_204712",
+  "model_path": "enhanced_nethack_ppo_20251013_145217.pth",
+  "summary_statistics": {
+    "num_episodes": 5,
+    "mean_reward": -49.98799999999862,
+    "std_reward": 0.003999999999999204,
+    "min_reward": -49.98999999999862,
+    "max_reward": -49.979999999998626,
+    "mean_length": 5000.0,
+    "std_length": 0.0,
+    "survival_rate": 0.0
+  },
+  "action_frequencies": {
+    "10": 25000
+  },
+  "episode_summaries": [
+    {
+      "episode": 0,
+      "total_reward": -49.98999999999862,
+      "length": 5000,
+      "died": true,
+      "unique_positions": 2,
+      "mean_reward_per_step": -0.009997999999999724
+    },
+    {
+      "episode": 1,
+      "total_reward": -49.98999999999862,
+      "length": 5000,
+      "died": true,
+      "unique_positions": 2,
+      "mean_reward_per_step": -0.009997999999999724
+    },
+    {
+      "episode": 2,
+      "total_reward": -49.979999999998626,
+      "length": 5000,
+      "died": true,
+      "unique_positions": 3,
+      "mean_reward_per_step": -0.009995999999999726
+    },
+    {
+      "episode": 3,
+      "total_reward": -49.98999999999862,
+      "length": 5000,
+      "died": true,
+      "unique_positions": 2,
+      "mean_reward_per_step": -0.009997999999999724
+    },
+    {
+      "episode": 4,
+      "total_reward": -49.98999999999862,
+      "length": 5000,
+      "died": true,
+      "unique_positions": 2,
+      "mean_reward_per_step": -0.009997999999999724
+    }
+  ]
+}
