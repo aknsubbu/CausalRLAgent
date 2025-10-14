@@ -1,0 +1,87 @@
+================================================================================
+CAUSAL EFFECT ESTIMATION REPORT
+================================================================================
+
+Treatment: followed_advice_lenient
+Confounders: hp_before, level_before, sr_before, reward_before, critical_hp
+Sample size: 2460 episodes
+
+================================================================================
+OUTCOME: total_reward
+================================================================================
+
+--- DoWhy Estimates ---
+Inverse Propensity Weighting             ATE =  -0.0036
+Linear Regression                        ATE =  -0.0034
+Propensity Score Stratification          ATE =  -0.0033
+Propensity Score Matching                ATE =  -0.0024
+
+--- Doubly Robust Estimate ---
+ATE = -0.0027 (SE = 0.0017)
+95% CI = [-0.0062, -0.0008]
+p-value = 0.1085
+✗ Not statistically significant at α=0.05
+
+--- Sensitivity Tests ---
+random_cause        : New ATE = -0.0036
+placebo             : New ATE = -0.0003
+
+================================================================================
+OUTCOME: sr_change
+================================================================================
+
+--- DoWhy Estimates ---
+Inverse Propensity Weighting             ATE =  -0.0000
+Linear Regression                        ATE =  -0.0000
+Propensity Score Stratification          ATE =  -0.0000
+Propensity Score Matching                ATE =  -0.0001
+
+--- Doubly Robust Estimate ---
+ATE = -0.0000 (SE = 0.0001)
+95% CI = [-0.0002, 0.0002]
+p-value = 0.8019
+✗ Not statistically significant at α=0.05
+
+--- Sensitivity Tests ---
+random_cause        : New ATE = -0.0000
+placebo             : New ATE = 0.0000
+
+================================================================================
+OUTCOME: hp_change
+================================================================================
+
+--- DoWhy Estimates ---
+Inverse Propensity Weighting             ATE = -14.7364
+Linear Regression                        ATE = -14.3964
+Propensity Score Stratification          ATE = -16.2649
+Propensity Score Matching                ATE = -18.9702
+
+--- Doubly Robust Estimate ---
+ATE = -17.5874 (SE = 9.9216)
+95% CI = [-36.8094, 1.5939]
+p-value = 0.0763
+✗ Not statistically significant at α=0.05
+
+--- Sensitivity Tests ---
+random_cause        : New ATE = -14.7364
+placebo             : New ATE = -1.5500
+
+================================================================================
+OUTCOME: avg_reward
+================================================================================
+
+--- DoWhy Estimates ---
+Inverse Propensity Weighting             ATE =  -0.0027
+Linear Regression                        ATE =  -0.0025
+Propensity Score Stratification          ATE =  -0.0024
+Propensity Score Matching                ATE =  -0.0015
+
+--- Doubly Robust Estimate ---
+ATE = -0.0018 (SE = 0.0017)
+95% CI = [-0.0053, -0.0000]
+p-value = 0.2706
+✗ Not statistically significant at α=0.05
+
+--- Sensitivity Tests ---
+random_cause        : New ATE = -0.0027
+placebo             : New ATE = -0.0003

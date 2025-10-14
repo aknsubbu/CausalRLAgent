@@ -16,7 +16,7 @@ import sys
 import time
 
 class NetHackRewardShaper:
-    """Advanced reward shaping for NetHack"""
+    """Advanced reward shaping for NetHack with CORRECT blstats parsing"""
     
     def __init__(self):
         self.previous_stats = None
@@ -26,15 +26,24 @@ class NetHackRewardShaper:
         self.stuck_counter = 0
         self.max_stuck = 10
         
-        # Reward weights
-        self.exploration_reward = 0.01
-        self.health_reward = 0.001
-        self.level_reward = 1.0
-        self.experience_reward = 0.0001
+        # NetHack blstats indices
+        self.BLSTATS_INDEX = {
+            'x': 0, 'y': 1,
+            'hitpoints': 10, 'max_hitpoints': 11,
+            'depth': 12,
+            'experience_level': 18,
+            'experience_points': 19,
+        }
+        
+        # Reward weights (REDUCED to avoid overwhelming raw rewards)
+        self.exploration_reward = 0.001      # was 0.01
+        self.health_reward = 0.0001          # was 0.001
+        self.level_reward = 0.5              # was 1.0
+        self.experience_reward = 0.00001     # was 0.0001
         self.death_penalty = -1.0
         self.stuck_penalty = -0.01
-        self.item_pickup_reward = 0.05
-        self.monster_kill_reward = 0.1
+        self.item_pickup_reward = 0.01       # was 0.05
+        self.monster_kill_reward = 0.05      # was 0.1
         
     def shape_reward(self, obs, raw_reward, done, info):
         """Apply reward shaping based on game state"""
@@ -47,47 +56,57 @@ class NetHackRewardShaper:
         current_stats = obs.get('blstats', np.zeros(26))
         current_glyphs = obs.get('glyphs', np.zeros((21, 79)))
         
-        if self.previous_stats is not None:
-            # Health change reward/penalty
-            health_diff = current_stats[0] - self.previous_stats[0]
+        if self.previous_stats is not None and len(current_stats) >= 25:
+            # CORRECT: Health change reward/penalty (indices 10, 11)
+            current_hp = current_stats[self.BLSTATS_INDEX['hitpoints']]
+            prev_hp = self.previous_stats[self.BLSTATS_INDEX['hitpoints']]
+            health_diff = current_hp - prev_hp
             shaped_reward += health_diff * self.health_reward
             
-            # Level up reward
-            level_diff = current_stats[7] - self.previous_stats[7]
+            # CORRECT: Level up reward (index 18)
+            current_level = current_stats[self.BLSTATS_INDEX['experience_level']]
+            prev_level = self.previous_stats[self.BLSTATS_INDEX['experience_level']]
+            level_diff = current_level - prev_level
             shaped_reward += level_diff * self.level_reward
             
-            # Experience gain reward
-            exp_diff = current_stats[8] - self.previous_stats[8]
+            # CORRECT: Experience gain reward (index 19)
+            current_exp = current_stats[self.BLSTATS_INDEX['experience_points']]
+            prev_exp = self.previous_stats[self.BLSTATS_INDEX['experience_points']]
+            exp_diff = current_exp - prev_exp
             shaped_reward += exp_diff * self.experience_reward
             
             # Item pickup detection (inventory count change)
-            # This is a simplified version - you could make this more sophisticated
             inv_change = np.sum(current_glyphs > 0) - np.sum(self.previous_glyphs > 0)
             if inv_change > 0:
                 shaped_reward += self.item_pickup_reward
         
-        # Exploration reward
-        current_pos = (current_stats[0], current_stats[1]) if len(current_stats) > 1 else (0, 0)
-        if current_pos not in self.visited_positions:
-            self.visited_positions.add(current_pos)
-            shaped_reward += self.exploration_reward
+        # CORRECT: Exploration reward using position (indices 0, 1)
+        if len(current_stats) >= 2:
+            current_pos = (int(current_stats[self.BLSTATS_INDEX['x']]), 
+                          int(current_stats[self.BLSTATS_INDEX['y']]))
+            
+            if current_pos not in self.visited_positions:
+                self.visited_positions.add(current_pos)
+                shaped_reward += self.exploration_reward
+            
+            # CORRECT: Anti-stuck mechanism using actual position
+            if current_pos == self.last_position:
+                self.stuck_counter += 1
+                if self.stuck_counter > self.max_stuck:
+                    shaped_reward += self.stuck_penalty
+            else:
+                self.stuck_counter = 0
+            
+            self.last_position = current_pos
         
-        # Anti-stuck mechanism
-        if current_pos == self.last_position:
-            self.stuck_counter += 1
-            if self.stuck_counter > self.max_stuck:
-                shaped_reward += self.stuck_penalty
-        else:
-            self.stuck_counter = 0
-        
-        # Death penalty
-        if done and current_stats[0] <= 0:  # Player died
-            shaped_reward += self.death_penalty
+        # CORRECT: Death penalty (check HP at index 10)
+        if done and len(current_stats) > 10:
+            if current_stats[self.BLSTATS_INDEX['hitpoints']] <= 0:
+                shaped_reward += self.death_penalty
         
         # Update tracking variables
         self.previous_stats = current_stats.copy()
         self.previous_glyphs = current_glyphs.copy()
-        self.last_position = current_pos
         
         return shaped_reward
     
@@ -99,8 +118,9 @@ class NetHackRewardShaper:
         self.last_position = None
         self.stuck_counter = 0
 
+
 class NetHackObservationProcessor:
-    """Enhanced observation processor with memory features"""
+    """Enhanced observation processor with memory features and CORRECT blstats parsing"""
     
     def __init__(self):
         self.glyph_shape = (21, 79)
@@ -112,8 +132,26 @@ class NetHackObservationProcessor:
         self.position_history = deque(maxlen=100)
         self.action_history = deque(maxlen=50)
         
+        # NetHack blstats indices
+        self.BLSTATS_INDEX = {
+            'x': 0, 'y': 1,
+            'strength': 2,
+            'dexterity': 4,
+            'constitution': 5,
+            'hitpoints': 10,
+            'max_hitpoints': 11,
+            'depth': 12,
+            'gold': 13,
+            'energy': 14,
+            'max_energy': 15,
+            'armor_class': 16,
+            'experience_level': 18,
+            'experience_points': 19,
+            'time': 20,
+        }
+        
     def process_observation(self, obs, last_action=None):
-        """Process observation with memory features"""
+        """Process observation with memory features and CORRECT normalization"""
         processed = {}
         
         if isinstance(obs, tuple):
@@ -129,21 +167,43 @@ class NetHackObservationProcessor:
         else:
             processed['glyphs'] = np.zeros(self.glyph_shape, dtype=np.float32)
         
-        # Process stats with memory
+        # CORRECT: Process stats with proper indices
         if 'blstats' in obs:
             stats = np.array(obs['blstats']).astype(np.float32)
             stats_normalized = stats.copy()
             
-            if len(stats) > 1 and stats[1] > 0:
-                stats_normalized[0] = stats[0] / stats[1]  # HP ratio
-            if len(stats) > 7:
-                stats_normalized[7] = min(stats[7] / 30.0, 1.0)  # Level
-                
-            # Add position to history
-            if len(stats) > 1:
-                current_pos = (stats[0], stats[1])
+            # Normalize specific stats using CORRECT indices
+            if len(stats) > self.BLSTATS_INDEX['max_hitpoints']:
+                max_hp = stats[self.BLSTATS_INDEX['max_hitpoints']]
+                if max_hp > 0:
+                    # Normalize HP ratio (index 10 / index 11)
+                    stats_normalized[self.BLSTATS_INDEX['hitpoints']] = \
+                        stats[self.BLSTATS_INDEX['hitpoints']] / max_hp
+            
+            if len(stats) > self.BLSTATS_INDEX['experience_level']:
+                # Normalize experience level (cap at 30)
+                stats_normalized[self.BLSTATS_INDEX['experience_level']] = \
+                    min(stats[self.BLSTATS_INDEX['experience_level']] / 30.0, 1.0)
+            
+            if len(stats) > self.BLSTATS_INDEX['depth']:
+                # Normalize dungeon depth (cap at 50)
+                stats_normalized[self.BLSTATS_INDEX['depth']] = \
+                    min(stats[self.BLSTATS_INDEX['depth']] / 50.0, 1.0)
+            
+            if len(stats) > self.BLSTATS_INDEX['max_energy']:
+                max_energy = stats[self.BLSTATS_INDEX['max_energy']]
+                if max_energy > 0:
+                    # Normalize energy ratio (index 14 / index 15)
+                    stats_normalized[self.BLSTATS_INDEX['energy']] = \
+                        stats[self.BLSTATS_INDEX['energy']] / max_energy
+            
+            # CORRECT: Add position to history (indices 0, 1)
+            if len(stats) > self.BLSTATS_INDEX['y']:
+                current_pos = (int(stats[self.BLSTATS_INDEX['x']]), 
+                              int(stats[self.BLSTATS_INDEX['y']]))
                 self.position_history.append(current_pos)
             
+            # Pad or truncate to stats_dim
             if len(stats_normalized) < self.stats_dim:
                 padded_stats = np.zeros(self.stats_dim, dtype=np.float32)
                 padded_stats[:len(stats_normalized)] = stats_normalized
@@ -172,7 +232,7 @@ class NetHackObservationProcessor:
             for i, item in enumerate(inventory):
                 if i < len(inv_features):
                     try:
-                        # FIX: Handle numpy arrays and bytes properly
+                        # Handle numpy arrays and bytes properly
                         if isinstance(item, np.ndarray):
                             if item.dtype.kind in ('U', 'S', 'O'):  # String-like types
                                 item_str = str(item.item()) if item.size == 1 else ""
@@ -193,7 +253,6 @@ class NetHackObservationProcessor:
             processed['inventory'] = inv_features
         else:
             processed['inventory'] = np.zeros(self.inventory_dim, dtype=np.float32)
-
         
         # Add action history
         if last_action is not None:
@@ -675,6 +734,7 @@ def create_nethack_env():
     
     return env
 
+
 class NetHackSemanticDescriptor:
     """Converts NetHack game state into natural language descriptions"""
     
@@ -713,6 +773,35 @@ class NetHackSemanticDescriptor:
             b"The door": "door_interaction",
             b"You pick up": "item_pickup",
             b"You drop": "item_drop"
+        }
+        
+        # NetHack blstats structure (25 indices total):
+        # Reference: https://nethackwiki.com/wiki/Blstats
+        self.BLSTATS_INDEX = {
+            'x': 0,           # X position
+            'y': 1,           # Y position
+            'strength': 2,    # Strength (can be > 18)
+            'dexterity': 4,   # Dexterity
+            'constitution': 5, # Constitution
+            'intelligence': 6, # Intelligence
+            'wisdom': 7,      # Wisdom
+            'charisma': 8,    # Charisma
+            'score': 9,       # Current score
+            'hitpoints': 10,  # Current HP
+            'max_hitpoints': 11, # Maximum HP
+            'depth': 12,      # Dungeon depth/level
+            'gold': 13,       # Gold
+            'energy': 14,     # Current energy (for spells)
+            'max_energy': 15, # Maximum energy
+            'armor_class': 16, # Armor class (lower is better)
+            'monster_level': 17, # Not used for player
+            'experience_level': 18, # Character level
+            'experience_points': 19, # Experience points
+            'time': 20,       # Turn count
+            'hunger': 21,     # Hunger status (0=satiated, 1=not hungry, 2=hungry, etc.)
+            'encumbrance': 22, # Encumbrance level
+            'dungeon_number': 23, # Which dungeon (Dungeons of Doom, Mines, etc.)
+            'level_number': 24,   # Level within that dungeon
         }
     
     def describe_surroundings(self, glyphs, player_pos):
@@ -776,19 +865,22 @@ class NetHackSemanticDescriptor:
             return "nearby"
     
     def describe_player_status(self, stats):
-        """Describe player's current status"""
-        if len(stats) < 10:
+        """Describe player's current status using CORRECT blstats indices"""
+        if len(stats) < 20:
             return "Status unknown"
         
-        hp = int(stats[0])
-        max_hp = int(stats[1])
-        level = int(stats[7]) if len(stats) > 7 else 1
-        experience = int(stats[8]) if len(stats) > 8 else 0
+        # CORRECT indices for NetHack blstats
+        hp = int(stats[self.BLSTATS_INDEX['hitpoints']])          # Index 10
+        max_hp = int(stats[self.BLSTATS_INDEX['max_hitpoints']])  # Index 11
+        level = int(stats[self.BLSTATS_INDEX['experience_level']]) # Index 18
+        experience = int(stats[self.BLSTATS_INDEX['experience_points']]) # Index 19
+        depth = int(stats[self.BLSTATS_INDEX['depth']])           # Index 12
+        gold = int(stats[self.BLSTATS_INDEX['gold']])             # Index 13
         
         hp_ratio = hp / max_hp if max_hp > 0 else 0
         health_status = "critical" if hp_ratio < 0.3 else "low" if hp_ratio < 0.6 else "good"
         
-        return f"Level {level}, Health: {hp}/{max_hp} ({health_status}), Experience: {experience}"
+        return f"Level {level}, Health: {hp}/{max_hp} ({health_status}), XP: {experience}, Depth: {depth}, Gold: {gold}"
     
     def describe_recent_message(self, message):
         """Interpret recent game message"""
@@ -832,6 +924,17 @@ class NetHackSemanticDescriptor:
         action_names = [self.action_meanings.get(a, f"action_{a}") for a in recent_actions]
         return f"Recent actions: {' → '.join(action_names)}"
     
+    def get_player_position(self, stats):
+        """Get correct player position from blstats"""
+        if len(stats) < 2:
+            return (10, 39)  # Default fallback to center
+        
+        # CORRECT: X and Y are at indices 0 and 1
+        x = int(stats[self.BLSTATS_INDEX['x']])  # Index 0
+        y = int(stats[self.BLSTATS_INDEX['y']])  # Index 1
+        
+        return (y, x)  # Return as (row, col) for array indexing
+    
     def generate_full_description(self, obs, processed_obs):
         """Generate complete semantic description of game state"""
         if isinstance(obs, tuple):
@@ -841,8 +944,8 @@ class NetHackSemanticDescriptor:
         stats = obs.get('blstats', np.zeros(26))
         message = obs.get('message', np.zeros(256))
         
-        # Find player position (simplified - assumes player is at center)
-        player_pos = (10, 39)  # Center of 21x79 view
+        # Get CORRECT player position from blstats
+        player_pos = self.get_player_position(stats)
         
         # Generate description components
         surroundings = self.describe_surroundings(glyphs, player_pos)
@@ -873,6 +976,14 @@ class LLMStrategicAdvisor:
         self.step_count = 0
         self.last_advice = None
         self.advice_history = deque(maxlen=5)
+
+        self.valid_actions = [
+            "move_north", "move_south", "move_east", "move_west",
+            "move_northeast", "move_northwest", "move_southeast", "move_southwest",
+            "wait", "search", "pickup", "drop", "eat", "drink",
+            "open_door", "close_door", "kick", "read", "apply",
+            "wear", "take_off", "wield", "throw"
+        ]
         
     def should_call_llm(self):
         """Determine if we should call the LLM for advice"""
@@ -883,26 +994,51 @@ class LLMStrategicAdvisor:
         """Get strategic advice from Ollama Phi model with robust parsing"""
         try:
             # Simplified prompt optimized for Phi model's context window
-            prompt = f"""Analyze the NetHack game state and provide advice in strict JSON format.
+            
+            prompt = f"""You are an expert NetHack player AI advisor. Analyze the game state and provide strategic advice.
 
 GAME STATE:
 {semantic_description}
 
-PERFORMANCE: Reward {recent_performance.get('avg_reward', 0):.1f}, Survival {recent_performance.get('avg_length', 0):.0f} steps
+RECENT PERFORMANCE:
+- Average Reward: {recent_performance.get('avg_reward', 0):.2f}
+- Average Survival: {recent_performance.get('avg_length', 0):.0f} steps
+- Death Rate: {recent_performance.get('death_rate', 0)*100:.1f}%
 
-Respond ONLY with this exact JSON structure (use double quotes, no variables):
+VALID ACTIONS (you MUST choose from these ONLY):
+{', '.join(self.valid_actions)}
+
+INSTRUCTIONS:
+1. Analyze the immediate danger level (health, nearby enemies)
+2. Identify opportunities (items, stairs, resources)
+3. Suggest 3-5 specific actions from the VALID ACTIONS list above
+4. Prioritize survival if health is low
+5. Use EXACT action names from the list (e.g., "move_north" not "go north")
+
+Respond with EXACTLY this JSON format (no markdown, no extra text, no code blocks):
 {{
-  "immediate_priority": "describe priority here",
-  "risk_assessment": "describe risk here",
-  "opportunities": "describe opportunities here",
-  "strategy": "describe strategy here",
-  "action_suggestions": ["move", "search", "pickup"]
+  "action_suggestions": ["move_east", "search", "pickup"],
+  "immediate_priority": "describe immediate priority in shortest form",
+  "risk_assessment": "brief danger evaluation",
+  "opportunities": "what good options are available",
+  "strategy": "high-level approach",
 }}
 
-You MUST respond with ONLY valid JSON. Do not include any explanations, code, or other text.
+Example valid response:
+{{
+  "action_suggestions": ["move_east", "pickup", "drink"],
+  "immediate_priority": "critical health, avoid combat",
+  "risk_assessment": "low health with enemies nearby",
+  "opportunities": "potion visible to the east",
+  "strategy": "prioritize survival by moving to potion",
+}}
 
+IMPORTANT: 
+- Use only action names from VALID ACTIONS list
+- Return pure JSON without any markdown formatting
+- Do not include explanations outside the JSON
 
-Your JSON response:
+JSON response:
 """
             
             # Call Ollama API
@@ -1014,7 +1150,7 @@ Your JSON response:
                         "temperature": 0.2,  # Lower temperature for more consistent JSON
                         "top_k": 10,
                         "top_p": 0.9,
-                        "num_predict": 512   # Limit response length
+                        "num_predict": 2048   # Limit response length
                     }
                 }
                 
@@ -1150,10 +1286,75 @@ class LLMGuidedPPOActor(nn.Module):
         
         # Action mappings for LLM suggestions
         self.action_name_to_id = {
-            "move_north": 0, "move_south": 1, "move_east": 2, "move_west": 3,
-            "move_northeast": 4, "move_northwest": 5, "move_southeast": 6, "move_southwest": 7,
-            "wait": 8, "pickup": 9, "drop": 10, "search": 11, "open_door": 12,
-            "move": 2, "explore": 11  # Common aliases
+            # Movement - Cardinal directions (0-3)
+            "move_north": 0, "north": 0, "up": 0, "go_north": 0, "n": 0, "move up": 0,
+            "move_south": 1, "south": 1, "down": 1, "go_south": 1, "s": 1, "move down": 1,
+            "move_east": 2, "east": 2, "right": 2, "go_east": 2, "e": 2, "move right": 2,
+            "move_west": 3, "west": 3, "left": 3, "go_west": 3, "w": 3, "move left": 3,
+            
+            # Movement - Diagonal directions (4-7)
+            "move_northeast": 4, "northeast": 4, "ne": 4, "up right": 4, "go_northeast": 4,
+            "move_northwest": 5, "northwest": 5, "nw": 5, "up left": 5, "go_northwest": 5,
+            "move_southeast": 6, "southeast": 6, "se": 6, "down right": 6, "go_southeast": 6,
+            "move_southwest": 7, "southwest": 7, "sw": 7, "down left": 7, "go_southwest": 7,
+            
+            # Generic movement
+            "move": 2, "walk": 2, "go": 2, "travel": 2, "navigate": 2,
+            
+            # Wait (8)
+            "wait": 8, "rest": 8, "pause": 8, "stay": 8, "remain": 8, "idle": 8, "do nothing": 8,
+            
+            # Pickup (9)
+            "pickup": 9, "pick": 9, "take": 9, "grab": 9, "get": 9, "collect": 9, "pick up": 9,
+            "get item": 9, "take item": 9, "grab item": 9,
+            
+            # Drop (10)
+            "drop": 10, "throw_away": 10, "discard": 10, "release": 10, "drop item": 10,
+            "put down": 10, "leave": 10,
+            
+            # Search (11)
+            "search": 11, "look": 11, "explore": 11, "find": 11, "investigate": 11, 
+            "examine": 11, "scout": 11, "look around": 11, "search area": 11,
+            
+            # Open door (12)
+            "open_door": 12, "open": 12, "unlock": 12, "open door": 12,
+            
+            # Close door (13)
+            "close_door": 13, "close": 13, "shut": 13, "close door": 13,
+            
+            # Kick/Attack (14)
+            "kick": 14, "attack": 14, "strike": 14, "hit": 14, "fight": 14, "combat": 14,
+            "melee": 14, "assault": 14,
+            
+            # Eat (15)
+            "eat": 15, "consume": 15, "food": 15, "eat food": 15, "have food": 15,
+            "consume food": 15, "bite": 15, "feed": 15,
+            
+            # Drink (16)
+            "drink": 16, "quaff": 16, "potion": 16, "drink potion": 16, "consume potion": 16,
+            "sip": 16, "gulp": 16,
+            
+            # Read (17)
+            "read": 17, "scroll": 17, "read scroll": 17, "peruse": 17, "study": 17,
+            
+            # Apply (18)
+            "apply": 18, "use": 18, "activate": 18, "utilize": 18, "use item": 18,
+            "apply item": 18, "employ": 18,
+            
+            # Throw (19)
+            "throw": 19, "toss": 19, "hurl": 19, "fling": 19, "cast": 19, "throw item": 19,
+            
+            # Wear (20)
+            "wear": 20, "equip": 20, "armor": 20, "put on": 20, "wear armor": 20,
+            "equip armor": 20, "don": 20, "dress": 20,
+            
+            # Take off (21)
+            "take_off": 21, "remove": 21, "unequip": 21, "doff": 21, "take off armor": 21,
+            "remove armor": 21, "strip": 21,
+            
+            # Wield (22)
+            "wield": 22, "weapon": 22, "hold": 22, "equip weapon": 22, "wield weapon": 22,
+            "arm": 22, "brandish": 22, "grasp": 22
         }
     
     def process_llm_guidance(self, llm_advice):
@@ -1736,12 +1937,14 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
         }
     
     async def train_episode_monitored(self, env, episode):
-        """Train episode with monitoring"""
+        """Train episode with monitoring and CORRECT stats display"""
+        MAX_STEPS = 1000  # ADD EPISODE TIMEOUT
+        
         self.monitor.print_episode_start(episode)
         
-        # FIX: Get observation BEFORE trying to use it
+        # Get observation BEFORE trying to use it
         obs = env.reset()
-        self.causal_logger.start_episode(episode, obs)  # NOW START LOGGING
+        self.causal_logger.start_episode(episode, obs)
         
         episode_reward = 0
         episode_shaped_reward = 0
@@ -1793,15 +1996,32 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             # Apply reward shaping
             shaped_reward = self.reward_shaper.shape_reward(next_obs, reward, done, info)
             
-            # Get health for display
+            # CORRECT: Get health for display using proper indices
             if isinstance(next_obs, tuple):
                 next_obs_dict = next_obs[0]
             else:
                 next_obs_dict = next_obs
-                
+            
             stats = next_obs_dict.get('blstats', np.zeros(26))
-            health_ratio = stats[0] / stats[1] if len(stats) > 1 and stats[1] > 0 else 0
-            level = int(stats[7]) if len(stats) > 7 else 1
+            
+            # CORRECT indices for display
+            BLSTATS_INDEX = {
+                'hitpoints': 10,
+                'max_hitpoints': 11,
+                'experience_level': 18
+            }
+            
+            if len(stats) > BLSTATS_INDEX['max_hitpoints']:
+                current_hp = stats[BLSTATS_INDEX['hitpoints']]
+                max_hp = stats[BLSTATS_INDEX['max_hitpoints']]
+                health_ratio = current_hp / max_hp if max_hp > 0 else 0
+            else:
+                health_ratio = 0
+            
+            if len(stats) > BLSTATS_INDEX['experience_level']:
+                level = int(stats[BLSTATS_INDEX['experience_level']])
+            else:
+                level = 1
             
             # LOG STEP FOR CAUSAL ANALYSIS
             with torch.no_grad():
@@ -1822,7 +2042,7 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
                 'done': done
             })
             
-            # Print step info every N steps (to avoid clutter)
+            # Print step info every 5 steps (to avoid clutter)
             if episode_length % 5 == 0:
                 self.monitor.print_step_info(
                     episode_length, action, action_name, 
@@ -1841,7 +2061,14 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             episode_shaped_reward += shaped_reward
             episode_length += 1
             
-            if done:
+            # CRITICAL: Add episode timeout and termination check
+            if done or episode_length >= MAX_STEPS:
+                if episode_length >= MAX_STEPS:
+                    print(f"\n  {self.monitor.YELLOW}Episode terminated: max steps ({MAX_STEPS}) reached{self.monitor.ENDC}")
+                elif current_hp <= 0:
+                    print(f"\n  {self.monitor.RED}Episode terminated: agent died{self.monitor.ENDC}")
+                else:
+                    print(f"\n  {self.monitor.GREEN}Episode terminated naturally{self.monitor.ENDC}")
                 break
         
         # Episode metrics
@@ -1852,13 +2079,13 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
             'llm_calls': llm_call_count
         }
         
-        # End episode logging (get final stats for death detection)
-        self.causal_logger.end_episode(episode_reward, episode_shaped_reward, death=stats[0] <= 0)
+        # End episode logging (check death status correctly)
+        death = len(stats) > BLSTATS_INDEX['hitpoints'] and stats[BLSTATS_INDEX['hitpoints']] <= 0
+        self.causal_logger.end_episode(episode_reward, episode_shaped_reward, death=death)
         
         self.monitor.print_episode_summary(episode, metrics, llm_call_count)
         
         return episode_reward, episode_shaped_reward, episode_length
-
 
 class CausalModelLogger:
     """
@@ -1892,6 +2119,22 @@ class CausalModelLogger:
             'level_changes': [],
             'death_count': 0
         })
+        
+        # NetHack blstats indices
+        self.BLSTATS_INDEX = {
+            'x': 0, 'y': 1,
+            'strength': 2,
+            'dexterity': 4,
+            'constitution': 5,
+            'hitpoints': 10,
+            'max_hitpoints': 11,
+            'depth': 12,
+            'gold': 13,
+            'armor_class': 16,
+            'experience_level': 18,
+            'experience_points': 19,
+            'time': 20,
+        }
         
     def start_episode(self, episode_id, initial_obs):
         """Start logging a new episode"""
@@ -1963,7 +2206,7 @@ class CausalModelLogger:
             
             # Episode status
             'done': step_data['done'],
-            'death': state_t1.get('health', 1.0) <= 0
+            'death': state_t1.get('health_ratio', 1.0) <= 0.0
         }
         
         self.current_episode['steps'].append(step_record)
@@ -2023,7 +2266,7 @@ class CausalModelLogger:
         self.current_episode = None
     
     def _extract_state_features(self, obs):
-        """Extract key state features for causal analysis"""
+        """Extract key state features for causal analysis using CORRECT indices"""
         if isinstance(obs, tuple):
             obs = obs[0]
         
@@ -2033,33 +2276,81 @@ class CausalModelLogger:
         stats = obs.get('blstats', np.zeros(26))
         glyphs = obs.get('glyphs', np.zeros((21, 79)))
         
-        features = {
-            # Health status
-            'health': float(stats[0]) if len(stats) > 0 else 0.0,
-            'max_health': float(stats[1]) if len(stats) > 1 else 1.0,
-            'health_ratio': float(stats[0] / stats[1]) if len(stats) > 1 and stats[1] > 0 else 0.0,
+        features = {}
+        
+        # CORRECT: Extract features using proper indices
+        if len(stats) > self.BLSTATS_INDEX['max_hitpoints']:
+            current_hp = float(stats[self.BLSTATS_INDEX['hitpoints']])
+            max_hp = float(stats[self.BLSTATS_INDEX['max_hitpoints']])
             
-            # Position
-            'pos_x': float(stats[0]) if len(stats) > 0 else 0.0,
-            'pos_y': float(stats[1]) if len(stats) > 1 else 0.0,
-            
-            # Character stats
-            'level': int(stats[7]) if len(stats) > 7 else 1,
-            'experience': int(stats[8]) if len(stats) > 8 else 0,
-            'strength': int(stats[2]) if len(stats) > 2 else 10,
-            'dexterity': int(stats[3]) if len(stats) > 3 else 10,
-            
-            # Dungeon depth
-            'dungeon_level': int(stats[12]) if len(stats) > 12 else 1,
-            
-            # Environment complexity
-            'unique_glyphs': int(len(np.unique(glyphs))),
-            'empty_tiles': int(np.sum(glyphs == 0)),
-            'wall_tiles': int(np.sum(glyphs == 2359)),
-            
-            # Spatial awareness (simplified)
-            'nearby_entities': int(np.sum(glyphs > 2370)),  # Likely monsters/items
-        }
+            features['health'] = current_hp
+            features['max_health'] = max_hp
+            features['health_ratio'] = current_hp / max_hp if max_hp > 0 else 0.0
+        else:
+            features['health'] = 0.0
+            features['max_health'] = 1.0
+            features['health_ratio'] = 0.0
+        
+        # CORRECT: Position at indices 0, 1
+        if len(stats) > self.BLSTATS_INDEX['y']:
+            features['pos_x'] = float(stats[self.BLSTATS_INDEX['x']])
+            features['pos_y'] = float(stats[self.BLSTATS_INDEX['y']])
+        else:
+            features['pos_x'] = 0.0
+            features['pos_y'] = 0.0
+        
+        # CORRECT: Character stats
+        if len(stats) > self.BLSTATS_INDEX['strength']:
+            features['strength'] = int(stats[self.BLSTATS_INDEX['strength']])
+        else:
+            features['strength'] = 10
+        
+        if len(stats) > self.BLSTATS_INDEX['dexterity']:
+            features['dexterity'] = int(stats[self.BLSTATS_INDEX['dexterity']])
+        else:
+            features['dexterity'] = 10
+        
+        if len(stats) > self.BLSTATS_INDEX['constitution']:
+            features['constitution'] = int(stats[self.BLSTATS_INDEX['constitution']])
+        else:
+            features['constitution'] = 10
+        
+        # CORRECT: Level and experience
+        if len(stats) > self.BLSTATS_INDEX['experience_level']:
+            features['level'] = int(stats[self.BLSTATS_INDEX['experience_level']])
+        else:
+            features['level'] = 1
+        
+        if len(stats) > self.BLSTATS_INDEX['experience_points']:
+            features['experience'] = int(stats[self.BLSTATS_INDEX['experience_points']])
+        else:
+            features['experience'] = 0
+        
+        # CORRECT: Dungeon depth
+        if len(stats) > self.BLSTATS_INDEX['depth']:
+            features['dungeon_level'] = int(stats[self.BLSTATS_INDEX['depth']])
+        else:
+            features['dungeon_level'] = 1
+        
+        # CORRECT: Gold
+        if len(stats) > self.BLSTATS_INDEX['gold']:
+            features['gold'] = int(stats[self.BLSTATS_INDEX['gold']])
+        else:
+            features['gold'] = 0
+        
+        # CORRECT: Armor class
+        if len(stats) > self.BLSTATS_INDEX['armor_class']:
+            features['armor_class'] = int(stats[self.BLSTATS_INDEX['armor_class']])
+        else:
+            features['armor_class'] = 10
+        
+        # Environment complexity
+        features['unique_glyphs'] = int(len(np.unique(glyphs)))
+        features['empty_tiles'] = int(np.sum(glyphs == 0))
+        features['wall_tiles'] = int(np.sum(glyphs == 2359))
+        
+        # Spatial awareness (simplified)
+        features['nearby_entities'] = int(np.sum(glyphs > 2370))  # Likely monsters/items
         
         return features
     
@@ -2214,7 +2505,7 @@ class CausalModelLogger:
         nodes = [
             # State variables
             'health_ratio', 'level', 'experience', 'dungeon_level',
-            'unique_glyphs', 'nearby_entities',
+            'unique_glyphs', 'nearby_entities', 'gold', 'armor_class',
             
             # Action variable
             'action',
@@ -2236,12 +2527,14 @@ class CausalModelLogger:
                 trans['state_t'].get('dungeon_level', 0),
                 trans['state_t'].get('unique_glyphs', 0),
                 trans['state_t'].get('nearby_entities', 0),
+                trans['state_t'].get('gold', 0),
+                trans['state_t'].get('armor_class', 10),
                 trans['action'],
                 1 if trans['llm_active'] else 0,
                 trans['reward'],
                 trans['shaped_reward'],
                 trans['state_t1'].get('health', 0) - trans['state_t'].get('health', 0),
-                1 if trans['state_t1'].get('health', 1) <= 0 else 0
+                1 if trans['state_t1'].get('health_ratio', 1) <= 0 else 0
             ]
             data_matrix.append(row)
         
@@ -2255,6 +2548,8 @@ class CausalModelLogger:
                 'dungeon_level': 'Depth in dungeon',
                 'unique_glyphs': 'Environmental complexity',
                 'nearby_entities': 'Number of nearby entities',
+                'gold': 'Gold amount',
+                'armor_class': 'Armor class (lower is better)',
                 'action': 'Action taken (encoded)',
                 'llm_active': 'Whether LLM advice was active',
                 'reward': 'Raw environment reward',
@@ -2263,6 +2558,7 @@ class CausalModelLogger:
                 'death': 'Whether agent died'
             }
         }
+    
 
 
 
@@ -2284,10 +2580,10 @@ async def main_monitored():
     env = create_nethack_env()
     print(f"Environment action space: {env.action_space.n}")
     
-    # Create monitored agent
+    # Create monitored agent with INCREASED LLM guidance weight
     agent = MonitoredLLMGuidedNetHackAgent(
         action_dim=env.action_space.n,
-        llm_guidance_weight=0.5,
+        llm_guidance_weight=0.9,  # INCREASED from 0.5 to make LLM advice more influential
         llm_call_frequency=20,
         baseline_metrics_path=baseline_path
     )
@@ -2299,37 +2595,48 @@ async def main_monitored():
     update_frequency = 2048
     
     for episode in range(num_episodes):
-        episode_reward, episode_shaped_reward, episode_length = \
-            await agent.train_episode_monitored(env, episode)
-        
-        agent.episode_rewards.append(episode_reward)
-        agent.shaped_rewards.append(episode_shaped_reward)
-        agent.episode_lengths.append(episode_length)
-        
-        # Print progress every 10 episodes
-        if (episode + 1) % 10 == 0:
-            agent.monitor.print_training_progress(episode + 1, window=10)
-        
-        # Update networks periodically
-        if len(agent.buffer) >= update_frequency:
-            print(f"\n{agent.monitor.CYAN}Updating neural networks...{agent.monitor.ENDC}")
-            # agent.update()  # Uncomment when you have the update method
-            agent.buffer.clear()
+        try:
+            episode_reward, episode_shaped_reward, episode_length = \
+                await agent.train_episode_monitored(env, episode)
+            
+            agent.episode_rewards.append(episode_reward)
+            agent.shaped_rewards.append(episode_shaped_reward)
+            agent.episode_lengths.append(episode_length)
+            
+            # Print progress every 10 episodes
+            if (episode + 1) % 10 == 0:
+                agent.monitor.print_training_progress(episode + 1, window=10)
+            
+            # Update networks periodically
+            if len(agent.buffer) >= update_frequency:
+                print(f"\n{agent.monitor.CYAN}Updating neural networks...{agent.monitor.ENDC}")
+                agent.update()
+                agent.buffer.clear()
+                
+        except KeyboardInterrupt:
+            print(f"\n\n{agent.monitor.YELLOW}Training interrupted by user{agent.monitor.ENDC}")
+            break
+        except Exception as e:
+            print(f"\n\n{agent.monitor.RED}Error in episode {episode}: {e}{agent.monitor.ENDC}")
+            import traceback
+            traceback.print_exc()
+            continue
     
     # Final summary
-    
-    # Save model and advice log
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
-
     agent.monitor.print_final_summary()
-    agent.causal_logger.save_logs()  # SAVE CAUSAL LOGS
+    
+    # Save model and logs
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    agent.save_model(f"llm_guided_nethack_model_{timestamp}.pth")
+    agent.save_llm_advice_log(f"llm_advice_log_{timestamp}.json")
+    agent.causal_logger.save_logs()
     
     # Generate causal graph data
     causal_graph_data = agent.causal_logger.generate_causal_graph_data()
-    with open(f"causal_graph_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json", 'w') as f:
+    with open(f"causal_graph_data_{timestamp}.json", 'w') as f:
         json.dump(causal_graph_data, f, indent=2)
     
+    print(f"\n{agent.monitor.GREEN}Training complete! All files saved.{agent.monitor.ENDC}")
     
     env.close()
 
