@@ -4,3 +4,5 @@ models
 nethack_tensorboard
 nethack_ppo_tensorboard
 ppo_nethack_fixed.zip
+
+.DS_Store
