@@ -1,0 +1,39 @@
+============================================================
+NetHack LLM+RL Agent Log Summary
+============================================================
+
+Total Steps: 2741
+Step Range: 0 - 3770
+
+Level Range: 0 - 16
+HP Range: 0.0% - 3350.0%
+
+Total Reward: -16.480
+Smoothed Reward Range: -15.061 - 3.010
+
+
+Advice Categories:
+  survival: 1735
+  exploration: 777
+  other: 172
+  movement: 32
+  combat: 23
+  none: 2
+
+
+Action Categories:
+  move: 954
+  item_use: 438
+  equipment: 362
+  interaction: 320
+  other: 251
+  inventory: 246
+  exploration: 170
+
+
+Action Alignment:
+  Actions matching suggestions: 0 (0.0%)
+
+
+Critical HP Episodes: 10
+Level Ups: 932

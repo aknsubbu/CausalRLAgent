@@ -2288,7 +2288,7 @@ async def main_monitored():
     agent = MonitoredLLMGuidedNetHackAgent(
         action_dim=env.action_space.n,
         llm_guidance_weight=0.5,
-        llm_call_frequency=10,
+        llm_call_frequency=20,
         baseline_metrics_path=baseline_path
     )
     

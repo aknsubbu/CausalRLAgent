@@ -1,0 +1,11 @@
+{
+  "total_steps": 2741,
+  "total_advice_episodes": 1388,
+  "alignment_window": 10,
+  "semantic_alignment_rate": 0.4056913535206129,
+  "episodes_following_advice": 1911,
+  "treatment_balance": {
+    "followed": 1911,
+    "not_followed": 830
+  }
+}

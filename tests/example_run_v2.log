@@ -16398,17 +16398,4 @@ Step 1135 | Action: move_east       | R:   0.00 | SR:   0.001 | HP: 133.3% | Lvl
 LLM Advice: Search the area for items and potential threats
 Step 1140 | Action: search          | R:  -0.01 | SR:  -0.010 | HP: 111.1% | Lvl: 14
 Step 1145 | Action: open_door       | R:   0.00 | SR:  -0.007 | HP: 180.0% | Lvl: 14
-^CTraceback (most recent call last):
-  File "/Volumes/DevDrive/Project Work 1/CausalRLAgent/PPO_Agent/llm_guided.py", line 2339, in <module>
-    asyncio.run(main_monitored())
-  File "/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/runners.py", line 44, in run
-    return loop.run_until_complete(main)
-  File "/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
-    self.run_forever()
-  File "/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
-    self._run_once()
-  File "/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
-    event_list = self._selector.select(timeout)
-  File "/opt/homebrew/Cellar/python@3.10/3.10.16/Frameworks/Python.framework/Versions/3.10/lib/python3.10/selectors.py", line 562, in select
-    kev_list = self._selector.control(None, max_ev, timeout)
-KeyboardInterrupt
+
