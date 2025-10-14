@@ -1754,6 +1754,69 @@ class LLMGuidedNetHackAgent:
             }, f, indent=2)
         print(f"LLM advice log saved to: {filename}")
 
+    def update(self, epochs=4, batch_size=64):
+        """Update actor and critic networks"""
+        if len(self.buffer) < batch_size:
+            return
+        
+        # Compute advantages
+        self.buffer.compute_advantages(self.gamma)
+        
+        # Normalize advantages
+        advantages = torch.tensor(self.buffer.advantages, dtype=torch.float32)
+        advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
+        self.buffer.advantages = advantages.tolist()
+        
+        for _ in range(epochs):
+            batch_obs, batch_actions, old_log_probs, batch_returns, batch_advantages = \
+                self.buffer.get_batch(min(batch_size, len(self.buffer)))
+            
+            # Move tensors to correct device and ensure correct dtype
+            batch_obs = {k: v.to(self.device) for k, v in batch_obs.items()}
+            batch_actions = batch_actions.to(self.device)
+            old_log_probs = old_log_probs.to(self.device)
+            batch_returns = batch_returns.to(self.device)
+            batch_advantages = batch_advantages.to(self.device)
+            
+            # Reset hidden states for batch training
+            self.actor.reset_hidden_states()
+            self.critic.reset_hidden_states()
+            
+            # Actor update
+            action_logits = self.actor(batch_obs, reset_hidden=True)
+            action_dist = Categorical(logits=action_logits)
+            new_log_probs = action_dist.log_prob(batch_actions)
+            
+            ratio = torch.exp(new_log_probs - old_log_probs)
+            surr1 = ratio * batch_advantages
+            surr2 = torch.clamp(ratio, 1 - self.clip_ratio, 1 + self.clip_ratio) * batch_advantages
+            
+            actor_loss = -torch.min(surr1, surr2).mean()
+            
+            self.actor_optimizer.zero_grad()
+            actor_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.actor.parameters(), 0.5)
+            self.actor_optimizer.step()
+            
+            # Critic update
+            values = self.critic(batch_obs, reset_hidden=True).squeeze()
+            critic_loss = F.mse_loss(values, batch_returns)
+            
+            self.critic_optimizer.zero_grad()
+            critic_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.critic.parameters(), 0.5)
+            self.critic_optimizer.step()
+    
+    def save_llm_advice_log(self, filename):
+        """Save LLM advice log to file"""
+        with open(filename, 'w') as f:
+            json.dump({
+                'llm_advice_log': self.llm_advice_log,
+                'total_calls': len(self.llm_advice_log),
+                'timestamp': datetime.now().isoformat()
+            }, f, indent=2)
+        print(f"LLM advice log saved to: {filename}")
+
 class TrainingMonitor:
     """Rich terminal monitoring for training with comparison metrics"""
     
@@ -2204,6 +2267,8 @@ class MonitoredLLMGuidedNetHackAgent(LLMGuidedNetHackAgent):
         agent.monitor.print_episode_summary(episode, metrics, llm_call_count)
         
         return episode_reward, episode_shaped_reward, episode_length
+
+    
 
 class CausalModelLogger:
     """
@@ -2925,41 +2990,76 @@ class ImprovedLLMStrategicAdvisor(LLMStrategicAdvisor):
         """Get strategic advice with more specific action names"""
         try:
             # IMPROVED prompt with examples
-            prompt = f"""
-You are an expert NetHack player AI advisor.
+            prompt = f"""You are an EXPERT NetHack strategist optimizing for MAXIMUM SCORE and SURVIVAL.
 
-GAME STATE:
+═══ CURRENT GAME STATE ═══
 {semantic_description}
 
-RECENT PERFORMANCE:
-- Average Reward: {recent_performance.get('avg_reward', 0):.2f}
-- Average Survival: {recent_performance.get('avg_length', 0):.0f} steps
+═══ PERFORMANCE METRICS ═══
+Avg Reward: {recent_performance.get('avg_reward', 0):.2f} | Avg Survival: {recent_performance.get('avg_length', 0):.0f} steps | Death Rate: {recent_performance.get('death_rate', 0)*100:.0f}%
 
-CRITICAL ANALYSIS:
-- If no threats nearby (distance > 2): EXPLORE and SEARCH for stairs
-- If threat at distance 1-2: Either FIGHT if healthy, or MOVE AWAY
-- If threat at distance > 2: IGNORE and keep exploring
-- Goal: Find stairs (>) to descend, gain XP by fighting, collect items
-- Prioritize fighting monsters when health available to increase score
+═══ REWARD OPTIMIZATION STRATEGY ═══
 
-VALID ACTIONS: move_north, move_south, move_east, move_west, search, pickup, kick (attack), eat, drink
+PRIMARY GOALS (High Reward):
+1. COMBAT WEAK MONSTERS when health > 60% → Gain XP, level up (HUGE reward)
+2. DESCEND STAIRS → Progress deeper (BIG reward bonus)
+3. COLLECT GOLD → Direct score increase
+4. PICKUP ITEMS → Equipment improves survival and combat
 
-INSTRUCTIONS:
-1. If "NO IMMEDIATE THREATS" in surroundings: Focus on ["search", "pickup", exploration_move]
-2. If "CLOSEST THREAT: ... (dist:1)" in surroundings: Either ["kick", "move_away"] based on health
-3. If "CLOSEST THREAT: ... (dist:2-3)": Continue exploration but be ready
-4. ALWAYS VARY MOVEMENT - don't just spam move_east!
+SECONDARY GOALS (Medium Reward):
+5. SEARCH for hidden doors/traps → Find stairs faster
+6. EXPLORE NEW TILES → Discover opportunities
+7. EAT when hungry → Prevent starvation death
 
-Respond ONLY with JSON (no markdown):
+AVOID (Negative Reward):
+- Fighting when health < 40% → High death risk
+- Staying in one spot → Stuck penalty
+- Ignoring nearby gold/items → Missed rewards
+
+═══ TACTICAL DECISION TREE ═══
+
+IF Health > 70% AND monster at dist:1-2:
+  → ["kick", "kick", "move_toward_monster"] (FIGHT for XP!)
+
+IF Health 40-70% AND monster at dist:1:
+  → ["kick"] if weak monster, else ["move_away", "search"]
+
+IF Health < 40%:
+  → ["eat", "move_away", "search"] (SURVIVE first!)
+
+IF NO threats AND items nearby:
+  → ["pickup", "pickup", "move_toward_item"]
+
+IF NO threats AND unexplored area:
+  → ["search", "move_north", "move_east"] (VARY directions!)
+
+IF see stairs indicator:
+  → ["move_toward_stairs", "search"]
+
+═══ CRITICAL RULES ═══
+- ALWAYS suggest 3-5 specific actions in priority order
+- VARY movement directions (north/south/east/west/diagonals)
+- When healthy (>60%), SEEK COMBAT for XP rewards
+- When injured (<40%), PRIORITIZE SURVIVAL over combat
+- NEVER spam same action repeatedly
+- Gold pickup is ALWAYS worthwhile
+
+═══ VALID ACTION SET ═══
+Movement: move_north, move_south, move_east, move_west, move_northeast, move_northwest, move_southeast, move_southwest
+Combat: kick (melee attack)
+Items: pickup, drop, eat, drink, read, apply, wear, wield
+Utility: search, wait, open_door, close_door
+
+RESPOND WITH JSON ONLY (no markdown, no explanation):
 {{
-  "action_suggestions": ["action1", "action2", "action3"],
-  "immediate_priority": "one clear goal",
-  "risk_assessment": "threat level",
-  "opportunities": "what to pursue",
-  "strategy": "overall approach"
+  "action_suggestions": ["action1", "action2", "action3", "action4", "action5"],
+  "immediate_priority": "clear single goal that maximizes reward",
+  "risk_assessment": "current danger level",
+  "opportunities": "reward opportunities available",
+  "strategy": "next 3-5 steps plan"
 }}
 
-JSON response:
+JSON:
 """
             # print the prompt
             # print(f"\n[DEBUG] Raw LLM prompt:\n{prompt[:500]}\n")
