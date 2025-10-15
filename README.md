@@ -1,4 +1,4 @@
-Collecting workspace information# CausalRLAgent: NetHack RL Agent with LLM Guidance and Causal Analysis
+# CausalRLAgent: NetHack RL Agent with LLM Guidance and Causal Analysis
 
 A comprehensive reinforcement learning framework for NetHack that integrates Large Language Model (LLM) strategic guidance with causal inference analysis to understand and improve agent decision-making.
 
@@ -23,12 +23,14 @@ A comprehensive reinforcement learning framework for NetHack that integrates Lar
 ## 🎯 Overview
 
 CausalRLAgent is a research framework that combines:
+
 - **Deep Reinforcement Learning** using Proximal Policy Optimization (PPO)
 - **LLM Strategic Guidance** via Ollama API for high-level decision support
 - **Causal Inference** using DoWhy to analyze the impact of LLM advice
 - **Comprehensive Logging** for building causal models of agent behavior
 
 The framework targets NetHack, a complex roguelike game with:
+
 - Partial observability
 - Large action space (23 actions)
 - Long-horizon dependencies
@@ -38,18 +40,21 @@ The framework targets NetHack, a complex roguelike game with:
 ## ✨ Key Features
 
 ### 1. **LLM-Guided RL Agent**
+
 - Semantic state interpretation converting raw observations to natural language
 - Strategic advice from LLM (default: Ollama Phi model) every N steps
 - Learned trust mechanism that adapts LLM influence based on performance
 - Action mapping with fuzzy matching supporting 100+ action aliases
 
 ### 2. **Advanced PPO Implementation**
+
 - Recurrent CNN + LSTM architecture for temporal modeling
 - Sophisticated reward shaping with 10+ reward components
 - Memory-augmented observation processing
 - Proper handling of partial observability
 
 ### 3. **Causal Analysis Pipeline**
+
 - Comprehensive logging of state transitions, actions, and LLM interventions
 - DoWhy integration for causal effect estimation
 - Multiple estimation strategies (IPW, Doubly Robust, PSM, Stratification)
@@ -57,6 +62,7 @@ The framework targets NetHack, a complex roguelike game with:
 - Episode-level causal metrics
 
 ### 4. **Rich Monitoring & Visualization**
+
 - Real-time terminal output with colored formatting
 - Episode summaries with reward breakdowns
 - Training progress tracking with baseline comparisons
@@ -114,28 +120,33 @@ CausalRLAgent/
 ## 🚀 Installation
 
 ### Prerequisites
+
 - Python 3.8+
 - CUDA-capable GPU (optional, but recommended)
 - Ollama (for LLM guidance) - [Installation Guide](https://ollama.ai/)
 
 ### Step 1: Clone Repository
+
 ```bash
 git clone https://github.com/yourusername/CausalRLAgent.git
 cd CausalRLAgent
 ```
 
 ### Step 2: Create Virtual Environment
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
 ### Step 3: Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 Key dependencies:
+
 - `torch` - PyTorch for neural networks
 - `gymnasium` - RL environment interface
 - `nle` - NetHack Learning Environment
@@ -145,6 +156,7 @@ Key dependencies:
 - `requests`, `aiohttp` - LLM API calls
 
 ### Step 4: Install Ollama (for LLM guidance)
+
 ```bash
 # macOS/Linux
 curl https://ollama.ai/install.sh | sh
@@ -154,6 +166,7 @@ ollama pull phi
 ```
 
 ### Step 5: Verify Installation
+
 ```bash
 python -c "import gymnasium, nle, torch, dowhy; print('✅ All dependencies installed!')"
 ```
@@ -161,18 +174,21 @@ python -c "import gymnasium, nle, torch, dowhy; print('✅ All dependencies inst
 ## 🏃 Quick Start
 
 ### 1. Train LLM-Guided Agent (Recommended)
+
 ```bash
 cd PPO_Agent
 python llm_guided.py
 ```
 
 This will:
+
 - Initialize an LLM-guided PPO agent
 - Train for 100 episodes with real-time monitoring
 - Save model, logs, and causal data
 - Display comprehensive training statistics
 
 Expected output:
+
 ```
 🚀 Setting up LLM-Guided NetHack PPO Training with Monitoring...
 Using device: cuda
@@ -197,28 +213,33 @@ Episode 0 Starting...
 ```
 
 ### 2. Parse Training Logs
+
 ```bash
 python log_parser_v2.py --log_file logs/nethack_logs.txt --output_dir processed_data_v2
 ```
 
 This generates:
+
 - `processed_data.csv` - Step-level data
 - `episode_summary.csv` - Episode-level metrics
 - alignment_report.txt - LLM advice alignment analysis
 - `metadata.json` - Dataset metadata
 
 ### 3. Run Causal Analysis
+
 ```bash
 python causal_estimator.py --data processed_data_v2/episode_summary.csv --output causal_analysis
 ```
 
 This estimates:
+
 - **Treatment**: Following LLM advice vs. not following
 - **Outcomes**: Episode reward, length, survival rate
 - **Methods**: Inverse Propensity Weighting, Doubly Robust, PSM
 - **Refutations**: Placebo treatment, data subset tests
 
 Output:
+
 ```
 ================================================================================
 CAUSAL ANALYSIS: episode_reward
@@ -246,6 +267,7 @@ p-value = 0.0123
 ```
 
 ### 4. Evaluate Trained Model
+
 ```bash
 cd PPO_Agent/ppo_model_trained
 python evaluate_model.py --model_path enhanced_nethack_ppo_20251013_145217.pth --episodes 10
@@ -258,15 +280,18 @@ See EVALUATION_GUIDE.md for detailed evaluation instructions.
 ### Core Agents
 
 #### 1. **LLM-Guided PPO Agent** (`llm_guided.py`)
+
 The main agent integrating LLM strategic guidance with PPO.
 
 **Key Classes:**
+
 - `MonitoredLLMGuidedNetHackAgent` - Complete agent with monitoring
 - `ImprovedLLMGuidedPPOActor` - Actor network with LLM integration
 - `RecurrentPPOCritic` - Value network with LSTM
 - `ImprovedLLMStrategicAdvisor` - LLM API wrapper
 
 **Usage:**
+
 ```python
 agent = MonitoredLLMGuidedNetHackAgent(
     action_dim=23,
@@ -281,9 +306,11 @@ for episode in range(100):
 ```
 
 #### 2. **Enhanced PPO Agent** (`improved_reward_shaping.py`)
+
 Baseline PPO agent with advanced reward shaping.
 
 **Reward Components:**
+
 ```python
 NetHackRewardShaper:
   - Exploration: +0.01 per new position
@@ -301,15 +328,18 @@ NetHackRewardShaper:
 ### Causal Analysis
 
 #### 1. **Causal Effect Estimator** (`causal_estimator.py`)
+
 Estimates causal effects using DoWhy.
 
 **Methods:**
+
 - **Inverse Propensity Weighting (IPW)**: Weights observations by inverse of propensity score
 - **Doubly Robust (DR)**: Robust to misspecification of either propensity or outcome model
 - **Propensity Score Matching (PSM)**: Matches treated/control units by propensity score
 - **Stratification**: Stratifies by propensity score and averages within strata
 
 **Example:**
+
 ```python
 estimator = CausalEffectEstimator(
     data_path='processed_data_v2/episode_summary.csv',
@@ -326,15 +356,18 @@ summary_df = estimator.generate_report('causal_analysis')
 ```
 
 #### 2. **Log Parser** (`log_parser_v2.py`)
+
 Parses training logs with semantic action alignment detection.
 
 **Features:**
+
 - Semantic matching of LLM suggestions to actual actions
 - Configurable alignment window (default: 10 steps)
 - Episode-level alignment metrics
 - Detailed alignment reports
 
 **Usage:**
+
 ```bash
 python log_parser_v2.py \
   --log_file logs/training.log \
@@ -346,9 +379,11 @@ python log_parser_v2.py \
 ### Monitoring & Logging
 
 #### 1. **Training Monitor** (`llm_guided.py`)
+
 Rich terminal output during training.
 
 **Features:**
+
 - Colored episode progress display
 - Real-time LLM advice visualization
 - Reward breakdown per step
@@ -357,15 +392,18 @@ Rich terminal output during training.
 - Baseline comparisons
 
 #### 2. **Causal Model Logger** (`llm_guided.py`)
+
 Comprehensive data logging for causal analysis.
 
 **Captures:**
-- State transitions: (s_t, a_t, s_{t+1}, r_{t+1})
+
+- State transitions: (s*t, a_t, s*{t+1}, r\_{t+1})
 - LLM interventions: advice content, timing, state context
 - Action outcomes: reward, health changes, level changes
 - Episode metrics: survival, exploration, LLM effectiveness
 
 **Output Files:**
+
 ```
 causal_log_20251013_143000_episodes.json        # Episode-level data
 causal_log_20251013_143000_transitions.json     # Step-level transitions
@@ -376,6 +414,7 @@ causal_log_20251013_143000_action_statistics.json # Action outcome stats
 ## 🎓 Training
 
 ### Basic Training
+
 ```bash
 cd PPO_Agent
 python llm_guided.py
@@ -384,6 +423,7 @@ python llm_guided.py
 ### Advanced Training Options
 
 **Modify hyperparameters:**
+
 ```python
 agent = MonitoredLLMGuidedNetHackAgent(
     action_dim=23,
@@ -396,6 +436,7 @@ agent = MonitoredLLMGuidedNetHackAgent(
 ```
 
 **Training loop control:**
+
 ```python
 num_episodes = 100                # Total episodes
 update_frequency = 2048           # Update every N steps
@@ -406,11 +447,13 @@ NO_PROGRESS_THRESHOLD = 200       # Early stopping threshold
 ### Training with Baseline Comparison
 
 If you have baseline metrics from a pure RL agent:
+
 ```bash
 python llm_guided.py metrics_baseline_20251012_120000.json
 ```
 
 The monitor will display comparisons:
+
 ```
 Comparison with Baseline:
   Reward Improvement:  +15.3% (+3.4 points)
@@ -421,12 +464,14 @@ Comparison with Baseline:
 ### Baseline Training (No LLM)
 
 To train a baseline PPO agent without LLM guidance:
+
 ```bash
 cd BaseRL
 python trainv2.py --timesteps 50000
 ```
 
 Or using Stable-Baselines3:
+
 ```bash
 cd BaseRL
 python train.py --algo PPO --timesteps 100000
@@ -435,12 +480,14 @@ python train.py --algo PPO --timesteps 100000
 ## 📊 Evaluation
 
 ### Quick Evaluation
+
 ```bash
 cd PPO_Agent/ppo_model_trained
 python simple_evaluate.py --model_path model.pth --episodes 10
 ```
 
 ### Comprehensive Evaluation
+
 ```bash
 python evaluate_model.py \
   --model_path enhanced_nethack_ppo_20251013_145217.pth \
@@ -452,12 +499,14 @@ python evaluate_model.py \
 ```
 
 **Options:**
+
 - `--render`: Show game visually (slower)
 - `--save_trajectories`: Save detailed step-by-step data
 - `--episodes N`: Number of episodes to evaluate
 - `--max_steps N`: Maximum steps per episode
 
 **Output:**
+
 - Comprehensive dashboard visualization
 - JSON results file with detailed metrics
 - Action frequency analysis
@@ -469,6 +518,7 @@ See EVALUATION_GUIDE.md for complete evaluation guide.
 ## 🔬 Causal Analysis
 
 ### Step 1: Parse Logs
+
 ```bash
 python log_parser_v2.py \
   --log_file logs/llm_guided_causal_20251013_143000.txt \
@@ -477,17 +527,20 @@ python log_parser_v2.py \
 ```
 
 ### Step 2: Inspect Alignment
+
 ```bash
 cat processed_data_v2/alignment_report.txt
 ```
 
 Look for:
+
 - **Lenient alignment**: ≥1 semantic match within window
 - **Strict alignment**: Immediate match (step 0)
 - **Common suggestion-action patterns**
 - **Sample matched/non-matched episodes**
 
 ### Step 3: Estimate Causal Effects
+
 ```bash
 python causal_estimator.py \
   --data processed_data_v2/episode_summary.csv \
@@ -496,11 +549,13 @@ python causal_estimator.py \
 ```
 
 **Treatment Options:**
+
 - `followed_advice_lenient` - Any semantic match within window
 - `followed_advice_strict` - Immediate action match
 - `episode_matched_any` - Any match during episode
 
 **Outcome Options:**
+
 - `episode_reward` - Total episode reward
 - `episode_shaped_reward` - Shaped reward
 - `episode_length` - Episode length in steps
@@ -509,15 +564,18 @@ python causal_estimator.py \
 ### Step 4: Interpret Results
 
 **Average Treatment Effect (ATE):**
+
 - Positive ATE: Following LLM advice improves outcome
 - Negative ATE: Following LLM advice hurts outcome
 - Near-zero ATE: No causal effect
 
 **Statistical Significance:**
+
 - p-value < 0.05: Statistically significant
 - 95% CI excludes zero: Strong evidence of effect
 
 **Sensitivity Tests:**
+
 - Placebo treatment: Should show no effect
 - Random common cause: Effect should be robust
 - Data subset: Effect should persist in subsamples
@@ -525,6 +583,7 @@ python causal_estimator.py \
 ### Advanced Causal Analysis
 
 **Custom confounders:**
+
 ```python
 estimator = CausalEffectEstimator(
     data_path='processed_data_v2/episode_summary.csv',
@@ -541,6 +600,7 @@ estimator = CausalEffectEstimator(
 ```
 
 **Custom DoWhy analysis:**
+
 ```python
 # Build causal model
 model = CausalModel(
@@ -568,6 +628,7 @@ print(f"ATE: {estimate.value}")
 ### Log File Formats
 
 #### Training Logs
+
 ```
 Episode 5 Starting...
 ────────────────────────────────────────────────────────────────────────────────
@@ -588,6 +649,7 @@ Step   10 | Action: move_south      | R:   0.00 | SR:   0.025 | HP:  78.5% | Lvl
 ```
 
 #### Causal Logs (JSON)
+
 ```json
 {
   "episode_id": 5,
@@ -623,6 +685,7 @@ Step   10 | Action: move_south      | R:   0.00 | SR:   0.025 | HP:  78.5% | Lvl
 ### Monitoring Outputs
 
 **Episode Summary:**
+
 ```
 Episode 5 Complete
 ────────────────────────────────────────────────────────────────────────────────
@@ -643,6 +706,7 @@ Action Distribution:
 ```
 
 **Training Progress:**
+
 ```
 Training Progress (Last 10 Episodes)
 ────────────────────────────────────────────────────────────────────────────────
@@ -660,30 +724,32 @@ Training Progress (Last 10 Episodes)
 ### Custom Reward Shaping
 
 Modify `NetHackRewardShaper`:
+
 ```python
 class CustomRewardShaper(NetHackRewardShaper):
     def __init__(self):
         super().__init__()
-        
+
         # Adjust reward weights
         self.exploration_reward = 0.02        # Encourage exploration
         self.health_reward = 0.0005           # Prioritize health
         self.level_reward = 10.0              # Emphasize level ups
         self.death_penalty = -10.0            # Harsher death penalty
-        
+
     def shape_reward(self, obs, raw_reward, done, info):
         shaped_reward = super().shape_reward(obs, raw_reward, done, info)
-        
+
         # Add custom shaping
         if self._detected_treasure(obs):
             shaped_reward += 1.0
-            
+
         return shaped_reward
 ```
 
 ### Custom LLM Prompts
 
 Modify `ImprovedLLMStrategicAdvisor.get_strategic_advice()`:
+
 ```python
 prompt = f"""You are an expert NetHack player. Analyze the situation:
 
@@ -706,22 +772,24 @@ Respond in JSON:
 ### Custom Observation Processing
 
 Extend `NetHackObservationProcessor`:
+
 ```python
 class CustomObsProcessor(NetHackObservationProcessor):
     def process_observation(self, obs, last_action=None):
         processed = super().process_observation(obs, last_action)
-        
+
         # Add custom features
         processed['nearby_monsters'] = self._count_nearby_monsters(obs)
         processed['items_in_inventory'] = self._count_items(obs)
         processed['hunger_level'] = self._extract_hunger(obs)
-        
+
         return processed
 ```
 
 ### Distributed Training
 
 For multi-GPU training:
+
 ```python
 import torch.distributed as dist
 
@@ -824,6 +892,7 @@ causal_report.txt + visualizations
 ## 🤝 Contributing
 
 Contributions welcome! Areas of interest:
+
 - Improved LLM prompting strategies
 - Alternative causal inference methods
 - Better reward shaping functions
@@ -835,10 +904,13 @@ Contributions welcome! Areas of interest:
 ### Common Issues
 
 **1. Ollama not responding**
+
 ```
 Error: Ollama API call failed: Connection refused
 ```
+
 **Solution:**
+
 ```bash
 # Check if Ollama is running
 ollama list
@@ -851,10 +923,13 @@ ollama pull phi
 ```
 
 **2. CUDA out of memory**
+
 ```
 RuntimeError: CUDA out of memory
 ```
+
 **Solution:**
+
 ```python
 # Reduce batch size
 batch_size = 32  # Down from 64
@@ -867,10 +942,13 @@ agent = MonitoredLLMGuidedNetHackAgent(device=torch.device('cpu'))
 ```
 
 **3. NetHack environment errors**
+
 ```
 ImportError: No module named 'nle'
 ```
+
 **Solution:**
+
 ```bash
 pip install nle
 
@@ -886,19 +964,25 @@ pip install nle
 ```
 
 **4. DoWhy estimation errors**
+
 ```
 ValueError: Not enough data points for estimation
 ```
+
 **Solution:**
+
 - Train for more episodes (need >50 episodes for reliable estimates)
 - Reduce confounder count
 - Check data quality in `episode_summary.csv`
 
 **5. Log parsing issues**
+
 ```
 No episodes found in log file
 ```
+
 **Solution:**
+
 ```bash
 # Check log file format
 head -20 logs/training.log
@@ -913,18 +997,21 @@ python log_parser_v2.py --log_file logs/training.log --debug
 ### Performance Tips
 
 **Training:**
+
 - Use GPU for 5-10x speedup
 - Reduce LLM call frequency (20-50 steps) for faster training
 - Use early stopping if no progress after N steps
 - Save checkpoints regularly
 
 **Evaluation:**
+
 - Start with 5-10 episodes for quick analysis
 - Use `--render` only for debugging
 - Save trajectories only when needed (large files)
 - Run 20+ episodes for statistical significance
 
 **Causal Analysis:**
+
 - Ensure balanced treatment groups (30%+ in each)
 - Include relevant confounders (health, level, episode stage)
 - Use lenient alignment for more data points
@@ -957,6 +1044,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Support
 
 For questions or issues:
+
 1. Check Troubleshooting
 2. Review documentation in docs
 3. Open an issue on GitHub
