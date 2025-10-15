@@ -1030,26 +1030,9 @@ If you use this code in your research, please cite:
 }
 ```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - NetHack Learning Environment (NLE) team
 - DoWhy causal inference library
 - Ollama for local LLM inference
 - NetHack DevTeam for the game
-
-## 📞 Support
-
-For questions or issues:
-
-1. Check Troubleshooting
-2. Review documentation in docs
-3. Open an issue on GitHub
-4. Contact: your.email@example.com
-
----
-
-**Happy Training! 🎮🤖🔬**
