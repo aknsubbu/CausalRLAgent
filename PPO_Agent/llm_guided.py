@@ -3016,25 +3016,6 @@ AVOID (Negative Reward):
 - Staying in one spot → Stuck penalty
 - Ignoring nearby gold/items → Missed rewards
 
-═══ TACTICAL DECISION TREE ═══
-
-IF Health > 70% AND monster at dist:1-2:
-  → ["kick", "kick", "move_toward_monster"] (FIGHT for XP!)
-
-IF Health 40-70% AND monster at dist:1:
-  → ["kick"] if weak monster, else ["move_away", "search"]
-
-IF Health < 40%:
-  → ["eat", "move_away", "search"] (SURVIVE first!)
-
-IF NO threats AND items nearby:
-  → ["pickup", "pickup", "move_toward_item"]
-
-IF NO threats AND unexplored area:
-  → ["search", "move_north", "move_east"] (VARY directions!)
-
-IF see stairs indicator:
-  → ["move_toward_stairs", "search"]
 
 ═══ CRITICAL RULES ═══
 - ALWAYS suggest 3-5 specific actions in priority order
@@ -3058,6 +3039,8 @@ RESPOND WITH JSON ONLY (no markdown, no explanation):
   "opportunities": "reward opportunities available",
   "strategy": "next 3-5 steps plan"
 }}
+
+AWLAYS FOLLOW INSTRUCTIONS PROVIDED TO ENSURE EFFICIENCY
 
 JSON:
 """
