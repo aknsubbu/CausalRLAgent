@@ -70,5 +70,4 @@ typing_extensions==4.12.2
 tzdata==2025.1
 urllib3==2.3.0
 wcwidth==0.2.10
-wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.6/libexec/wheel-0.44.0-py3-none-any.whl#sha256=d6ad895f80a568fbc066fd6c52c68c5ef40632c4d764d42af13e28e945f1920b
 zstandard==0.23.0
