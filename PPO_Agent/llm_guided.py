@@ -16,199 +16,163 @@ import sys
 import time
 
 class NetHackRewardShaper:
-    """FIXED: Advanced reward shaping with detailed logging and proper reward attribution"""
-    
+    """Advanced reward shaping for NetHack with improved balance"""
+
     def __init__(self):
         self.previous_stats = None
         self.previous_glyphs = None
         self.visited_positions = set()
         self.last_position = None
         self.stuck_counter = 0
-        self.max_stuck = 10
-        
-        # NetHack blstats indices
-        self.BLSTATS_INDEX = {
-            'x': 0, 'y': 1,
-            'hitpoints': 10, 'max_hitpoints': 11,
-            'depth': 12,
-            'gold': 13,
-            'experience_level': 18,
-            'experience_points': 19,
-            'score': 9,  # Add score tracking
-        }
-        
-        # Reward weights
-        self.exploration_reward = 0.01
-        self.health_reward = 0.0001
-        self.level_reward = 5.0
-        self.experience_reward = 0.00001
-        self.death_penalty = -5.0
-        self.stuck_penalty = -0.005
-        self.item_pickup_reward = 0.1
-        self.monster_kill_reward = 1.0
-        self.stairs_reward = 2.0
-        self.gold_reward = 0.001  # Add gold reward
-        
-        # Tracking for detailed logging
-        self.reward_breakdown = {
-            'exploration': 0.0,
-            'health': 0.0,
-            'level': 0.0,
-            'experience': 0.0,
-            'death': 0.0,
-            'stuck': 0.0,
-            'item_pickup': 0.0,
-            'monster_kill': 0.0,
-            'stairs': 0.0,
-            'gold': 0.0,
-            'raw': 0.0
-        }
-        
+        self.max_stuck = 15  # Increased tolerance
+        self.episode_start_time = None
+
+        # Improved reward weights (more balanced)
+        self.exploration_reward = 0.005  # Reduced from 0.01
+        self.health_reward = 0.01  # Increased from 0.001
+        self.level_reward = 5.0  # Increased from 1.0
+        self.experience_reward = 0.001  # Increased from 0.0001
+        self.death_penalty = -2.0  # Increased penalty
+        self.stuck_penalty = -0.005  # Reduced from -0.01
+        self.item_pickup_reward = 0.1  # Increased from 0.05
+        self.monster_kill_reward = 0.5  # Increased from 0.1
+        self.time_penalty = -0.0001  # Small time penalty to encourage efficiency
+        self.progress_bonus = 0.1  # Bonus for making progress
+
+        # Tracking variables for better reward calculation
+        self.initial_stats = None
+        self.best_stats = None
+        self.episode_exploration_count = 0
+        self.episode_item_pickups = 0
+        self.episode_level_ups = 0
+        self.last_experience = 0
+        self.last_level = 0
+        self.last_health = 0
+        self.consecutive_stuck_steps = 0
+
     def shape_reward(self, obs, raw_reward, done, info):
-        """Apply reward shaping with detailed breakdown logging"""
-        shaped_reward = raw_reward
-        
-        # Reset breakdown for this step
-        breakdown = {key: 0.0 for key in self.reward_breakdown.keys()}
-        breakdown['raw'] = raw_reward
-        
+        """Apply improved reward shaping based on game state"""
+        shaped_reward = raw_reward * 0.1  # Scale down raw reward
+
         # Extract current stats
         if isinstance(obs, tuple):
             obs = obs[0]
-            
+
         current_stats = obs.get('blstats', np.zeros(26))
         current_glyphs = obs.get('glyphs', np.zeros((21, 79)))
-        
-        if self.previous_stats is not None and len(current_stats) >= 25:
-            # 1. HEALTH CHANGE REWARD/PENALTY
-            current_hp = current_stats[self.BLSTATS_INDEX['hitpoints']]
-            prev_hp = self.previous_stats[self.BLSTATS_INDEX['hitpoints']]
-            health_diff = current_hp - prev_hp
-            
-            if health_diff != 0:
-                health_reward = health_diff * self.health_reward
-                shaped_reward += health_reward
-                breakdown['health'] = health_reward
-            
-            # 2. LEVEL UP REWARD
-            current_level = current_stats[self.BLSTATS_INDEX['experience_level']]
-            prev_level = self.previous_stats[self.BLSTATS_INDEX['experience_level']]
-            level_diff = current_level - prev_level
-            
+
+        # Initialize tracking on first call
+        if self.initial_stats is None:
+            self.initial_stats = current_stats.copy()
+            self.best_stats = current_stats.copy()
+            self.last_experience = current_stats[8] if len(current_stats) > 8 else 0
+            self.last_level = current_stats[7] if len(current_stats) > 7 else 0
+            self.last_health = current_stats[0] if len(current_stats) > 0 else 0
+            self.episode_start_time = time.time()
+
+        if self.previous_stats is not None:
+            # Health management rewards
+            health_diff = current_stats[0] - self.previous_stats[0]
+            if health_diff > 0:
+                shaped_reward += health_diff * self.health_reward * 2  # Bonus for healing
+            elif health_diff < 0:
+                shaped_reward += health_diff * self.health_reward * 0.5  # Smaller penalty for damage
+
+            # Level progression (major milestone)
+            level_diff = current_stats[7] - self.previous_stats[7]
             if level_diff > 0:
-                level_reward = level_diff * self.level_reward
-                shaped_reward += level_reward
-                breakdown['level'] = level_reward
-                print(f"  🎉 LEVEL UP! Level {int(prev_level)} → {int(current_level)}, Bonus: +{level_reward:.2f}")
-            
-            # 3. EXPERIENCE GAIN REWARD
-            current_exp = current_stats[self.BLSTATS_INDEX['experience_points']]
-            prev_exp = self.previous_stats[self.BLSTATS_INDEX['experience_points']]
-            exp_diff = current_exp - prev_exp
-            
+                shaped_reward += level_diff * self.level_reward
+                self.episode_level_ups += level_diff
+                self.best_stats[7] = max(self.best_stats[7], current_stats[7])
+
+            # Experience progression
+            exp_diff = current_stats[8] - self.previous_stats[8]
             if exp_diff > 0:
-                exp_reward = exp_diff * self.experience_reward
-                shaped_reward += exp_reward
-                breakdown['experience'] = exp_reward
-                
-                # MONSTER KILL DETECTION: Large XP gain likely means kill
-                if exp_diff > 10:  # Threshold for monster kill
-                    kill_bonus = self.monster_kill_reward
-                    shaped_reward += kill_bonus
-                    breakdown['monster_kill'] = kill_bonus
-                    print(f"  ⚔️  Monster kill detected! XP +{int(exp_diff)}, Bonus: +{kill_bonus:.2f}")
-            
-            # 4. STAIRS DESCENT REWARD
-            current_depth = current_stats[self.BLSTATS_INDEX['depth']]
-            prev_depth = self.previous_stats[self.BLSTATS_INDEX['depth']]
-            
-            if current_depth > prev_depth:
-                stairs_reward = self.stairs_reward
-                shaped_reward += stairs_reward
-                breakdown['stairs'] = stairs_reward
-                print(f"  📉 Descended stairs! Depth {int(prev_depth)} → {int(current_depth)}, Bonus: +{stairs_reward:.2f}")
-            
-            # 5. GOLD COLLECTION REWARD
-            current_gold = current_stats[self.BLSTATS_INDEX['gold']]
-            prev_gold = self.previous_stats[self.BLSTATS_INDEX['gold']]
-            gold_diff = current_gold - prev_gold
-            
-            if gold_diff > 0:
-                gold_reward = gold_diff * self.gold_reward
-                shaped_reward += gold_reward
-                breakdown['gold'] = gold_reward
-                print(f"  💰 Collected {int(gold_diff)} gold! Bonus: +{gold_reward:.3f}")
-            
-            # 6. ITEM PICKUP DETECTION (using inventory glyphs)
-            # Count non-zero glyphs as rough inventory measure
+                shaped_reward += exp_diff * self.experience_reward
+                # Bonus for consistent experience gain
+                if exp_diff > self.last_experience:
+                    shaped_reward += self.progress_bonus
+
+            # Improved item detection
             current_inv_count = np.sum(current_glyphs > 0)
             prev_inv_count = np.sum(self.previous_glyphs > 0)
             inv_change = current_inv_count - prev_inv_count
-            
-            if inv_change > 5:  # Threshold to detect actual pickup vs. glyph changes
-                pickup_reward = self.item_pickup_reward
-                shaped_reward += pickup_reward
-                breakdown['item_pickup'] = pickup_reward
-                print(f"  📦 Item pickup detected! Bonus: +{pickup_reward:.2f}")
-        
-        # 7. EXPLORATION REWARD (using position)
-        if len(current_stats) >= 2:
-            current_pos = (int(current_stats[self.BLSTATS_INDEX['x']]), 
-                          int(current_stats[self.BLSTATS_INDEX['y']]))
-            
-            if current_pos not in self.visited_positions:
-                self.visited_positions.add(current_pos)
-                explore_reward = self.exploration_reward
-                shaped_reward += explore_reward
-                breakdown['exploration'] = explore_reward
-            
-            # 8. ANTI-STUCK PENALTY
-            if current_pos == self.last_position:
-                self.stuck_counter += 1
-                if self.stuck_counter > self.max_stuck:
-                    stuck_penalty = self.stuck_penalty
-                    shaped_reward += stuck_penalty
-                    breakdown['stuck'] = stuck_penalty
+
+            if inv_change > 0:
+                shaped_reward += inv_change * self.item_pickup_reward
+                self.episode_item_pickups += inv_change
+
+            # Monster killing detection (experience spikes)
+            if exp_diff > 10:  # Likely killed a monster
+                shaped_reward += self.monster_kill_reward
+
+        # Exploration rewards with diminishing returns
+        current_pos = tuple(current_stats[:2]) if len(current_stats) > 1 else (0, 0)
+        if current_pos not in self.visited_positions:
+            self.visited_positions.add(current_pos)
+            self.episode_exploration_count += 1
+            # Diminishing returns for exploration
+            exploration_bonus = self.exploration_reward * (1.0 / (1.0 + self.episode_exploration_count * 0.01))
+            shaped_reward += exploration_bonus
+
+        # Improved anti-stuck mechanism
+        if current_pos == self.last_position:
+            self.consecutive_stuck_steps += 1
+            if self.consecutive_stuck_steps > self.max_stuck:
+                # Progressive penalty for being stuck
+                stuck_multiplier = min(self.consecutive_stuck_steps / self.max_stuck, 5.0)
+                shaped_reward += self.stuck_penalty * stuck_multiplier
+        else:
+            self.consecutive_stuck_steps = 0
+
+        # Time-based penalty (encourage efficiency)
+        if self.episode_start_time:
+            episode_time = time.time() - self.episode_start_time
+            shaped_reward += self.time_penalty * episode_time
+
+        # Progress bonus (reward for improvement over initial state)
+        if len(current_stats) > 8:
+            progress_score = (
+                (current_stats[7] - self.initial_stats[7]) * 10 +  # Level progress
+                (current_stats[8] - self.initial_stats[8]) * 0.01 +  # XP progress
+                len(self.visited_positions) * 0.01  # Exploration progress
+            )
+            shaped_reward += progress_score * 0.001
+
+        # Death penalty with context
+        if done:
+            if len(current_stats) > 0 and current_stats[0] <= 0:  # Player died
+                shaped_reward += self.death_penalty
+                # Additional penalty for early death
+                if len(self.visited_positions) < 10:
+                    shaped_reward += self.death_penalty * 0.5
             else:
-                self.stuck_counter = 0
-            
-            self.last_position = current_pos
-        
-        # 9. DEATH PENALTY
-        if done and len(current_stats) > 10:
-            if current_stats[self.BLSTATS_INDEX['hitpoints']] <= 0:
-                death_penalty = self.death_penalty
-                shaped_reward += death_penalty
-                breakdown['death'] = death_penalty
-                print(f"  💀 Death penalty applied: {death_penalty:.2f}")
-        
+                # Small bonus for surviving (timeout/win)
+                shaped_reward += 0.1
+
         # Update tracking variables
         self.previous_stats = current_stats.copy()
         self.previous_glyphs = current_glyphs.copy()
-        
-        # Store breakdown for external logging
-        self.reward_breakdown = breakdown
-        
-        # Print detailed breakdown if significant shaping occurred
-        total_shaping = shaped_reward - raw_reward
-        if abs(total_shaping) > 0.01:
-            self._print_reward_breakdown(breakdown, raw_reward, shaped_reward)
-        
+        self.last_position = current_pos
+        self.last_experience = current_stats[8] if len(current_stats) > 8 else 0
+
+        # Clamp shaped reward to prevent extreme values
+        shaped_reward = np.clip(shaped_reward, -10.0, 10.0)
+
         return shaped_reward
-    
-    def _print_reward_breakdown(self, breakdown, raw_reward, shaped_reward):
-        """Print detailed reward breakdown"""
-        print(f"\n  📊 Reward Breakdown:")
-        print(f"     Raw Reward:        {raw_reward:+7.3f}")
-        
-        for key, value in breakdown.items():
-            if key != 'raw' and abs(value) > 0.0001:
-                print(f"     {key.capitalize():18s}: {value:+7.3f}")
-        
-        print(f"     ─────────────────────────")
-        print(f"     Total Shaped:      {shaped_reward:+7.3f}")
-        print(f"     Shaping Delta:     {shaped_reward - raw_reward:+7.3f}\n")
-    
+
+    def get_episode_stats(self):
+        """Get episode statistics for logging"""
+        return {
+            'exploration_count': self.episode_exploration_count,
+            'unique_positions': len(self.visited_positions),
+            'item_pickups': self.episode_item_pickups,
+            'level_ups': self.episode_level_ups,
+            'max_health': self.best_stats[0] if self.best_stats is not None else 0,
+            'max_level': self.best_stats[7] if self.best_stats is not None else 0,
+            'max_experience': self.best_stats[8] if self.best_stats is not None else 0,
+        }
+
     def reset(self):
         """Reset reward shaper for new episode"""
         self.previous_stats = None
@@ -216,10 +180,18 @@ class NetHackRewardShaper:
         self.visited_positions.clear()
         self.last_position = None
         self.stuck_counter = 0
-        self.reward_breakdown = {key: 0.0 for key in self.reward_breakdown.keys()}
+        self.consecutive_stuck_steps = 0
+        self.initial_stats = None
+        self.best_stats = None
+        self.episode_exploration_count = 0
+        self.episode_item_pickups = 0
+        self.episode_level_ups = 0
+        self.last_experience = 0
+        self.last_level = 0
+        self.last_health = 0
+        self.episode_start_time = None
 
-
-
+        
 class NetHackObservationProcessor:
     """Enhanced observation processor with memory features and CORRECT blstats parsing"""
     

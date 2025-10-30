@@ -1,0 +1,65 @@
+================================================================================
+CAUSAL ANALYSIS DATASET REPORT
+================================================================================
+
+📊 Dataset Overview
+   Total episodes: 5799
+   Outcome window: 10 steps
+
+🎯 Treatment Variables (LLM Advice Features)
+   Advice categories: {'combat': 2612, 'survival': 1360, 'defensive': 1169, 'other': 626, 'exploration': 28, 'none': 4}
+   Avg suggestions: 2.9 (std: 0.3)
+   JSON parsed: 5795 (99.9%)
+
+   Binary treatments:
+   - high_quality_advice: 3195 / 5799 (55.1%)
+   - specific_advice: 3203 / 5799 (55.2%)
+   - combat_advice: 3972 / 5799 (68.5%)
+
+📈 Outcome Variables (Performance)
+   total_reward:
+      Mean: -0.010, Std: 0.030
+      Range: [-0.060, 2.000]
+   sr_change:
+      Mean: -0.000, Std: 0.013
+      Range: [-1.016, 0.025]
+   hp_change:
+      Mean: 0.042, Std: 2.088
+      Range: [-71.400, 71.400]
+   positive_reward_rate:
+      Mean: 0.000, Std: 0.015
+      Range: [0.000, 1.000]
+
+🎮 Confounders (Pre-treatment State)
+   hp_before:
+      Mean: 98.679, Std: 7.645
+   level_before:
+      Mean: 1.000, Std: 0.000
+   reward_ma5_before:
+      Mean: -0.009, Std: 0.011
+   critical_hp_before:
+      Mean: 0.009, Std: 0.096
+
+⚖️  Treatment Balance Check
+
+   high_quality_advice:
+      N (treated): 3195, N (control): 2604
+      HP before - Treated: 98.5, Control: 98.8
+      Avg reward - Treated: -0.009, Control: -0.011
+
+   specific_advice:
+      N (treated): 3203, N (control): 2596
+      HP before - Treated: 98.6, Control: 98.8
+      Avg reward - Treated: -0.009, Control: -0.011
+
+   combat_advice:
+      N (treated): 3972, N (control): 1827
+      HP before - Treated: 99.4, Control: 97.0
+      Avg reward - Treated: -0.010, Control: -0.009
+
+💡 Next Steps for Causal Analysis:
+   1. Check covariate balance between treatment groups
+   2. Estimate propensity scores using confounders
+   3. Use matching, IPW, or doubly robust estimation
+   4. Estimate ATE/ATT for each treatment variable
+   5. Conduct sensitivity analysis for unmeasured confounding
