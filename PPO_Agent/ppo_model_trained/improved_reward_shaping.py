@@ -13,6 +13,8 @@ import os
 import json
 import logging
 import time
+import csv
+import pandas as pd
 from typing import Dict, List, Tuple, Optional
 
 # Optional imports for advanced features
@@ -30,7 +32,7 @@ except ImportError:
     SEABORN_AVAILABLE = False
 
 class TrainingLogger:
-    """Comprehensive training logger with metrics tracking"""
+    """Comprehensive training logger with CSV metrics tracking"""
 
     def __init__(self, log_dir: str = "logs", experiment_name: str = None, use_wandb: bool = False):
         self.log_dir = log_dir
@@ -39,6 +41,14 @@ class TrainingLogger:
 
         # Create log directory
         os.makedirs(log_dir, exist_ok=True)
+
+        # Setup CSV files for logging
+        self.episode_csv_file = os.path.join(log_dir, f"{self.experiment_name}_episodes.csv")
+        self.training_csv_file = os.path.join(log_dir, f"{self.experiment_name}_training.csv")
+        self.extensive_csv_file = os.path.join(log_dir, f"{self.experiment_name}_extensive.csv")
+
+        # Initialize CSV files with headers
+        self._init_csv_files()
 
         # Setup file logging with immediate flush
         log_file = os.path.join(log_dir, f"{self.experiment_name}.log")
@@ -77,27 +87,229 @@ class TrainingLogger:
             wandb.init(project="nethack-ppo", name=self.experiment_name)
             self.logger.info("WandB logging initialized")
 
-    def log_episode(self, episode: int, metrics: Dict):
-        """Log episode-level metrics"""
-        self.logger.info(f"Episode {episode}: " +
-                        " | ".join([f"{k}: {v:.3f}" for k, v in metrics.items()]))
+    def _init_csv_files(self):
+        """Initialize CSV files with headers"""
+        # Episode CSV headers
+        episode_headers = [
+            'timestamp', 'episode', 'raw_reward', 'shaped_reward', 'episode_length',
+            'died', 'level_ups', 'max_health', 'items_collected', 'unique_positions',
+            'exploration_reward', 'survival_time', 'actions_taken'
+        ]
+        
+        # Training CSV headers
+        training_headers = [
+            'timestamp', 'step', 'actor_loss', 'critic_loss', 'policy_loss',
+            'value_loss', 'entropy', 'clip_fraction', 'grad_norm', 'learning_rate'
+        ]
 
+        # Extensive CSV headers (every 10 episodes)
+        extensive_headers = [
+            'timestamp', 'episode_batch', 'avg_raw_reward', 'avg_shaped_reward',
+            'avg_episode_length', 'success_rate', 'survival_rate', 'best_reward',
+            'worst_reward', 'reward_std', 'exploration_efficiency', 'total_unique_positions',
+            'avg_actor_loss', 'avg_critic_loss', 'avg_entropy', 'avg_clip_fraction',
+            'reward_trend', 'learning_stability', 'policy_variance'
+        ]
+
+        # Create CSV files with headers
+        with open(self.episode_csv_file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(episode_headers)
+
+        with open(self.training_csv_file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(training_headers)
+
+        with open(self.extensive_csv_file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(extensive_headers)
+
+    def log_episode_csv(self, episode: int, metrics: Dict):
+        """Log episode-level metrics to CSV"""
+        timestamp = datetime.now().isoformat()
+        
+        # Prepare episode data
+        episode_data = [
+            timestamp,
+            episode,
+            metrics.get('raw_reward', 0),
+            metrics.get('shaped_reward', 0),
+            metrics.get('episode_length', 0),
+            metrics.get('died', 0),
+            metrics.get('level_ups', 0),
+            metrics.get('max_health', 0),
+            metrics.get('items_collected', 0),
+            metrics.get('unique_positions', 0),
+            metrics.get('exploration_reward', 0),
+            metrics.get('survival_time', 0),
+            metrics.get('actions_taken', 0)
+        ]
+
+        # Write to CSV
+        with open(self.episode_csv_file, 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(episode_data)
+
+        # Also log to console
+        self.logger.info(f"Episode {episode}: Raw Reward: {metrics.get('raw_reward', 0):.3f}, "
+                        f"Shaped Reward: {metrics.get('shaped_reward', 0):.3f}, "
+                        f"Length: {metrics.get('episode_length', 0)}")
+
+        # Store for extensive logging
         for key, value in metrics.items():
             self.episode_metrics[key].append(value)
 
         if self.use_wandb:
             wandb.log({f"episode/{k}": v for k, v in metrics.items()}, step=episode)
 
-    def log_training(self, step: int, metrics: Dict):
-        """Log training-level metrics"""
-        self.logger.info(f"Training Step {step}: " +
-                        " | ".join([f"{k}: {v:.4f}" for k, v in metrics.items()]))
+    def log_training_csv(self, step: int, metrics: Dict):
+        """Log training-level metrics to CSV"""
+        timestamp = datetime.now().isoformat()
+        
+        # Prepare training data
+        training_data = [
+            timestamp,
+            step,
+            metrics.get('actor_loss', 0),
+            metrics.get('critic_loss', 0),
+            metrics.get('policy_loss', 0),
+            metrics.get('value_loss', 0),
+            metrics.get('entropy', 0),
+            metrics.get('clip_fraction', 0),
+            metrics.get('grad_norm', 0),
+            metrics.get('learning_rate', 0)
+        ]
+
+        # Write to CSV
+        with open(self.training_csv_file, 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(training_data)
+
+        self.logger.info(f"Training Step {step}: Actor Loss: {metrics.get('actor_loss', 0):.4f}, "
+                        f"Critic Loss: {metrics.get('critic_loss', 0):.4f}, "
+                        f"Entropy: {metrics.get('entropy', 0):.4f}")
 
         for key, value in metrics.items():
             self.training_metrics[key].append(value)
 
         if self.use_wandb:
             wandb.log({f"train/{k}": v for k, v in metrics.items()}, step=step)
+
+    def log_extensive_analysis(self, episode_batch: int, recent_episodes: List[Dict]):
+        """Log extensive analysis every 10 episodes"""
+        timestamp = datetime.now().isoformat()
+        
+        if not recent_episodes:
+            return
+
+        # Calculate comprehensive metrics
+        raw_rewards = [ep.get('raw_reward', 0) for ep in recent_episodes]
+        shaped_rewards = [ep.get('shaped_reward', 0) for ep in recent_episodes]
+        episode_lengths = [ep.get('episode_length', 0) for ep in recent_episodes]
+        deaths = [ep.get('died', 0) for ep in recent_episodes]
+        unique_positions = [ep.get('unique_positions', 0) for ep in recent_episodes]
+
+        # Advanced metrics
+        avg_raw_reward = np.mean(raw_rewards)
+        avg_shaped_reward = np.mean(shaped_rewards)
+        avg_episode_length = np.mean(episode_lengths)
+        success_rate = sum(1 for r in raw_rewards if r > 0) / len(raw_rewards)
+        survival_rate = 1 - np.mean(deaths)
+        best_reward = max(raw_rewards)
+        worst_reward = min(raw_rewards)
+        reward_std = np.std(raw_rewards)
+        exploration_efficiency = np.mean(unique_positions) / max(avg_episode_length, 1)
+        total_unique_positions = sum(unique_positions)
+
+        # Training metrics
+        recent_training = list(self.training_metrics.get('actor_loss', []))[-50:]
+        avg_actor_loss = np.mean(recent_training) if recent_training else 0
+        recent_critic = list(self.training_metrics.get('critic_loss', []))[-50:]
+        avg_critic_loss = np.mean(recent_critic) if recent_critic else 0
+        recent_entropy = list(self.training_metrics.get('entropy', []))[-50:]
+        avg_entropy = np.mean(recent_entropy) if recent_entropy else 0
+        recent_clip = list(self.training_metrics.get('clip_fraction', []))[-50:]
+        avg_clip_fraction = np.mean(recent_clip) if recent_clip else 0
+
+        # Trend analysis
+        reward_trend = self._calculate_trend(raw_rewards)
+        learning_stability = 1 / (1 + reward_std) if reward_std > 0 else 1
+        policy_variance = np.var(recent_entropy) if recent_entropy else 0
+
+        # Prepare extensive data
+        extensive_data = [
+            timestamp,
+            episode_batch,
+            avg_raw_reward,
+            avg_shaped_reward,
+            avg_episode_length,
+            success_rate,
+            survival_rate,
+            best_reward,
+            worst_reward,
+            reward_std,
+            exploration_efficiency,
+            total_unique_positions,
+            avg_actor_loss,
+            avg_critic_loss,
+            avg_entropy,
+            avg_clip_fraction,
+            reward_trend,
+            learning_stability,
+            policy_variance
+        ]
+
+        # Write to CSV
+        with open(self.extensive_csv_file, 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(extensive_data)
+
+        # Enhanced console logging
+        self.logger.info("="*80)
+        self.logger.info(f"📊 EXTENSIVE ANALYSIS - Episodes {episode_batch-9} to {episode_batch}")
+        self.logger.info("="*80)
+        self.logger.info(f"🎯 Performance Metrics:")
+        self.logger.info(f"   Average Raw Reward: {avg_raw_reward:.3f}")
+        self.logger.info(f"   Average Shaped Reward: {avg_shaped_reward:.3f}")
+        self.logger.info(f"   Best Episode Reward: {best_reward:.3f}")
+        self.logger.info(f"   Reward Standard Deviation: {reward_std:.3f}")
+        self.logger.info(f"   Success Rate: {success_rate:.1%}")
+        self.logger.info(f"   Survival Rate: {survival_rate:.1%}")
+        self.logger.info("")
+        self.logger.info(f"🚀 Exploration Metrics:")
+        self.logger.info(f"   Average Episode Length: {avg_episode_length:.1f}")
+        self.logger.info(f"   Exploration Efficiency: {exploration_efficiency:.4f}")
+        self.logger.info(f"   Total Unique Positions: {total_unique_positions}")
+        self.logger.info("")
+        self.logger.info(f"🧠 Learning Metrics:")
+        self.logger.info(f"   Average Actor Loss: {avg_actor_loss:.4f}")
+        self.logger.info(f"   Average Critic Loss: {avg_critic_loss:.4f}")
+        self.logger.info(f"   Average Entropy: {avg_entropy:.4f}")
+        self.logger.info(f"   Average Clip Fraction: {avg_clip_fraction:.4f}")
+        self.logger.info(f"   Reward Trend: {reward_trend:.6f}")
+        self.logger.info(f"   Learning Stability: {learning_stability:.3f}")
+        self.logger.info("="*80)
+
+    def _calculate_trend(self, values: List[float]) -> float:
+        """Calculate trend (positive = improving, negative = degrading)"""
+        if len(values) < 3:
+            return 0.0
+
+        x = np.arange(len(values))
+        y = np.array(values)
+
+        # Simple linear regression slope
+        n = len(x)
+        slope = (n * np.sum(x * y) - np.sum(x) * np.sum(y)) / (n * np.sum(x**2) - np.sum(x)**2)
+        return slope
+
+    def log_episode(self, episode: int, metrics: Dict):
+        """Legacy method - redirect to CSV logging"""
+        self.log_episode_csv(episode, metrics)
+
+    def log_training(self, step: int, metrics: Dict):
+        """Legacy method - redirect to CSV logging"""
+        self.log_training_csv(step, metrics)
 
     def log_info(self, message: str):
         """Log general information"""
@@ -130,6 +342,10 @@ class TrainingLogger:
         with open(metrics_file, 'w') as f:
             json.dump(all_metrics, f, indent=2)
         self.logger.info(f"Metrics saved to {metrics_file}")
+        self.logger.info(f"CSV logs saved to:")
+        self.logger.info(f"  Episodes: {self.episode_csv_file}")
+        self.logger.info(f"  Training: {self.training_csv_file}")
+        self.logger.info(f"  Extensive: {self.extensive_csv_file}")
 
 class PerformanceEvaluator:
     """Advanced performance evaluation and metrics calculation"""
@@ -276,163 +492,81 @@ class PerformanceEvaluator:
         return total_positions / max(total_steps, 1)
 
 class NetHackRewardShaper:
-    """Advanced reward shaping for NetHack with improved balance"""
-
+    """Advanced reward shaping for NetHack"""
+    
     def __init__(self):
         self.previous_stats = None
         self.previous_glyphs = None
         self.visited_positions = set()
         self.last_position = None
         self.stuck_counter = 0
-        self.max_stuck = 15  # Increased tolerance
-        self.episode_start_time = None
-
-        # Improved reward weights (more balanced)
-        self.exploration_reward = 0.005  # Reduced from 0.01
-        self.health_reward = 0.01  # Increased from 0.001
-        self.level_reward = 5.0  # Increased from 1.0
-        self.experience_reward = 0.001  # Increased from 0.0001
-        self.death_penalty = -2.0  # Increased penalty
-        self.stuck_penalty = -0.005  # Reduced from -0.01
-        self.item_pickup_reward = 0.1  # Increased from 0.05
-        self.monster_kill_reward = 0.5  # Increased from 0.1
-        self.time_penalty = -0.0001  # Small time penalty to encourage efficiency
-        self.progress_bonus = 0.1  # Bonus for making progress
-
-        # Tracking variables for better reward calculation
-        self.initial_stats = None
-        self.best_stats = None
-        self.episode_exploration_count = 0
-        self.episode_item_pickups = 0
-        self.episode_level_ups = 0
-        self.last_experience = 0
-        self.last_level = 0
-        self.last_health = 0
-        self.consecutive_stuck_steps = 0
-
+        self.max_stuck = 10
+        
+        # Reward weights
+        self.exploration_reward = 0.01
+        self.health_reward = 0.001
+        self.level_reward = 1.0
+        self.experience_reward = 0.0001
+        self.death_penalty = -1.0
+        self.stuck_penalty = -0.01
+        self.item_pickup_reward = 0.05
+        self.monster_kill_reward = 0.1
+        
     def shape_reward(self, obs, raw_reward, done, info):
-        """Apply improved reward shaping based on game state"""
-        shaped_reward = raw_reward * 0.1  # Scale down raw reward
-
+        """Apply reward shaping based on game state"""
+        shaped_reward = raw_reward
+        
         # Extract current stats
         if isinstance(obs, tuple):
             obs = obs[0]
-
+            
         current_stats = obs.get('blstats', np.zeros(26))
         current_glyphs = obs.get('glyphs', np.zeros((21, 79)))
-
-        # Initialize tracking on first call
-        if self.initial_stats is None:
-            self.initial_stats = current_stats.copy()
-            self.best_stats = current_stats.copy()
-            self.last_experience = current_stats[8] if len(current_stats) > 8 else 0
-            self.last_level = current_stats[7] if len(current_stats) > 7 else 0
-            self.last_health = current_stats[0] if len(current_stats) > 0 else 0
-            self.episode_start_time = time.time()
-
+        
         if self.previous_stats is not None:
-            # Health management rewards
+            # Health change reward/penalty
             health_diff = current_stats[0] - self.previous_stats[0]
-            if health_diff > 0:
-                shaped_reward += health_diff * self.health_reward * 2  # Bonus for healing
-            elif health_diff < 0:
-                shaped_reward += health_diff * self.health_reward * 0.5  # Smaller penalty for damage
-
-            # Level progression (major milestone)
+            shaped_reward += health_diff * self.health_reward
+            
+            # Level up reward
             level_diff = current_stats[7] - self.previous_stats[7]
-            if level_diff > 0:
-                shaped_reward += level_diff * self.level_reward
-                self.episode_level_ups += level_diff
-                self.best_stats[7] = max(self.best_stats[7], current_stats[7])
-
-            # Experience progression
+            shaped_reward += level_diff * self.level_reward
+            
+            # Experience gain reward
             exp_diff = current_stats[8] - self.previous_stats[8]
-            if exp_diff > 0:
-                shaped_reward += exp_diff * self.experience_reward
-                # Bonus for consistent experience gain
-                if exp_diff > self.last_experience:
-                    shaped_reward += self.progress_bonus
-
-            # Improved item detection
-            current_inv_count = np.sum(current_glyphs > 0)
-            prev_inv_count = np.sum(self.previous_glyphs > 0)
-            inv_change = current_inv_count - prev_inv_count
-
+            shaped_reward += exp_diff * self.experience_reward
+            
+            # Item pickup detection (inventory count change)
+            # This is a simplified version - you could make this more sophisticated
+            inv_change = np.sum(current_glyphs > 0) - np.sum(self.previous_glyphs > 0)
             if inv_change > 0:
-                shaped_reward += inv_change * self.item_pickup_reward
-                self.episode_item_pickups += inv_change
-
-            # Monster killing detection (experience spikes)
-            if exp_diff > 10:  # Likely killed a monster
-                shaped_reward += self.monster_kill_reward
-
-        # Exploration rewards with diminishing returns
-        current_pos = tuple(current_stats[:2]) if len(current_stats) > 1 else (0, 0)
+                shaped_reward += self.item_pickup_reward
+        
+        # Exploration reward
+        current_pos = (current_stats[0], current_stats[1]) if len(current_stats) > 1 else (0, 0)
         if current_pos not in self.visited_positions:
             self.visited_positions.add(current_pos)
-            self.episode_exploration_count += 1
-            # Diminishing returns for exploration
-            exploration_bonus = self.exploration_reward * (1.0 / (1.0 + self.episode_exploration_count * 0.01))
-            shaped_reward += exploration_bonus
-
-        # Improved anti-stuck mechanism
+            shaped_reward += self.exploration_reward
+        
+        # Anti-stuck mechanism
         if current_pos == self.last_position:
-            self.consecutive_stuck_steps += 1
-            if self.consecutive_stuck_steps > self.max_stuck:
-                # Progressive penalty for being stuck
-                stuck_multiplier = min(self.consecutive_stuck_steps / self.max_stuck, 5.0)
-                shaped_reward += self.stuck_penalty * stuck_multiplier
+            self.stuck_counter += 1
+            if self.stuck_counter > self.max_stuck:
+                shaped_reward += self.stuck_penalty
         else:
-            self.consecutive_stuck_steps = 0
-
-        # Time-based penalty (encourage efficiency)
-        if self.episode_start_time:
-            episode_time = time.time() - self.episode_start_time
-            shaped_reward += self.time_penalty * episode_time
-
-        # Progress bonus (reward for improvement over initial state)
-        if len(current_stats) > 8:
-            progress_score = (
-                (current_stats[7] - self.initial_stats[7]) * 10 +  # Level progress
-                (current_stats[8] - self.initial_stats[8]) * 0.01 +  # XP progress
-                len(self.visited_positions) * 0.01  # Exploration progress
-            )
-            shaped_reward += progress_score * 0.001
-
-        # Death penalty with context
-        if done:
-            if len(current_stats) > 0 and current_stats[0] <= 0:  # Player died
-                shaped_reward += self.death_penalty
-                # Additional penalty for early death
-                if len(self.visited_positions) < 10:
-                    shaped_reward += self.death_penalty * 0.5
-            else:
-                # Small bonus for surviving (timeout/win)
-                shaped_reward += 0.1
-
+            self.stuck_counter = 0
+        
+        # Death penalty
+        if done and current_stats[0] <= 0:  # Player died
+            shaped_reward += self.death_penalty
+        
         # Update tracking variables
         self.previous_stats = current_stats.copy()
         self.previous_glyphs = current_glyphs.copy()
         self.last_position = current_pos
-        self.last_experience = current_stats[8] if len(current_stats) > 8 else 0
-
-        # Clamp shaped reward to prevent extreme values
-        shaped_reward = np.clip(shaped_reward, -10.0, 10.0)
-
+        
         return shaped_reward
-
-    def get_episode_stats(self):
-        """Get episode statistics for logging"""
-        return {
-            'exploration_count': self.episode_exploration_count,
-            'unique_positions': len(self.visited_positions),
-            'item_pickups': self.episode_item_pickups,
-            'level_ups': self.episode_level_ups,
-            'max_health': self.best_stats[0] if self.best_stats is not None else 0,
-            'max_level': self.best_stats[7] if self.best_stats is not None else 0,
-            'max_experience': self.best_stats[8] if self.best_stats is not None else 0,
-        }
-
+    
     def reset(self):
         """Reset reward shaper for new episode"""
         self.previous_stats = None
@@ -440,62 +574,52 @@ class NetHackRewardShaper:
         self.visited_positions.clear()
         self.last_position = None
         self.stuck_counter = 0
-        self.consecutive_stuck_steps = 0
-        self.initial_stats = None
-        self.best_stats = None
-        self.episode_exploration_count = 0
-        self.episode_item_pickups = 0
-        self.episode_level_ups = 0
-        self.last_experience = 0
-        self.last_level = 0
-        self.last_health = 0
-        self.episode_start_time = None
 
 class NetHackObservationProcessor:
     """Enhanced observation processor with memory features"""
-
+    
     def __init__(self):
         self.glyph_shape = (21, 79)
         self.stats_dim = 26
         self.message_dim = 256
         self.inventory_dim = 55
-
+        
         # Memory features
         self.position_history = deque(maxlen=100)
         self.action_history = deque(maxlen=50)
-
+        
     def process_observation(self, obs, last_action=None):
         """Process observation with memory features"""
         processed = {}
-
+        
         if isinstance(obs, tuple):
             obs = obs[0]
-
+        
         if not isinstance(obs, dict):
             raise ValueError(f"Expected dict observation, got {type(obs)}")
-
+        
         # Process glyphs
         if 'glyphs' in obs:
             glyphs = np.array(obs['glyphs']).astype(np.float32) / 5976.0
             processed['glyphs'] = glyphs
         else:
             processed['glyphs'] = np.zeros(self.glyph_shape, dtype=np.float32)
-
+        
         # Process stats with memory
         if 'blstats' in obs:
             stats = np.array(obs['blstats']).astype(np.float32)
             stats_normalized = stats.copy()
-
+            
             if len(stats) > 1 and stats[1] > 0:
                 stats_normalized[0] = stats[0] / stats[1]  # HP ratio
             if len(stats) > 7:
                 stats_normalized[7] = min(stats[7] / 30.0, 1.0)  # Level
-
+                
             # Add position to history
             if len(stats) > 1:
                 current_pos = (stats[0], stats[1])
                 self.position_history.append(current_pos)
-
+            
             if len(stats_normalized) < self.stats_dim:
                 padded_stats = np.zeros(self.stats_dim, dtype=np.float32)
                 padded_stats[:len(stats_normalized)] = stats_normalized
@@ -504,7 +628,7 @@ class NetHackObservationProcessor:
                 processed['stats'] = stats_normalized[:self.stats_dim]
         else:
             processed['stats'] = np.zeros(self.stats_dim, dtype=np.float32)
-
+        
         # Process message
         if 'message' in obs:
             message = np.array(obs['message']).astype(np.float32)
@@ -516,60 +640,77 @@ class NetHackObservationProcessor:
                 processed['message'] = message[:self.message_dim] / 255.0
         else:
             processed['message'] = np.zeros(self.message_dim, dtype=np.float32)
-
+        
         # Process inventory
         if 'inv_strs' in obs:
             inventory = obs['inv_strs']
             inv_features = np.zeros(self.inventory_dim, dtype=np.float32)
             for i, item in enumerate(inventory):
                 if i < len(inv_features):
-                    item_str = str(item) if item is not None else ""
-                    if len(item_str.strip()) > 0 and item_str.strip() != "b''":
-                        inv_features[i] = 1.0
+                    try:
+                        # FIX: Handle numpy arrays and bytes properly
+                        if isinstance(item, np.ndarray):
+                            if item.dtype.kind in ('U', 'S', 'O'):  # String-like types
+                                item_str = str(item.item()) if item.size == 1 else ""
+                            else:
+                                item_str = ""
+                        elif isinstance(item, bytes):
+                            item_str = item.decode('ascii', errors='ignore')
+                        elif item is not None:
+                            item_str = str(item)
+                        else:
+                            item_str = ""
+                        
+                        if len(item_str.strip()) > 0 and item_str.strip() not in ["b''", ""]:
+                            inv_features[i] = 1.0
+                    except Exception as e:
+                        # Silently skip problematic items
+                        continue
             processed['inventory'] = inv_features
         else:
             processed['inventory'] = np.zeros(self.inventory_dim, dtype=np.float32)
 
+        
         # Add action history
         if last_action is not None:
             self.action_history.append(last_action)
-
+        
         # Create action history vector
         action_hist_vector = np.zeros(50, dtype=np.float32)
         for i, action in enumerate(list(self.action_history)[-50:]):
             action_hist_vector[i] = action / 23.0  # Normalize by action space size
         processed['action_history'] = action_hist_vector
-
+        
         return processed
 
 class RecurrentNetHackCNN(nn.Module):
     """CNN with LSTM for processing NetHack glyphs with memory"""
-
+    
     def __init__(self, input_shape=(21, 79), cnn_output_dim=512, lstm_hidden_dim=256):
         super(RecurrentNetHackCNN, self).__init__()
-
+        
         # CNN layers
         self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
-
+        
         # Calculate CNN output size
         conv_out_size = self._get_conv_out_size(input_shape)
         self.cnn_fc = nn.Linear(conv_out_size, cnn_output_dim)
-
+        
         # LSTM for temporal modeling
         self.lstm_hidden_dim = lstm_hidden_dim
         self.lstm = nn.LSTM(cnn_output_dim, lstm_hidden_dim, batch_first=True)
-
+        
         # Hidden state initialization
         self.hidden_state = None
-
+        
     def _get_conv_out_size(self, shape):
         with torch.no_grad():
             dummy_input = torch.zeros(1, 1, *shape)
             dummy_output = self._forward_conv(dummy_input)
             return dummy_output.view(1, -1).size(1)
-
+    
     def _forward_conv(self, x):
         x = F.relu(self.conv1(x))
         x = F.max_pool2d(x, 2)
@@ -578,98 +719,98 @@ class RecurrentNetHackCNN(nn.Module):
         x = F.relu(self.conv3(x))
         x = F.max_pool2d(x, 2)
         return x
-
+    
     def forward(self, x, reset_hidden=False):
         batch_size = x.size(0)
-
+        
         # Reset hidden state if requested or if batch size changed
         if reset_hidden or self.hidden_state is None or self.hidden_state[0].size(1) != batch_size:
             self.hidden_state = (
                 torch.zeros(1, batch_size, self.lstm_hidden_dim, device=x.device),
                 torch.zeros(1, batch_size, self.lstm_hidden_dim, device=x.device)
             )
-
+        
         # CNN forward pass
         if x.dim() == 3:
             x = x.unsqueeze(1)
-
+        
         x = self._forward_conv(x)
         x = x.view(x.size(0), -1)
         cnn_features = F.relu(self.cnn_fc(x))
-
+        
         # LSTM forward pass
         cnn_features = cnn_features.unsqueeze(1)  # Add sequence dimension
         lstm_out, self.hidden_state = self.lstm(cnn_features, self.hidden_state)
         lstm_features = lstm_out.squeeze(1)  # Remove sequence dimension
-
+        
         return lstm_features
-
+    
     def reset_hidden_state(self):
         """Reset hidden state (call at episode start)"""
         self.hidden_state = None
 
 class RecurrentPPOActor(nn.Module):
     """PPO Actor with LSTM memory"""
-
+    
     def __init__(self, action_dim=23):
         super(RecurrentPPOActor, self).__init__()
-
+        
         # Feature extractors
         self.glyph_cnn = RecurrentNetHackCNN(cnn_output_dim=512, lstm_hidden_dim=256)
-
+        
         # Other feature processors
         self.stats_lstm = nn.LSTM(26, 64, batch_first=True)
         self.message_fc = nn.Linear(256, 128)
         self.inventory_fc = nn.Linear(55, 64)
         self.action_hist_fc = nn.Linear(50, 32)
-
+        
         # Combined feature processing
         combined_dim = 256 + 64 + 128 + 64 + 32  # 544
         self.combined_fc1 = nn.Linear(combined_dim, 512)
         self.combined_fc2 = nn.Linear(512, 256)
-
+        
         # Action head
         self.action_head = nn.Linear(256, action_dim)
-
+        
         # Hidden states
         self.stats_hidden = None
-
+        
     def forward(self, obs, reset_hidden=False):
         batch_size = obs['glyphs'].size(0)
-
+        
         # Process glyphs with recurrent CNN
         glyph_features = self.glyph_cnn(obs['glyphs'], reset_hidden)
-
+        
         # Process stats with LSTM
         if reset_hidden or self.stats_hidden is None or self.stats_hidden[0].size(1) != batch_size:
             self.stats_hidden = (
                 torch.zeros(1, batch_size, 64, device=obs['stats'].device),
                 torch.zeros(1, batch_size, 64, device=obs['stats'].device)
             )
-
+        
         stats_input = obs['stats'].unsqueeze(1)  # Add sequence dimension
         stats_lstm_out, self.stats_hidden = self.stats_lstm(stats_input, self.stats_hidden)
         stats_features = stats_lstm_out.squeeze(1)  # Remove sequence dimension
-
+        
         # Process other features
         message_features = F.relu(self.message_fc(obs['message']))
         inventory_features = F.relu(self.inventory_fc(obs['inventory']))
         action_hist_features = F.relu(self.action_hist_fc(obs['action_history']))
-
+        
         # Combine all features
         combined = torch.cat([
             glyph_features, stats_features,
             message_features, inventory_features, action_hist_features
         ], dim=1)
-
+        
         # Process combined features
         x = F.relu(self.combined_fc1(combined))
         x = F.relu(self.combined_fc2(x))
-
+        
         # Output action logits
         action_logits = self.action_head(x)
         return action_logits
-
+    
     def reset_hidden_states(self):
         """Reset all hidden states"""
         self.glyph_cnn.reset_hidden_state()
@@ -677,62 +818,62 @@ class RecurrentPPOActor(nn.Module):
 
 class RecurrentPPOCritic(nn.Module):
     """PPO Critic with LSTM memory"""
-
+    
     def __init__(self):
         super(RecurrentPPOCritic, self).__init__()
-
+        
         # Feature extractors (same architecture as actor)
         self.glyph_cnn = RecurrentNetHackCNN(cnn_output_dim=512, lstm_hidden_dim=256)
         self.stats_lstm = nn.LSTM(26, 64, batch_first=True)
         self.message_fc = nn.Linear(256, 128)
         self.inventory_fc = nn.Linear(55, 64)
         self.action_hist_fc = nn.Linear(50, 32)
-
+        
         # Combined feature processing
         combined_dim = 256 + 64 + 128 + 64 + 32
         self.combined_fc1 = nn.Linear(combined_dim, 512)
         self.combined_fc2 = nn.Linear(512, 256)
-
+        
         # Value head
         self.value_head = nn.Linear(256, 1)
-
+        
         # Hidden states
         self.stats_hidden = None
-
+        
     def forward(self, obs, reset_hidden=False):
         batch_size = obs['glyphs'].size(0)
-
+        
         # Process glyphs with recurrent CNN
         glyph_features = self.glyph_cnn(obs['glyphs'], reset_hidden)
-
+        
         # Process stats with LSTM
         if reset_hidden or self.stats_hidden is None or self.stats_hidden[0].size(1) != batch_size:
             self.stats_hidden = (
                 torch.zeros(1, batch_size, 64, device=obs['stats'].device),
                 torch.zeros(1, batch_size, 64, device=obs['stats'].device)
             )
-
+        
         stats_input = obs['stats'].unsqueeze(1)
         stats_lstm_out, self.stats_hidden = self.stats_lstm(stats_input, self.stats_hidden)
         stats_features = stats_lstm_out.squeeze(1)
-
+        
         # Process other features
         message_features = F.relu(self.message_fc(obs['message']))
         inventory_features = F.relu(self.inventory_fc(obs['inventory']))
         action_hist_features = F.relu(self.action_hist_fc(obs['action_history']))
-
+        
         # Combine all features
         combined = torch.cat([
             glyph_features, stats_features,
             message_features, inventory_features, action_hist_features
         ], dim=1)
-
+        
         x = F.relu(self.combined_fc1(combined))
         x = F.relu(self.combined_fc2(x))
-
+        
         value = self.value_head(x)
         return value
-
+    
     def reset_hidden_states(self):
         """Reset all hidden states"""
         self.glyph_cnn.reset_hidden_state()
@@ -740,11 +881,11 @@ class RecurrentPPOCritic(nn.Module):
 
 class PPOBuffer:
     """Enhanced PPO Buffer"""
-
+    
     def __init__(self, max_size=2048):
         self.max_size = max_size
         self.clear()
-
+    
     def clear(self):
         self.observations = []
         self.actions = []
@@ -754,453 +895,393 @@ class PPOBuffer:
         self.dones = []
         self.advantages = []
         self.returns = []
-
+    
     def add(self, obs, action, reward, value, log_prob, done):
-        if len(self.observations) >= self.max_size:
-            # Remove oldest entries if buffer is full
-            self.observations.pop(0)
-            self.actions.pop(0)
-            self.rewards.pop(0)
-            self.values.pop(0)
-            self.log_probs.pop(0)
-            self.dones.pop(0)
-
         self.observations.append(obs)
         self.actions.append(action)
         self.rewards.append(reward)
         self.values.append(value)
         self.log_probs.append(log_prob)
         self.dones.append(done)
-
+    
     def compute_advantages(self, gamma=0.99, lam=0.95):
         """Compute GAE advantages"""
         advantages = []
         returns = []
-
+        
         gae = 0
         for i in reversed(range(len(self.rewards))):
             if i == len(self.rewards) - 1:
                 next_value = 0
             else:
                 next_value = self.values[i + 1]
-
+            
             delta = self.rewards[i] + gamma * next_value * (1 - self.dones[i]) - self.values[i]
             gae = delta + gamma * lam * (1 - self.dones[i]) * gae
             advantages.insert(0, gae)
             returns.insert(0, gae + self.values[i])
-
+        
         self.advantages = advantages
         self.returns = returns
-
+    
     def get_batch(self, batch_size):
         """Get random batch for training"""
         indices = np.random.choice(len(self.observations), batch_size, replace=False)
-
+        
         batch_obs = {}
         for key in self.observations[0].keys():
             batch_obs[key] = torch.stack([self.observations[i][key] for i in indices])
-
+        
         batch_actions = torch.tensor([self.actions[i] for i in indices], dtype=torch.long)
         batch_log_probs = torch.tensor([self.log_probs[i] for i in indices], dtype=torch.float32)
         batch_returns = torch.tensor([self.returns[i] for i in indices], dtype=torch.float32)
         batch_advantages = torch.tensor([self.advantages[i] for i in indices], dtype=torch.float32)
-
+        
         return batch_obs, batch_actions, batch_log_probs, batch_returns, batch_advantages
-
+    
     def __len__(self):
         return len(self.observations)
 
 class EnhancedNetHackPPOAgent:
-    """Enhanced PPO Agent with comprehensive improvements"""
-
+    """Enhanced PPO Agent with reward shaping and recurrent memory"""
+    
     def __init__(self, action_dim=23, learning_rate=3e-4, gamma=0.99, clip_ratio=0.2,
                  entropy_coef=0.01, value_coef=0.5, max_grad_norm=0.5, use_wandb=False):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Using device: {self.device}")
-
+        
         # Initialize networks with recurrent layers
         self.actor = RecurrentPPOActor(action_dim=action_dim).to(self.device)
         self.critic = RecurrentPPOCritic().to(self.device)
-
-        # Improved optimizers with weight decay
-        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=learning_rate,
-                                        weight_decay=1e-5, eps=1e-5)
-        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=learning_rate,
-                                         weight_decay=1e-5, eps=1e-5)
-
-        # Learning rate schedulers
-        self.actor_scheduler = optim.lr_scheduler.StepLR(self.actor_optimizer,
-                                                       step_size=1000, gamma=0.95)
-        self.critic_scheduler = optim.lr_scheduler.StepLR(self.critic_optimizer,
-                                                        step_size=1000, gamma=0.95)
-
+        
+        # Optimizers
+        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=learning_rate)
+        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=learning_rate)
+        
         # Hyperparameters
         self.gamma = gamma
         self.clip_ratio = clip_ratio
         self.entropy_coef = entropy_coef
         self.value_coef = value_coef
         self.max_grad_norm = max_grad_norm
-
-        # Enhanced buffer
+        self.use_wandb = use_wandb
         self.buffer = PPOBuffer()
-
+        
         # Enhanced observation processor and reward shaper
         self.obs_processor = NetHackObservationProcessor()
         self.reward_shaper = NetHackRewardShaper()
-
-        # Performance evaluator and logger
+        
+        # Performance evaluator for metrics tracking
         self.evaluator = PerformanceEvaluator()
-        self.logger = TrainingLogger(use_wandb=use_wandb)
-
+        
+        # Training stats
+        self.episode_rewards = deque(maxlen=100)
+        self.episode_lengths = deque(maxlen=100)
+        self.shaped_rewards = deque(maxlen=100)
+        
         # Track last action for observation processing
         self.last_action = None
-
-        # Training statistics
-        self.total_steps = 0
-        self.update_count = 0
-        self.best_reward = float('-inf')
-        self.episodes_since_improvement = 0
-
-        # Adaptive parameters
-        self.adaptive_entropy = True
-        self.min_entropy_coef = 0.001
-        self.max_entropy_coef = 0.05
-
+        
     def process_observation(self, obs):
         """Process observation with memory features"""
         processed = self.obs_processor.process_observation(obs, self.last_action)
-
+        
         # Convert to tensors
         tensor_obs = {}
         for key, value in processed.items():
             tensor_obs[key] = torch.FloatTensor(value).unsqueeze(0).to(self.device)
-
+        
         return tensor_obs
-
+    
     def select_action(self, obs, reset_hidden=False):
-        """Select action using current policy with entropy tracking"""
+        """Select action using current policy"""
         with torch.no_grad():
             action_logits = self.actor(obs, reset_hidden)
             action_dist = Categorical(logits=action_logits)
             action = action_dist.sample()
             log_prob = action_dist.log_prob(action)
-            entropy = action_dist.entropy()
             value = self.critic(obs, reset_hidden)
-
-            return action.item(), log_prob.item(), value.item(), entropy.item()
-
+            
+            return action.item(), log_prob.item(), value.item()
+    
     def update(self, epochs=4, batch_size=64):
-        """Enhanced PPO update with comprehensive metrics"""
+        """Enhanced PPO update with entropy regularization and proper loss computation"""
         if len(self.buffer) < batch_size:
             return {}
-
+        
         # Compute advantages
         self.buffer.compute_advantages(self.gamma)
-
+        
         # Normalize advantages
         advantages = torch.tensor(self.buffer.advantages, dtype=torch.float32)
         advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
         self.buffer.advantages = advantages.tolist()
-
+        
         # Training metrics
         actor_losses = []
         critic_losses = []
         entropies = []
         clip_fractions = []
-        grad_norms = []
-
-        for epoch in range(epochs):
+        
+        for _ in range(epochs):
             batch_obs, batch_actions, old_log_probs, batch_returns, batch_advantages = \
                 self.buffer.get_batch(min(batch_size, len(self.buffer)))
-
-            # Move tensors to correct device
+            
+            # Move tensors to correct device and ensure correct dtype
             batch_obs = {k: v.to(self.device) for k, v in batch_obs.items()}
             batch_actions = batch_actions.to(self.device)
             old_log_probs = old_log_probs.to(self.device)
             batch_returns = batch_returns.to(self.device)
             batch_advantages = batch_advantages.to(self.device)
-
+            
             # Reset hidden states for batch training
             self.actor.reset_hidden_states()
             self.critic.reset_hidden_states()
-
+            
             # Actor update with entropy regularization
             action_logits = self.actor(batch_obs, reset_hidden=True)
             action_dist = Categorical(logits=action_logits)
             new_log_probs = action_dist.log_prob(batch_actions)
             entropy = action_dist.entropy().mean()
-
+            
             # PPO loss computation
             ratio = torch.exp(new_log_probs - old_log_probs)
             surr1 = ratio * batch_advantages
             surr2 = torch.clamp(ratio, 1 - self.clip_ratio, 1 + self.clip_ratio) * batch_advantages
-
+            
             # Calculate clip fraction for monitoring
             clip_fraction = torch.mean((torch.abs(ratio - 1) > self.clip_ratio).float()).item()
-
+            
             # Actor loss with entropy regularization
             policy_loss = -torch.min(surr1, surr2).mean()
             entropy_loss = -self.entropy_coef * entropy
             actor_loss = policy_loss + entropy_loss
-
+            
             # Actor optimization
             self.actor_optimizer.zero_grad()
             actor_loss.backward()
-            actor_grad_norm = torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.max_grad_norm)
+            torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.max_grad_norm)
             self.actor_optimizer.step()
-
+            
             # Critic update
             values = self.critic(batch_obs, reset_hidden=True).squeeze()
             value_loss = F.mse_loss(values, batch_returns)
             critic_loss = self.value_coef * value_loss
-
+            
             # Critic optimization
             self.critic_optimizer.zero_grad()
             critic_loss.backward()
-            critic_grad_norm = torch.nn.utils.clip_grad_norm_(self.critic.parameters(), self.max_grad_norm)
+            torch.nn.utils.clip_grad_norm_(self.critic.parameters(), self.max_grad_norm)
             self.critic_optimizer.step()
-
+            
             # Store metrics
             actor_losses.append(actor_loss.item())
             critic_losses.append(critic_loss.item())
             entropies.append(entropy.item())
             clip_fractions.append(clip_fraction)
-            grad_norms.append(max(actor_grad_norm.item(), critic_grad_norm.item()))
-
-        # Update learning rate schedulers
-        self.actor_scheduler.step()
-        self.critic_scheduler.step()
-
-        # Adaptive entropy coefficient
-        if self.adaptive_entropy:
-            mean_entropy = np.mean(entropies)
-            if mean_entropy < 0.5:  # Too low entropy
-                self.entropy_coef = min(self.entropy_coef * 1.01, self.max_entropy_coef)
-            elif mean_entropy > 2.0:  # Too high entropy
-                self.entropy_coef = max(self.entropy_coef * 0.99, self.min_entropy_coef)
-
-        self.update_count += 1
-
+        
         # Return training metrics
-        training_metrics = {
+        return {
             'actor_loss': np.mean(actor_losses),
             'critic_loss': np.mean(critic_losses),
             'policy_loss': np.mean([l - self.entropy_coef * e for l, e in zip(actor_losses, entropies)]),
             'value_loss': np.mean(critic_losses) / self.value_coef,
             'entropy': np.mean(entropies),
             'clip_fraction': np.mean(clip_fractions),
-            'grad_norm': np.mean(grad_norms),
-            'learning_rate': self.actor_optimizer.param_groups[0]['lr'],
-            'entropy_coef': self.entropy_coef,
         }
-
-        # Log training metrics
-        self.evaluator.add_training_metrics(training_metrics)
-        self.logger.log_training(self.total_steps, training_metrics)
-
-        return training_metrics
-
-    def train(self, env, num_episodes=1000, update_freq=2048, eval_freq=50,
-              early_stopping_patience=100, target_reward=100):
-        """Enhanced training loop with comprehensive monitoring"""
+    
+    def train(self, env, num_episodes=100, update_freq=2048, eval_freq=25, 
+              early_stopping_patience=50, target_reward=50):
+        """Train the enhanced PPO agent with CSV logging and extensive analysis"""
         step_count = 0
-        best_avg_reward = float('-inf')
-        patience_counter = 0
-
-        self.logger.log_info(f"Starting training for {num_episodes} episodes")
-        self.logger.log_info(f"Target reward: {target_reward}, Early stopping patience: {early_stopping_patience}")
-
+        best_reward = float('-inf')
+        recent_episodes = []  # Store recent episode data for extensive logging
+        
+        # Initialize training logger
+        logger = TrainingLogger(log_dir="training_logs", use_wandb=False)
+        logger.log_info("Starting Enhanced NetHack PPO Training with CSV logging")
+        logger.log_info(f"Training Configuration: {num_episodes} episodes, update every {update_freq} steps")
+        logger.log_info("📊 Logging Schedule:")
+        logger.log_info("   - Every episode: Episode metrics saved to CSV")
+        logger.log_info("   - Every 2048 steps: Training metrics logged")
+        logger.log_info("   - Every 10 episodes: Extensive analysis with detailed metrics")
+        
         for episode in range(num_episodes):
-            episode_start_time = time.time()
             obs = env.reset()
             episode_reward = 0
             episode_shaped_reward = 0
             episode_length = 0
-            episode_entropy = 0
-
+            episode_died = 0
+            episode_level_ups = 0
+            episode_max_health = 0
+            episode_items_collected = 0
+            episode_unique_positions = 0
+            episode_exploration_reward = 0
+            
             # Reset hidden states at episode start
             self.actor.reset_hidden_states()
             self.critic.reset_hidden_states()
             self.reward_shaper.reset()
             self.last_action = None
-
+            
             reset_hidden = True
-
+            visited_positions = set()
+            
             while True:
                 processed_obs = self.process_observation(obs)
-                action, log_prob, value, entropy = self.select_action(processed_obs, reset_hidden)
-                reset_hidden = False
-
+                action, log_prob, value = self.select_action(processed_obs, reset_hidden)
+                reset_hidden = False  # Only reset on first step
+                
                 # Store action for next observation processing
                 self.last_action = action
-                episode_entropy += entropy
-
+                
                 # Convert tensors back for buffer
                 processed_obs_for_buffer = {}
                 for key, tensor_val in processed_obs.items():
                     processed_obs_for_buffer[key] = tensor_val.squeeze(0).cpu()
-
+                
                 step_result = env.step(action)
-
+                
                 if len(step_result) == 4:
                     next_obs, reward, done, info = step_result
                 else:
                     next_obs, reward, terminated, truncated, info = step_result
                     done = terminated or truncated
-
+                
                 # Apply reward shaping
                 shaped_reward = self.reward_shaper.shape_reward(next_obs, reward, done, info)
-
+                
                 self.buffer.add(processed_obs_for_buffer, action, shaped_reward, value, log_prob, done)
-
+                
+                # Extract episode metrics
+                if isinstance(next_obs, tuple):
+                    next_obs_dict = next_obs[0] if isinstance(next_obs[0], dict) else {}
+                else:
+                    next_obs_dict = next_obs if isinstance(next_obs, dict) else {}
+                
+                # Track episode stats
+                if 'blstats' in next_obs_dict:
+                    stats = next_obs_dict['blstats']
+                    if len(stats) > 0:
+                        episode_max_health = max(episode_max_health, int(stats[0]) if stats[0] > 0 else 0)
+                    if len(stats) > 7:
+                        current_level = int(stats[7])
+                        if current_level > episode_level_ups:
+                            episode_level_ups = current_level
+                    
+                    # Track unique positions
+                    if len(stats) > 1:
+                        pos = (int(stats[0]), int(stats[1]))
+                        if pos not in visited_positions:
+                            visited_positions.add(pos)
+                            episode_exploration_reward += 0.01
+                
+                # Check if died
+                if done and 'blstats' in next_obs_dict:
+                    stats = next_obs_dict['blstats']
+                    if len(stats) > 0 and stats[0] <= 0:
+                        episode_died = 1
+                
                 obs = next_obs
                 episode_reward += reward
                 episode_shaped_reward += shaped_reward
                 episode_length += 1
                 step_count += 1
-                self.total_steps += 1
-
+                
                 if done:
                     break
-
-                # Update networks periodically
+                
+                # Log every 2048 steps - Enhanced logging
                 if step_count % update_freq == 0:
-                    self.logger.log_info(f"Updating networks at step {step_count}")
                     training_metrics = self.update()
+                    if training_metrics:
+                        # Log training metrics to CSV
+                        training_metrics['learning_rate'] = self.actor_optimizer.param_groups[0]['lr']
+                        training_metrics['grad_norm'] = training_metrics.get('grad_norm', 0)
+                        logger.log_training_csv(step_count, training_metrics)
+                        
+                        # Enhanced step logging
+                        logger.log_info(f"🔄 Step {step_count} Training Update:")
+                        logger.log_info(f"   Episode: {episode}, Step in Episode: {episode_length}")
+                        logger.log_info(f"   Current Episode Reward: {episode_reward:.3f}")
+                        logger.log_info(f"   Actor Loss: {training_metrics['actor_loss']:.4f}")
+                        logger.log_info(f"   Critic Loss: {training_metrics['critic_loss']:.4f}")
+                        logger.log_info(f"   Entropy: {training_metrics['entropy']:.4f}")
+                        logger.log_info(f"   Clip Fraction: {training_metrics['clip_fraction']:.4f}")
+                        
+                        # Add to evaluator for tracking
+                        self.evaluator.add_training_metrics(training_metrics)
                     self.buffer.clear()
-
-            # Episode completed - collect comprehensive metrics
-            episode_time = time.time() - episode_start_time
-            episode_stats = self.reward_shaper.get_episode_stats()
-
-            # Determine if player died
-            final_obs = obs if isinstance(obs, dict) else obs[0]
-            final_stats = final_obs.get('blstats', np.zeros(26))
-            died = len(final_stats) > 0 and final_stats[0] <= 0
-
-            episode_data = {
+            
+            # Calculate final episode metrics
+            episode_unique_positions = len(visited_positions)
+            survival_time = episode_length if not episode_died else 0
+            
+            # Prepare episode metrics for logging
+            episode_metrics = {
                 'raw_reward': episode_reward,
                 'shaped_reward': episode_shaped_reward,
-                'length': episode_length,
-                'died': 1 if died else 0,
-                'exploration_reward': episode_stats.get('exploration_count', 0) * 0.005,
-                'level_ups': episode_stats.get('level_ups', 0),
-                'max_health': episode_stats.get('max_health', 0),
-                'items_collected': episode_stats.get('item_pickups', 0),
-                'unique_positions': episode_stats.get('unique_positions', 0),
-                'episode_time': episode_time,
-                'avg_entropy': episode_entropy / max(episode_length, 1),
-                'final_level': final_stats[7] if len(final_stats) > 7 else 0,
-                'final_experience': final_stats[8] if len(final_stats) > 8 else 0,
+                'episode_length': episode_length,
+                'died': episode_died,
+                'level_ups': episode_level_ups,
+                'max_health': episode_max_health,
+                'items_collected': episode_items_collected,
+                'unique_positions': episode_unique_positions,
+                'exploration_reward': episode_exploration_reward,
+                'survival_time': survival_time,
+                'actions_taken': episode_length
             }
-
-            # Add to evaluator
-            self.evaluator.add_episode_metrics(episode_data)
-
-            # Log episode metrics
-            if episode % 10 == 0 or episode < 10:
-                episode_metrics = self.evaluator.get_episode_metrics()
-                training_metrics = self.evaluator.get_training_metrics()
-
-                # Combine all metrics
-                all_metrics = {**episode_data, **episode_metrics}
-                self.logger.log_episode(episode, all_metrics)
-
-                # Check for improvement
-                current_avg_reward = episode_metrics.get('mean_reward', float('-inf'))
-                if current_avg_reward > best_avg_reward:
-                    best_avg_reward = current_avg_reward
-                    patience_counter = 0
-                    self.best_reward = current_avg_reward
-
-                    # Save best model
-                    self.save_model(f"best_model_episode_{episode}_reward_{current_avg_reward:.2f}.pth")
-                else:
-                    patience_counter += 1
-
-                # Early stopping check
-                if patience_counter >= early_stopping_patience:
-                    self.logger.log_info(f"Early stopping triggered after {patience_counter} episodes without improvement")
-                    break
-
-                # Success check
-                if current_avg_reward >= target_reward:
-                    self.logger.log_info(f"Target reward {target_reward} achieved!")
-                    break
-
-            # Detailed evaluation every eval_freq episodes
-            if episode % eval_freq == 0 and episode > 0:
-                self.logger.log_info(f"\n=== Detailed Evaluation at Episode {episode} ===")
-                episode_metrics = self.evaluator.get_episode_metrics()
-                training_metrics = self.evaluator.get_training_metrics()
-
-                # Log comprehensive metrics
-                for metric_name, value in episode_metrics.items():
-                    self.logger.log_info(f"Episode {metric_name}: {value:.4f}")
-
-                for metric_name, value in training_metrics.items():
-                    self.logger.log_info(f"Training {metric_name}: {value:.4f}")
-
-                # Performance analysis
-                self._analyze_performance(episode, episode_metrics, training_metrics)
-
-        # Final evaluation and cleanup
-        self.logger.log_info("Training completed!")
-        final_metrics = self.evaluator.get_episode_metrics()
-        self.logger.log_info(f"Final average reward: {final_metrics.get('mean_reward', 0):.3f}")
-        self.logger.log_info(f"Best average reward: {self.best_reward:.3f}")
-
-        # Save final metrics
-        self.logger.save_metrics()
-
-        return self.evaluator.episode_rewards, self.evaluator.shaped_rewards
-
-    def _analyze_performance(self, episode: int, episode_metrics: Dict, training_metrics: Dict):
-        """Analyze performance and provide insights"""
-
-        # Performance trend analysis
-        reward_trend = episode_metrics.get('reward_trend', 0)
-        if reward_trend > 0:
-            self.logger.log_info(f"✓ Reward trend is improving (+{reward_trend:.4f})")
-        else:
-            self.logger.log_info(f"✗ Reward trend is declining ({reward_trend:.4f})")
-
-        # Learning stability
-        entropy_trend = training_metrics.get('entropy_trend', 0)
-        if entropy_trend < -0.001:
-            self.logger.log_info("⚠ Entropy decreasing rapidly - policy may be becoming too deterministic")
-        elif entropy_trend > 0.001:
-            self.logger.log_info("⚠ Entropy increasing - policy may not be converging")
-
-        # Exploration analysis
-        exploration_eff = episode_metrics.get('exploration_efficiency', 0)
-        if exploration_eff < 0.01:
-            self.logger.log_info("⚠ Low exploration efficiency - agent may be stuck")
-
-        # Success metrics
-        success_rate = episode_metrics.get('success_rate', 0)
-        survival_rate = episode_metrics.get('survival_rate', 0)
-
-        self.logger.log_info(f"Success rate: {success_rate:.2%}, Survival rate: {survival_rate:.2%}")
-
-        # Training stability
-        loss_stability = training_metrics.get('loss_stability', 0)
-        if loss_stability < 0.5:
-            self.logger.log_info("⚠ Training losses are unstable")
-
-        # Adaptive recommendations
-        mean_entropy = training_metrics.get('mean_entropy', 0)
-        if mean_entropy < 0.1:
-            self.logger.log_info("💡 Consider increasing entropy coefficient")
-        elif mean_entropy > 2.0:
-            self.logger.log_info("💡 Consider decreasing entropy coefficient")
-
-        clip_fraction = training_metrics.get('mean_clip_fraction', 0)
-        if clip_fraction > 0.3:
-            self.logger.log_info("💡 High clipping - consider decreasing learning rate")
-        elif clip_fraction < 0.05:
-            self.logger.log_info("💡 Low clipping - consider increasing learning rate")
-
+            
+            # Log episode to CSV (every episode)
+            logger.log_episode_csv(episode, episode_metrics)
+            
+            # Add to evaluator for comprehensive tracking
+            self.evaluator.add_episode_metrics(episode_metrics)
+            
+            # Store episode data for extensive logging
+            recent_episodes.append(episode_metrics)
+            
+            # Store for agent's internal tracking
+            self.episode_rewards.append(episode_reward)
+            self.shaped_rewards.append(episode_shaped_reward)
+            self.episode_lengths.append(episode_length)
+            
+            # Track best reward for model saving
+            if episode_reward > best_reward:
+                best_reward = episode_reward
+                best_model_path = f"best_model_episode_{episode}_reward_{episode_reward:.3f}.pth"
+                self.save_model(best_model_path)
+                logger.log_info(f"🏆 New best model saved! Episode {episode}, Reward: {episode_reward:.3f}")
+            
+            # Enhanced episode logging (every episode)
+            logger.log_info(f"📋 Episode {episode} Complete:")
+            logger.log_info(f"   Raw Reward: {episode_reward:.3f}")
+            logger.log_info(f"   Shaped Reward: {episode_shaped_reward:.3f}")
+            logger.log_info(f"   Episode Length: {episode_length}")
+            logger.log_info(f"   Survived: {'Yes' if not episode_died else 'No'}")
+            logger.log_info(f"   Unique Positions: {episode_unique_positions}")
+            logger.log_info(f"   Level Ups: {episode_level_ups}")
+            
+            # Extensive logging every 10 episodes
+            if (episode + 1) % 10 == 0:
+                # Get last 10 episodes for analysis
+                last_10_episodes = recent_episodes[-10:] if len(recent_episodes) >= 10 else recent_episodes
+                logger.log_extensive_analysis(episode + 1, last_10_episodes)
+                
+                # Clear recent episodes to avoid memory buildup
+                if len(recent_episodes) > 20:
+                    recent_episodes = recent_episodes[-10:]
+        
+        # Save final model
+        final_model_path = f"final_model_100_episodes.pth"
+        self.save_model(final_model_path)
+        logger.log_info(f"🎯 Final model saved: {final_model_path}")
+        
+        # Save all metrics
+        logger.save_metrics()
+        
+        return list(self.episode_rewards), list(self.shaped_rewards)
+    
     def save_model(self, path):
         """Save the trained model"""
         torch.save({
@@ -1210,7 +1291,7 @@ class EnhancedNetHackPPOAgent:
             'critic_optimizer_state_dict': self.critic_optimizer.state_dict(),
         }, path)
         print(f"Model saved to {path}")
-
+    
     def load_model(self, path):
         """Load a trained model"""
         checkpoint = torch.load(path, map_location=self.device)
@@ -1232,8 +1313,8 @@ def create_nethack_env():
     return env
 
 def main():
-    """Enhanced main training function with comprehensive analysis"""
-    print("🚀 Setting up Enhanced NetHack PPO Training...")
+    """Enhanced main training function with comprehensive CSV logging"""
+    print("🚀 Setting up Enhanced NetHack PPO Training with CSV Logging...")
 
     # Create environment
     env = create_nethack_env()
@@ -1262,52 +1343,50 @@ def main():
         print(f"❌ Error in observation processing: {e}")
         return
 
-    # Train agent with enhanced monitoring
-    print("\n🎯 Starting enhanced training with comprehensive monitoring...")
+    # Train agent for exactly 100 episodes with CSV logging
+    print("\n🎯 Starting 100-episode training with CSV logging and extensive analysis...")
+    print("📊 Logs will be saved as CSV files in 'training_logs/' directory")
+    print("🔍 Extensive analysis every 10 episodes")
+    print("🏆 Best model will be saved automatically")
 
     start_time = time.time()
     raw_rewards, shaped_rewards = agent.train(
         env,
-        num_episodes=100,  # Reduced for better monitoring
-        update_freq=1024,  # More frequent updates
-        eval_freq=25,      # More frequent evaluation
+        num_episodes=100,    # Exactly 100 episodes as requested
+        update_freq=1024,    # More frequent updates
+        eval_freq=25,        # More frequent evaluation
         early_stopping_patience=50,
-        target_reward=50   # Achievable target
+        target_reward=50     # Achievable target
     )
 
     training_time = time.time() - start_time
     print(f"\n⏱️ Training completed in {training_time:.2f} seconds")
+    print(f"📈 Final average reward: {np.mean(raw_rewards[-10:]) if len(raw_rewards) >= 10 else np.mean(raw_rewards):.3f}")
+    print(f"🏆 Best episode reward: {max(raw_rewards) if raw_rewards else 0:.3f}")
 
-    # Save model with timestamp
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_path = f"enhanced_nethack_ppo_{timestamp}.pth"
-    agent.save_model(model_path)
-
-    # Generate comprehensive plots
-    create_comprehensive_plots(agent, raw_rewards, shaped_rewards, timestamp)
-
-    # Generate training report
-    generate_training_report(agent, training_time, timestamp)
+    # Create simple training summary plot
+    create_simple_training_plot(raw_rewards, shaped_rewards)
 
     env.close()
-    print("🎉 Enhanced training completed successfully!")
+    print("🎉 Training completed successfully!")
+    print("📁 Check 'training_logs/' directory for CSV files:")
+    print("   - episodes.csv: Per-episode metrics")
+    print("   - training.csv: Training step metrics") 
+    print("   - extensive.csv: Detailed analysis every 10 episodes")
 
-def create_comprehensive_plots(agent, raw_rewards, shaped_rewards, timestamp):
-    """Create comprehensive training visualization"""
-
-    # Convert deque to list for proper indexing
-    raw_rewards = list(raw_rewards) if raw_rewards else []
-    shaped_rewards = list(shaped_rewards) if shaped_rewards else []
-
-    # Get metrics from evaluator
-    episode_metrics = agent.evaluator.get_episode_metrics()
-    training_metrics = agent.evaluator.get_training_metrics()
-
-    # Create figure with subplots
-    fig = plt.figure(figsize=(20, 16))
-
-    # 1. Rewards comparison
-    ax1 = plt.subplot(3, 3, 1)
+def create_simple_training_plot(raw_rewards, shaped_rewards):
+    """Create simple training visualization"""
+    
+    if not raw_rewards:
+        print("No rewards to plot")
+        return
+        
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    plt.figure(figsize=(15, 10))
+    
+    # 1. Rewards over time
+    plt.subplot(2, 2, 1)
     episodes = range(len(raw_rewards))
     plt.plot(episodes, raw_rewards, label='Raw Rewards', alpha=0.7, color='blue')
     plt.plot(episodes, shaped_rewards, label='Shaped Rewards', alpha=0.7, color='orange')
@@ -1316,186 +1395,67 @@ def create_comprehensive_plots(agent, raw_rewards, shaped_rewards, timestamp):
     plt.ylabel('Reward')
     plt.legend()
     plt.grid(True, alpha=0.3)
-
+    
     # 2. Moving averages
-    ax2 = plt.subplot(3, 3, 2)
-    if len(raw_rewards) >= 20:
-        window = min(20, len(raw_rewards) // 4)
+    plt.subplot(2, 2, 2)
+    if len(raw_rewards) >= 10:
+        window = 10
         raw_ma = np.convolve(raw_rewards, np.ones(window)/window, mode='valid')
         shaped_ma = np.convolve(shaped_rewards, np.ones(window)/window, mode='valid')
-
-        plt.plot(range(window-1, len(raw_rewards)), raw_ma, label=f'Raw MA-{window}', linewidth=2)
-        plt.plot(range(window-1, len(shaped_rewards)), shaped_ma, label=f'Shaped MA-{window}', linewidth=2)
-        plt.title('Moving Average Progress')
+        
+        plt.plot(range(window-1, len(raw_rewards)), raw_ma, label='Raw MA-10', linewidth=2)
+        plt.plot(range(window-1, len(shaped_rewards)), shaped_ma, label='Shaped MA-10', linewidth=2)
+        plt.title('10-Episode Moving Average')
         plt.xlabel('Episode')
         plt.ylabel('Average Reward')
         plt.legend()
         plt.grid(True, alpha=0.3)
-
-    # 3. Episode lengths
-    ax3 = plt.subplot(3, 3, 3)
-    if agent.evaluator.episode_lengths:
-        episode_lengths = list(agent.evaluator.episode_lengths)
-        plt.plot(episode_lengths, color='green', alpha=0.7)
-        plt.title('Episode Lengths')
-        plt.xlabel('Episode')
-        plt.ylabel('Steps')
-        plt.grid(True, alpha=0.3)
-
-    # 4. Training losses
-    ax4 = plt.subplot(3, 3, 4)
-    if agent.evaluator.actor_losses:
-        plt.plot(list(agent.evaluator.actor_losses), label='Actor Loss', alpha=0.7)
-        plt.plot(list(agent.evaluator.critic_losses), label='Critic Loss', alpha=0.7)
-        plt.title('Training Losses')
-        plt.xlabel('Update Step')
-        plt.ylabel('Loss')
-        plt.legend()
-        plt.grid(True, alpha=0.3)
-        plt.yscale('log')
-
-    # 5. Entropy over time
-    ax5 = plt.subplot(3, 3, 5)
-    if agent.evaluator.entropies:
-        plt.plot(list(agent.evaluator.entropies), color='purple', alpha=0.7)
-        plt.title('Policy Entropy')
-        plt.xlabel('Update Step')
-        plt.ylabel('Entropy')
-        plt.grid(True, alpha=0.3)
-
-    # 6. Gradient norms
-    ax6 = plt.subplot(3, 3, 6)
-    if agent.evaluator.grad_norms:
-        plt.plot(list(agent.evaluator.grad_norms), color='red', alpha=0.7)
-        plt.title('Gradient Norms')
-        plt.xlabel('Update Step')
-        plt.ylabel('Grad Norm')
-        plt.grid(True, alpha=0.3)
-
-    # 7. Exploration metrics
-    ax7 = plt.subplot(3, 3, 7)
-    if agent.evaluator.unique_positions:
-        plt.plot(list(agent.evaluator.unique_positions), color='brown', alpha=0.7)
-        plt.title('Unique Positions Visited')
-        plt.xlabel('Episode')
-        plt.ylabel('Positions')
-        plt.grid(True, alpha=0.3)
-
-    # 8. Success metrics
-    ax8 = plt.subplot(3, 3, 8)
-    if agent.evaluator.death_counts:
-        survival_rate = [1 - d for d in agent.evaluator.death_counts]
-        plt.plot(survival_rate, color='darkgreen', alpha=0.7)
-        plt.title('Survival Rate')
-        plt.xlabel('Episode')
-        plt.ylabel('Survival Rate')
-        plt.grid(True, alpha=0.3)
-        plt.ylim(0, 1)
-
-    # 9. Performance summary
-    ax9 = plt.subplot(3, 3, 9)
-    ax9.axis('off')
-
-    # Summary statistics
-    final_avg_reward = np.mean(raw_rewards[-10:]) if len(raw_rewards) >= 10 else (np.mean(raw_rewards) if raw_rewards else 0)
-    best_reward = max(raw_rewards) if raw_rewards else 0
+    
+    # 3. Reward distribution
+    plt.subplot(2, 2, 3)
+    plt.hist(raw_rewards, bins=20, alpha=0.7, color='blue', label='Raw Rewards')
+    plt.hist(shaped_rewards, bins=20, alpha=0.7, color='orange', label='Shaped Rewards')
+    plt.title('Reward Distribution')
+    plt.xlabel('Reward')
+    plt.ylabel('Frequency')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    # 4. Training summary
+    plt.subplot(2, 2, 4)
+    plt.axis('off')
+    
+    final_avg_reward = np.mean(raw_rewards[-10:]) if len(raw_rewards) >= 10 else np.mean(raw_rewards)
+    best_reward = max(raw_rewards)
+    worst_reward = min(raw_rewards)
     
     summary_text = f"""
-    Training Summary:
+Training Summary (100 Episodes):
 
-    Episodes: {len(raw_rewards)}
-    Final Avg Reward: {final_avg_reward:.2f}
-    Best Reward: {best_reward:.2f}
+Total Episodes: {len(raw_rewards)}
+Final 10-Episode Average: {final_avg_reward:.3f}
+Best Episode Reward: {best_reward:.3f}
+Worst Episode Reward: {worst_reward:.3f}
+Reward Standard Deviation: {np.std(raw_rewards):.3f}
 
-    Final Metrics:
-    Success Rate: {episode_metrics.get('success_rate', 0):.2%}
-    Survival Rate: {episode_metrics.get('survival_rate', 0):.2%}
-    Avg Length: {episode_metrics.get('mean_length', 0):.1f}
+Shaped Rewards:
+Average: {np.mean(shaped_rewards):.3f}
+Best: {max(shaped_rewards):.3f}
 
-    Training Metrics:
-    Avg Entropy: {training_metrics.get('mean_entropy', 0):.3f}
-    Avg Clip Frac: {training_metrics.get('mean_clip_fraction', 0):.3f}
-    Final LR: {training_metrics.get('mean_learning_rate', 0):.6f}
+CSV logs saved in training_logs/
+Best model automatically saved
     """
-
-    ax9.text(0.1, 0.9, summary_text, transform=ax9.transAxes,
+    
+    plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
              fontsize=10, verticalalignment='top',
              bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.8))
-
+    
     plt.tight_layout()
-    plt.savefig(f'comprehensive_training_analysis_{timestamp}.png',
-                dpi=300, bbox_inches='tight', facecolor='white')
+    plot_filename = f'training_summary_{timestamp}.png'
+    plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
     plt.show()
-
-    print(f"📊 Comprehensive training plots saved as 'comprehensive_training_analysis_{timestamp}.png'")
-
-def generate_training_report(agent, training_time, timestamp):
-    """Generate detailed training report"""
-
-    episode_metrics = agent.evaluator.get_episode_metrics()
-    training_metrics = agent.evaluator.get_training_metrics()
-
-    report = f"""
-# NetHack PPO Training Report
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-Training Time: {training_time:.2f} seconds
-
-## Training Configuration
-- Episodes: {len(list(agent.evaluator.episode_rewards))}
-- Update Frequency: 1024 steps
-- Learning Rate: {agent.actor_optimizer.param_groups[0]['lr']:.6f}
-- Entropy Coefficient: {agent.entropy_coef:.4f}
-- Clip Ratio: {agent.clip_ratio}
-
-## Performance Summary
-- **Final Average Reward**: {episode_metrics.get('mean_reward', 0):.3f}
-- **Best Episode Reward**: {episode_metrics.get('max_reward', 0):.3f}
-- **Success Rate**: {episode_metrics.get('success_rate', 0):.2%}
-- **Survival Rate**: {episode_metrics.get('survival_rate', 0):.2%}
-- **Average Episode Length**: {episode_metrics.get('mean_length', 0):.1f} steps
-
-## Learning Progress
-- **Reward Trend**: {episode_metrics.get('reward_trend', 0):.6f}
-- **Exploration Efficiency**: {episode_metrics.get('exploration_efficiency', 0):.4f}
-- **Reward Stability**: {episode_metrics.get('reward_stability', 0):.3f}
-
-## Training Stability
-- **Average Actor Loss**: {training_metrics.get('mean_actor_loss', 0):.4f}
-- **Average Critic Loss**: {training_metrics.get('mean_critic_loss', 0):.4f}
-- **Average Entropy**: {training_metrics.get('mean_entropy', 0):.4f}
-- **Average Gradient Norm**: {training_metrics.get('mean_grad_norm', 0):.4f}
-- **Average Clip Fraction**: {training_metrics.get('mean_clip_fraction', 0):.4f}
-
-## Recommendations
-"""
-
-    # Add recommendations based on metrics
-    if episode_metrics.get('reward_trend', 0) > 0:
-        report += "✅ **Positive Learning**: Reward trend is improving\n"
-    else:
-        report += "⚠️ **Learning Issues**: Reward trend is declining - consider adjusting hyperparameters\n"
-
-    if training_metrics.get('mean_entropy', 0) < 0.1:
-        report += "⚠️ **Low Entropy**: Policy may be too deterministic - consider increasing entropy coefficient\n"
-    elif training_metrics.get('mean_entropy', 0) > 2.0:
-        report += "⚠️ **High Entropy**: Policy may not be converging - consider decreasing entropy coefficient\n"
-    else:
-        report += "✅ **Good Entropy**: Policy exploration/exploitation balance looks healthy\n"
-
-    if training_metrics.get('mean_clip_fraction', 0) > 0.3:
-        report += "⚠️ **High Clipping**: Consider reducing learning rate\n"
-    elif training_metrics.get('mean_clip_fraction', 0) < 0.05:
-        report += "💡 **Low Clipping**: Could potentially increase learning rate\n"
-    else:
-        report += "✅ **Good Clipping**: Learning rate appears appropriate\n"
-
-    # Save report
-    report_file = f'training_report_{timestamp}.md'
-    with open(report_file, 'w') as f:
-        f.write(report)
-
-    print(f"📝 Training report saved as '{report_file}'")
-    print(report)
+    
+    print(f"📊 Training summary plot saved as '{plot_filename}'")
 
 if __name__ == "__main__":
     main()

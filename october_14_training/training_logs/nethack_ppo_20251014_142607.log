@@ -1,0 +1,2615 @@
+2025-10-14 14:26:07,461 - INFO - Starting Enhanced NetHack PPO Training with CSV logging
+2025-10-14 14:26:07,464 - INFO - Training Configuration: 100 episodes, update every 1024 steps
+2025-10-14 14:26:07,465 - INFO - 📊 Logging Schedule:
+2025-10-14 14:26:07,466 - INFO -    - Every episode: Episode metrics saved to CSV
+2025-10-14 14:26:07,468 - INFO -    - Every 2048 steps: Training metrics logged
+2025-10-14 14:26:07,470 - INFO -    - Every 10 episodes: Extensive analysis with detailed metrics
+2025-10-14 14:26:12,064 - INFO - Training Step 1024: Actor Loss: -0.1049, Critic Loss: 0.3067, Entropy: 3.1346
+2025-10-14 14:26:12,065 - INFO - 🔄 Step 1024 Training Update:
+2025-10-14 14:26:12,066 - INFO -    Episode: 0, Step in Episode: 1024
+2025-10-14 14:26:12,067 - INFO -    Current Episode Reward: 0.250
+2025-10-14 14:26:12,068 - INFO -    Actor Loss: -0.1049
+2025-10-14 14:26:12,070 - INFO -    Critic Loss: 0.3067
+2025-10-14 14:26:12,071 - INFO -    Entropy: 3.1346
+2025-10-14 14:26:12,073 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:16,335 - INFO - Training Step 2048: Actor Loss: -0.0306, Critic Loss: 8.3972, Entropy: 3.1346
+2025-10-14 14:26:16,335 - INFO - 🔄 Step 2048 Training Update:
+2025-10-14 14:26:16,337 - INFO -    Episode: 0, Step in Episode: 2048
+2025-10-14 14:26:16,338 - INFO -    Current Episode Reward: 42.970
+2025-10-14 14:26:16,339 - INFO -    Actor Loss: -0.0306
+2025-10-14 14:26:16,340 - INFO -    Critic Loss: 8.3972
+2025-10-14 14:26:16,341 - INFO -    Entropy: 3.1346
+2025-10-14 14:26:16,343 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:18,899 - INFO - Episode 0: Raw Reward: 81.840, Shaped Reward: 65.248, Length: 2770
+2025-10-14 14:26:18,972 - INFO - 🏆 New best model saved! Episode 0, Reward: 81.840
+2025-10-14 14:26:18,973 - INFO - 📋 Episode 0 Complete:
+2025-10-14 14:26:18,973 - INFO -    Raw Reward: 81.840
+2025-10-14 14:26:18,975 - INFO -    Shaped Reward: 65.248
+2025-10-14 14:26:18,976 - INFO -    Episode Length: 2770
+2025-10-14 14:26:18,978 - INFO -    Survived: No
+2025-10-14 14:26:18,979 - INFO -    Unique Positions: 192
+2025-10-14 14:26:18,980 - INFO -    Level Ups: 14
+2025-10-14 14:26:20,172 - INFO - Training Step 3072: Actor Loss: -0.0401, Critic Loss: 6.2419, Entropy: 3.1345
+2025-10-14 14:26:20,172 - INFO - 🔄 Step 3072 Training Update:
+2025-10-14 14:26:20,174 - INFO -    Episode: 1, Step in Episode: 302
+2025-10-14 14:26:20,175 - INFO -    Current Episode Reward: 24.940
+2025-10-14 14:26:20,176 - INFO -    Actor Loss: -0.0401
+2025-10-14 14:26:20,177 - INFO -    Critic Loss: 6.2419
+2025-10-14 14:26:20,178 - INFO -    Entropy: 3.1345
+2025-10-14 14:26:20,178 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:22,228 - INFO - Episode 1: Raw Reward: 41.000, Shaped Reward: 28.558, Length: 876
+2025-10-14 14:26:22,229 - INFO - 📋 Episode 1 Complete:
+2025-10-14 14:26:22,230 - INFO -    Raw Reward: 41.000
+2025-10-14 14:26:22,231 - INFO -    Shaped Reward: 28.558
+2025-10-14 14:26:22,232 - INFO -    Episode Length: 876
+2025-10-14 14:26:22,234 - INFO -    Survived: No
+2025-10-14 14:26:22,235 - INFO -    Unique Positions: 123
+2025-10-14 14:26:22,236 - INFO -    Level Ups: 12
+2025-10-14 14:26:23,925 - INFO - Training Step 4096: Actor Loss: -0.0655, Critic Loss: 1.8033, Entropy: 3.1345
+2025-10-14 14:26:23,926 - INFO - 🔄 Step 4096 Training Update:
+2025-10-14 14:26:23,927 - INFO -    Episode: 2, Step in Episode: 450
+2025-10-14 14:26:23,929 - INFO -    Current Episode Reward: -3.100
+2025-10-14 14:26:23,930 - INFO -    Actor Loss: -0.0655
+2025-10-14 14:26:23,932 - INFO -    Critic Loss: 1.8033
+2025-10-14 14:26:23,933 - INFO -    Entropy: 3.1345
+2025-10-14 14:26:23,934 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:27,922 - INFO - Episode 2: Raw Reward: -10.220, Shaped Reward: -25.782, Length: 1400
+2025-10-14 14:26:27,923 - INFO - 📋 Episode 2 Complete:
+2025-10-14 14:26:27,924 - INFO -    Raw Reward: -10.220
+2025-10-14 14:26:27,926 - INFO -    Shaped Reward: -25.782
+2025-10-14 14:26:27,927 - INFO -    Episode Length: 1400
+2025-10-14 14:26:27,928 - INFO -    Survived: No
+2025-10-14 14:26:27,928 - INFO -    Unique Positions: 79
+2025-10-14 14:26:27,930 - INFO -    Level Ups: 13
+2025-10-14 14:26:28,265 - INFO - Training Step 5120: Actor Loss: -0.1006, Critic Loss: 0.6962, Entropy: 3.1345
+2025-10-14 14:26:28,266 - INFO - 🔄 Step 5120 Training Update:
+2025-10-14 14:26:28,267 - INFO -    Episode: 3, Step in Episode: 74
+2025-10-14 14:26:28,268 - INFO -    Current Episode Reward: 1.460
+2025-10-14 14:26:28,268 - INFO -    Actor Loss: -0.1006
+2025-10-14 14:26:28,269 - INFO -    Critic Loss: 0.6962
+2025-10-14 14:26:28,270 - INFO -    Entropy: 3.1345
+2025-10-14 14:26:28,270 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:31,977 - INFO - Training Step 6144: Actor Loss: -0.0150, Critic Loss: 0.7551, Entropy: 3.1345
+2025-10-14 14:26:31,978 - INFO - 🔄 Step 6144 Training Update:
+2025-10-14 14:26:31,979 - INFO -    Episode: 3, Step in Episode: 1098
+2025-10-14 14:26:31,980 - INFO -    Current Episode Reward: 18.310
+2025-10-14 14:26:31,981 - INFO -    Actor Loss: -0.0150
+2025-10-14 14:26:31,983 - INFO -    Critic Loss: 0.7551
+2025-10-14 14:26:31,984 - INFO -    Entropy: 3.1345
+2025-10-14 14:26:31,985 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:32,195 - INFO - Episode 3: Raw Reward: 21.930, Shaped Reward: 6.598, Length: 1154
+2025-10-14 14:26:32,196 - INFO - 📋 Episode 3 Complete:
+2025-10-14 14:26:32,197 - INFO -    Raw Reward: 21.930
+2025-10-14 14:26:32,198 - INFO -    Shaped Reward: 6.598
+2025-10-14 14:26:32,198 - INFO -    Episode Length: 1154
+2025-10-14 14:26:32,199 - INFO -    Survived: No
+2025-10-14 14:26:32,200 - INFO -    Unique Positions: 27
+2025-10-14 14:26:32,201 - INFO -    Level Ups: 13
+2025-10-14 14:26:35,738 - INFO - Training Step 7168: Actor Loss: 0.0138, Critic Loss: 5.4583, Entropy: 3.1345
+2025-10-14 14:26:35,739 - INFO - 🔄 Step 7168 Training Update:
+2025-10-14 14:26:35,740 - INFO -    Episode: 4, Step in Episode: 968
+2025-10-14 14:26:35,741 - INFO -    Current Episode Reward: 48.680
+2025-10-14 14:26:35,742 - INFO -    Actor Loss: 0.0138
+2025-10-14 14:26:35,743 - INFO -    Critic Loss: 5.4583
+2025-10-14 14:26:35,744 - INFO -    Entropy: 3.1345
+2025-10-14 14:26:35,745 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:37,033 - INFO - Episode 4: Raw Reward: 58.300, Shaped Reward: 41.827, Length: 1322
+2025-10-14 14:26:37,034 - INFO - 📋 Episode 4 Complete:
+2025-10-14 14:26:37,036 - INFO -    Raw Reward: 58.300
+2025-10-14 14:26:37,037 - INFO -    Shaped Reward: 41.827
+2025-10-14 14:26:37,038 - INFO -    Episode Length: 1322
+2025-10-14 14:26:37,039 - INFO -    Survived: No
+2025-10-14 14:26:37,042 - INFO -    Unique Positions: 115
+2025-10-14 14:26:37,042 - INFO -    Level Ups: 14
+2025-10-14 14:26:40,057 - INFO - Training Step 8192: Actor Loss: -0.0101, Critic Loss: 1.1642, Entropy: 3.1344
+2025-10-14 14:26:40,057 - INFO - 🔄 Step 8192 Training Update:
+2025-10-14 14:26:40,059 - INFO -    Episode: 5, Step in Episode: 670
+2025-10-14 14:26:40,061 - INFO -    Current Episode Reward: 14.570
+2025-10-14 14:26:40,063 - INFO -    Actor Loss: -0.0101
+2025-10-14 14:26:40,063 - INFO -    Critic Loss: 1.1642
+2025-10-14 14:26:40,064 - INFO -    Entropy: 3.1344
+2025-10-14 14:26:40,064 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:42,490 - INFO - Episode 5: Raw Reward: 42.660, Shaped Reward: 27.025, Length: 1353
+2025-10-14 14:26:42,491 - INFO - 📋 Episode 5 Complete:
+2025-10-14 14:26:42,491 - INFO -    Raw Reward: 42.660
+2025-10-14 14:26:42,493 - INFO -    Shaped Reward: 27.025
+2025-10-14 14:26:42,494 - INFO -    Episode Length: 1353
+2025-10-14 14:26:42,495 - INFO -    Survived: No
+2025-10-14 14:26:42,496 - INFO -    Unique Positions: 114
+2025-10-14 14:26:42,498 - INFO -    Level Ups: 14
+2025-10-14 14:26:43,784 - INFO - Training Step 9216: Actor Loss: -0.0687, Critic Loss: 1.2442, Entropy: 3.1344
+2025-10-14 14:26:43,785 - INFO - 🔄 Step 9216 Training Update:
+2025-10-14 14:26:43,787 - INFO -    Episode: 6, Step in Episode: 341
+2025-10-14 14:26:43,788 - INFO -    Current Episode Reward: 0.710
+2025-10-14 14:26:43,789 - INFO -    Actor Loss: -0.0687
+2025-10-14 14:26:43,791 - INFO -    Critic Loss: 1.2442
+2025-10-14 14:26:43,793 - INFO -    Entropy: 3.1344
+2025-10-14 14:26:43,795 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:47,521 - INFO - Training Step 10240: Actor Loss: -0.0080, Critic Loss: 0.1246, Entropy: 3.1343
+2025-10-14 14:26:47,522 - INFO - 🔄 Step 10240 Training Update:
+2025-10-14 14:26:47,523 - INFO -    Episode: 6, Step in Episode: 1365
+2025-10-14 14:26:47,525 - INFO -    Current Episode Reward: 0.990
+2025-10-14 14:26:47,526 - INFO -    Actor Loss: -0.0080
+2025-10-14 14:26:47,527 - INFO -    Critic Loss: 0.1246
+2025-10-14 14:26:47,528 - INFO -    Entropy: 3.1343
+2025-10-14 14:26:47,529 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:51,790 - INFO - Training Step 11264: Actor Loss: -0.0233, Critic Loss: 0.0321, Entropy: 3.1343
+2025-10-14 14:26:51,791 - INFO - 🔄 Step 11264 Training Update:
+2025-10-14 14:26:51,792 - INFO -    Episode: 6, Step in Episode: 2389
+2025-10-14 14:26:51,793 - INFO -    Current Episode Reward: -2.560
+2025-10-14 14:26:51,794 - INFO -    Actor Loss: -0.0233
+2025-10-14 14:26:51,795 - INFO -    Critic Loss: 0.0321
+2025-10-14 14:26:51,796 - INFO -    Entropy: 3.1343
+2025-10-14 14:26:51,798 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:53,186 - INFO - Episode 6: Raw Reward: -5.200, Shaped Reward: -25.573, Length: 2779
+2025-10-14 14:26:53,187 - INFO - 📋 Episode 6 Complete:
+2025-10-14 14:26:53,189 - INFO -    Raw Reward: -5.200
+2025-10-14 14:26:53,190 - INFO -    Shaped Reward: -25.573
+2025-10-14 14:26:53,191 - INFO -    Episode Length: 2779
+2025-10-14 14:26:53,192 - INFO -    Survived: No
+2025-10-14 14:26:53,193 - INFO -    Unique Positions: 144
+2025-10-14 14:26:53,193 - INFO -    Level Ups: 18
+2025-10-14 14:26:55,528 - INFO - Training Step 12288: Actor Loss: -0.0990, Critic Loss: 3.8167, Entropy: 3.1343
+2025-10-14 14:26:55,528 - INFO - 🔄 Step 12288 Training Update:
+2025-10-14 14:26:55,530 - INFO -    Episode: 7, Step in Episode: 634
+2025-10-14 14:26:55,530 - INFO -    Current Episode Reward: 14.880
+2025-10-14 14:26:55,531 - INFO -    Actor Loss: -0.0990
+2025-10-14 14:26:55,532 - INFO -    Critic Loss: 3.8167
+2025-10-14 14:26:55,532 - INFO -    Entropy: 3.1343
+2025-10-14 14:26:55,533 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:26:56,912 - INFO - Episode 7: Raw Reward: 19.940, Shaped Reward: 3.588, Length: 1024
+2025-10-14 14:26:56,913 - INFO - 📋 Episode 7 Complete:
+2025-10-14 14:26:56,914 - INFO -    Raw Reward: 19.940
+2025-10-14 14:26:56,915 - INFO -    Shaped Reward: 3.588
+2025-10-14 14:26:56,917 - INFO -    Episode Length: 1024
+2025-10-14 14:26:56,918 - INFO -    Survived: No
+2025-10-14 14:26:56,919 - INFO -    Unique Positions: 46
+2025-10-14 14:26:56,920 - INFO -    Level Ups: 14
+2025-10-14 14:26:59,253 - INFO - Training Step 13312: Actor Loss: -0.0599, Critic Loss: 0.7226, Entropy: 3.1344
+2025-10-14 14:26:59,254 - INFO - 🔄 Step 13312 Training Update:
+2025-10-14 14:26:59,255 - INFO -    Episode: 8, Step in Episode: 634
+2025-10-14 14:26:59,257 - INFO -    Current Episode Reward: 2.920
+2025-10-14 14:26:59,258 - INFO -    Actor Loss: -0.0599
+2025-10-14 14:26:59,259 - INFO -    Critic Loss: 0.7226
+2025-10-14 14:26:59,259 - INFO -    Entropy: 3.1344
+2025-10-14 14:26:59,260 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:03,518 - INFO - Training Step 14336: Actor Loss: 0.0285, Critic Loss: 5.0285, Entropy: 3.1344
+2025-10-14 14:27:03,518 - INFO - 🔄 Step 14336 Training Update:
+2025-10-14 14:27:03,519 - INFO -    Episode: 8, Step in Episode: 1658
+2025-10-14 14:27:03,520 - INFO -    Current Episode Reward: 58.380
+2025-10-14 14:27:03,522 - INFO -    Actor Loss: 0.0285
+2025-10-14 14:27:03,523 - INFO -    Critic Loss: 5.0285
+2025-10-14 14:27:03,524 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:03,526 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:06,132 - INFO - Episode 8: Raw Reward: 73.000, Shaped Reward: 54.407, Length: 2398
+2025-10-14 14:27:06,133 - INFO - 📋 Episode 8 Complete:
+2025-10-14 14:27:06,133 - INFO -    Raw Reward: 73.000
+2025-10-14 14:27:06,136 - INFO -    Shaped Reward: 54.407
+2025-10-14 14:27:06,138 - INFO -    Episode Length: 2398
+2025-10-14 14:27:06,139 - INFO -    Survived: No
+2025-10-14 14:27:06,140 - INFO -    Unique Positions: 208
+2025-10-14 14:27:06,142 - INFO -    Level Ups: 16
+2025-10-14 14:27:07,211 - INFO - Training Step 15360: Actor Loss: -0.0582, Critic Loss: 3.1801, Entropy: 3.1344
+2025-10-14 14:27:07,212 - INFO - 🔄 Step 15360 Training Update:
+2025-10-14 14:27:07,214 - INFO -    Episode: 9, Step in Episode: 284
+2025-10-14 14:27:07,215 - INFO -    Current Episode Reward: -1.860
+2025-10-14 14:27:07,216 - INFO -    Actor Loss: -0.0582
+2025-10-14 14:27:07,217 - INFO -    Critic Loss: 3.1801
+2025-10-14 14:27:07,218 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:07,219 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:10,948 - INFO - Episode 9: Raw Reward: -8.550, Shaped Reward: -23.309, Length: 1250
+2025-10-14 14:27:10,949 - INFO - 📋 Episode 9 Complete:
+2025-10-14 14:27:10,950 - INFO -    Raw Reward: -8.550
+2025-10-14 14:27:10,951 - INFO -    Shaped Reward: -23.309
+2025-10-14 14:27:10,953 - INFO -    Episode Length: 1250
+2025-10-14 14:27:10,954 - INFO -    Survived: No
+2025-10-14 14:27:10,957 - INFO -    Unique Positions: 70
+2025-10-14 14:27:10,958 - INFO -    Level Ups: 13
+2025-10-14 14:27:10,960 - INFO - ================================================================================
+2025-10-14 14:27:10,961 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 1 to 10
+2025-10-14 14:27:10,962 - INFO - ================================================================================
+2025-10-14 14:27:10,962 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:27:10,963 - INFO -    Average Raw Reward: 31.470
+2025-10-14 14:27:10,964 - INFO -    Average Shaped Reward: 15.259
+2025-10-14 14:27:10,964 - INFO -    Best Episode Reward: 81.840
+2025-10-14 14:27:10,966 - INFO -    Reward Standard Deviation: 31.790
+2025-10-14 14:27:10,966 - INFO -    Success Rate: 70.0%
+2025-10-14 14:27:10,967 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:27:10,967 - INFO - 
+2025-10-14 14:27:10,968 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:27:10,969 - INFO -    Average Episode Length: 1632.6
+2025-10-14 14:27:10,969 - INFO -    Exploration Efficiency: 0.0685
+2025-10-14 14:27:10,970 - INFO -    Total Unique Positions: 1118
+2025-10-14 14:27:10,972 - INFO - 
+2025-10-14 14:27:10,972 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:27:10,973 - INFO -    Average Actor Loss: -0.0428
+2025-10-14 14:27:10,974 - INFO -    Average Critic Loss: 2.5981
+2025-10-14 14:27:10,974 - INFO -    Average Entropy: 3.1344
+2025-10-14 14:27:10,976 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:27:10,976 - INFO -    Reward Trend: -3.246909
+2025-10-14 14:27:10,978 - INFO -    Learning Stability: 0.030
+2025-10-14 14:27:10,979 - INFO - ================================================================================
+2025-10-14 14:27:11,290 - INFO - Training Step 16384: Actor Loss: -0.2252, Critic Loss: 5.6028, Entropy: 3.1345
+2025-10-14 14:27:11,291 - INFO - 🔄 Step 16384 Training Update:
+2025-10-14 14:27:11,292 - INFO -    Episode: 10, Step in Episode: 58
+2025-10-14 14:27:11,294 - INFO -    Current Episode Reward: 24.640
+2025-10-14 14:27:11,295 - INFO -    Actor Loss: -0.2252
+2025-10-14 14:27:11,295 - INFO -    Critic Loss: 5.6028
+2025-10-14 14:27:11,296 - INFO -    Entropy: 3.1345
+2025-10-14 14:27:11,298 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:12,976 - INFO - Episode 10: Raw Reward: 29.270, Shaped Reward: 16.055, Length: 529
+2025-10-14 14:27:12,977 - INFO - 📋 Episode 10 Complete:
+2025-10-14 14:27:12,978 - INFO -    Raw Reward: 29.270
+2025-10-14 14:27:12,980 - INFO -    Shaped Reward: 16.055
+2025-10-14 14:27:12,981 - INFO -    Episode Length: 529
+2025-10-14 14:27:12,983 - INFO -    Survived: No
+2025-10-14 14:27:12,984 - INFO -    Unique Positions: 77
+2025-10-14 14:27:12,985 - INFO -    Level Ups: 12
+2025-10-14 14:27:15,579 - INFO - Training Step 17408: Actor Loss: -0.0349, Critic Loss: 1.2385, Entropy: 3.1345
+2025-10-14 14:27:15,580 - INFO - 🔄 Step 17408 Training Update:
+2025-10-14 14:27:15,580 - INFO -    Episode: 11, Step in Episode: 553
+2025-10-14 14:27:15,582 - INFO -    Current Episode Reward: -3.830
+2025-10-14 14:27:15,583 - INFO -    Actor Loss: -0.0349
+2025-10-14 14:27:15,584 - INFO -    Critic Loss: 1.2385
+2025-10-14 14:27:15,585 - INFO -    Entropy: 3.1345
+2025-10-14 14:27:15,586 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:19,324 - INFO - Training Step 18432: Actor Loss: -0.0094, Critic Loss: 0.0130, Entropy: 3.1345
+2025-10-14 14:27:19,324 - INFO - 🔄 Step 18432 Training Update:
+2025-10-14 14:27:19,325 - INFO -    Episode: 11, Step in Episode: 1577
+2025-10-14 14:27:19,326 - INFO -    Current Episode Reward: -11.050
+2025-10-14 14:27:19,327 - INFO -    Actor Loss: -0.0094
+2025-10-14 14:27:19,329 - INFO -    Critic Loss: 0.0130
+2025-10-14 14:27:19,330 - INFO -    Entropy: 3.1345
+2025-10-14 14:27:19,331 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:19,762 - INFO - Episode 11: Raw Reward: 12.020, Shaped Reward: -4.843, Length: 1692
+2025-10-14 14:27:19,763 - INFO - 📋 Episode 11 Complete:
+2025-10-14 14:27:19,763 - INFO -    Raw Reward: 12.020
+2025-10-14 14:27:19,764 - INFO -    Shaped Reward: -4.843
+2025-10-14 14:27:19,765 - INFO -    Episode Length: 1692
+2025-10-14 14:27:19,765 - INFO -    Survived: No
+2025-10-14 14:27:19,766 - INFO -    Unique Positions: 98
+2025-10-14 14:27:19,767 - INFO -    Level Ups: 15
+2025-10-14 14:27:20,689 - INFO - Episode 12: Raw Reward: 9.260, Shaped Reward: -5.523, Length: 244
+2025-10-14 14:27:20,689 - INFO - 📋 Episode 12 Complete:
+2025-10-14 14:27:20,691 - INFO -    Raw Reward: 9.260
+2025-10-14 14:27:20,692 - INFO -    Shaped Reward: -5.523
+2025-10-14 14:27:20,693 - INFO -    Episode Length: 244
+2025-10-14 14:27:20,694 - INFO -    Survived: No
+2025-10-14 14:27:20,694 - INFO -    Unique Positions: 43
+2025-10-14 14:27:20,695 - INFO -    Level Ups: 14
+2025-10-14 14:27:23,150 - INFO - Training Step 19456: Actor Loss: -0.0597, Critic Loss: 16.5000, Entropy: 3.1344
+2025-10-14 14:27:23,151 - INFO - 🔄 Step 19456 Training Update:
+2025-10-14 14:27:23,152 - INFO -    Episode: 13, Step in Episode: 665
+2025-10-14 14:27:23,154 - INFO -    Current Episode Reward: 63.410
+2025-10-14 14:27:23,155 - INFO -    Actor Loss: -0.0597
+2025-10-14 14:27:23,156 - INFO -    Critic Loss: 16.5000
+2025-10-14 14:27:23,158 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:23,158 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:26,033 - INFO - Episode 13: Raw Reward: 62.070, Shaped Reward: 50.001, Length: 1409
+2025-10-14 14:27:26,033 - INFO - 📋 Episode 13 Complete:
+2025-10-14 14:27:26,034 - INFO -    Raw Reward: 62.070
+2025-10-14 14:27:26,035 - INFO -    Shaped Reward: 50.001
+2025-10-14 14:27:26,036 - INFO -    Episode Length: 1409
+2025-10-14 14:27:26,037 - INFO -    Survived: No
+2025-10-14 14:27:26,038 - INFO -    Unique Positions: 129
+2025-10-14 14:27:26,039 - INFO -    Level Ups: 11
+2025-10-14 14:27:27,512 - INFO - Training Step 20480: Actor Loss: -0.0309, Critic Loss: 1.4287, Entropy: 3.1344
+2025-10-14 14:27:27,512 - INFO - 🔄 Step 20480 Training Update:
+2025-10-14 14:27:27,514 - INFO -    Episode: 14, Step in Episode: 280
+2025-10-14 14:27:27,516 - INFO -    Current Episode Reward: 22.070
+2025-10-14 14:27:27,517 - INFO -    Actor Loss: -0.0309
+2025-10-14 14:27:27,518 - INFO -    Critic Loss: 1.4287
+2025-10-14 14:27:27,519 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:27,520 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:31,274 - INFO - Training Step 21504: Actor Loss: -0.0205, Critic Loss: 0.0594, Entropy: 3.1344
+2025-10-14 14:27:31,275 - INFO - 🔄 Step 21504 Training Update:
+2025-10-14 14:27:31,276 - INFO -    Episode: 14, Step in Episode: 1304
+2025-10-14 14:27:31,277 - INFO -    Current Episode Reward: 19.980
+2025-10-14 14:27:31,277 - INFO -    Actor Loss: -0.0205
+2025-10-14 14:27:31,278 - INFO -    Critic Loss: 0.0594
+2025-10-14 14:27:31,279 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:31,279 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:35,024 - INFO - Training Step 22528: Actor Loss: -0.2519, Critic Loss: 26.7010, Entropy: 3.1344
+2025-10-14 14:27:35,025 - INFO - 🔄 Step 22528 Training Update:
+2025-10-14 14:27:35,026 - INFO -    Episode: 14, Step in Episode: 2328
+2025-10-14 14:27:35,028 - INFO -    Current Episode Reward: 67.990
+2025-10-14 14:27:35,029 - INFO -    Actor Loss: -0.2519
+2025-10-14 14:27:35,029 - INFO -    Critic Loss: 26.7010
+2025-10-14 14:27:35,030 - INFO -    Entropy: 3.1344
+2025-10-14 14:27:35,032 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:35,858 - INFO - Episode 14: Raw Reward: 86.360, Shaped Reward: 69.186, Length: 2556
+2025-10-14 14:27:35,931 - INFO - 🏆 New best model saved! Episode 14, Reward: 86.360
+2025-10-14 14:27:35,932 - INFO - 📋 Episode 14 Complete:
+2025-10-14 14:27:35,934 - INFO -    Raw Reward: 86.360
+2025-10-14 14:27:35,935 - INFO -    Shaped Reward: 69.186
+2025-10-14 14:27:35,936 - INFO -    Episode Length: 2556
+2025-10-14 14:27:35,937 - INFO -    Survived: No
+2025-10-14 14:27:35,938 - INFO -    Unique Positions: 167
+2025-10-14 14:27:35,941 - INFO -    Level Ups: 14
+2025-10-14 14:27:38,937 - INFO - Episode 15: Raw Reward: 52.150, Shaped Reward: 37.596, Length: 722
+2025-10-14 14:27:38,937 - INFO - 📋 Episode 15 Complete:
+2025-10-14 14:27:38,938 - INFO -    Raw Reward: 52.150
+2025-10-14 14:27:38,939 - INFO -    Shaped Reward: 37.596
+2025-10-14 14:27:38,941 - INFO -    Episode Length: 722
+2025-10-14 14:27:38,942 - INFO -    Survived: No
+2025-10-14 14:27:38,943 - INFO -    Unique Positions: 85
+2025-10-14 14:27:38,943 - INFO -    Level Ups: 14
+2025-10-14 14:27:39,446 - INFO - Training Step 23552: Actor Loss: -0.0296, Critic Loss: 5.7626, Entropy: 3.1343
+2025-10-14 14:27:39,447 - INFO - 🔄 Step 23552 Training Update:
+2025-10-14 14:27:39,448 - INFO -    Episode: 16, Step in Episode: 74
+2025-10-14 14:27:39,448 - INFO -    Current Episode Reward: -0.530
+2025-10-14 14:27:39,449 - INFO -    Actor Loss: -0.0296
+2025-10-14 14:27:39,450 - INFO -    Critic Loss: 5.7626
+2025-10-14 14:27:39,450 - INFO -    Entropy: 3.1343
+2025-10-14 14:27:39,451 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:43,194 - INFO - Training Step 24576: Actor Loss: 0.0048, Critic Loss: 0.0392, Entropy: 3.1343
+2025-10-14 14:27:43,194 - INFO - 🔄 Step 24576 Training Update:
+2025-10-14 14:27:43,195 - INFO -    Episode: 16, Step in Episode: 1098
+2025-10-14 14:27:43,197 - INFO -    Current Episode Reward: -3.530
+2025-10-14 14:27:43,198 - INFO -    Actor Loss: 0.0048
+2025-10-14 14:27:43,200 - INFO -    Critic Loss: 0.0392
+2025-10-14 14:27:43,202 - INFO -    Entropy: 3.1343
+2025-10-14 14:27:43,203 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:44,686 - INFO - Episode 16: Raw Reward: 48.390, Shaped Reward: 30.043, Length: 1510
+2025-10-14 14:27:44,687 - INFO - 📋 Episode 16 Complete:
+2025-10-14 14:27:44,689 - INFO -    Raw Reward: 48.390
+2025-10-14 14:27:44,689 - INFO -    Shaped Reward: 30.043
+2025-10-14 14:27:44,691 - INFO -    Episode Length: 1510
+2025-10-14 14:27:44,692 - INFO -    Survived: No
+2025-10-14 14:27:44,693 - INFO -    Unique Positions: 119
+2025-10-14 14:27:44,693 - INFO -    Level Ups: 16
+2025-10-14 14:27:46,948 - INFO - Training Step 25600: Actor Loss: -0.0538, Critic Loss: 11.0194, Entropy: 3.1343
+2025-10-14 14:27:46,949 - INFO - 🔄 Step 25600 Training Update:
+2025-10-14 14:27:46,950 - INFO -    Episode: 17, Step in Episode: 612
+2025-10-14 14:27:46,950 - INFO -    Current Episode Reward: 6.690
+2025-10-14 14:27:46,951 - INFO -    Actor Loss: -0.0538
+2025-10-14 14:27:46,952 - INFO -    Critic Loss: 11.0194
+2025-10-14 14:27:46,952 - INFO -    Entropy: 3.1343
+2025-10-14 14:27:46,953 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:51,158 - INFO - Training Step 26624: Actor Loss: -0.1104, Critic Loss: 0.0540, Entropy: 3.1342
+2025-10-14 14:27:51,159 - INFO - 🔄 Step 26624 Training Update:
+2025-10-14 14:27:51,160 - INFO -    Episode: 17, Step in Episode: 1636
+2025-10-14 14:27:51,160 - INFO -    Current Episode Reward: -0.160
+2025-10-14 14:27:51,161 - INFO -    Actor Loss: -0.1104
+2025-10-14 14:27:51,162 - INFO -    Critic Loss: 0.0540
+2025-10-14 14:27:51,165 - INFO -    Entropy: 3.1342
+2025-10-14 14:27:51,165 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:55,004 - INFO - Training Step 27648: Actor Loss: 0.0081, Critic Loss: 0.0980, Entropy: 3.1341
+2025-10-14 14:27:55,005 - INFO - 🔄 Step 27648 Training Update:
+2025-10-14 14:27:55,006 - INFO -    Episode: 17, Step in Episode: 2660
+2025-10-14 14:27:55,007 - INFO -    Current Episode Reward: -7.270
+2025-10-14 14:27:55,009 - INFO -    Actor Loss: 0.0081
+2025-10-14 14:27:55,011 - INFO -    Critic Loss: 0.0980
+2025-10-14 14:27:55,013 - INFO -    Entropy: 3.1341
+2025-10-14 14:27:55,014 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:27:55,581 - INFO - Episode 17: Raw Reward: -8.230, Shaped Reward: -22.064, Length: 2809
+2025-10-14 14:27:55,582 - INFO - 📋 Episode 17 Complete:
+2025-10-14 14:27:55,583 - INFO -    Raw Reward: -8.230
+2025-10-14 14:27:55,585 - INFO -    Shaped Reward: -22.064
+2025-10-14 14:27:55,587 - INFO -    Episode Length: 2809
+2025-10-14 14:27:55,587 - INFO -    Survived: No
+2025-10-14 14:27:55,589 - INFO -    Unique Positions: 130
+2025-10-14 14:27:55,590 - INFO -    Level Ups: 11
+2025-10-14 14:27:58,827 - INFO - Training Step 28672: Actor Loss: -0.0458, Critic Loss: 1.4155, Entropy: 3.1341
+2025-10-14 14:27:58,828 - INFO - 🔄 Step 28672 Training Update:
+2025-10-14 14:27:58,829 - INFO -    Episode: 18, Step in Episode: 875
+2025-10-14 14:27:58,830 - INFO -    Current Episode Reward: 4.020
+2025-10-14 14:27:58,831 - INFO -    Actor Loss: -0.0458
+2025-10-14 14:27:58,831 - INFO -    Critic Loss: 1.4155
+2025-10-14 14:27:58,832 - INFO -    Entropy: 3.1341
+2025-10-14 14:27:58,833 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:02,929 - INFO - Training Step 29696: Actor Loss: -0.0851, Critic Loss: 1.7282, Entropy: 3.1341
+2025-10-14 14:28:02,930 - INFO - 🔄 Step 29696 Training Update:
+2025-10-14 14:28:02,931 - INFO -    Episode: 18, Step in Episode: 1899
+2025-10-14 14:28:02,932 - INFO -    Current Episode Reward: 12.940
+2025-10-14 14:28:02,933 - INFO -    Actor Loss: -0.0851
+2025-10-14 14:28:02,933 - INFO -    Critic Loss: 1.7282
+2025-10-14 14:28:02,935 - INFO -    Entropy: 3.1341
+2025-10-14 14:28:02,936 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:06,626 - INFO - Episode 18: Raw Reward: 5.680, Shaped Reward: -12.774, Length: 2886
+2025-10-14 14:28:06,626 - INFO - 📋 Episode 18 Complete:
+2025-10-14 14:28:06,627 - INFO -    Raw Reward: 5.680
+2025-10-14 14:28:06,629 - INFO -    Shaped Reward: -12.774
+2025-10-14 14:28:06,629 - INFO -    Episode Length: 2886
+2025-10-14 14:28:06,631 - INFO -    Survived: No
+2025-10-14 14:28:06,632 - INFO -    Unique Positions: 98
+2025-10-14 14:28:06,634 - INFO -    Level Ups: 14
+2025-10-14 14:28:06,849 - INFO - Training Step 30720: Actor Loss: -0.1031, Critic Loss: 4.0890, Entropy: 3.1341
+2025-10-14 14:28:06,850 - INFO - 🔄 Step 30720 Training Update:
+2025-10-14 14:28:06,851 - INFO -    Episode: 19, Step in Episode: 37
+2025-10-14 14:28:06,852 - INFO -    Current Episode Reward: 23.680
+2025-10-14 14:28:06,853 - INFO -    Actor Loss: -0.1031
+2025-10-14 14:28:06,854 - INFO -    Critic Loss: 4.0890
+2025-10-14 14:28:06,855 - INFO -    Entropy: 3.1341
+2025-10-14 14:28:06,856 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:10,602 - INFO - Training Step 31744: Actor Loss: -0.0395, Critic Loss: 0.1476, Entropy: 3.1342
+2025-10-14 14:28:10,603 - INFO - 🔄 Step 31744 Training Update:
+2025-10-14 14:28:10,604 - INFO -    Episode: 19, Step in Episode: 1061
+2025-10-14 14:28:10,604 - INFO -    Current Episode Reward: 16.610
+2025-10-14 14:28:10,606 - INFO -    Actor Loss: -0.0395
+2025-10-14 14:28:10,606 - INFO -    Critic Loss: 0.1476
+2025-10-14 14:28:10,607 - INFO -    Entropy: 3.1342
+2025-10-14 14:28:10,608 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:14,605 - INFO - Training Step 32768: Actor Loss: -0.1200, Critic Loss: 2.1792, Entropy: 3.1343
+2025-10-14 14:28:14,606 - INFO - 🔄 Step 32768 Training Update:
+2025-10-14 14:28:14,607 - INFO -    Episode: 19, Step in Episode: 2085
+2025-10-14 14:28:14,608 - INFO -    Current Episode Reward: 40.160
+2025-10-14 14:28:14,610 - INFO -    Actor Loss: -0.1200
+2025-10-14 14:28:14,612 - INFO -    Critic Loss: 2.1792
+2025-10-14 14:28:14,612 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:14,613 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:18,627 - INFO - Training Step 33792: Actor Loss: -0.0767, Critic Loss: 1.3386, Entropy: 3.1343
+2025-10-14 14:28:18,628 - INFO - 🔄 Step 33792 Training Update:
+2025-10-14 14:28:18,630 - INFO -    Episode: 19, Step in Episode: 3109
+2025-10-14 14:28:18,631 - INFO -    Current Episode Reward: 48.560
+2025-10-14 14:28:18,632 - INFO -    Actor Loss: -0.0767
+2025-10-14 14:28:18,634 - INFO -    Critic Loss: 1.3386
+2025-10-14 14:28:18,636 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:18,637 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:20,117 - INFO - Episode 19: Raw Reward: 45.590, Shaped Reward: 26.720, Length: 3518
+2025-10-14 14:28:20,117 - INFO - 📋 Episode 19 Complete:
+2025-10-14 14:28:20,118 - INFO -    Raw Reward: 45.590
+2025-10-14 14:28:20,121 - INFO -    Shaped Reward: 26.720
+2025-10-14 14:28:20,122 - INFO -    Episode Length: 3518
+2025-10-14 14:28:20,123 - INFO -    Survived: No
+2025-10-14 14:28:20,125 - INFO -    Unique Positions: 135
+2025-10-14 14:28:20,126 - INFO -    Level Ups: 15
+2025-10-14 14:28:20,128 - INFO - ================================================================================
+2025-10-14 14:28:20,129 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 11 to 20
+2025-10-14 14:28:20,129 - INFO - ================================================================================
+2025-10-14 14:28:20,130 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:28:20,131 - INFO -    Average Raw Reward: 34.256
+2025-10-14 14:28:20,132 - INFO -    Average Shaped Reward: 18.440
+2025-10-14 14:28:20,132 - INFO -    Best Episode Reward: 86.360
+2025-10-14 14:28:20,133 - INFO -    Reward Standard Deviation: 28.112
+2025-10-14 14:28:20,134 - INFO -    Success Rate: 90.0%
+2025-10-14 14:28:20,134 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:28:20,135 - INFO - 
+2025-10-14 14:28:20,136 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:28:20,136 - INFO -    Average Episode Length: 1787.5
+2025-10-14 14:28:20,137 - INFO -    Exploration Efficiency: 0.0605
+2025-10-14 14:28:20,138 - INFO -    Total Unique Positions: 1081
+2025-10-14 14:28:20,139 - INFO - 
+2025-10-14 14:28:20,140 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:28:20,141 - INFO -    Average Actor Loss: -0.0583
+2025-10-14 14:28:20,141 - INFO -    Average Critic Loss: 3.5875
+2025-10-14 14:28:20,143 - INFO -    Average Entropy: 3.1344
+2025-10-14 14:28:20,143 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:28:20,144 - INFO -    Reward Trend: -0.364848
+2025-10-14 14:28:20,145 - INFO -    Learning Stability: 0.034
+2025-10-14 14:28:20,145 - INFO - ================================================================================
+2025-10-14 14:28:22,461 - INFO - Training Step 34816: Actor Loss: -0.1371, Critic Loss: 5.0983, Entropy: 3.1343
+2025-10-14 14:28:22,462 - INFO - 🔄 Step 34816 Training Update:
+2025-10-14 14:28:22,463 - INFO -    Episode: 20, Step in Episode: 615
+2025-10-14 14:28:22,463 - INFO -    Current Episode Reward: 26.700
+2025-10-14 14:28:22,464 - INFO -    Actor Loss: -0.1371
+2025-10-14 14:28:22,465 - INFO -    Critic Loss: 5.0983
+2025-10-14 14:28:22,465 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:22,466 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:26,456 - INFO - Training Step 35840: Actor Loss: -0.1449, Critic Loss: 6.2230, Entropy: 3.1343
+2025-10-14 14:28:26,457 - INFO - 🔄 Step 35840 Training Update:
+2025-10-14 14:28:26,458 - INFO -    Episode: 20, Step in Episode: 1639
+2025-10-14 14:28:26,460 - INFO -    Current Episode Reward: 65.390
+2025-10-14 14:28:26,461 - INFO -    Actor Loss: -0.1449
+2025-10-14 14:28:26,463 - INFO -    Critic Loss: 6.2230
+2025-10-14 14:28:26,464 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:26,464 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:30,111 - INFO - Episode 20: Raw Reward: 85.790, Shaped Reward: 67.915, Length: 2566
+2025-10-14 14:28:30,112 - INFO - 📋 Episode 20 Complete:
+2025-10-14 14:28:30,113 - INFO -    Raw Reward: 85.790
+2025-10-14 14:28:30,114 - INFO -    Shaped Reward: 67.915
+2025-10-14 14:28:30,114 - INFO -    Episode Length: 2566
+2025-10-14 14:28:30,115 - INFO -    Survived: No
+2025-10-14 14:28:30,116 - INFO -    Unique Positions: 191
+2025-10-14 14:28:30,117 - INFO -    Level Ups: 15
+2025-10-14 14:28:30,549 - INFO - Training Step 36864: Actor Loss: -0.1236, Critic Loss: 0.9655, Entropy: 3.1344
+2025-10-14 14:28:30,550 - INFO - 🔄 Step 36864 Training Update:
+2025-10-14 14:28:30,551 - INFO -    Episode: 21, Step in Episode: 97
+2025-10-14 14:28:30,552 - INFO -    Current Episode Reward: -0.550
+2025-10-14 14:28:30,555 - INFO -    Actor Loss: -0.1236
+2025-10-14 14:28:30,555 - INFO -    Critic Loss: 0.9655
+2025-10-14 14:28:30,558 - INFO -    Entropy: 3.1344
+2025-10-14 14:28:30,559 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:34,305 - INFO - Training Step 37888: Actor Loss: -0.1516, Critic Loss: 0.0957, Entropy: 3.1344
+2025-10-14 14:28:34,306 - INFO - 🔄 Step 37888 Training Update:
+2025-10-14 14:28:34,308 - INFO -    Episode: 21, Step in Episode: 1121
+2025-10-14 14:28:34,309 - INFO -    Current Episode Reward: -7.890
+2025-10-14 14:28:34,310 - INFO -    Actor Loss: -0.1516
+2025-10-14 14:28:34,311 - INFO -    Critic Loss: 0.0957
+2025-10-14 14:28:34,312 - INFO -    Entropy: 3.1344
+2025-10-14 14:28:34,313 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:38,294 - INFO - Training Step 38912: Actor Loss: -0.0779, Critic Loss: 0.3534, Entropy: 3.1343
+2025-10-14 14:28:38,295 - INFO - 🔄 Step 38912 Training Update:
+2025-10-14 14:28:38,295 - INFO -    Episode: 21, Step in Episode: 2145
+2025-10-14 14:28:38,296 - INFO -    Current Episode Reward: -15.010
+2025-10-14 14:28:38,296 - INFO -    Actor Loss: -0.0779
+2025-10-14 14:28:38,296 - INFO -    Critic Loss: 0.3534
+2025-10-14 14:28:38,297 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:38,299 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:42,384 - INFO - Training Step 39936: Actor Loss: -0.0781, Critic Loss: 0.2407, Entropy: 3.1343
+2025-10-14 14:28:42,386 - INFO - 🔄 Step 39936 Training Update:
+2025-10-14 14:28:42,387 - INFO -    Episode: 21, Step in Episode: 3169
+2025-10-14 14:28:42,387 - INFO -    Current Episode Reward: -22.320
+2025-10-14 14:28:42,387 - INFO -    Actor Loss: -0.0781
+2025-10-14 14:28:42,390 - INFO -    Critic Loss: 0.2407
+2025-10-14 14:28:42,391 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:42,391 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:43,050 - INFO - Episode 21: Raw Reward: -23.560, Shaped Reward: -40.512, Length: 3351
+2025-10-14 14:28:43,051 - INFO - 📋 Episode 21 Complete:
+2025-10-14 14:28:43,053 - INFO -    Raw Reward: -23.560
+2025-10-14 14:28:43,054 - INFO -    Shaped Reward: -40.512
+2025-10-14 14:28:43,056 - INFO -    Episode Length: 3351
+2025-10-14 14:28:43,057 - INFO -    Survived: No
+2025-10-14 14:28:43,058 - INFO -    Unique Positions: 61
+2025-10-14 14:28:43,059 - INFO -    Level Ups: 12
+2025-10-14 14:28:43,947 - INFO - Episode 22: Raw Reward: 2.170, Shaped Reward: -10.137, Length: 249
+2025-10-14 14:28:43,948 - INFO - 📋 Episode 22 Complete:
+2025-10-14 14:28:43,950 - INFO -    Raw Reward: 2.170
+2025-10-14 14:28:43,951 - INFO -    Shaped Reward: -10.137
+2025-10-14 14:28:43,952 - INFO -    Episode Length: 249
+2025-10-14 14:28:43,953 - INFO -    Survived: No
+2025-10-14 14:28:43,955 - INFO -    Unique Positions: 36
+2025-10-14 14:28:43,957 - INFO -    Level Ups: 11
+2025-10-14 14:28:46,151 - INFO - Training Step 40960: Actor Loss: -0.0428, Critic Loss: 4.4684, Entropy: 3.1344
+2025-10-14 14:28:46,152 - INFO - 🔄 Step 40960 Training Update:
+2025-10-14 14:28:46,154 - INFO -    Episode: 23, Step in Episode: 593
+2025-10-14 14:28:46,155 - INFO -    Current Episode Reward: -4.470
+2025-10-14 14:28:46,156 - INFO -    Actor Loss: -0.0428
+2025-10-14 14:28:46,158 - INFO -    Critic Loss: 4.4684
+2025-10-14 14:28:46,159 - INFO -    Entropy: 3.1344
+2025-10-14 14:28:46,161 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:50,101 - INFO - Training Step 41984: Actor Loss: -0.0705, Critic Loss: 0.1726, Entropy: 3.1343
+2025-10-14 14:28:50,102 - INFO - 🔄 Step 41984 Training Update:
+2025-10-14 14:28:50,103 - INFO -    Episode: 23, Step in Episode: 1617
+2025-10-14 14:28:50,103 - INFO -    Current Episode Reward: -12.610
+2025-10-14 14:28:50,104 - INFO -    Actor Loss: -0.0705
+2025-10-14 14:28:50,104 - INFO -    Critic Loss: 0.1726
+2025-10-14 14:28:50,105 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:50,106 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:50,135 - INFO - Episode 23: Raw Reward: -12.620, Shaped Reward: -33.779, Length: 1619
+2025-10-14 14:28:50,137 - INFO - 📋 Episode 23 Complete:
+2025-10-14 14:28:50,138 - INFO -    Raw Reward: -12.620
+2025-10-14 14:28:50,139 - INFO -    Shaped Reward: -33.779
+2025-10-14 14:28:50,140 - INFO -    Episode Length: 1619
+2025-10-14 14:28:50,142 - INFO -    Survived: No
+2025-10-14 14:28:50,142 - INFO -    Unique Positions: 93
+2025-10-14 14:28:50,143 - INFO -    Level Ups: 17
+2025-10-14 14:28:54,317 - INFO - Training Step 43008: Actor Loss: -0.0015, Critic Loss: 1.5167, Entropy: 3.1343
+2025-10-14 14:28:54,318 - INFO - 🔄 Step 43008 Training Update:
+2025-10-14 14:28:54,320 - INFO -    Episode: 24, Step in Episode: 1022
+2025-10-14 14:28:54,320 - INFO -    Current Episode Reward: 3.540
+2025-10-14 14:28:54,322 - INFO -    Actor Loss: -0.0015
+2025-10-14 14:28:54,324 - INFO -    Critic Loss: 1.5167
+2025-10-14 14:28:54,325 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:54,328 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:58,072 - INFO - Training Step 44032: Actor Loss: -0.0795, Critic Loss: 0.3996, Entropy: 3.1343
+2025-10-14 14:28:58,073 - INFO - 🔄 Step 44032 Training Update:
+2025-10-14 14:28:58,074 - INFO -    Episode: 24, Step in Episode: 2046
+2025-10-14 14:28:58,075 - INFO -    Current Episode Reward: 12.590
+2025-10-14 14:28:58,075 - INFO -    Actor Loss: -0.0795
+2025-10-14 14:28:58,076 - INFO -    Critic Loss: 0.3996
+2025-10-14 14:28:58,077 - INFO -    Entropy: 3.1343
+2025-10-14 14:28:58,078 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:28:59,974 - INFO - Episode 24: Raw Reward: 32.830, Shaped Reward: 13.660, Length: 2567
+2025-10-14 14:28:59,975 - INFO - 📋 Episode 24 Complete:
+2025-10-14 14:28:59,976 - INFO -    Raw Reward: 32.830
+2025-10-14 14:28:59,977 - INFO -    Shaped Reward: 13.660
+2025-10-14 14:28:59,978 - INFO -    Episode Length: 2567
+2025-10-14 14:28:59,980 - INFO -    Survived: No
+2025-10-14 14:28:59,981 - INFO -    Unique Positions: 142
+2025-10-14 14:28:59,982 - INFO -    Level Ups: 15
+2025-10-14 14:29:01,943 - INFO - Training Step 45056: Actor Loss: -0.0458, Critic Loss: 5.7177, Entropy: 3.1344
+2025-10-14 14:29:01,944 - INFO - 🔄 Step 45056 Training Update:
+2025-10-14 14:29:01,945 - INFO -    Episode: 25, Step in Episode: 503
+2025-10-14 14:29:01,945 - INFO -    Current Episode Reward: 20.330
+2025-10-14 14:29:01,946 - INFO -    Actor Loss: -0.0458
+2025-10-14 14:29:01,947 - INFO -    Critic Loss: 5.7177
+2025-10-14 14:29:01,948 - INFO -    Entropy: 3.1344
+2025-10-14 14:29:01,948 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:04,228 - INFO - Episode 25: Raw Reward: 80.620, Shaped Reward: 68.743, Length: 1005
+2025-10-14 14:29:04,229 - INFO - 📋 Episode 25 Complete:
+2025-10-14 14:29:04,230 - INFO -    Raw Reward: 80.620
+2025-10-14 14:29:04,230 - INFO -    Shaped Reward: 68.743
+2025-10-14 14:29:04,233 - INFO -    Episode Length: 1005
+2025-10-14 14:29:04,234 - INFO -    Survived: No
+2025-10-14 14:29:04,234 - INFO -    Unique Positions: 105
+2025-10-14 14:29:04,235 - INFO -    Level Ups: 10
+2025-10-14 14:29:06,190 - INFO - Training Step 46080: Actor Loss: -0.1321, Critic Loss: 23.4637, Entropy: 3.1344
+2025-10-14 14:29:06,190 - INFO - 🔄 Step 46080 Training Update:
+2025-10-14 14:29:06,191 - INFO -    Episode: 26, Step in Episode: 522
+2025-10-14 14:29:06,192 - INFO -    Current Episode Reward: 66.710
+2025-10-14 14:29:06,193 - INFO -    Actor Loss: -0.1321
+2025-10-14 14:29:06,194 - INFO -    Critic Loss: 23.4637
+2025-10-14 14:29:06,196 - INFO -    Entropy: 3.1344
+2025-10-14 14:29:06,198 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:07,209 - INFO - Episode 26: Raw Reward: 68.870, Shaped Reward: 57.506, Length: 803
+2025-10-14 14:29:07,210 - INFO - 📋 Episode 26 Complete:
+2025-10-14 14:29:07,211 - INFO -    Raw Reward: 68.870
+2025-10-14 14:29:07,212 - INFO -    Shaped Reward: 57.506
+2025-10-14 14:29:07,213 - INFO -    Episode Length: 803
+2025-10-14 14:29:07,216 - INFO -    Survived: No
+2025-10-14 14:29:07,217 - INFO -    Unique Positions: 116
+2025-10-14 14:29:07,219 - INFO -    Level Ups: 11
+2025-10-14 14:29:08,839 - INFO - Episode 27: Raw Reward: -2.980, Shaped Reward: -17.650, Length: 447
+2025-10-14 14:29:08,841 - INFO - 📋 Episode 27 Complete:
+2025-10-14 14:29:08,843 - INFO -    Raw Reward: -2.980
+2025-10-14 14:29:08,844 - INFO -    Shaped Reward: -17.650
+2025-10-14 14:29:08,845 - INFO -    Episode Length: 447
+2025-10-14 14:29:08,849 - INFO -    Survived: No
+2025-10-14 14:29:08,850 - INFO -    Unique Positions: 51
+2025-10-14 14:29:08,851 - INFO -    Level Ups: 14
+2025-10-14 14:29:10,001 - INFO - Training Step 47104: Actor Loss: -0.0914, Critic Loss: 6.3474, Entropy: 3.1344
+2025-10-14 14:29:10,002 - INFO - 🔄 Step 47104 Training Update:
+2025-10-14 14:29:10,003 - INFO -    Episode: 28, Step in Episode: 296
+2025-10-14 14:29:10,003 - INFO -    Current Episode Reward: 22.140
+2025-10-14 14:29:10,004 - INFO -    Actor Loss: -0.0914
+2025-10-14 14:29:10,005 - INFO -    Critic Loss: 6.3474
+2025-10-14 14:29:10,005 - INFO -    Entropy: 3.1344
+2025-10-14 14:29:10,006 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:13,781 - INFO - Training Step 48128: Actor Loss: -0.0496, Critic Loss: 3.3957, Entropy: 3.1342
+2025-10-14 14:29:13,782 - INFO - 🔄 Step 48128 Training Update:
+2025-10-14 14:29:13,782 - INFO -    Episode: 28, Step in Episode: 1320
+2025-10-14 14:29:13,785 - INFO -    Current Episode Reward: 71.090
+2025-10-14 14:29:13,785 - INFO -    Actor Loss: -0.0496
+2025-10-14 14:29:13,787 - INFO -    Critic Loss: 3.3957
+2025-10-14 14:29:13,788 - INFO -    Entropy: 3.1342
+2025-10-14 14:29:13,790 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:17,994 - INFO - Training Step 49152: Actor Loss: 0.0525, Critic Loss: 0.8487, Entropy: 3.1342
+2025-10-14 14:29:17,995 - INFO - 🔄 Step 49152 Training Update:
+2025-10-14 14:29:17,996 - INFO -    Episode: 28, Step in Episode: 2344
+2025-10-14 14:29:17,997 - INFO -    Current Episode Reward: 75.740
+2025-10-14 14:29:17,999 - INFO -    Actor Loss: 0.0525
+2025-10-14 14:29:18,000 - INFO -    Critic Loss: 0.8487
+2025-10-14 14:29:18,000 - INFO -    Entropy: 3.1342
+2025-10-14 14:29:18,001 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:21,814 - INFO - Training Step 50176: Actor Loss: -0.0369, Critic Loss: 0.7508, Entropy: 3.1341
+2025-10-14 14:29:21,815 - INFO - 🔄 Step 50176 Training Update:
+2025-10-14 14:29:21,817 - INFO -    Episode: 28, Step in Episode: 3368
+2025-10-14 14:29:21,819 - INFO -    Current Episode Reward: 68.610
+2025-10-14 14:29:21,820 - INFO -    Actor Loss: -0.0369
+2025-10-14 14:29:21,822 - INFO -    Critic Loss: 0.7508
+2025-10-14 14:29:21,823 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:21,825 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:22,367 - INFO - Episode 28: Raw Reward: 67.540, Shaped Reward: 52.957, Length: 3512
+2025-10-14 14:29:22,368 - INFO - 📋 Episode 28 Complete:
+2025-10-14 14:29:22,369 - INFO -    Raw Reward: 67.540
+2025-10-14 14:29:22,370 - INFO -    Shaped Reward: 52.957
+2025-10-14 14:29:22,371 - INFO -    Episode Length: 3512
+2025-10-14 14:29:22,372 - INFO -    Survived: No
+2025-10-14 14:29:22,374 - INFO -    Unique Positions: 206
+2025-10-14 14:29:22,375 - INFO -    Level Ups: 11
+2025-10-14 14:29:25,018 - INFO - Episode 29: Raw Reward: 42.990, Shaped Reward: 28.159, Length: 733
+2025-10-14 14:29:25,019 - INFO - 📋 Episode 29 Complete:
+2025-10-14 14:29:25,020 - INFO -    Raw Reward: 42.990
+2025-10-14 14:29:25,021 - INFO -    Shaped Reward: 28.159
+2025-10-14 14:29:25,022 - INFO -    Episode Length: 733
+2025-10-14 14:29:25,022 - INFO -    Survived: No
+2025-10-14 14:29:25,023 - INFO -    Unique Positions: 99
+2025-10-14 14:29:25,024 - INFO -    Level Ups: 14
+2025-10-14 14:29:25,025 - INFO - ================================================================================
+2025-10-14 14:29:25,026 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 21 to 30
+2025-10-14 14:29:25,027 - INFO - ================================================================================
+2025-10-14 14:29:25,027 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:29:25,028 - INFO -    Average Raw Reward: 34.165
+2025-10-14 14:29:25,028 - INFO -    Average Shaped Reward: 18.686
+2025-10-14 14:29:25,029 - INFO -    Best Episode Reward: 85.790
+2025-10-14 14:29:25,030 - INFO -    Reward Standard Deviation: 38.917
+2025-10-14 14:29:25,030 - INFO -    Success Rate: 70.0%
+2025-10-14 14:29:25,031 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:29:25,032 - INFO - 
+2025-10-14 14:29:25,032 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:29:25,033 - INFO -    Average Episode Length: 1685.2
+2025-10-14 14:29:25,033 - INFO -    Exploration Efficiency: 0.0653
+2025-10-14 14:29:25,035 - INFO -    Total Unique Positions: 1100
+2025-10-14 14:29:25,035 - INFO - 
+2025-10-14 14:29:25,035 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:29:25,036 - INFO -    Average Actor Loss: -0.0640
+2025-10-14 14:29:25,037 - INFO -    Average Critic Loss: 3.6417
+2025-10-14 14:29:25,037 - INFO -    Average Entropy: 3.1343
+2025-10-14 14:29:25,038 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:29:25,039 - INFO -    Reward Trend: 3.145515
+2025-10-14 14:29:25,040 - INFO -    Learning Stability: 0.025
+2025-10-14 14:29:25,040 - INFO - ================================================================================
+2025-10-14 14:29:25,666 - INFO - Training Step 51200: Actor Loss: 0.0581, Critic Loss: 10.0452, Entropy: 3.1341
+2025-10-14 14:29:25,666 - INFO - 🔄 Step 51200 Training Update:
+2025-10-14 14:29:25,667 - INFO -    Episode: 30, Step in Episode: 147
+2025-10-14 14:29:25,669 - INFO -    Current Episode Reward: -1.080
+2025-10-14 14:29:25,672 - INFO -    Actor Loss: 0.0581
+2025-10-14 14:29:25,672 - INFO -    Critic Loss: 10.0452
+2025-10-14 14:29:25,674 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:25,675 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:27,745 - INFO - Episode 30: Raw Reward: -4.320, Shaped Reward: -18.161, Length: 578
+2025-10-14 14:29:27,747 - INFO - 📋 Episode 30 Complete:
+2025-10-14 14:29:27,749 - INFO -    Raw Reward: -4.320
+2025-10-14 14:29:27,750 - INFO -    Shaped Reward: -18.161
+2025-10-14 14:29:27,752 - INFO -    Episode Length: 578
+2025-10-14 14:29:27,754 - INFO -    Survived: No
+2025-10-14 14:29:27,754 - INFO -    Unique Positions: 18
+2025-10-14 14:29:27,756 - INFO -    Level Ups: 12
+2025-10-14 14:29:29,935 - INFO - Training Step 52224: Actor Loss: -0.0929, Critic Loss: 18.2517, Entropy: 3.1341
+2025-10-14 14:29:29,936 - INFO - 🔄 Step 52224 Training Update:
+2025-10-14 14:29:29,937 - INFO -    Episode: 31, Step in Episode: 593
+2025-10-14 14:29:29,937 - INFO -    Current Episode Reward: 52.880
+2025-10-14 14:29:29,938 - INFO -    Actor Loss: -0.0929
+2025-10-14 14:29:29,939 - INFO -    Critic Loss: 18.2517
+2025-10-14 14:29:29,940 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:29,940 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:30,090 - INFO - Episode 31: Raw Reward: 52.630, Shaped Reward: 33.727, Length: 631
+2025-10-14 14:29:30,091 - INFO - 📋 Episode 31 Complete:
+2025-10-14 14:29:30,092 - INFO -    Raw Reward: 52.630
+2025-10-14 14:29:30,094 - INFO -    Shaped Reward: 33.727
+2025-10-14 14:29:30,095 - INFO -    Episode Length: 631
+2025-10-14 14:29:30,095 - INFO -    Survived: No
+2025-10-14 14:29:30,097 - INFO -    Unique Positions: 70
+2025-10-14 14:29:30,098 - INFO -    Level Ups: 18
+2025-10-14 14:29:33,598 - INFO - Episode 32: Raw Reward: 45.090, Shaped Reward: 32.472, Length: 967
+2025-10-14 14:29:33,599 - INFO - 📋 Episode 32 Complete:
+2025-10-14 14:29:33,600 - INFO -    Raw Reward: 45.090
+2025-10-14 14:29:33,601 - INFO -    Shaped Reward: 32.472
+2025-10-14 14:29:33,602 - INFO -    Episode Length: 967
+2025-10-14 14:29:33,604 - INFO -    Survived: No
+2025-10-14 14:29:33,605 - INFO -    Unique Positions: 92
+2025-10-14 14:29:33,606 - INFO -    Level Ups: 11
+2025-10-14 14:29:33,763 - INFO - Training Step 53248: Actor Loss: -0.1295, Critic Loss: 5.3209, Entropy: 3.1341
+2025-10-14 14:29:33,763 - INFO - 🔄 Step 53248 Training Update:
+2025-10-14 14:29:33,764 - INFO -    Episode: 33, Step in Episode: 19
+2025-10-14 14:29:33,766 - INFO -    Current Episode Reward: 3.840
+2025-10-14 14:29:33,768 - INFO -    Actor Loss: -0.1295
+2025-10-14 14:29:33,769 - INFO -    Critic Loss: 5.3209
+2025-10-14 14:29:33,770 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:33,771 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:35,921 - INFO - Episode 33: Raw Reward: 17.640, Shaped Reward: 4.288, Length: 612
+2025-10-14 14:29:35,921 - INFO - 📋 Episode 33 Complete:
+2025-10-14 14:29:35,924 - INFO -    Raw Reward: 17.640
+2025-10-14 14:29:35,926 - INFO -    Shaped Reward: 4.288
+2025-10-14 14:29:35,927 - INFO -    Episode Length: 612
+2025-10-14 14:29:35,928 - INFO -    Survived: No
+2025-10-14 14:29:35,929 - INFO -    Unique Positions: 58
+2025-10-14 14:29:35,930 - INFO -    Level Ups: 12
+2025-10-14 14:29:37,576 - INFO - Training Step 54272: Actor Loss: -0.0048, Critic Loss: 3.4444, Entropy: 3.1342
+2025-10-14 14:29:37,576 - INFO - 🔄 Step 54272 Training Update:
+2025-10-14 14:29:37,578 - INFO -    Episode: 34, Step in Episode: 431
+2025-10-14 14:29:37,581 - INFO -    Current Episode Reward: 19.920
+2025-10-14 14:29:37,581 - INFO -    Actor Loss: -0.0048
+2025-10-14 14:29:37,582 - INFO -    Critic Loss: 3.4444
+2025-10-14 14:29:37,584 - INFO -    Entropy: 3.1342
+2025-10-14 14:29:37,585 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:40,196 - INFO - Episode 34: Raw Reward: 83.870, Shaped Reward: 69.299, Length: 1008
+2025-10-14 14:29:40,196 - INFO - 📋 Episode 34 Complete:
+2025-10-14 14:29:40,197 - INFO -    Raw Reward: 83.870
+2025-10-14 14:29:40,198 - INFO -    Shaped Reward: 69.299
+2025-10-14 14:29:40,201 - INFO -    Episode Length: 1008
+2025-10-14 14:29:40,202 - INFO -    Survived: No
+2025-10-14 14:29:40,203 - INFO -    Unique Positions: 76
+2025-10-14 14:29:40,205 - INFO -    Level Ups: 13
+2025-10-14 14:29:41,905 - INFO - Training Step 55296: Actor Loss: -0.0268, Critic Loss: 15.5748, Entropy: 3.1341
+2025-10-14 14:29:41,906 - INFO - 🔄 Step 55296 Training Update:
+2025-10-14 14:29:41,907 - INFO -    Episode: 35, Step in Episode: 447
+2025-10-14 14:29:41,907 - INFO -    Current Episode Reward: 20.600
+2025-10-14 14:29:41,908 - INFO -    Actor Loss: -0.0268
+2025-10-14 14:29:41,909 - INFO -    Critic Loss: 15.5748
+2025-10-14 14:29:41,910 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:41,911 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:45,698 - INFO - Training Step 56320: Actor Loss: -0.1228, Critic Loss: 4.2803, Entropy: 3.1340
+2025-10-14 14:29:45,699 - INFO - 🔄 Step 56320 Training Update:
+2025-10-14 14:29:45,700 - INFO -    Episode: 35, Step in Episode: 1471
+2025-10-14 14:29:45,702 - INFO -    Current Episode Reward: 40.090
+2025-10-14 14:29:45,703 - INFO -    Actor Loss: -0.1228
+2025-10-14 14:29:45,704 - INFO -    Critic Loss: 4.2803
+2025-10-14 14:29:45,707 - INFO -    Entropy: 3.1340
+2025-10-14 14:29:45,707 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:47,786 - INFO - Episode 35: Raw Reward: 51.180, Shaped Reward: 33.443, Length: 2042
+2025-10-14 14:29:47,787 - INFO - 📋 Episode 35 Complete:
+2025-10-14 14:29:47,789 - INFO -    Raw Reward: 51.180
+2025-10-14 14:29:47,791 - INFO -    Shaped Reward: 33.443
+2025-10-14 14:29:47,791 - INFO -    Episode Length: 2042
+2025-10-14 14:29:47,792 - INFO -    Survived: No
+2025-10-14 14:29:47,793 - INFO -    Unique Positions: 135
+2025-10-14 14:29:47,794 - INFO -    Level Ups: 13
+2025-10-14 14:29:49,508 - INFO - Training Step 57344: Actor Loss: -0.0493, Critic Loss: 6.0393, Entropy: 3.1340
+2025-10-14 14:29:49,509 - INFO - 🔄 Step 57344 Training Update:
+2025-10-14 14:29:49,510 - INFO -    Episode: 36, Step in Episode: 453
+2025-10-14 14:29:49,512 - INFO -    Current Episode Reward: 28.000
+2025-10-14 14:29:49,513 - INFO -    Actor Loss: -0.0493
+2025-10-14 14:29:49,514 - INFO -    Critic Loss: 6.0393
+2025-10-14 14:29:49,515 - INFO -    Entropy: 3.1340
+2025-10-14 14:29:49,518 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:50,749 - INFO - Episode 36: Raw Reward: 46.030, Shaped Reward: 32.797, Length: 724
+2025-10-14 14:29:50,751 - INFO - 📋 Episode 36 Complete:
+2025-10-14 14:29:50,752 - INFO -    Raw Reward: 46.030
+2025-10-14 14:29:50,754 - INFO -    Shaped Reward: 32.797
+2025-10-14 14:29:50,755 - INFO -    Episode Length: 724
+2025-10-14 14:29:50,756 - INFO -    Survived: No
+2025-10-14 14:29:50,757 - INFO -    Unique Positions: 54
+2025-10-14 14:29:50,759 - INFO -    Level Ups: 12
+2025-10-14 14:29:51,606 - INFO - Episode 37: Raw Reward: 4.860, Shaped Reward: -9.969, Length: 161
+2025-10-14 14:29:51,608 - INFO - 📋 Episode 37 Complete:
+2025-10-14 14:29:51,608 - INFO -    Raw Reward: 4.860
+2025-10-14 14:29:51,611 - INFO -    Shaped Reward: -9.969
+2025-10-14 14:29:51,611 - INFO -    Episode Length: 161
+2025-10-14 14:29:51,612 - INFO -    Survived: No
+2025-10-14 14:29:51,613 - INFO -    Unique Positions: 27
+2025-10-14 14:29:51,614 - INFO -    Level Ups: 14
+2025-10-14 14:29:53,975 - INFO - Training Step 58368: Actor Loss: -0.0962, Critic Loss: 5.2139, Entropy: 3.1341
+2025-10-14 14:29:53,976 - INFO - 🔄 Step 58368 Training Update:
+2025-10-14 14:29:53,977 - INFO -    Episode: 38, Step in Episode: 592
+2025-10-14 14:29:53,978 - INFO -    Current Episode Reward: -3.890
+2025-10-14 14:29:53,979 - INFO -    Actor Loss: -0.0962
+2025-10-14 14:29:53,980 - INFO -    Critic Loss: 5.2139
+2025-10-14 14:29:53,981 - INFO -    Entropy: 3.1341
+2025-10-14 14:29:53,982 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:29:57,701 - INFO - Training Step 59392: Actor Loss: -0.0015, Critic Loss: 2.8152, Entropy: 3.1340
+2025-10-14 14:29:57,702 - INFO - 🔄 Step 59392 Training Update:
+2025-10-14 14:29:57,702 - INFO -    Episode: 38, Step in Episode: 1616
+2025-10-14 14:29:57,704 - INFO -    Current Episode Reward: 7.200
+2025-10-14 14:29:57,706 - INFO -    Actor Loss: -0.0015
+2025-10-14 14:29:57,707 - INFO -    Critic Loss: 2.8152
+2025-10-14 14:29:57,707 - INFO -    Entropy: 3.1340
+2025-10-14 14:29:57,708 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:01,437 - INFO - Training Step 60416: Actor Loss: -0.0442, Critic Loss: 0.9832, Entropy: 3.1340
+2025-10-14 14:30:01,438 - INFO - 🔄 Step 60416 Training Update:
+2025-10-14 14:30:01,440 - INFO -    Episode: 38, Step in Episode: 2640
+2025-10-14 14:30:01,441 - INFO -    Current Episode Reward: 12.030
+2025-10-14 14:30:01,443 - INFO -    Actor Loss: -0.0442
+2025-10-14 14:30:01,444 - INFO -    Critic Loss: 0.9832
+2025-10-14 14:30:01,445 - INFO -    Entropy: 3.1340
+2025-10-14 14:30:01,446 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:05,750 - INFO - Training Step 61440: Actor Loss: -0.0458, Critic Loss: 1.0698, Entropy: 3.1340
+2025-10-14 14:30:05,751 - INFO - 🔄 Step 61440 Training Update:
+2025-10-14 14:30:05,752 - INFO -    Episode: 38, Step in Episode: 3664
+2025-10-14 14:30:05,754 - INFO -    Current Episode Reward: 12.310
+2025-10-14 14:30:05,755 - INFO -    Actor Loss: -0.0458
+2025-10-14 14:30:05,758 - INFO -    Critic Loss: 1.0698
+2025-10-14 14:30:05,758 - INFO -    Entropy: 3.1340
+2025-10-14 14:30:05,760 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:06,574 - INFO - Episode 38: Raw Reward: 10.750, Shaped Reward: -11.251, Length: 3884
+2025-10-14 14:30:06,575 - INFO - 📋 Episode 38 Complete:
+2025-10-14 14:30:06,576 - INFO -    Raw Reward: 10.750
+2025-10-14 14:30:06,577 - INFO -    Shaped Reward: -11.251
+2025-10-14 14:30:06,579 - INFO -    Episode Length: 3884
+2025-10-14 14:30:06,581 - INFO -    Survived: No
+2025-10-14 14:30:06,582 - INFO -    Unique Positions: 126
+2025-10-14 14:30:06,584 - INFO -    Level Ups: 15
+2025-10-14 14:30:09,529 - INFO - Training Step 62464: Actor Loss: -0.0266, Critic Loss: 6.1273, Entropy: 3.1341
+2025-10-14 14:30:09,530 - INFO - 🔄 Step 62464 Training Update:
+2025-10-14 14:30:09,531 - INFO -    Episode: 39, Step in Episode: 804
+2025-10-14 14:30:09,533 - INFO -    Current Episode Reward: -4.800
+2025-10-14 14:30:09,534 - INFO -    Actor Loss: -0.0266
+2025-10-14 14:30:09,535 - INFO -    Critic Loss: 6.1273
+2025-10-14 14:30:09,536 - INFO -    Entropy: 3.1341
+2025-10-14 14:30:09,538 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:11,008 - INFO - Episode 39: Raw Reward: -2.610, Shaped Reward: -14.606, Length: 1213
+2025-10-14 14:30:11,009 - INFO - 📋 Episode 39 Complete:
+2025-10-14 14:30:11,010 - INFO -    Raw Reward: -2.610
+2025-10-14 14:30:11,011 - INFO -    Shaped Reward: -14.606
+2025-10-14 14:30:11,013 - INFO -    Episode Length: 1213
+2025-10-14 14:30:11,014 - INFO -    Survived: No
+2025-10-14 14:30:11,015 - INFO -    Unique Positions: 124
+2025-10-14 14:30:11,016 - INFO -    Level Ups: 11
+2025-10-14 14:30:11,018 - INFO - ================================================================================
+2025-10-14 14:30:11,020 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 31 to 40
+2025-10-14 14:30:11,021 - INFO - ================================================================================
+2025-10-14 14:30:11,022 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:30:11,024 - INFO -    Average Raw Reward: 30.512
+2025-10-14 14:30:11,025 - INFO -    Average Shaped Reward: 15.204
+2025-10-14 14:30:11,026 - INFO -    Best Episode Reward: 83.870
+2025-10-14 14:30:11,027 - INFO -    Reward Standard Deviation: 27.823
+2025-10-14 14:30:11,029 - INFO -    Success Rate: 80.0%
+2025-10-14 14:30:11,031 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:30:11,032 - INFO - 
+2025-10-14 14:30:11,033 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:30:11,034 - INFO -    Average Episode Length: 1182.0
+2025-10-14 14:30:11,036 - INFO -    Exploration Efficiency: 0.0660
+2025-10-14 14:30:11,037 - INFO -    Total Unique Positions: 780
+2025-10-14 14:30:11,038 - INFO - 
+2025-10-14 14:30:11,039 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:30:11,041 - INFO -    Average Actor Loss: -0.0653
+2025-10-14 14:30:11,041 - INFO -    Average Critic Loss: 4.6277
+2025-10-14 14:30:11,043 - INFO -    Average Entropy: 3.1343
+2025-10-14 14:30:11,044 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:30:11,046 - INFO -    Reward Trend: -2.584485
+2025-10-14 14:30:11,048 - INFO -    Learning Stability: 0.035
+2025-10-14 14:30:11,048 - INFO - ================================================================================
+2025-10-14 14:30:13,360 - INFO - Training Step 63488: Actor Loss: -0.0951, Critic Loss: 2.4081, Entropy: 3.1340
+2025-10-14 14:30:13,361 - INFO - 🔄 Step 63488 Training Update:
+2025-10-14 14:30:13,362 - INFO -    Episode: 40, Step in Episode: 615
+2025-10-14 14:30:13,364 - INFO -    Current Episode Reward: -4.050
+2025-10-14 14:30:13,364 - INFO -    Actor Loss: -0.0951
+2025-10-14 14:30:13,365 - INFO -    Critic Loss: 2.4081
+2025-10-14 14:30:13,366 - INFO -    Entropy: 3.1340
+2025-10-14 14:30:13,366 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:17,642 - INFO - Training Step 64512: Actor Loss: -0.0059, Critic Loss: 0.8244, Entropy: 3.1339
+2025-10-14 14:30:17,642 - INFO - 🔄 Step 64512 Training Update:
+2025-10-14 14:30:17,643 - INFO -    Episode: 40, Step in Episode: 1639
+2025-10-14 14:30:17,644 - INFO -    Current Episode Reward: -3.540
+2025-10-14 14:30:17,645 - INFO -    Actor Loss: -0.0059
+2025-10-14 14:30:17,647 - INFO -    Critic Loss: 0.8244
+2025-10-14 14:30:17,649 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:17,650 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:21,280 - INFO - Episode 40: Raw Reward: -2.630, Shaped Reward: -17.755, Length: 2640
+2025-10-14 14:30:21,281 - INFO - 📋 Episode 40 Complete:
+2025-10-14 14:30:21,282 - INFO -    Raw Reward: -2.630
+2025-10-14 14:30:21,284 - INFO -    Shaped Reward: -17.755
+2025-10-14 14:30:21,285 - INFO -    Episode Length: 2640
+2025-10-14 14:30:21,286 - INFO -    Survived: No
+2025-10-14 14:30:21,287 - INFO -    Unique Positions: 163
+2025-10-14 14:30:21,288 - INFO -    Level Ups: 12
+2025-10-14 14:30:21,461 - INFO - Training Step 65536: Actor Loss: -0.0710, Critic Loss: 2.4075, Entropy: 3.1339
+2025-10-14 14:30:21,462 - INFO - 🔄 Step 65536 Training Update:
+2025-10-14 14:30:21,463 - INFO -    Episode: 41, Step in Episode: 23
+2025-10-14 14:30:21,464 - INFO -    Current Episode Reward: -0.120
+2025-10-14 14:30:21,466 - INFO -    Actor Loss: -0.0710
+2025-10-14 14:30:21,467 - INFO -    Critic Loss: 2.4075
+2025-10-14 14:30:21,468 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:21,469 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:25,409 - INFO - Training Step 66560: Actor Loss: -0.0707, Critic Loss: 0.4012, Entropy: 3.1339
+2025-10-14 14:30:25,410 - INFO - 🔄 Step 66560 Training Update:
+2025-10-14 14:30:25,411 - INFO -    Episode: 41, Step in Episode: 1047
+2025-10-14 14:30:25,413 - INFO -    Current Episode Reward: -7.410
+2025-10-14 14:30:25,414 - INFO -    Actor Loss: -0.0707
+2025-10-14 14:30:25,416 - INFO -    Critic Loss: 0.4012
+2025-10-14 14:30:25,417 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:25,418 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:26,076 - INFO - Episode 41: Raw Reward: -8.680, Shaped Reward: -26.776, Length: 1219
+2025-10-14 14:30:26,077 - INFO - 📋 Episode 41 Complete:
+2025-10-14 14:30:26,078 - INFO -    Raw Reward: -8.680
+2025-10-14 14:30:26,080 - INFO -    Shaped Reward: -26.776
+2025-10-14 14:30:26,082 - INFO -    Episode Length: 1219
+2025-10-14 14:30:26,083 - INFO -    Survived: No
+2025-10-14 14:30:26,084 - INFO -    Unique Positions: 73
+2025-10-14 14:30:26,085 - INFO -    Level Ups: 16
+2025-10-14 14:30:27,151 - INFO - Episode 42: Raw Reward: -1.720, Shaped Reward: -15.777, Length: 225
+2025-10-14 14:30:27,153 - INFO - 📋 Episode 42 Complete:
+2025-10-14 14:30:27,154 - INFO -    Raw Reward: -1.720
+2025-10-14 14:30:27,155 - INFO -    Shaped Reward: -15.777
+2025-10-14 14:30:27,156 - INFO -    Episode Length: 225
+2025-10-14 14:30:27,157 - INFO -    Survived: No
+2025-10-14 14:30:27,158 - INFO -    Unique Positions: 29
+2025-10-14 14:30:27,159 - INFO -    Level Ups: 13
+2025-10-14 14:30:29,801 - INFO - Training Step 67584: Actor Loss: -0.1163, Critic Loss: 8.2247, Entropy: 3.1340
+2025-10-14 14:30:29,802 - INFO - 🔄 Step 67584 Training Update:
+2025-10-14 14:30:29,802 - INFO -    Episode: 43, Step in Episode: 627
+2025-10-14 14:30:29,803 - INFO -    Current Episode Reward: 26.930
+2025-10-14 14:30:29,804 - INFO -    Actor Loss: -0.1163
+2025-10-14 14:30:29,804 - INFO -    Critic Loss: 8.2247
+2025-10-14 14:30:29,805 - INFO -    Entropy: 3.1340
+2025-10-14 14:30:29,806 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:33,549 - INFO - Training Step 68608: Actor Loss: -0.1364, Critic Loss: 1.5840, Entropy: 3.1339
+2025-10-14 14:30:33,550 - INFO - 🔄 Step 68608 Training Update:
+2025-10-14 14:30:33,551 - INFO -    Episode: 43, Step in Episode: 1651
+2025-10-14 14:30:33,552 - INFO -    Current Episode Reward: 36.090
+2025-10-14 14:30:33,552 - INFO -    Actor Loss: -0.1364
+2025-10-14 14:30:33,553 - INFO -    Critic Loss: 1.5840
+2025-10-14 14:30:33,554 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:33,554 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:37,298 - INFO - Training Step 69632: Actor Loss: 0.0164, Critic Loss: 0.9647, Entropy: 3.1339
+2025-10-14 14:30:37,299 - INFO - 🔄 Step 69632 Training Update:
+2025-10-14 14:30:37,300 - INFO -    Episode: 43, Step in Episode: 2675
+2025-10-14 14:30:37,301 - INFO -    Current Episode Reward: 28.690
+2025-10-14 14:30:37,302 - INFO -    Actor Loss: 0.0164
+2025-10-14 14:30:37,302 - INFO -    Critic Loss: 0.9647
+2025-10-14 14:30:37,304 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:37,306 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:37,727 - INFO - Episode 43: Raw Reward: 28.030, Shaped Reward: 13.314, Length: 2783
+2025-10-14 14:30:37,727 - INFO - 📋 Episode 43 Complete:
+2025-10-14 14:30:37,729 - INFO -    Raw Reward: 28.030
+2025-10-14 14:30:37,730 - INFO -    Shaped Reward: 13.314
+2025-10-14 14:30:37,731 - INFO -    Episode Length: 2783
+2025-10-14 14:30:37,732 - INFO -    Survived: No
+2025-10-14 14:30:37,733 - INFO -    Unique Positions: 159
+2025-10-14 14:30:37,735 - INFO -    Level Ups: 12
+2025-10-14 14:30:41,644 - INFO - Training Step 70656: Actor Loss: -0.0964, Critic Loss: 3.6619, Entropy: 3.1340
+2025-10-14 14:30:41,645 - INFO - 🔄 Step 70656 Training Update:
+2025-10-14 14:30:41,646 - INFO -    Episode: 44, Step in Episode: 916
+2025-10-14 14:30:41,646 - INFO -    Current Episode Reward: 31.600
+2025-10-14 14:30:41,647 - INFO -    Actor Loss: -0.0964
+2025-10-14 14:30:41,648 - INFO -    Critic Loss: 3.6619
+2025-10-14 14:30:41,650 - INFO -    Entropy: 3.1340
+2025-10-14 14:30:41,651 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:45,384 - INFO - Training Step 71680: Actor Loss: -0.1716, Critic Loss: 0.1071, Entropy: 3.1339
+2025-10-14 14:30:45,385 - INFO - 🔄 Step 71680 Training Update:
+2025-10-14 14:30:45,385 - INFO -    Episode: 44, Step in Episode: 1940
+2025-10-14 14:30:45,386 - INFO -    Current Episode Reward: 27.700
+2025-10-14 14:30:45,386 - INFO -    Actor Loss: -0.1716
+2025-10-14 14:30:45,387 - INFO -    Critic Loss: 0.1071
+2025-10-14 14:30:45,388 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:45,388 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:49,085 - INFO - Training Step 72704: Actor Loss: -0.0085, Critic Loss: 0.6542, Entropy: 3.1339
+2025-10-14 14:30:49,086 - INFO - 🔄 Step 72704 Training Update:
+2025-10-14 14:30:49,087 - INFO -    Episode: 44, Step in Episode: 2964
+2025-10-14 14:30:49,088 - INFO -    Current Episode Reward: 19.230
+2025-10-14 14:30:49,089 - INFO -    Actor Loss: -0.0085
+2025-10-14 14:30:49,091 - INFO -    Critic Loss: 0.6542
+2025-10-14 14:30:49,093 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:49,094 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:53,436 - INFO - Training Step 73728: Actor Loss: -0.0592, Critic Loss: 0.5808, Entropy: 3.1339
+2025-10-14 14:30:53,437 - INFO - 🔄 Step 73728 Training Update:
+2025-10-14 14:30:53,438 - INFO -    Episode: 44, Step in Episode: 3988
+2025-10-14 14:30:53,439 - INFO -    Current Episode Reward: 11.380
+2025-10-14 14:30:53,439 - INFO -    Actor Loss: -0.0592
+2025-10-14 14:30:53,440 - INFO -    Critic Loss: 0.5808
+2025-10-14 14:30:53,441 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:53,442 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:30:56,775 - INFO - Episode 44: Raw Reward: 4.600, Shaped Reward: -19.339, Length: 4900
+2025-10-14 14:30:56,776 - INFO - 📋 Episode 44 Complete:
+2025-10-14 14:30:56,777 - INFO -    Raw Reward: 4.600
+2025-10-14 14:30:56,778 - INFO -    Shaped Reward: -19.339
+2025-10-14 14:30:56,780 - INFO -    Episode Length: 4900
+2025-10-14 14:30:56,781 - INFO -    Survived: No
+2025-10-14 14:30:56,783 - INFO -    Unique Positions: 86
+2025-10-14 14:30:56,784 - INFO -    Level Ups: 14
+2025-10-14 14:30:57,261 - INFO - Training Step 74752: Actor Loss: -0.0750, Critic Loss: 3.7732, Entropy: 3.1339
+2025-10-14 14:30:57,262 - INFO - 🔄 Step 74752 Training Update:
+2025-10-14 14:30:57,263 - INFO -    Episode: 45, Step in Episode: 112
+2025-10-14 14:30:57,264 - INFO -    Current Episode Reward: -0.690
+2025-10-14 14:30:57,265 - INFO -    Actor Loss: -0.0750
+2025-10-14 14:30:57,266 - INFO -    Critic Loss: 3.7732
+2025-10-14 14:30:57,267 - INFO -    Entropy: 3.1339
+2025-10-14 14:30:57,268 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:01,035 - INFO - Training Step 75776: Actor Loss: 0.0932, Critic Loss: 1.1766, Entropy: 3.1338
+2025-10-14 14:31:01,036 - INFO - 🔄 Step 75776 Training Update:
+2025-10-14 14:31:01,037 - INFO -    Episode: 45, Step in Episode: 1136
+2025-10-14 14:31:01,038 - INFO -    Current Episode Reward: -4.250
+2025-10-14 14:31:01,039 - INFO -    Actor Loss: 0.0932
+2025-10-14 14:31:01,040 - INFO -    Critic Loss: 1.1766
+2025-10-14 14:31:01,041 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:01,044 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:05,318 - INFO - Training Step 76800: Actor Loss: -0.0440, Critic Loss: 0.4063, Entropy: 3.1338
+2025-10-14 14:31:05,319 - INFO - 🔄 Step 76800 Training Update:
+2025-10-14 14:31:05,321 - INFO -    Episode: 45, Step in Episode: 2160
+2025-10-14 14:31:05,324 - INFO -    Current Episode Reward: -7.570
+2025-10-14 14:31:05,325 - INFO -    Actor Loss: -0.0440
+2025-10-14 14:31:05,327 - INFO -    Critic Loss: 0.4063
+2025-10-14 14:31:05,328 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:05,331 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:09,044 - INFO - Training Step 77824: Actor Loss: -0.0536, Critic Loss: 10.8533, Entropy: 3.1338
+2025-10-14 14:31:09,044 - INFO - 🔄 Step 77824 Training Update:
+2025-10-14 14:31:09,045 - INFO -    Episode: 45, Step in Episode: 3184
+2025-10-14 14:31:09,046 - INFO -    Current Episode Reward: 34.640
+2025-10-14 14:31:09,047 - INFO -    Actor Loss: -0.0536
+2025-10-14 14:31:09,047 - INFO -    Critic Loss: 10.8533
+2025-10-14 14:31:09,048 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:09,048 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:12,180 - INFO - Episode 45: Raw Reward: 36.180, Shaped Reward: 12.944, Length: 4062
+2025-10-14 14:31:12,181 - INFO - 📋 Episode 45 Complete:
+2025-10-14 14:31:12,183 - INFO -    Raw Reward: 36.180
+2025-10-14 14:31:12,184 - INFO -    Shaped Reward: 12.944
+2025-10-14 14:31:12,185 - INFO -    Episode Length: 4062
+2025-10-14 14:31:12,187 - INFO -    Survived: No
+2025-10-14 14:31:12,188 - INFO -    Unique Positions: 212
+2025-10-14 14:31:12,189 - INFO -    Level Ups: 17
+2025-10-14 14:31:12,804 - INFO - Training Step 78848: Actor Loss: -0.0582, Critic Loss: 4.6488, Entropy: 3.1338
+2025-10-14 14:31:12,805 - INFO - 🔄 Step 78848 Training Update:
+2025-10-14 14:31:12,806 - INFO -    Episode: 46, Step in Episode: 146
+2025-10-14 14:31:12,808 - INFO -    Current Episode Reward: 22.950
+2025-10-14 14:31:12,810 - INFO -    Actor Loss: -0.0582
+2025-10-14 14:31:12,812 - INFO -    Critic Loss: 4.6488
+2025-10-14 14:31:12,813 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:12,815 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:16,232 - INFO - Episode 46: Raw Reward: 16.970, Shaped Reward: 3.054, Length: 953
+2025-10-14 14:31:16,233 - INFO - 📋 Episode 46 Complete:
+2025-10-14 14:31:16,234 - INFO -    Raw Reward: 16.970
+2025-10-14 14:31:16,235 - INFO -    Shaped Reward: 3.054
+2025-10-14 14:31:16,235 - INFO -    Episode Length: 953
+2025-10-14 14:31:16,237 - INFO -    Survived: No
+2025-10-14 14:31:16,238 - INFO -    Unique Positions: 103
+2025-10-14 14:31:16,239 - INFO -    Level Ups: 13
+2025-10-14 14:31:17,103 - INFO - Training Step 79872: Actor Loss: -0.0593, Critic Loss: 3.7669, Entropy: 3.1338
+2025-10-14 14:31:17,103 - INFO - 🔄 Step 79872 Training Update:
+2025-10-14 14:31:17,104 - INFO -    Episode: 47, Step in Episode: 217
+2025-10-14 14:31:17,105 - INFO -    Current Episode Reward: 6.570
+2025-10-14 14:31:17,106 - INFO -    Actor Loss: -0.0593
+2025-10-14 14:31:17,108 - INFO -    Critic Loss: 3.7669
+2025-10-14 14:31:17,109 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:17,111 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:20,835 - INFO - Training Step 80896: Actor Loss: -0.0281, Critic Loss: 0.5493, Entropy: 3.1338
+2025-10-14 14:31:20,836 - INFO - 🔄 Step 80896 Training Update:
+2025-10-14 14:31:20,837 - INFO -    Episode: 47, Step in Episode: 1241
+2025-10-14 14:31:20,839 - INFO -    Current Episode Reward: -0.590
+2025-10-14 14:31:20,839 - INFO -    Actor Loss: -0.0281
+2025-10-14 14:31:20,840 - INFO -    Critic Loss: 0.5493
+2025-10-14 14:31:20,842 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:20,842 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:22,367 - INFO - Episode 47: Raw Reward: 16.480, Shaped Reward: 3.163, Length: 1661
+2025-10-14 14:31:22,368 - INFO - 📋 Episode 47 Complete:
+2025-10-14 14:31:22,369 - INFO -    Raw Reward: 16.480
+2025-10-14 14:31:22,370 - INFO -    Shaped Reward: 3.163
+2025-10-14 14:31:22,371 - INFO -    Episode Length: 1661
+2025-10-14 14:31:22,373 - INFO -    Survived: No
+2025-10-14 14:31:22,374 - INFO -    Unique Positions: 75
+2025-10-14 14:31:22,375 - INFO -    Level Ups: 12
+2025-10-14 14:31:24,623 - INFO - Training Step 81920: Actor Loss: 0.0447, Critic Loss: 7.1959, Entropy: 3.1338
+2025-10-14 14:31:24,624 - INFO - 🔄 Step 81920 Training Update:
+2025-10-14 14:31:24,625 - INFO -    Episode: 48, Step in Episode: 604
+2025-10-14 14:31:24,626 - INFO -    Current Episode Reward: -4.460
+2025-10-14 14:31:24,627 - INFO -    Actor Loss: 0.0447
+2025-10-14 14:31:24,629 - INFO -    Critic Loss: 7.1959
+2025-10-14 14:31:24,629 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:24,631 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:28,900 - INFO - Training Step 82944: Actor Loss: -0.0640, Critic Loss: 1.5594, Entropy: 3.1337
+2025-10-14 14:31:28,902 - INFO - 🔄 Step 82944 Training Update:
+2025-10-14 14:31:28,905 - INFO -    Episode: 48, Step in Episode: 1628
+2025-10-14 14:31:28,906 - INFO -    Current Episode Reward: 12.730
+2025-10-14 14:31:28,907 - INFO -    Actor Loss: -0.0640
+2025-10-14 14:31:28,908 - INFO -    Critic Loss: 1.5594
+2025-10-14 14:31:28,908 - INFO -    Entropy: 3.1337
+2025-10-14 14:31:28,909 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:32,629 - INFO - Training Step 83968: Actor Loss: -0.1698, Critic Loss: 9.6974, Entropy: 3.1338
+2025-10-14 14:31:32,629 - INFO - 🔄 Step 83968 Training Update:
+2025-10-14 14:31:32,630 - INFO -    Episode: 48, Step in Episode: 2652
+2025-10-14 14:31:32,631 - INFO -    Current Episode Reward: 77.170
+2025-10-14 14:31:32,631 - INFO -    Actor Loss: -0.1698
+2025-10-14 14:31:32,632 - INFO -    Critic Loss: 9.6974
+2025-10-14 14:31:32,632 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:32,633 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:35,992 - INFO - Episode 48: Raw Reward: 76.780, Shaped Reward: 60.611, Length: 3587
+2025-10-14 14:31:35,993 - INFO - 📋 Episode 48 Complete:
+2025-10-14 14:31:35,994 - INFO -    Raw Reward: 76.780
+2025-10-14 14:31:35,995 - INFO -    Shaped Reward: 60.611
+2025-10-14 14:31:35,997 - INFO -    Episode Length: 3587
+2025-10-14 14:31:35,998 - INFO -    Survived: No
+2025-10-14 14:31:36,000 - INFO -    Unique Positions: 159
+2025-10-14 14:31:36,002 - INFO -    Level Ups: 11
+2025-10-14 14:31:36,414 - INFO - Training Step 84992: Actor Loss: -0.0242, Critic Loss: 3.1653, Entropy: 3.1338
+2025-10-14 14:31:36,415 - INFO - 🔄 Step 84992 Training Update:
+2025-10-14 14:31:36,416 - INFO -    Episode: 49, Step in Episode: 89
+2025-10-14 14:31:36,418 - INFO -    Current Episode Reward: -0.750
+2025-10-14 14:31:36,420 - INFO -    Actor Loss: -0.0242
+2025-10-14 14:31:36,421 - INFO -    Critic Loss: 3.1653
+2025-10-14 14:31:36,422 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:36,423 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:40,720 - INFO - Training Step 86016: Actor Loss: -0.0306, Critic Loss: 0.7789, Entropy: 3.1338
+2025-10-14 14:31:40,720 - INFO - 🔄 Step 86016 Training Update:
+2025-10-14 14:31:40,721 - INFO -    Episode: 49, Step in Episode: 1113
+2025-10-14 14:31:40,722 - INFO -    Current Episode Reward: 0.230
+2025-10-14 14:31:40,722 - INFO -    Actor Loss: -0.0306
+2025-10-14 14:31:40,723 - INFO -    Critic Loss: 0.7789
+2025-10-14 14:31:40,723 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:40,724 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:41,378 - INFO - Episode 49: Raw Reward: -1.030, Shaped Reward: -20.445, Length: 1292
+2025-10-14 14:31:41,378 - INFO - 📋 Episode 49 Complete:
+2025-10-14 14:31:41,379 - INFO -    Raw Reward: -1.030
+2025-10-14 14:31:41,380 - INFO -    Shaped Reward: -20.445
+2025-10-14 14:31:41,381 - INFO -    Episode Length: 1292
+2025-10-14 14:31:41,383 - INFO -    Survived: No
+2025-10-14 14:31:41,384 - INFO -    Unique Positions: 68
+2025-10-14 14:31:41,386 - INFO -    Level Ups: 17
+2025-10-14 14:31:41,390 - INFO - ================================================================================
+2025-10-14 14:31:41,393 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 41 to 50
+2025-10-14 14:31:41,394 - INFO - ================================================================================
+2025-10-14 14:31:41,395 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:31:41,398 - INFO -    Average Raw Reward: 16.498
+2025-10-14 14:31:41,399 - INFO -    Average Shaped Reward: -0.701
+2025-10-14 14:31:41,400 - INFO -    Best Episode Reward: 76.780
+2025-10-14 14:31:41,402 - INFO -    Reward Standard Deviation: 24.362
+2025-10-14 14:31:41,403 - INFO -    Success Rate: 60.0%
+2025-10-14 14:31:41,404 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:31:41,405 - INFO - 
+2025-10-14 14:31:41,406 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:31:41,406 - INFO -    Average Episode Length: 2332.2
+2025-10-14 14:31:41,407 - INFO -    Exploration Efficiency: 0.0483
+2025-10-14 14:31:41,408 - INFO -    Total Unique Positions: 1127
+2025-10-14 14:31:41,409 - INFO - 
+2025-10-14 14:31:41,410 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:31:41,411 - INFO -    Average Actor Loss: -0.0588
+2025-10-14 14:31:41,412 - INFO -    Average Critic Loss: 4.0703
+2025-10-14 14:31:41,413 - INFO -    Average Entropy: 3.1340
+2025-10-14 14:31:41,413 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:31:41,414 - INFO -    Reward Trend: 4.254667
+2025-10-14 14:31:41,414 - INFO -    Learning Stability: 0.039
+2025-10-14 14:31:41,415 - INFO - ================================================================================
+2025-10-14 14:31:44,529 - INFO - Training Step 87040: Actor Loss: -0.0492, Critic Loss: 6.3732, Entropy: 3.1338
+2025-10-14 14:31:44,530 - INFO - 🔄 Step 87040 Training Update:
+2025-10-14 14:31:44,531 - INFO -    Episode: 50, Step in Episode: 845
+2025-10-14 14:31:44,532 - INFO -    Current Episode Reward: 17.140
+2025-10-14 14:31:44,532 - INFO -    Actor Loss: -0.0492
+2025-10-14 14:31:44,533 - INFO -    Critic Loss: 6.3732
+2025-10-14 14:31:44,533 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:44,534 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:48,240 - INFO - Training Step 88064: Actor Loss: -0.1412, Critic Loss: 0.5903, Entropy: 3.1337
+2025-10-14 14:31:48,241 - INFO - 🔄 Step 88064 Training Update:
+2025-10-14 14:31:48,243 - INFO -    Episode: 50, Step in Episode: 1869
+2025-10-14 14:31:48,244 - INFO -    Current Episode Reward: 14.220
+2025-10-14 14:31:48,244 - INFO -    Actor Loss: -0.1412
+2025-10-14 14:31:48,246 - INFO -    Critic Loss: 0.5903
+2025-10-14 14:31:48,247 - INFO -    Entropy: 3.1337
+2025-10-14 14:31:48,247 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:50,225 - INFO - Episode 50: Raw Reward: 34.450, Shaped Reward: 18.304, Length: 2412
+2025-10-14 14:31:50,226 - INFO - 📋 Episode 50 Complete:
+2025-10-14 14:31:50,227 - INFO -    Raw Reward: 34.450
+2025-10-14 14:31:50,228 - INFO -    Shaped Reward: 18.304
+2025-10-14 14:31:50,229 - INFO -    Episode Length: 2412
+2025-10-14 14:31:50,230 - INFO -    Survived: No
+2025-10-14 14:31:50,230 - INFO -    Unique Positions: 148
+2025-10-14 14:31:50,231 - INFO -    Level Ups: 14
+2025-10-14 14:31:52,614 - INFO - Training Step 89088: Actor Loss: -0.0294, Critic Loss: 5.3583, Entropy: 3.1338
+2025-10-14 14:31:52,615 - INFO - 🔄 Step 89088 Training Update:
+2025-10-14 14:31:52,616 - INFO -    Episode: 51, Step in Episode: 481
+2025-10-14 14:31:52,617 - INFO -    Current Episode Reward: 37.790
+2025-10-14 14:31:52,617 - INFO -    Actor Loss: -0.0294
+2025-10-14 14:31:52,618 - INFO -    Critic Loss: 5.3583
+2025-10-14 14:31:52,619 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:52,619 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:31:56,382 - INFO - Training Step 90112: Actor Loss: -0.0519, Critic Loss: 0.7218, Entropy: 3.1338
+2025-10-14 14:31:56,382 - INFO - 🔄 Step 90112 Training Update:
+2025-10-14 14:31:56,383 - INFO -    Episode: 51, Step in Episode: 1505
+2025-10-14 14:31:56,385 - INFO -    Current Episode Reward: 29.890
+2025-10-14 14:31:56,388 - INFO -    Actor Loss: -0.0519
+2025-10-14 14:31:56,389 - INFO -    Critic Loss: 0.7218
+2025-10-14 14:31:56,390 - INFO -    Entropy: 3.1338
+2025-10-14 14:31:56,391 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:00,160 - INFO - Training Step 91136: Actor Loss: 0.0356, Critic Loss: 1.9374, Entropy: 3.1339
+2025-10-14 14:32:00,161 - INFO - 🔄 Step 91136 Training Update:
+2025-10-14 14:32:00,161 - INFO -    Episode: 51, Step in Episode: 2529
+2025-10-14 14:32:00,164 - INFO -    Current Episode Reward: 54.350
+2025-10-14 14:32:00,164 - INFO -    Actor Loss: 0.0356
+2025-10-14 14:32:00,165 - INFO -    Critic Loss: 1.9374
+2025-10-14 14:32:00,166 - INFO -    Entropy: 3.1339
+2025-10-14 14:32:00,169 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:03,660 - INFO - Episode 51: Raw Reward: 47.960, Shaped Reward: 30.503, Length: 3406
+2025-10-14 14:32:03,661 - INFO - 📋 Episode 51 Complete:
+2025-10-14 14:32:03,662 - INFO -    Raw Reward: 47.960
+2025-10-14 14:32:03,665 - INFO -    Shaped Reward: 30.503
+2025-10-14 14:32:03,665 - INFO -    Episode Length: 3406
+2025-10-14 14:32:03,666 - INFO -    Survived: No
+2025-10-14 14:32:03,667 - INFO -    Unique Positions: 197
+2025-10-14 14:32:03,669 - INFO -    Level Ups: 13
+2025-10-14 14:32:04,485 - INFO - Training Step 92160: Actor Loss: -0.0898, Critic Loss: 2.5796, Entropy: 3.1340
+2025-10-14 14:32:04,486 - INFO - 🔄 Step 92160 Training Update:
+2025-10-14 14:32:04,488 - INFO -    Episode: 52, Step in Episode: 147
+2025-10-14 14:32:04,488 - INFO -    Current Episode Reward: -0.990
+2025-10-14 14:32:04,489 - INFO -    Actor Loss: -0.0898
+2025-10-14 14:32:04,489 - INFO -    Critic Loss: 2.5796
+2025-10-14 14:32:04,490 - INFO -    Entropy: 3.1340
+2025-10-14 14:32:04,493 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:08,246 - INFO - Training Step 93184: Actor Loss: -0.0612, Critic Loss: 4.0600, Entropy: 3.1341
+2025-10-14 14:32:08,247 - INFO - 🔄 Step 93184 Training Update:
+2025-10-14 14:32:08,248 - INFO -    Episode: 52, Step in Episode: 1171
+2025-10-14 14:32:08,250 - INFO -    Current Episode Reward: 30.010
+2025-10-14 14:32:08,251 - INFO -    Actor Loss: -0.0612
+2025-10-14 14:32:08,252 - INFO -    Critic Loss: 4.0600
+2025-10-14 14:32:08,253 - INFO -    Entropy: 3.1341
+2025-10-14 14:32:08,254 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:12,056 - INFO - Training Step 94208: Actor Loss: -0.0645, Critic Loss: 0.3622, Entropy: 3.1341
+2025-10-14 14:32:12,057 - INFO - 🔄 Step 94208 Training Update:
+2025-10-14 14:32:12,059 - INFO -    Episode: 52, Step in Episode: 2195
+2025-10-14 14:32:12,059 - INFO -    Current Episode Reward: 31.530
+2025-10-14 14:32:12,061 - INFO -    Actor Loss: -0.0645
+2025-10-14 14:32:12,062 - INFO -    Critic Loss: 0.3622
+2025-10-14 14:32:12,063 - INFO -    Entropy: 3.1341
+2025-10-14 14:32:12,065 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:13,164 - INFO - Episode 52: Raw Reward: 29.410, Shaped Reward: 17.729, Length: 2500
+2025-10-14 14:32:13,164 - INFO - 📋 Episode 52 Complete:
+2025-10-14 14:32:13,165 - INFO -    Raw Reward: 29.410
+2025-10-14 14:32:13,166 - INFO -    Shaped Reward: 17.729
+2025-10-14 14:32:13,169 - INFO -    Episode Length: 2500
+2025-10-14 14:32:13,170 - INFO -    Survived: No
+2025-10-14 14:32:13,171 - INFO -    Unique Positions: 177
+2025-10-14 14:32:13,173 - INFO -    Level Ups: 11
+2025-10-14 14:32:16,347 - INFO - Training Step 95232: Actor Loss: -0.0969, Critic Loss: 2.4863, Entropy: 3.1342
+2025-10-14 14:32:16,349 - INFO - 🔄 Step 95232 Training Update:
+2025-10-14 14:32:16,350 - INFO -    Episode: 53, Step in Episode: 719
+2025-10-14 14:32:16,352 - INFO -    Current Episode Reward: -0.790
+2025-10-14 14:32:16,353 - INFO -    Actor Loss: -0.0969
+2025-10-14 14:32:16,354 - INFO -    Critic Loss: 2.4863
+2025-10-14 14:32:16,356 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:16,357 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:20,106 - INFO - Training Step 96256: Actor Loss: -0.1436, Critic Loss: 0.3071, Entropy: 3.1342
+2025-10-14 14:32:20,106 - INFO - 🔄 Step 96256 Training Update:
+2025-10-14 14:32:20,108 - INFO -    Episode: 53, Step in Episode: 1743
+2025-10-14 14:32:20,110 - INFO -    Current Episode Reward: -3.570
+2025-10-14 14:32:20,111 - INFO -    Actor Loss: -0.1436
+2025-10-14 14:32:20,112 - INFO -    Critic Loss: 0.3071
+2025-10-14 14:32:20,113 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:20,116 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:23,933 - INFO - Training Step 97280: Actor Loss: 0.0232, Critic Loss: 0.9447, Entropy: 3.1342
+2025-10-14 14:32:23,934 - INFO - 🔄 Step 97280 Training Update:
+2025-10-14 14:32:23,935 - INFO -    Episode: 53, Step in Episode: 2767
+2025-10-14 14:32:23,936 - INFO -    Current Episode Reward: -10.640
+2025-10-14 14:32:23,938 - INFO -    Actor Loss: 0.0232
+2025-10-14 14:32:23,938 - INFO -    Critic Loss: 0.9447
+2025-10-14 14:32:23,940 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:23,941 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:24,000 - INFO - Episode 53: Raw Reward: -10.740, Shaped Reward: -30.812, Length: 2779
+2025-10-14 14:32:24,000 - INFO - 📋 Episode 53 Complete:
+2025-10-14 14:32:24,002 - INFO -    Raw Reward: -10.740
+2025-10-14 14:32:24,002 - INFO -    Shaped Reward: -30.812
+2025-10-14 14:32:24,002 - INFO -    Episode Length: 2779
+2025-10-14 14:32:24,003 - INFO -    Survived: No
+2025-10-14 14:32:24,004 - INFO -    Unique Positions: 101
+2025-10-14 14:32:24,004 - INFO -    Level Ups: 18
+2025-10-14 14:32:28,154 - INFO - Training Step 98304: Actor Loss: -0.0114, Critic Loss: 5.9793, Entropy: 3.1342
+2025-10-14 14:32:28,155 - INFO - 🔄 Step 98304 Training Update:
+2025-10-14 14:32:28,156 - INFO -    Episode: 54, Step in Episode: 1012
+2025-10-14 14:32:28,158 - INFO -    Current Episode Reward: 0.080
+2025-10-14 14:32:28,158 - INFO -    Actor Loss: -0.0114
+2025-10-14 14:32:28,159 - INFO -    Critic Loss: 5.9793
+2025-10-14 14:32:28,161 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:28,162 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:28,976 - INFO - Episode 54: Raw Reward: -1.420, Shaped Reward: -20.526, Length: 1217
+2025-10-14 14:32:28,977 - INFO - 📋 Episode 54 Complete:
+2025-10-14 14:32:28,977 - INFO -    Raw Reward: -1.420
+2025-10-14 14:32:28,979 - INFO -    Shaped Reward: -20.526
+2025-10-14 14:32:28,981 - INFO -    Episode Length: 1217
+2025-10-14 14:32:28,983 - INFO -    Survived: No
+2025-10-14 14:32:28,984 - INFO -    Unique Positions: 99
+2025-10-14 14:32:28,984 - INFO -    Level Ups: 17
+2025-10-14 14:32:32,002 - INFO - Training Step 99328: Actor Loss: -0.1270, Critic Loss: 1.6698, Entropy: 3.1342
+2025-10-14 14:32:32,002 - INFO - 🔄 Step 99328 Training Update:
+2025-10-14 14:32:32,003 - INFO -    Episode: 55, Step in Episode: 819
+2025-10-14 14:32:32,004 - INFO -    Current Episode Reward: 0.100
+2025-10-14 14:32:32,007 - INFO -    Actor Loss: -0.1270
+2025-10-14 14:32:32,007 - INFO -    Critic Loss: 1.6698
+2025-10-14 14:32:32,009 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:32,010 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:34,960 - INFO - Episode 55: Raw Reward: 2.470, Shaped Reward: -9.279, Length: 1639
+2025-10-14 14:32:34,961 - INFO - 📋 Episode 55 Complete:
+2025-10-14 14:32:34,962 - INFO -    Raw Reward: 2.470
+2025-10-14 14:32:34,964 - INFO -    Shaped Reward: -9.279
+2025-10-14 14:32:34,966 - INFO -    Episode Length: 1639
+2025-10-14 14:32:34,967 - INFO -    Survived: No
+2025-10-14 14:32:34,968 - INFO -    Unique Positions: 68
+2025-10-14 14:32:34,969 - INFO -    Level Ups: 9
+2025-10-14 14:32:35,801 - INFO - Training Step 100352: Actor Loss: 0.0753, Critic Loss: 5.0567, Entropy: 3.1342
+2025-10-14 14:32:35,802 - INFO - 🔄 Step 100352 Training Update:
+2025-10-14 14:32:35,804 - INFO -    Episode: 56, Step in Episode: 204
+2025-10-14 14:32:35,807 - INFO -    Current Episode Reward: -1.440
+2025-10-14 14:32:35,808 - INFO -    Actor Loss: 0.0753
+2025-10-14 14:32:35,809 - INFO -    Critic Loss: 5.0567
+2025-10-14 14:32:35,813 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:35,813 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:39,986 - INFO - Training Step 101376: Actor Loss: 0.0743, Critic Loss: 3.5407, Entropy: 3.1342
+2025-10-14 14:32:39,987 - INFO - 🔄 Step 101376 Training Update:
+2025-10-14 14:32:39,987 - INFO -    Episode: 56, Step in Episode: 1228
+2025-10-14 14:32:39,988 - INFO -    Current Episode Reward: 48.350
+2025-10-14 14:32:39,989 - INFO -    Actor Loss: 0.0743
+2025-10-14 14:32:39,989 - INFO -    Critic Loss: 3.5407
+2025-10-14 14:32:39,990 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:39,990 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:40,667 - INFO - Episode 56: Raw Reward: 47.430, Shaped Reward: 35.840, Length: 1374
+2025-10-14 14:32:40,667 - INFO - 📋 Episode 56 Complete:
+2025-10-14 14:32:40,668 - INFO -    Raw Reward: 47.430
+2025-10-14 14:32:40,670 - INFO -    Shaped Reward: 35.840
+2025-10-14 14:32:40,671 - INFO -    Episode Length: 1374
+2025-10-14 14:32:40,672 - INFO -    Survived: No
+2025-10-14 14:32:40,673 - INFO -    Unique Positions: 80
+2025-10-14 14:32:40,675 - INFO -    Level Ups: 10
+2025-10-14 14:32:42,222 - INFO - Episode 57: Raw Reward: 1.090, Shaped Reward: -15.002, Length: 427
+2025-10-14 14:32:42,223 - INFO - 📋 Episode 57 Complete:
+2025-10-14 14:32:42,224 - INFO -    Raw Reward: 1.090
+2025-10-14 14:32:42,225 - INFO -    Shaped Reward: -15.002
+2025-10-14 14:32:42,226 - INFO -    Episode Length: 427
+2025-10-14 14:32:42,228 - INFO -    Survived: No
+2025-10-14 14:32:42,229 - INFO -    Unique Positions: 32
+2025-10-14 14:32:42,230 - INFO -    Level Ups: 15
+2025-10-14 14:32:43,918 - INFO - Training Step 102400: Actor Loss: -0.0069, Critic Loss: 7.5218, Entropy: 3.1342
+2025-10-14 14:32:43,919 - INFO - 🔄 Step 102400 Training Update:
+2025-10-14 14:32:43,920 - INFO -    Episode: 58, Step in Episode: 451
+2025-10-14 14:32:43,921 - INFO -    Current Episode Reward: 1.920
+2025-10-14 14:32:43,922 - INFO -    Actor Loss: -0.0069
+2025-10-14 14:32:43,924 - INFO -    Critic Loss: 7.5218
+2025-10-14 14:32:43,925 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:43,927 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:47,119 - INFO - Episode 58: Raw Reward: 0.060, Shaped Reward: -14.523, Length: 1333
+2025-10-14 14:32:47,120 - INFO - 📋 Episode 58 Complete:
+2025-10-14 14:32:47,121 - INFO -    Raw Reward: 0.060
+2025-10-14 14:32:47,123 - INFO -    Shaped Reward: -14.523
+2025-10-14 14:32:47,124 - INFO -    Episode Length: 1333
+2025-10-14 14:32:47,125 - INFO -    Survived: No
+2025-10-14 14:32:47,127 - INFO -    Unique Positions: 159
+2025-10-14 14:32:47,128 - INFO -    Level Ups: 14
+2025-10-14 14:32:47,732 - INFO - Training Step 103424: Actor Loss: -0.0942, Critic Loss: 2.2271, Entropy: 3.1342
+2025-10-14 14:32:47,732 - INFO - 🔄 Step 103424 Training Update:
+2025-10-14 14:32:47,733 - INFO -    Episode: 59, Step in Episode: 142
+2025-10-14 14:32:47,734 - INFO -    Current Episode Reward: -0.880
+2025-10-14 14:32:47,735 - INFO -    Actor Loss: -0.0942
+2025-10-14 14:32:47,737 - INFO -    Critic Loss: 2.2271
+2025-10-14 14:32:47,738 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:47,739 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:51,945 - INFO - Training Step 104448: Actor Loss: 0.0043, Critic Loss: 0.9296, Entropy: 3.1342
+2025-10-14 14:32:51,946 - INFO - 🔄 Step 104448 Training Update:
+2025-10-14 14:32:51,947 - INFO -    Episode: 59, Step in Episode: 1166
+2025-10-14 14:32:51,948 - INFO -    Current Episode Reward: 11.860
+2025-10-14 14:32:51,949 - INFO -    Actor Loss: 0.0043
+2025-10-14 14:32:51,950 - INFO -    Critic Loss: 0.9296
+2025-10-14 14:32:51,952 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:51,952 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:55,906 - INFO - Training Step 105472: Actor Loss: -0.0782, Critic Loss: 0.3246, Entropy: 3.1342
+2025-10-14 14:32:55,906 - INFO - 🔄 Step 105472 Training Update:
+2025-10-14 14:32:55,907 - INFO -    Episode: 59, Step in Episode: 2190
+2025-10-14 14:32:55,909 - INFO -    Current Episode Reward: 5.370
+2025-10-14 14:32:55,912 - INFO -    Actor Loss: -0.0782
+2025-10-14 14:32:55,912 - INFO -    Critic Loss: 0.3246
+2025-10-14 14:32:55,913 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:55,914 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:32:57,208 - INFO - Episode 59: Raw Reward: 3.220, Shaped Reward: -11.818, Length: 2537
+2025-10-14 14:32:57,209 - INFO - 📋 Episode 59 Complete:
+2025-10-14 14:32:57,210 - INFO -    Raw Reward: 3.220
+2025-10-14 14:32:57,211 - INFO -    Shaped Reward: -11.818
+2025-10-14 14:32:57,213 - INFO -    Episode Length: 2537
+2025-10-14 14:32:57,214 - INFO -    Survived: No
+2025-10-14 14:32:57,216 - INFO -    Unique Positions: 60
+2025-10-14 14:32:57,218 - INFO -    Level Ups: 12
+2025-10-14 14:32:57,220 - INFO - ================================================================================
+2025-10-14 14:32:57,223 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 51 to 60
+2025-10-14 14:32:57,223 - INFO - ================================================================================
+2025-10-14 14:32:57,225 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:32:57,226 - INFO -    Average Raw Reward: 15.393
+2025-10-14 14:32:57,228 - INFO -    Average Shaped Reward: 0.042
+2025-10-14 14:32:57,229 - INFO -    Best Episode Reward: 47.960
+2025-10-14 14:32:57,231 - INFO -    Reward Standard Deviation: 20.898
+2025-10-14 14:32:57,232 - INFO -    Success Rate: 80.0%
+2025-10-14 14:32:57,234 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:32:57,235 - INFO - 
+2025-10-14 14:32:57,238 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:32:57,239 - INFO -    Average Episode Length: 1962.4
+2025-10-14 14:32:57,241 - INFO -    Exploration Efficiency: 0.0571
+2025-10-14 14:32:57,242 - INFO -    Total Unique Positions: 1121
+2025-10-14 14:32:57,243 - INFO - 
+2025-10-14 14:32:57,245 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:32:57,245 - INFO -    Average Actor Loss: -0.0506
+2025-10-14 14:32:57,247 - INFO -    Average Critic Loss: 3.2893
+2025-10-14 14:32:57,248 - INFO -    Average Entropy: 3.1340
+2025-10-14 14:32:57,249 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:32:57,250 - INFO -    Reward Trend: -3.512545
+2025-10-14 14:32:57,252 - INFO -    Learning Stability: 0.046
+2025-10-14 14:32:57,253 - INFO - ================================================================================
+2025-10-14 14:32:59,781 - INFO - Training Step 106496: Actor Loss: 0.0244, Critic Loss: 7.5453, Entropy: 3.1342
+2025-10-14 14:32:59,782 - INFO - 🔄 Step 106496 Training Update:
+2025-10-14 14:32:59,784 - INFO -    Episode: 60, Step in Episode: 677
+2025-10-14 14:32:59,787 - INFO -    Current Episode Reward: 19.360
+2025-10-14 14:32:59,788 - INFO -    Actor Loss: 0.0244
+2025-10-14 14:32:59,789 - INFO -    Critic Loss: 7.5453
+2025-10-14 14:32:59,791 - INFO -    Entropy: 3.1342
+2025-10-14 14:32:59,793 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:03,855 - INFO - Training Step 107520: Actor Loss: -0.0073, Critic Loss: 2.1984, Entropy: 3.1342
+2025-10-14 14:33:03,856 - INFO - 🔄 Step 107520 Training Update:
+2025-10-14 14:33:03,856 - INFO -    Episode: 60, Step in Episode: 1701
+2025-10-14 14:33:03,857 - INFO -    Current Episode Reward: 56.060
+2025-10-14 14:33:03,858 - INFO -    Actor Loss: -0.0073
+2025-10-14 14:33:03,858 - INFO -    Critic Loss: 2.1984
+2025-10-14 14:33:03,859 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:03,861 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:05,393 - INFO - Episode 60: Raw Reward: 53.400, Shaped Reward: 36.969, Length: 2066
+2025-10-14 14:33:05,393 - INFO - 📋 Episode 60 Complete:
+2025-10-14 14:33:05,396 - INFO -    Raw Reward: 53.400
+2025-10-14 14:33:05,398 - INFO -    Shaped Reward: 36.969
+2025-10-14 14:33:05,399 - INFO -    Episode Length: 2066
+2025-10-14 14:33:05,400 - INFO -    Survived: No
+2025-10-14 14:33:05,403 - INFO -    Unique Positions: 44
+2025-10-14 14:33:05,406 - INFO -    Level Ups: 13
+2025-10-14 14:33:07,828 - INFO - Training Step 108544: Actor Loss: -0.0821, Critic Loss: 2.7456, Entropy: 3.1342
+2025-10-14 14:33:07,829 - INFO - 🔄 Step 108544 Training Update:
+2025-10-14 14:33:07,830 - INFO -    Episode: 61, Step in Episode: 659
+2025-10-14 14:33:07,832 - INFO -    Current Episode Reward: -4.700
+2025-10-14 14:33:07,833 - INFO -    Actor Loss: -0.0821
+2025-10-14 14:33:07,834 - INFO -    Critic Loss: 2.7456
+2025-10-14 14:33:07,836 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:07,837 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:11,586 - INFO - Training Step 109568: Actor Loss: -0.0871, Critic Loss: 2.9113, Entropy: 3.1341
+2025-10-14 14:33:11,587 - INFO - 🔄 Step 109568 Training Update:
+2025-10-14 14:33:11,588 - INFO -    Episode: 61, Step in Episode: 1683
+2025-10-14 14:33:11,588 - INFO -    Current Episode Reward: 22.620
+2025-10-14 14:33:11,589 - INFO -    Actor Loss: -0.0871
+2025-10-14 14:33:11,590 - INFO -    Critic Loss: 2.9113
+2025-10-14 14:33:11,590 - INFO -    Entropy: 3.1341
+2025-10-14 14:33:11,591 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:11,747 - INFO - Episode 61: Raw Reward: 22.340, Shaped Reward: 1.890, Length: 1723
+2025-10-14 14:33:11,748 - INFO - 📋 Episode 61 Complete:
+2025-10-14 14:33:11,749 - INFO -    Raw Reward: 22.340
+2025-10-14 14:33:11,749 - INFO -    Shaped Reward: 1.890
+2025-10-14 14:33:11,750 - INFO -    Episode Length: 1723
+2025-10-14 14:33:11,751 - INFO -    Survived: No
+2025-10-14 14:33:11,752 - INFO -    Unique Positions: 94
+2025-10-14 14:33:11,752 - INFO -    Level Ups: 18
+2025-10-14 14:33:15,618 - INFO - Training Step 110592: Actor Loss: -0.0269, Critic Loss: 10.9707, Entropy: 3.1341
+2025-10-14 14:33:15,619 - INFO - 🔄 Step 110592 Training Update:
+2025-10-14 14:33:15,620 - INFO -    Episode: 62, Step in Episode: 984
+2025-10-14 14:33:15,622 - INFO -    Current Episode Reward: 63.190
+2025-10-14 14:33:15,622 - INFO -    Actor Loss: -0.0269
+2025-10-14 14:33:15,623 - INFO -    Critic Loss: 10.9707
+2025-10-14 14:33:15,625 - INFO -    Entropy: 3.1341
+2025-10-14 14:33:15,627 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:19,675 - INFO - Training Step 111616: Actor Loss: -0.1067, Critic Loss: 0.5261, Entropy: 3.1341
+2025-10-14 14:33:19,676 - INFO - 🔄 Step 111616 Training Update:
+2025-10-14 14:33:19,677 - INFO -    Episode: 62, Step in Episode: 2008
+2025-10-14 14:33:19,677 - INFO -    Current Episode Reward: 60.320
+2025-10-14 14:33:19,679 - INFO -    Actor Loss: -0.1067
+2025-10-14 14:33:19,679 - INFO -    Critic Loss: 0.5261
+2025-10-14 14:33:19,680 - INFO -    Entropy: 3.1341
+2025-10-14 14:33:19,680 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:23,465 - INFO - Training Step 112640: Actor Loss: -0.1107, Critic Loss: 1.4808, Entropy: 3.1341
+2025-10-14 14:33:23,465 - INFO - 🔄 Step 112640 Training Update:
+2025-10-14 14:33:23,466 - INFO -    Episode: 62, Step in Episode: 3032
+2025-10-14 14:33:23,467 - INFO -    Current Episode Reward: 71.700
+2025-10-14 14:33:23,469 - INFO -    Actor Loss: -0.1107
+2025-10-14 14:33:23,470 - INFO -    Critic Loss: 1.4808
+2025-10-14 14:33:23,473 - INFO -    Entropy: 3.1341
+2025-10-14 14:33:23,475 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:27,385 - INFO - Training Step 113664: Actor Loss: -0.1107, Critic Loss: 0.2946, Entropy: 3.1341
+2025-10-14 14:33:27,386 - INFO - 🔄 Step 113664 Training Update:
+2025-10-14 14:33:27,386 - INFO -    Episode: 62, Step in Episode: 4056
+2025-10-14 14:33:27,386 - INFO -    Current Episode Reward: 63.540
+2025-10-14 14:33:27,387 - INFO -    Actor Loss: -0.1107
+2025-10-14 14:33:27,388 - INFO -    Critic Loss: 0.2946
+2025-10-14 14:33:27,390 - INFO -    Entropy: 3.1341
+2025-10-14 14:33:27,391 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:30,239 - INFO - Episode 62: Raw Reward: 78.160, Shaped Reward: 57.818, Length: 4751
+2025-10-14 14:33:30,240 - INFO - 📋 Episode 62 Complete:
+2025-10-14 14:33:30,241 - INFO -    Raw Reward: 78.160
+2025-10-14 14:33:30,242 - INFO -    Shaped Reward: 57.818
+2025-10-14 14:33:30,243 - INFO -    Episode Length: 4751
+2025-10-14 14:33:30,245 - INFO -    Survived: No
+2025-10-14 14:33:30,247 - INFO -    Unique Positions: 112
+2025-10-14 14:33:30,249 - INFO -    Level Ups: 13
+2025-10-14 14:33:31,538 - INFO - Training Step 114688: Actor Loss: -0.0363, Critic Loss: 4.9117, Entropy: 3.1342
+2025-10-14 14:33:31,538 - INFO - 🔄 Step 114688 Training Update:
+2025-10-14 14:33:31,539 - INFO -    Episode: 63, Step in Episode: 329
+2025-10-14 14:33:31,541 - INFO -    Current Episode Reward: 5.580
+2025-10-14 14:33:31,542 - INFO -    Actor Loss: -0.0363
+2025-10-14 14:33:31,544 - INFO -    Critic Loss: 4.9117
+2025-10-14 14:33:31,545 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:31,546 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:35,274 - INFO - Training Step 115712: Actor Loss: -0.1303, Critic Loss: 0.4237, Entropy: 3.1342
+2025-10-14 14:33:35,274 - INFO - 🔄 Step 115712 Training Update:
+2025-10-14 14:33:35,275 - INFO -    Episode: 63, Step in Episode: 1353
+2025-10-14 14:33:35,276 - INFO -    Current Episode Reward: 9.060
+2025-10-14 14:33:35,276 - INFO -    Actor Loss: -0.1303
+2025-10-14 14:33:35,277 - INFO -    Critic Loss: 0.4237
+2025-10-14 14:33:35,278 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:35,279 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:35,379 - INFO - Episode 63: Raw Reward: 8.840, Shaped Reward: -10.690, Length: 1376
+2025-10-14 14:33:35,380 - INFO - 📋 Episode 63 Complete:
+2025-10-14 14:33:35,381 - INFO -    Raw Reward: 8.840
+2025-10-14 14:33:35,381 - INFO -    Shaped Reward: -10.690
+2025-10-14 14:33:35,382 - INFO -    Episode Length: 1376
+2025-10-14 14:33:35,382 - INFO -    Survived: No
+2025-10-14 14:33:35,383 - INFO -    Unique Positions: 124
+2025-10-14 14:33:35,383 - INFO -    Level Ups: 17
+2025-10-14 14:33:39,246 - INFO - Training Step 116736: Actor Loss: -0.0968, Critic Loss: 18.7211, Entropy: 3.1342
+2025-10-14 14:33:39,247 - INFO - 🔄 Step 116736 Training Update:
+2025-10-14 14:33:39,247 - INFO -    Episode: 64, Step in Episode: 1001
+2025-10-14 14:33:39,248 - INFO -    Current Episode Reward: 67.140
+2025-10-14 14:33:39,249 - INFO -    Actor Loss: -0.0968
+2025-10-14 14:33:39,249 - INFO -    Critic Loss: 18.7211
+2025-10-14 14:33:39,250 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:39,250 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:41,615 - INFO - Episode 64: Raw Reward: 78.720, Shaped Reward: 64.560, Length: 1554
+2025-10-14 14:33:41,616 - INFO - 📋 Episode 64 Complete:
+2025-10-14 14:33:41,617 - INFO -    Raw Reward: 78.720
+2025-10-14 14:33:41,619 - INFO -    Shaped Reward: 64.560
+2025-10-14 14:33:41,620 - INFO -    Episode Length: 1554
+2025-10-14 14:33:41,621 - INFO -    Survived: No
+2025-10-14 14:33:41,624 - INFO -    Unique Positions: 146
+2025-10-14 14:33:41,625 - INFO -    Level Ups: 12
+2025-10-14 14:33:42,909 - INFO - Episode 65: Raw Reward: -2.320, Shaped Reward: -14.077, Length: 356
+2025-10-14 14:33:42,909 - INFO - 📋 Episode 65 Complete:
+2025-10-14 14:33:42,910 - INFO -    Raw Reward: -2.320
+2025-10-14 14:33:42,911 - INFO -    Shaped Reward: -14.077
+2025-10-14 14:33:42,914 - INFO -    Episode Length: 356
+2025-10-14 14:33:42,915 - INFO -    Survived: No
+2025-10-14 14:33:42,916 - INFO -    Unique Positions: 48
+2025-10-14 14:33:42,917 - INFO -    Level Ups: 11
+2025-10-14 14:33:43,419 - INFO - Training Step 117760: Actor Loss: -0.1474, Critic Loss: 4.7343, Entropy: 3.1343
+2025-10-14 14:33:43,419 - INFO - 🔄 Step 117760 Training Update:
+2025-10-14 14:33:43,421 - INFO -    Episode: 66, Step in Episode: 115
+2025-10-14 14:33:43,422 - INFO -    Current Episode Reward: -0.740
+2025-10-14 14:33:43,423 - INFO -    Actor Loss: -0.1474
+2025-10-14 14:33:43,425 - INFO -    Critic Loss: 4.7343
+2025-10-14 14:33:43,426 - INFO -    Entropy: 3.1343
+2025-10-14 14:33:43,427 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:47,187 - INFO - Training Step 118784: Actor Loss: -0.1679, Critic Loss: 0.4123, Entropy: 3.1342
+2025-10-14 14:33:47,188 - INFO - 🔄 Step 118784 Training Update:
+2025-10-14 14:33:47,189 - INFO -    Episode: 66, Step in Episode: 1139
+2025-10-14 14:33:47,192 - INFO -    Current Episode Reward: -4.500
+2025-10-14 14:33:47,193 - INFO -    Actor Loss: -0.1679
+2025-10-14 14:33:47,195 - INFO -    Critic Loss: 0.4123
+2025-10-14 14:33:47,196 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:47,198 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:48,488 - INFO - Episode 66: Raw Reward: 49.120, Shaped Reward: 37.336, Length: 1491
+2025-10-14 14:33:48,489 - INFO - 📋 Episode 66 Complete:
+2025-10-14 14:33:48,490 - INFO -    Raw Reward: 49.120
+2025-10-14 14:33:48,493 - INFO -    Shaped Reward: 37.336
+2025-10-14 14:33:48,494 - INFO -    Episode Length: 1491
+2025-10-14 14:33:48,495 - INFO -    Survived: No
+2025-10-14 14:33:48,497 - INFO -    Unique Positions: 127
+2025-10-14 14:33:48,498 - INFO -    Level Ups: 10
+2025-10-14 14:33:51,110 - INFO - Training Step 119808: Actor Loss: 0.0026, Critic Loss: 18.5279, Entropy: 3.1343
+2025-10-14 14:33:51,111 - INFO - 🔄 Step 119808 Training Update:
+2025-10-14 14:33:51,112 - INFO -    Episode: 67, Step in Episode: 672
+2025-10-14 14:33:51,112 - INFO -    Current Episode Reward: 48.470
+2025-10-14 14:33:51,113 - INFO -    Actor Loss: 0.0026
+2025-10-14 14:33:51,114 - INFO -    Critic Loss: 18.5279
+2025-10-14 14:33:51,115 - INFO -    Entropy: 3.1343
+2025-10-14 14:33:51,115 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:55,339 - INFO - Training Step 120832: Actor Loss: -0.1348, Critic Loss: 0.3039, Entropy: 3.1342
+2025-10-14 14:33:55,340 - INFO - 🔄 Step 120832 Training Update:
+2025-10-14 14:33:55,341 - INFO -    Episode: 67, Step in Episode: 1696
+2025-10-14 14:33:55,342 - INFO -    Current Episode Reward: 41.170
+2025-10-14 14:33:55,342 - INFO -    Actor Loss: -0.1348
+2025-10-14 14:33:55,344 - INFO -    Critic Loss: 0.3039
+2025-10-14 14:33:55,344 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:55,345 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:59,110 - INFO - Training Step 121856: Actor Loss: -0.0438, Critic Loss: 0.5372, Entropy: 3.1342
+2025-10-14 14:33:59,110 - INFO - 🔄 Step 121856 Training Update:
+2025-10-14 14:33:59,111 - INFO -    Episode: 67, Step in Episode: 2720
+2025-10-14 14:33:59,112 - INFO -    Current Episode Reward: 34.130
+2025-10-14 14:33:59,113 - INFO -    Actor Loss: -0.0438
+2025-10-14 14:33:59,113 - INFO -    Critic Loss: 0.5372
+2025-10-14 14:33:59,114 - INFO -    Entropy: 3.1342
+2025-10-14 14:33:59,115 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:33:59,255 - INFO - Episode 67: Raw Reward: 33.960, Shaped Reward: 17.655, Length: 2754
+2025-10-14 14:33:59,256 - INFO - 📋 Episode 67 Complete:
+2025-10-14 14:33:59,257 - INFO -    Raw Reward: 33.960
+2025-10-14 14:33:59,259 - INFO -    Shaped Reward: 17.655
+2025-10-14 14:33:59,260 - INFO -    Episode Length: 2754
+2025-10-14 14:33:59,261 - INFO -    Survived: No
+2025-10-14 14:33:59,262 - INFO -    Unique Positions: 149
+2025-10-14 14:33:59,262 - INFO -    Level Ups: 13
+2025-10-14 14:34:02,896 - INFO - Training Step 122880: Actor Loss: -0.0096, Critic Loss: 4.1188, Entropy: 3.1342
+2025-10-14 14:34:02,897 - INFO - 🔄 Step 122880 Training Update:
+2025-10-14 14:34:02,897 - INFO -    Episode: 68, Step in Episode: 990
+2025-10-14 14:34:02,898 - INFO -    Current Episode Reward: -0.450
+2025-10-14 14:34:02,901 - INFO -    Actor Loss: -0.0096
+2025-10-14 14:34:02,901 - INFO -    Critic Loss: 4.1188
+2025-10-14 14:34:02,902 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:02,902 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:07,143 - INFO - Training Step 123904: Actor Loss: -0.1432, Critic Loss: 0.2023, Entropy: 3.1342
+2025-10-14 14:34:07,144 - INFO - 🔄 Step 123904 Training Update:
+2025-10-14 14:34:07,145 - INFO -    Episode: 68, Step in Episode: 2014
+2025-10-14 14:34:07,146 - INFO -    Current Episode Reward: -7.830
+2025-10-14 14:34:07,147 - INFO -    Actor Loss: -0.1432
+2025-10-14 14:34:07,149 - INFO -    Critic Loss: 0.2023
+2025-10-14 14:34:07,151 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:07,153 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:10,927 - INFO - Training Step 124928: Actor Loss: -0.0943, Critic Loss: 4.8215, Entropy: 3.1343
+2025-10-14 14:34:10,928 - INFO - 🔄 Step 124928 Training Update:
+2025-10-14 14:34:10,929 - INFO -    Episode: 68, Step in Episode: 3038
+2025-10-14 14:34:10,932 - INFO -    Current Episode Reward: 8.200
+2025-10-14 14:34:10,934 - INFO -    Actor Loss: -0.0943
+2025-10-14 14:34:10,935 - INFO -    Critic Loss: 4.8215
+2025-10-14 14:34:10,937 - INFO -    Entropy: 3.1343
+2025-10-14 14:34:10,938 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:12,967 - INFO - Episode 68: Raw Reward: 12.250, Shaped Reward: -7.919, Length: 3574
+2025-10-14 14:34:12,968 - INFO - 📋 Episode 68 Complete:
+2025-10-14 14:34:12,969 - INFO -    Raw Reward: 12.250
+2025-10-14 14:34:12,972 - INFO -    Shaped Reward: -7.919
+2025-10-14 14:34:12,973 - INFO -    Episode Length: 3574
+2025-10-14 14:34:12,974 - INFO -    Survived: No
+2025-10-14 14:34:12,976 - INFO -    Unique Positions: 109
+2025-10-14 14:34:12,978 - INFO -    Level Ups: 13
+2025-10-14 14:34:14,786 - INFO - Training Step 125952: Actor Loss: -0.1504, Critic Loss: 1.8647, Entropy: 3.1343
+2025-10-14 14:34:14,787 - INFO - 🔄 Step 125952 Training Update:
+2025-10-14 14:34:14,789 - INFO -    Episode: 69, Step in Episode: 488
+2025-10-14 14:34:14,790 - INFO -    Current Episode Reward: 1.620
+2025-10-14 14:34:14,792 - INFO -    Actor Loss: -0.1504
+2025-10-14 14:34:14,793 - INFO -    Critic Loss: 1.8647
+2025-10-14 14:34:14,795 - INFO -    Entropy: 3.1343
+2025-10-14 14:34:14,796 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:19,053 - INFO - Training Step 126976: Actor Loss: -0.1174, Critic Loss: 0.3788, Entropy: 3.1342
+2025-10-14 14:34:19,053 - INFO - 🔄 Step 126976 Training Update:
+2025-10-14 14:34:19,054 - INFO -    Episode: 69, Step in Episode: 1512
+2025-10-14 14:34:19,057 - INFO -    Current Episode Reward: -1.950
+2025-10-14 14:34:19,057 - INFO -    Actor Loss: -0.1174
+2025-10-14 14:34:19,059 - INFO -    Critic Loss: 0.3788
+2025-10-14 14:34:19,059 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:19,060 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:23,040 - INFO - Training Step 128000: Actor Loss: -0.0416, Critic Loss: 11.1141, Entropy: 3.1342
+2025-10-14 14:34:23,041 - INFO - 🔄 Step 128000 Training Update:
+2025-10-14 14:34:23,042 - INFO -    Episode: 69, Step in Episode: 2536
+2025-10-14 14:34:23,044 - INFO -    Current Episode Reward: 56.500
+2025-10-14 14:34:23,044 - INFO -    Actor Loss: -0.0416
+2025-10-14 14:34:23,047 - INFO -    Critic Loss: 11.1141
+2025-10-14 14:34:23,048 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:23,050 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:26,758 - INFO - Training Step 129024: Actor Loss: -0.1030, Critic Loss: 0.4894, Entropy: 3.1341
+2025-10-14 14:34:26,759 - INFO - 🔄 Step 129024 Training Update:
+2025-10-14 14:34:26,760 - INFO -    Episode: 69, Step in Episode: 3560
+2025-10-14 14:34:26,761 - INFO -    Current Episode Reward: 52.890
+2025-10-14 14:34:26,762 - INFO -    Actor Loss: -0.1030
+2025-10-14 14:34:26,762 - INFO -    Critic Loss: 0.4894
+2025-10-14 14:34:26,763 - INFO -    Entropy: 3.1341
+2025-10-14 14:34:26,764 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:28,066 - INFO - Episode 69: Raw Reward: 54.790, Shaped Reward: 32.498, Length: 3838
+2025-10-14 14:34:28,068 - INFO - 📋 Episode 69 Complete:
+2025-10-14 14:34:28,069 - INFO -    Raw Reward: 54.790
+2025-10-14 14:34:28,069 - INFO -    Shaped Reward: 32.498
+2025-10-14 14:34:28,071 - INFO -    Episode Length: 3838
+2025-10-14 14:34:28,072 - INFO -    Survived: No
+2025-10-14 14:34:28,073 - INFO -    Unique Positions: 147
+2025-10-14 14:34:28,074 - INFO -    Level Ups: 16
+2025-10-14 14:34:28,075 - INFO - ================================================================================
+2025-10-14 14:34:28,077 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 61 to 70
+2025-10-14 14:34:28,078 - INFO - ================================================================================
+2025-10-14 14:34:28,079 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:34:28,079 - INFO -    Average Raw Reward: 38.926
+2025-10-14 14:34:28,080 - INFO -    Average Shaped Reward: 21.604
+2025-10-14 14:34:28,082 - INFO -    Best Episode Reward: 78.720
+2025-10-14 14:34:28,083 - INFO -    Reward Standard Deviation: 27.029
+2025-10-14 14:34:28,084 - INFO -    Success Rate: 90.0%
+2025-10-14 14:34:28,085 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:34:28,085 - INFO - 
+2025-10-14 14:34:28,086 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:34:28,087 - INFO -    Average Episode Length: 2348.3
+2025-10-14 14:34:28,089 - INFO -    Exploration Efficiency: 0.0468
+2025-10-14 14:34:28,090 - INFO -    Total Unique Positions: 1100
+2025-10-14 14:34:28,090 - INFO - 
+2025-10-14 14:34:28,091 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:34:28,092 - INFO -    Average Actor Loss: -0.0629
+2025-10-14 14:34:28,093 - INFO -    Average Critic Loss: 3.6913
+2025-10-14 14:34:28,094 - INFO -    Average Entropy: 3.1341
+2025-10-14 14:34:28,095 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:34:28,098 - INFO -    Reward Trend: -1.450424
+2025-10-14 14:34:28,098 - INFO -    Learning Stability: 0.036
+2025-10-14 14:34:28,099 - INFO - ================================================================================
+2025-10-14 14:34:31,131 - INFO - Training Step 130048: Actor Loss: -0.1339, Critic Loss: 3.5089, Entropy: 3.1342
+2025-10-14 14:34:31,132 - INFO - 🔄 Step 130048 Training Update:
+2025-10-14 14:34:31,133 - INFO -    Episode: 70, Step in Episode: 746
+2025-10-14 14:34:31,134 - INFO -    Current Episode Reward: 2.540
+2025-10-14 14:34:31,134 - INFO -    Actor Loss: -0.1339
+2025-10-14 14:34:31,135 - INFO -    Critic Loss: 3.5089
+2025-10-14 14:34:31,135 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:31,136 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:33,686 - INFO - Episode 70: Raw Reward: -3.010, Shaped Reward: -22.576, Length: 1448
+2025-10-14 14:34:33,687 - INFO - 📋 Episode 70 Complete:
+2025-10-14 14:34:33,688 - INFO -    Raw Reward: -3.010
+2025-10-14 14:34:33,690 - INFO -    Shaped Reward: -22.576
+2025-10-14 14:34:33,691 - INFO -    Episode Length: 1448
+2025-10-14 14:34:33,692 - INFO -    Survived: No
+2025-10-14 14:34:33,693 - INFO -    Unique Positions: 56
+2025-10-14 14:34:33,695 - INFO -    Level Ups: 16
+2025-10-14 14:34:34,923 - INFO - Training Step 131072: Actor Loss: -0.0470, Critic Loss: 4.0089, Entropy: 3.1342
+2025-10-14 14:34:34,924 - INFO - 🔄 Step 131072 Training Update:
+2025-10-14 14:34:34,925 - INFO -    Episode: 71, Step in Episode: 322
+2025-10-14 14:34:34,926 - INFO -    Current Episode Reward: -2.460
+2025-10-14 14:34:34,927 - INFO -    Actor Loss: -0.0470
+2025-10-14 14:34:34,929 - INFO -    Critic Loss: 4.0089
+2025-10-14 14:34:34,930 - INFO -    Entropy: 3.1342
+2025-10-14 14:34:34,931 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:38,674 - INFO - Training Step 132096: Actor Loss: -0.0416, Critic Loss: 0.7373, Entropy: 3.1341
+2025-10-14 14:34:38,675 - INFO - 🔄 Step 132096 Training Update:
+2025-10-14 14:34:38,677 - INFO -    Episode: 71, Step in Episode: 1346
+2025-10-14 14:34:38,678 - INFO -    Current Episode Reward: -2.180
+2025-10-14 14:34:38,680 - INFO -    Actor Loss: -0.0416
+2025-10-14 14:34:38,682 - INFO -    Critic Loss: 0.7373
+2025-10-14 14:34:38,683 - INFO -    Entropy: 3.1341
+2025-10-14 14:34:38,684 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:42,992 - INFO - Training Step 133120: Actor Loss: -0.0547, Critic Loss: 10.0028, Entropy: 3.1341
+2025-10-14 14:34:42,993 - INFO - 🔄 Step 133120 Training Update:
+2025-10-14 14:34:42,994 - INFO -    Episode: 71, Step in Episode: 2370
+2025-10-14 14:34:42,997 - INFO -    Current Episode Reward: 44.620
+2025-10-14 14:34:42,998 - INFO -    Actor Loss: -0.0547
+2025-10-14 14:34:42,999 - INFO -    Critic Loss: 10.0028
+2025-10-14 14:34:43,001 - INFO -    Entropy: 3.1341
+2025-10-14 14:34:43,003 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:45,940 - INFO - Episode 71: Raw Reward: 51.380, Shaped Reward: 33.141, Length: 3190
+2025-10-14 14:34:45,941 - INFO - 📋 Episode 71 Complete:
+2025-10-14 14:34:45,941 - INFO -    Raw Reward: 51.380
+2025-10-14 14:34:45,942 - INFO -    Shaped Reward: 33.141
+2025-10-14 14:34:45,943 - INFO -    Episode Length: 3190
+2025-10-14 14:34:45,944 - INFO -    Survived: No
+2025-10-14 14:34:45,946 - INFO -    Unique Positions: 144
+2025-10-14 14:34:45,947 - INFO -    Level Ups: 13
+2025-10-14 14:34:46,769 - INFO - Training Step 134144: Actor Loss: -0.0352, Critic Loss: 3.4401, Entropy: 3.1341
+2025-10-14 14:34:46,770 - INFO - 🔄 Step 134144 Training Update:
+2025-10-14 14:34:46,772 - INFO -    Episode: 72, Step in Episode: 204
+2025-10-14 14:34:46,773 - INFO -    Current Episode Reward: -1.210
+2025-10-14 14:34:46,774 - INFO -    Actor Loss: -0.0352
+2025-10-14 14:34:46,775 - INFO -    Critic Loss: 3.4401
+2025-10-14 14:34:46,777 - INFO -    Entropy: 3.1341
+2025-10-14 14:34:46,778 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:50,512 - INFO - Training Step 135168: Actor Loss: -0.0008, Critic Loss: 0.5059, Entropy: 3.1340
+2025-10-14 14:34:50,513 - INFO - 🔄 Step 135168 Training Update:
+2025-10-14 14:34:50,515 - INFO -    Episode: 72, Step in Episode: 1228
+2025-10-14 14:34:50,517 - INFO -    Current Episode Reward: -4.470
+2025-10-14 14:34:50,519 - INFO -    Actor Loss: -0.0008
+2025-10-14 14:34:50,520 - INFO -    Critic Loss: 0.5059
+2025-10-14 14:34:50,522 - INFO -    Entropy: 3.1340
+2025-10-14 14:34:50,522 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:51,360 - INFO - Episode 72: Raw Reward: -5.910, Shaped Reward: -21.694, Length: 1429
+2025-10-14 14:34:51,361 - INFO - 📋 Episode 72 Complete:
+2025-10-14 14:34:51,362 - INFO -    Raw Reward: -5.910
+2025-10-14 14:34:51,362 - INFO -    Shaped Reward: -21.694
+2025-10-14 14:34:51,363 - INFO -    Episode Length: 1429
+2025-10-14 14:34:51,364 - INFO -    Survived: No
+2025-10-14 14:34:51,364 - INFO -    Unique Positions: 62
+2025-10-14 14:34:51,365 - INFO -    Level Ups: 14
+2025-10-14 14:34:54,928 - INFO - Training Step 136192: Actor Loss: -0.0661, Critic Loss: 10.0425, Entropy: 3.1340
+2025-10-14 14:34:54,928 - INFO - 🔄 Step 136192 Training Update:
+2025-10-14 14:34:54,929 - INFO -    Episode: 73, Step in Episode: 823
+2025-10-14 14:34:54,930 - INFO -    Current Episode Reward: 43.010
+2025-10-14 14:34:54,931 - INFO -    Actor Loss: -0.0661
+2025-10-14 14:34:54,933 - INFO -    Critic Loss: 10.0425
+2025-10-14 14:34:54,934 - INFO -    Entropy: 3.1340
+2025-10-14 14:34:54,935 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:34:54,953 - INFO - Episode 73: Raw Reward: 43.010, Shaped Reward: 28.747, Length: 824
+2025-10-14 14:34:54,954 - INFO - 📋 Episode 73 Complete:
+2025-10-14 14:34:54,954 - INFO -    Raw Reward: 43.010
+2025-10-14 14:34:54,955 - INFO -    Shaped Reward: 28.747
+2025-10-14 14:34:54,956 - INFO -    Episode Length: 824
+2025-10-14 14:34:54,956 - INFO -    Survived: No
+2025-10-14 14:34:54,957 - INFO -    Unique Positions: 73
+2025-10-14 14:34:54,957 - INFO -    Level Ups: 13
+2025-10-14 14:34:58,733 - INFO - Training Step 137216: Actor Loss: -0.1152, Critic Loss: 0.6277, Entropy: 3.1340
+2025-10-14 14:34:58,734 - INFO - 🔄 Step 137216 Training Update:
+2025-10-14 14:34:58,735 - INFO -    Episode: 74, Step in Episode: 1023
+2025-10-14 14:34:58,736 - INFO -    Current Episode Reward: 17.830
+2025-10-14 14:34:58,737 - INFO -    Actor Loss: -0.1152
+2025-10-14 14:34:58,737 - INFO -    Critic Loss: 0.6277
+2025-10-14 14:34:58,738 - INFO -    Entropy: 3.1340
+2025-10-14 14:34:58,738 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:02,447 - INFO - Training Step 138240: Actor Loss: -0.0324, Critic Loss: 2.8175, Entropy: 3.1339
+2025-10-14 14:35:02,447 - INFO - 🔄 Step 138240 Training Update:
+2025-10-14 14:35:02,449 - INFO -    Episode: 74, Step in Episode: 2047
+2025-10-14 14:35:02,450 - INFO -    Current Episode Reward: 46.510
+2025-10-14 14:35:02,451 - INFO -    Actor Loss: -0.0324
+2025-10-14 14:35:02,451 - INFO -    Critic Loss: 2.8175
+2025-10-14 14:35:02,452 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:02,453 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:05,799 - INFO - Episode 74: Raw Reward: 52.130, Shaped Reward: 34.068, Length: 2821
+2025-10-14 14:35:05,799 - INFO - 📋 Episode 74 Complete:
+2025-10-14 14:35:05,801 - INFO -    Raw Reward: 52.130
+2025-10-14 14:35:05,802 - INFO -    Shaped Reward: 34.068
+2025-10-14 14:35:05,803 - INFO -    Episode Length: 2821
+2025-10-14 14:35:05,804 - INFO -    Survived: No
+2025-10-14 14:35:05,806 - INFO -    Unique Positions: 160
+2025-10-14 14:35:05,807 - INFO -    Level Ups: 15
+2025-10-14 14:35:06,779 - INFO - Training Step 139264: Actor Loss: -0.0915, Critic Loss: 3.9802, Entropy: 3.1340
+2025-10-14 14:35:06,779 - INFO - 🔄 Step 139264 Training Update:
+2025-10-14 14:35:06,780 - INFO -    Episode: 75, Step in Episode: 250
+2025-10-14 14:35:06,781 - INFO -    Current Episode Reward: 0.280
+2025-10-14 14:35:06,781 - INFO -    Actor Loss: -0.0915
+2025-10-14 14:35:06,782 - INFO -    Critic Loss: 3.9802
+2025-10-14 14:35:06,783 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:06,783 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:10,298 - INFO - Episode 75: Raw Reward: 9.140, Shaped Reward: -6.794, Length: 1233
+2025-10-14 14:35:10,299 - INFO - 📋 Episode 75 Complete:
+2025-10-14 14:35:10,300 - INFO -    Raw Reward: 9.140
+2025-10-14 14:35:10,303 - INFO -    Shaped Reward: -6.794
+2025-10-14 14:35:10,303 - INFO -    Episode Length: 1233
+2025-10-14 14:35:10,304 - INFO -    Survived: No
+2025-10-14 14:35:10,305 - INFO -    Unique Positions: 76
+2025-10-14 14:35:10,306 - INFO -    Level Ups: 14
+2025-10-14 14:35:10,541 - INFO - Training Step 140288: Actor Loss: -0.0851, Critic Loss: 3.4747, Entropy: 3.1339
+2025-10-14 14:35:10,541 - INFO - 🔄 Step 140288 Training Update:
+2025-10-14 14:35:10,542 - INFO -    Episode: 76, Step in Episode: 41
+2025-10-14 14:35:10,544 - INFO -    Current Episode Reward: 5.690
+2025-10-14 14:35:10,545 - INFO -    Actor Loss: -0.0851
+2025-10-14 14:35:10,546 - INFO -    Critic Loss: 3.4747
+2025-10-14 14:35:10,547 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:10,548 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:13,562 - INFO - Episode 76: Raw Reward: 112.480, Shaped Reward: 96.720, Length: 886
+2025-10-14 14:35:13,637 - INFO - 🏆 New best model saved! Episode 76, Reward: 112.480
+2025-10-14 14:35:13,638 - INFO - 📋 Episode 76 Complete:
+2025-10-14 14:35:13,639 - INFO -    Raw Reward: 112.480
+2025-10-14 14:35:13,640 - INFO -    Shaped Reward: 96.720
+2025-10-14 14:35:13,642 - INFO -    Episode Length: 886
+2025-10-14 14:35:13,643 - INFO -    Survived: No
+2025-10-14 14:35:13,643 - INFO -    Unique Positions: 90
+2025-10-14 14:35:13,644 - INFO -    Level Ups: 14
+2025-10-14 14:35:14,387 - INFO - Training Step 141312: Actor Loss: -0.0188, Critic Loss: 40.8862, Entropy: 3.1341
+2025-10-14 14:35:14,388 - INFO - 🔄 Step 141312 Training Update:
+2025-10-14 14:35:14,389 - INFO -    Episode: 77, Step in Episode: 179
+2025-10-14 14:35:14,390 - INFO -    Current Episode Reward: 0.640
+2025-10-14 14:35:14,391 - INFO -    Actor Loss: -0.0188
+2025-10-14 14:35:14,392 - INFO -    Critic Loss: 40.8862
+2025-10-14 14:35:14,394 - INFO -    Entropy: 3.1341
+2025-10-14 14:35:14,395 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:18,670 - INFO - Training Step 142336: Actor Loss: 0.0155, Critic Loss: 2.0768, Entropy: 3.1339
+2025-10-14 14:35:18,671 - INFO - 🔄 Step 142336 Training Update:
+2025-10-14 14:35:18,672 - INFO -    Episode: 77, Step in Episode: 1203
+2025-10-14 14:35:18,673 - INFO -    Current Episode Reward: 16.220
+2025-10-14 14:35:18,675 - INFO -    Actor Loss: 0.0155
+2025-10-14 14:35:18,675 - INFO -    Critic Loss: 2.0768
+2025-10-14 14:35:18,676 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:18,677 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:22,465 - INFO - Training Step 143360: Actor Loss: -0.0780, Critic Loss: 0.6089, Entropy: 3.1340
+2025-10-14 14:35:22,466 - INFO - 🔄 Step 143360 Training Update:
+2025-10-14 14:35:22,467 - INFO -    Episode: 77, Step in Episode: 2227
+2025-10-14 14:35:22,468 - INFO -    Current Episode Reward: 9.220
+2025-10-14 14:35:22,471 - INFO -    Actor Loss: -0.0780
+2025-10-14 14:35:22,472 - INFO -    Critic Loss: 0.6089
+2025-10-14 14:35:22,473 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:22,475 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:23,055 - INFO - Episode 77: Raw Reward: 8.120, Shaped Reward: -6.930, Length: 2382
+2025-10-14 14:35:23,055 - INFO - 📋 Episode 77 Complete:
+2025-10-14 14:35:23,056 - INFO -    Raw Reward: 8.120
+2025-10-14 14:35:23,057 - INFO -    Shaped Reward: -6.930
+2025-10-14 14:35:23,060 - INFO -    Episode Length: 2382
+2025-10-14 14:35:23,063 - INFO -    Survived: No
+2025-10-14 14:35:23,064 - INFO -    Unique Positions: 104
+2025-10-14 14:35:23,065 - INFO -    Level Ups: 12
+2025-10-14 14:35:26,277 - INFO - Training Step 144384: Actor Loss: -0.0833, Critic Loss: 3.2059, Entropy: 3.1340
+2025-10-14 14:35:26,277 - INFO - 🔄 Step 144384 Training Update:
+2025-10-14 14:35:26,278 - INFO -    Episode: 78, Step in Episode: 869
+2025-10-14 14:35:26,279 - INFO -    Current Episode Reward: -6.300
+2025-10-14 14:35:26,280 - INFO -    Actor Loss: -0.0833
+2025-10-14 14:35:26,281 - INFO -    Critic Loss: 3.2059
+2025-10-14 14:35:26,284 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:26,286 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:30,582 - INFO - Training Step 145408: Actor Loss: -0.0114, Critic Loss: 0.7539, Entropy: 3.1340
+2025-10-14 14:35:30,583 - INFO - 🔄 Step 145408 Training Update:
+2025-10-14 14:35:30,585 - INFO -    Episode: 78, Step in Episode: 1893
+2025-10-14 14:35:30,587 - INFO -    Current Episode Reward: -9.580
+2025-10-14 14:35:30,588 - INFO -    Actor Loss: -0.0114
+2025-10-14 14:35:30,589 - INFO -    Critic Loss: 0.7539
+2025-10-14 14:35:30,590 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:30,591 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:34,348 - INFO - Training Step 146432: Actor Loss: -0.2045, Critic Loss: 3.5411, Entropy: 3.1340
+2025-10-14 14:35:34,349 - INFO - 🔄 Step 146432 Training Update:
+2025-10-14 14:35:34,350 - INFO -    Episode: 78, Step in Episode: 2917
+2025-10-14 14:35:34,351 - INFO -    Current Episode Reward: 6.440
+2025-10-14 14:35:34,352 - INFO -    Actor Loss: -0.2045
+2025-10-14 14:35:34,352 - INFO -    Critic Loss: 3.5411
+2025-10-14 14:35:34,353 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:34,355 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:37,984 - INFO - Episode 78: Raw Reward: 22.420, Shaped Reward: 1.040, Length: 3923
+2025-10-14 14:35:37,984 - INFO - 📋 Episode 78 Complete:
+2025-10-14 14:35:37,985 - INFO -    Raw Reward: 22.420
+2025-10-14 14:35:37,987 - INFO -    Shaped Reward: 1.040
+2025-10-14 14:35:37,991 - INFO -    Episode Length: 3923
+2025-10-14 14:35:37,992 - INFO -    Survived: No
+2025-10-14 14:35:37,994 - INFO -    Unique Positions: 99
+2025-10-14 14:35:37,995 - INFO -    Level Ups: 14
+2025-10-14 14:35:38,150 - INFO - Training Step 147456: Actor Loss: -0.1159, Critic Loss: 1.8355, Entropy: 3.1340
+2025-10-14 14:35:38,151 - INFO - 🔄 Step 147456 Training Update:
+2025-10-14 14:35:38,152 - INFO -    Episode: 79, Step in Episode: 18
+2025-10-14 14:35:38,152 - INFO -    Current Episode Reward: -0.130
+2025-10-14 14:35:38,153 - INFO -    Actor Loss: -0.1159
+2025-10-14 14:35:38,153 - INFO -    Critic Loss: 1.8355
+2025-10-14 14:35:38,154 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:38,155 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:42,464 - INFO - Training Step 148480: Actor Loss: 0.0058, Critic Loss: 0.9359, Entropy: 3.1340
+2025-10-14 14:35:42,465 - INFO - 🔄 Step 148480 Training Update:
+2025-10-14 14:35:42,466 - INFO -    Episode: 79, Step in Episode: 1042
+2025-10-14 14:35:42,467 - INFO -    Current Episode Reward: -0.130
+2025-10-14 14:35:42,467 - INFO -    Actor Loss: 0.0058
+2025-10-14 14:35:42,468 - INFO -    Critic Loss: 0.9359
+2025-10-14 14:35:42,469 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:42,469 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:46,207 - INFO - Training Step 149504: Actor Loss: -0.1488, Critic Loss: 0.2042, Entropy: 3.1339
+2025-10-14 14:35:46,207 - INFO - 🔄 Step 149504 Training Update:
+2025-10-14 14:35:46,208 - INFO -    Episode: 79, Step in Episode: 2066
+2025-10-14 14:35:46,210 - INFO -    Current Episode Reward: -7.070
+2025-10-14 14:35:46,210 - INFO -    Actor Loss: -0.1488
+2025-10-14 14:35:46,213 - INFO -    Critic Loss: 0.2042
+2025-10-14 14:35:46,214 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:46,217 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:48,198 - INFO - Episode 79: Raw Reward: -11.010, Shaped Reward: -33.005, Length: 2616
+2025-10-14 14:35:48,199 - INFO - 📋 Episode 79 Complete:
+2025-10-14 14:35:48,200 - INFO -    Raw Reward: -11.010
+2025-10-14 14:35:48,201 - INFO -    Shaped Reward: -33.005
+2025-10-14 14:35:48,202 - INFO -    Episode Length: 2616
+2025-10-14 14:35:48,203 - INFO -    Survived: No
+2025-10-14 14:35:48,203 - INFO -    Unique Positions: 123
+2025-10-14 14:35:48,204 - INFO -    Level Ups: 18
+2025-10-14 14:35:48,206 - INFO - ================================================================================
+2025-10-14 14:35:48,207 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 71 to 80
+2025-10-14 14:35:48,208 - INFO - ================================================================================
+2025-10-14 14:35:48,208 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:35:48,209 - INFO -    Average Raw Reward: 27.875
+2025-10-14 14:35:48,210 - INFO -    Average Shaped Reward: 10.272
+2025-10-14 14:35:48,210 - INFO -    Best Episode Reward: 112.480
+2025-10-14 14:35:48,211 - INFO -    Reward Standard Deviation: 35.925
+2025-10-14 14:35:48,212 - INFO -    Success Rate: 70.0%
+2025-10-14 14:35:48,212 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:35:48,213 - INFO - 
+2025-10-14 14:35:48,214 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:35:48,215 - INFO -    Average Episode Length: 2075.2
+2025-10-14 14:35:48,215 - INFO -    Exploration Efficiency: 0.0476
+2025-10-14 14:35:48,217 - INFO -    Total Unique Positions: 987
+2025-10-14 14:35:48,218 - INFO - 
+2025-10-14 14:35:48,218 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:35:48,219 - INFO -    Average Actor Loss: -0.0683
+2025-10-14 14:35:48,220 - INFO -    Average Critic Loss: 4.3740
+2025-10-14 14:35:48,220 - INFO -    Average Entropy: 3.1341
+2025-10-14 14:35:48,221 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:35:48,223 - INFO -    Reward Trend: -0.237273
+2025-10-14 14:35:48,224 - INFO -    Learning Stability: 0.027
+2025-10-14 14:35:48,224 - INFO - ================================================================================
+2025-10-14 14:35:50,033 - INFO - Training Step 150528: Actor Loss: -0.1205, Critic Loss: 2.6400, Entropy: 3.1340
+2025-10-14 14:35:50,033 - INFO - 🔄 Step 150528 Training Update:
+2025-10-14 14:35:50,034 - INFO -    Episode: 80, Step in Episode: 474
+2025-10-14 14:35:50,035 - INFO -    Current Episode Reward: -3.680
+2025-10-14 14:35:50,038 - INFO -    Actor Loss: -0.1205
+2025-10-14 14:35:50,039 - INFO -    Critic Loss: 2.6400
+2025-10-14 14:35:50,040 - INFO -    Entropy: 3.1340
+2025-10-14 14:35:50,042 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:54,380 - INFO - Training Step 151552: Actor Loss: -0.1025, Critic Loss: 0.4837, Entropy: 3.1339
+2025-10-14 14:35:54,380 - INFO - 🔄 Step 151552 Training Update:
+2025-10-14 14:35:54,381 - INFO -    Episode: 80, Step in Episode: 1498
+2025-10-14 14:35:54,382 - INFO -    Current Episode Reward: -11.310
+2025-10-14 14:35:54,383 - INFO -    Actor Loss: -0.1025
+2025-10-14 14:35:54,383 - INFO -    Critic Loss: 0.4837
+2025-10-14 14:35:54,384 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:54,385 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:35:58,145 - INFO - Training Step 152576: Actor Loss: -0.0825, Critic Loss: 0.4069, Entropy: 3.1339
+2025-10-14 14:35:58,145 - INFO - 🔄 Step 152576 Training Update:
+2025-10-14 14:35:58,146 - INFO -    Episode: 80, Step in Episode: 2522
+2025-10-14 14:35:58,147 - INFO -    Current Episode Reward: -18.210
+2025-10-14 14:35:58,148 - INFO -    Actor Loss: -0.0825
+2025-10-14 14:35:58,150 - INFO -    Critic Loss: 0.4069
+2025-10-14 14:35:58,153 - INFO -    Entropy: 3.1339
+2025-10-14 14:35:58,154 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:00,016 - INFO - Episode 80: Raw Reward: -21.700, Shaped Reward: -37.754, Length: 3038
+2025-10-14 14:36:00,017 - INFO - 📋 Episode 80 Complete:
+2025-10-14 14:36:00,019 - INFO -    Raw Reward: -21.700
+2025-10-14 14:36:00,020 - INFO -    Shaped Reward: -37.754
+2025-10-14 14:36:00,021 - INFO -    Episode Length: 3038
+2025-10-14 14:36:00,021 - INFO -    Survived: No
+2025-10-14 14:36:00,023 - INFO -    Unique Positions: 59
+2025-10-14 14:36:00,024 - INFO -    Level Ups: 10
+2025-10-14 14:36:01,949 - INFO - Training Step 153600: Actor Loss: -0.0281, Critic Loss: 5.5690, Entropy: 3.1339
+2025-10-14 14:36:01,950 - INFO - 🔄 Step 153600 Training Update:
+2025-10-14 14:36:01,951 - INFO -    Episode: 81, Step in Episode: 508
+2025-10-14 14:36:01,951 - INFO -    Current Episode Reward: 50.660
+2025-10-14 14:36:01,952 - INFO -    Actor Loss: -0.0281
+2025-10-14 14:36:01,953 - INFO -    Critic Loss: 5.5690
+2025-10-14 14:36:01,954 - INFO -    Entropy: 3.1339
+2025-10-14 14:36:01,955 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:04,242 - INFO - Episode 81: Raw Reward: 54.780, Shaped Reward: 38.225, Length: 1081
+2025-10-14 14:36:04,242 - INFO - 📋 Episode 81 Complete:
+2025-10-14 14:36:04,243 - INFO -    Raw Reward: 54.780
+2025-10-14 14:36:04,244 - INFO -    Shaped Reward: 38.225
+2025-10-14 14:36:04,244 - INFO -    Episode Length: 1081
+2025-10-14 14:36:04,245 - INFO -    Survived: No
+2025-10-14 14:36:04,245 - INFO -    Unique Positions: 118
+2025-10-14 14:36:04,247 - INFO -    Level Ups: 16
+2025-10-14 14:36:06,265 - INFO - Training Step 154624: Actor Loss: -0.0687, Critic Loss: 3.9604, Entropy: 3.1340
+2025-10-14 14:36:06,266 - INFO - 🔄 Step 154624 Training Update:
+2025-10-14 14:36:06,267 - INFO -    Episode: 82, Step in Episode: 451
+2025-10-14 14:36:06,269 - INFO -    Current Episode Reward: -3.100
+2025-10-14 14:36:06,270 - INFO -    Actor Loss: -0.0687
+2025-10-14 14:36:06,271 - INFO -    Critic Loss: 3.9604
+2025-10-14 14:36:06,272 - INFO -    Entropy: 3.1340
+2025-10-14 14:36:06,273 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:10,003 - INFO - Training Step 155648: Actor Loss: -0.0694, Critic Loss: 0.5237, Entropy: 3.1337
+2025-10-14 14:36:10,004 - INFO - 🔄 Step 155648 Training Update:
+2025-10-14 14:36:10,005 - INFO -    Episode: 82, Step in Episode: 1475
+2025-10-14 14:36:10,006 - INFO -    Current Episode Reward: -10.410
+2025-10-14 14:36:10,007 - INFO -    Actor Loss: -0.0694
+2025-10-14 14:36:10,009 - INFO -    Critic Loss: 0.5237
+2025-10-14 14:36:10,011 - INFO -    Entropy: 3.1337
+2025-10-14 14:36:10,011 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:13,783 - INFO - Training Step 156672: Actor Loss: -0.1712, Critic Loss: 0.0513, Entropy: 3.1338
+2025-10-14 14:36:13,784 - INFO - 🔄 Step 156672 Training Update:
+2025-10-14 14:36:13,787 - INFO -    Episode: 82, Step in Episode: 2499
+2025-10-14 14:36:13,788 - INFO -    Current Episode Reward: -17.530
+2025-10-14 14:36:13,788 - INFO -    Actor Loss: -0.1712
+2025-10-14 14:36:13,790 - INFO -    Critic Loss: 0.0513
+2025-10-14 14:36:13,791 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:13,793 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:13,912 - INFO - Episode 82: Raw Reward: -10.720, Shaped Reward: -24.913, Length: 2527
+2025-10-14 14:36:13,913 - INFO - 📋 Episode 82 Complete:
+2025-10-14 14:36:13,913 - INFO -    Raw Reward: -10.720
+2025-10-14 14:36:13,915 - INFO -    Shaped Reward: -24.913
+2025-10-14 14:36:13,918 - INFO -    Episode Length: 2527
+2025-10-14 14:36:13,919 - INFO -    Survived: No
+2025-10-14 14:36:13,920 - INFO -    Unique Positions: 26
+2025-10-14 14:36:13,922 - INFO -    Level Ups: 11
+2025-10-14 14:36:18,119 - INFO - Training Step 157696: Actor Loss: -0.0941, Critic Loss: 1.2598, Entropy: 3.1338
+2025-10-14 14:36:18,120 - INFO - 🔄 Step 157696 Training Update:
+2025-10-14 14:36:18,121 - INFO -    Episode: 83, Step in Episode: 996
+2025-10-14 14:36:18,121 - INFO -    Current Episode Reward: 0.460
+2025-10-14 14:36:18,121 - INFO -    Actor Loss: -0.0941
+2025-10-14 14:36:18,122 - INFO -    Critic Loss: 1.2598
+2025-10-14 14:36:18,123 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:18,123 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:21,903 - INFO - Training Step 158720: Actor Loss: -0.1202, Critic Loss: 0.4180, Entropy: 3.1338
+2025-10-14 14:36:21,904 - INFO - 🔄 Step 158720 Training Update:
+2025-10-14 14:36:21,905 - INFO -    Episode: 83, Step in Episode: 2020
+2025-10-14 14:36:21,907 - INFO -    Current Episode Reward: -3.520
+2025-10-14 14:36:21,909 - INFO -    Actor Loss: -0.1202
+2025-10-14 14:36:21,911 - INFO -    Critic Loss: 0.4180
+2025-10-14 14:36:21,913 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:21,914 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:23,466 - INFO - Episode 83: Raw Reward: -6.780, Shaped Reward: -20.613, Length: 2439
+2025-10-14 14:36:23,467 - INFO - 📋 Episode 83 Complete:
+2025-10-14 14:36:23,470 - INFO -    Raw Reward: -6.780
+2025-10-14 14:36:23,471 - INFO -    Shaped Reward: -20.613
+2025-10-14 14:36:23,472 - INFO -    Episode Length: 2439
+2025-10-14 14:36:23,473 - INFO -    Survived: No
+2025-10-14 14:36:23,474 - INFO -    Unique Positions: 143
+2025-10-14 14:36:23,476 - INFO -    Level Ups: 10
+2025-10-14 14:36:24,454 - INFO - Episode 84: Raw Reward: -1.950, Shaped Reward: -18.876, Length: 263
+2025-10-14 14:36:24,454 - INFO - 📋 Episode 84 Complete:
+2025-10-14 14:36:24,455 - INFO -    Raw Reward: -1.950
+2025-10-14 14:36:24,457 - INFO -    Shaped Reward: -18.876
+2025-10-14 14:36:24,458 - INFO -    Episode Length: 263
+2025-10-14 14:36:24,459 - INFO -    Survived: No
+2025-10-14 14:36:24,459 - INFO -    Unique Positions: 30
+2025-10-14 14:36:24,460 - INFO -    Level Ups: 16
+2025-10-14 14:36:25,784 - INFO - Training Step 159744: Actor Loss: -0.1557, Critic Loss: 3.4882, Entropy: 3.1340
+2025-10-14 14:36:25,785 - INFO - 🔄 Step 159744 Training Update:
+2025-10-14 14:36:25,786 - INFO -    Episode: 85, Step in Episode: 342
+2025-10-14 14:36:25,789 - INFO -    Current Episode Reward: -0.320
+2025-10-14 14:36:25,790 - INFO -    Actor Loss: -0.1557
+2025-10-14 14:36:25,791 - INFO -    Critic Loss: 3.4882
+2025-10-14 14:36:25,793 - INFO -    Entropy: 3.1340
+2025-10-14 14:36:25,795 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:30,087 - INFO - Training Step 160768: Actor Loss: -0.0841, Critic Loss: 0.6128, Entropy: 3.1338
+2025-10-14 14:36:30,088 - INFO - 🔄 Step 160768 Training Update:
+2025-10-14 14:36:30,091 - INFO -    Episode: 85, Step in Episode: 1366
+2025-10-14 14:36:30,092 - INFO -    Current Episode Reward: -5.610
+2025-10-14 14:36:30,092 - INFO -    Actor Loss: -0.0841
+2025-10-14 14:36:30,094 - INFO -    Critic Loss: 0.6128
+2025-10-14 14:36:30,095 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:30,096 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:33,829 - INFO - Training Step 161792: Actor Loss: 0.0406, Critic Loss: 1.0493, Entropy: 3.1338
+2025-10-14 14:36:33,830 - INFO - 🔄 Step 161792 Training Update:
+2025-10-14 14:36:33,832 - INFO -    Episode: 85, Step in Episode: 2390
+2025-10-14 14:36:33,834 - INFO -    Current Episode Reward: -4.930
+2025-10-14 14:36:33,835 - INFO -    Actor Loss: 0.0406
+2025-10-14 14:36:33,836 - INFO -    Critic Loss: 1.0493
+2025-10-14 14:36:33,837 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:33,838 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:37,629 - INFO - Training Step 162816: Actor Loss: -0.0931, Critic Loss: 0.3707, Entropy: 3.1337
+2025-10-14 14:36:37,630 - INFO - 🔄 Step 162816 Training Update:
+2025-10-14 14:36:37,631 - INFO -    Episode: 85, Step in Episode: 3414
+2025-10-14 14:36:37,633 - INFO -    Current Episode Reward: -12.450
+2025-10-14 14:36:37,634 - INFO -    Actor Loss: -0.0931
+2025-10-14 14:36:37,636 - INFO -    Critic Loss: 0.3707
+2025-10-14 14:36:37,637 - INFO -    Entropy: 3.1337
+2025-10-14 14:36:37,638 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:37,995 - INFO - Episode 85: Raw Reward: -13.090, Shaped Reward: -36.682, Length: 3510
+2025-10-14 14:36:37,996 - INFO - 📋 Episode 85 Complete:
+2025-10-14 14:36:37,997 - INFO -    Raw Reward: -13.090
+2025-10-14 14:36:37,998 - INFO -    Shaped Reward: -36.682
+2025-10-14 14:36:37,999 - INFO -    Episode Length: 3510
+2025-10-14 14:36:37,999 - INFO -    Survived: No
+2025-10-14 14:36:38,000 - INFO -    Unique Positions: 103
+2025-10-14 14:36:38,001 - INFO -    Level Ups: 18
+2025-10-14 14:36:42,028 - INFO - Training Step 163840: Actor Loss: -0.0864, Critic Loss: 12.8821, Entropy: 3.1338
+2025-10-14 14:36:42,028 - INFO - 🔄 Step 163840 Training Update:
+2025-10-14 14:36:42,029 - INFO -    Episode: 86, Step in Episode: 928
+2025-10-14 14:36:42,031 - INFO -    Current Episode Reward: 60.090
+2025-10-14 14:36:42,033 - INFO -    Actor Loss: -0.0864
+2025-10-14 14:36:42,034 - INFO -    Critic Loss: 12.8821
+2025-10-14 14:36:42,036 - INFO -    Entropy: 3.1338
+2025-10-14 14:36:42,037 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:45,839 - INFO - Training Step 164864: Actor Loss: -0.0838, Critic Loss: 1.7638, Entropy: 3.1336
+2025-10-14 14:36:45,839 - INFO - 🔄 Step 164864 Training Update:
+2025-10-14 14:36:45,840 - INFO -    Episode: 86, Step in Episode: 1952
+2025-10-14 14:36:45,841 - INFO -    Current Episode Reward: 72.440
+2025-10-14 14:36:45,842 - INFO -    Actor Loss: -0.0838
+2025-10-14 14:36:45,844 - INFO -    Critic Loss: 1.7638
+2025-10-14 14:36:45,845 - INFO -    Entropy: 3.1336
+2025-10-14 14:36:45,846 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:49,649 - INFO - Training Step 165888: Actor Loss: -0.1260, Critic Loss: 3.1995, Entropy: 3.1336
+2025-10-14 14:36:49,650 - INFO - 🔄 Step 165888 Training Update:
+2025-10-14 14:36:49,652 - INFO -    Episode: 86, Step in Episode: 2976
+2025-10-14 14:36:49,653 - INFO -    Current Episode Reward: 100.260
+2025-10-14 14:36:49,654 - INFO -    Actor Loss: -0.1260
+2025-10-14 14:36:49,656 - INFO -    Critic Loss: 3.1995
+2025-10-14 14:36:49,657 - INFO -    Entropy: 3.1336
+2025-10-14 14:36:49,658 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:51,507 - INFO - Episode 86: Raw Reward: 112.220, Shaped Reward: 91.617, Length: 3489
+2025-10-14 14:36:51,508 - INFO - 📋 Episode 86 Complete:
+2025-10-14 14:36:51,508 - INFO -    Raw Reward: 112.220
+2025-10-14 14:36:51,509 - INFO -    Shaped Reward: 91.617
+2025-10-14 14:36:51,510 - INFO -    Episode Length: 3489
+2025-10-14 14:36:51,510 - INFO -    Survived: No
+2025-10-14 14:36:51,511 - INFO -    Unique Positions: 156
+2025-10-14 14:36:51,511 - INFO -    Level Ups: 13
+2025-10-14 14:36:52,895 - INFO - Episode 87: Raw Reward: 33.790, Shaped Reward: 20.277, Length: 268
+2025-10-14 14:36:52,897 - INFO - 📋 Episode 87 Complete:
+2025-10-14 14:36:52,898 - INFO -    Raw Reward: 33.790
+2025-10-14 14:36:52,902 - INFO -    Shaped Reward: 20.277
+2025-10-14 14:36:52,903 - INFO -    Episode Length: 268
+2025-10-14 14:36:52,904 - INFO -    Survived: No
+2025-10-14 14:36:52,905 - INFO -    Unique Positions: 23
+2025-10-14 14:36:52,906 - INFO -    Level Ups: 12
+2025-10-14 14:36:54,186 - INFO - Training Step 166912: Actor Loss: 0.0118, Critic Loss: 9.8115, Entropy: 3.1337
+2025-10-14 14:36:54,187 - INFO - 🔄 Step 166912 Training Update:
+2025-10-14 14:36:54,187 - INFO -    Episode: 88, Step in Episode: 243
+2025-10-14 14:36:54,189 - INFO -    Current Episode Reward: -1.760
+2025-10-14 14:36:54,190 - INFO -    Actor Loss: 0.0118
+2025-10-14 14:36:54,192 - INFO -    Critic Loss: 9.8115
+2025-10-14 14:36:54,193 - INFO -    Entropy: 3.1337
+2025-10-14 14:36:54,194 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:36:57,971 - INFO - Training Step 167936: Actor Loss: -0.0861, Critic Loss: 0.5332, Entropy: 3.1335
+2025-10-14 14:36:57,972 - INFO - 🔄 Step 167936 Training Update:
+2025-10-14 14:36:57,973 - INFO -    Episode: 88, Step in Episode: 1267
+2025-10-14 14:36:57,974 - INFO -    Current Episode Reward: -5.470
+2025-10-14 14:36:57,974 - INFO -    Actor Loss: -0.0861
+2025-10-14 14:36:57,975 - INFO -    Critic Loss: 0.5332
+2025-10-14 14:36:57,975 - INFO -    Entropy: 3.1335
+2025-10-14 14:36:57,976 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:01,732 - INFO - Training Step 168960: Actor Loss: -0.0424, Critic Loss: 0.5890, Entropy: 3.1334
+2025-10-14 14:37:01,733 - INFO - 🔄 Step 168960 Training Update:
+2025-10-14 14:37:01,733 - INFO -    Episode: 88, Step in Episode: 2291
+2025-10-14 14:37:01,734 - INFO -    Current Episode Reward: -12.860
+2025-10-14 14:37:01,735 - INFO -    Actor Loss: -0.0424
+2025-10-14 14:37:01,735 - INFO -    Critic Loss: 0.5890
+2025-10-14 14:37:01,736 - INFO -    Entropy: 3.1334
+2025-10-14 14:37:01,737 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:05,015 - INFO - Episode 88: Raw Reward: -18.570, Shaped Reward: -36.109, Length: 3113
+2025-10-14 14:37:05,016 - INFO - 📋 Episode 88 Complete:
+2025-10-14 14:37:05,016 - INFO -    Raw Reward: -18.570
+2025-10-14 14:37:05,017 - INFO -    Shaped Reward: -36.109
+2025-10-14 14:37:05,017 - INFO -    Episode Length: 3113
+2025-10-14 14:37:05,018 - INFO -    Survived: No
+2025-10-14 14:37:05,018 - INFO -    Unique Positions: 80
+2025-10-14 14:37:05,019 - INFO -    Level Ups: 13
+2025-10-14 14:37:06,095 - INFO - Training Step 169984: Actor Loss: -0.0846, Critic Loss: 2.8949, Entropy: 3.1335
+2025-10-14 14:37:06,095 - INFO - 🔄 Step 169984 Training Update:
+2025-10-14 14:37:06,097 - INFO -    Episode: 89, Step in Episode: 202
+2025-10-14 14:37:06,099 - INFO -    Current Episode Reward: 2.760
+2025-10-14 14:37:06,100 - INFO -    Actor Loss: -0.0846
+2025-10-14 14:37:06,101 - INFO -    Critic Loss: 2.8949
+2025-10-14 14:37:06,103 - INFO -    Entropy: 3.1335
+2025-10-14 14:37:06,104 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:09,858 - INFO - Training Step 171008: Actor Loss: 0.0830, Critic Loss: 1.4710, Entropy: 3.1334
+2025-10-14 14:37:09,859 - INFO - 🔄 Step 171008 Training Update:
+2025-10-14 14:37:09,860 - INFO -    Episode: 89, Step in Episode: 1226
+2025-10-14 14:37:09,861 - INFO -    Current Episode Reward: 3.910
+2025-10-14 14:37:09,863 - INFO -    Actor Loss: 0.0830
+2025-10-14 14:37:09,864 - INFO -    Critic Loss: 1.4710
+2025-10-14 14:37:09,865 - INFO -    Entropy: 3.1334
+2025-10-14 14:37:09,866 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:13,344 - INFO - Episode 89: Raw Reward: 31.880, Shaped Reward: 12.620, Length: 2197
+2025-10-14 14:37:13,345 - INFO - 📋 Episode 89 Complete:
+2025-10-14 14:37:13,347 - INFO -    Raw Reward: 31.880
+2025-10-14 14:37:13,348 - INFO -    Shaped Reward: 12.620
+2025-10-14 14:37:13,349 - INFO -    Episode Length: 2197
+2025-10-14 14:37:13,350 - INFO -    Survived: No
+2025-10-14 14:37:13,352 - INFO -    Unique Positions: 116
+2025-10-14 14:37:13,354 - INFO -    Level Ups: 17
+2025-10-14 14:37:13,357 - INFO - ================================================================================
+2025-10-14 14:37:13,358 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 81 to 90
+2025-10-14 14:37:13,360 - INFO - ================================================================================
+2025-10-14 14:37:13,360 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:37:13,361 - INFO -    Average Raw Reward: 15.986
+2025-10-14 14:37:13,364 - INFO -    Average Shaped Reward: -1.221
+2025-10-14 14:37:13,364 - INFO -    Best Episode Reward: 112.220
+2025-10-14 14:37:13,365 - INFO -    Reward Standard Deviation: 40.433
+2025-10-14 14:37:13,365 - INFO -    Success Rate: 40.0%
+2025-10-14 14:37:13,366 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:37:13,367 - INFO - 
+2025-10-14 14:37:13,369 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:37:13,370 - INFO -    Average Episode Length: 2192.5
+2025-10-14 14:37:13,371 - INFO -    Exploration Efficiency: 0.0390
+2025-10-14 14:37:13,372 - INFO -    Total Unique Positions: 854
+2025-10-14 14:37:13,373 - INFO - 
+2025-10-14 14:37:13,374 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:37:13,377 - INFO -    Average Actor Loss: -0.0749
+2025-10-14 14:37:13,378 - INFO -    Average Critic Loss: 3.5001
+2025-10-14 14:37:13,379 - INFO -    Average Entropy: 3.1339
+2025-10-14 14:37:13,379 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:37:13,380 - INFO -    Reward Trend: 3.255636
+2025-10-14 14:37:13,380 - INFO -    Learning Stability: 0.024
+2025-10-14 14:37:13,380 - INFO - ================================================================================
+2025-10-14 14:37:13,716 - INFO - Training Step 172032: Actor Loss: -0.0641, Critic Loss: 5.0348, Entropy: 3.1333
+2025-10-14 14:37:13,716 - INFO - 🔄 Step 172032 Training Update:
+2025-10-14 14:37:13,717 - INFO -    Episode: 90, Step in Episode: 53
+2025-10-14 14:37:13,718 - INFO -    Current Episode Reward: 1.720
+2025-10-14 14:37:13,720 - INFO -    Actor Loss: -0.0641
+2025-10-14 14:37:13,720 - INFO -    Critic Loss: 5.0348
+2025-10-14 14:37:13,721 - INFO -    Entropy: 3.1333
+2025-10-14 14:37:13,722 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:17,992 - INFO - Training Step 173056: Actor Loss: -0.0969, Critic Loss: 0.2977, Entropy: 3.1332
+2025-10-14 14:37:17,993 - INFO - 🔄 Step 173056 Training Update:
+2025-10-14 14:37:17,994 - INFO -    Episode: 90, Step in Episode: 1077
+2025-10-14 14:37:17,995 - INFO -    Current Episode Reward: -5.820
+2025-10-14 14:37:17,995 - INFO -    Actor Loss: -0.0969
+2025-10-14 14:37:17,996 - INFO -    Critic Loss: 0.2977
+2025-10-14 14:37:17,997 - INFO -    Entropy: 3.1332
+2025-10-14 14:37:17,998 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:20,424 - INFO - Episode 90: Raw Reward: -6.980, Shaped Reward: -23.129, Length: 1759
+2025-10-14 14:37:20,425 - INFO - 📋 Episode 90 Complete:
+2025-10-14 14:37:20,426 - INFO -    Raw Reward: -6.980
+2025-10-14 14:37:20,427 - INFO -    Shaped Reward: -23.129
+2025-10-14 14:37:20,429 - INFO -    Episode Length: 1759
+2025-10-14 14:37:20,430 - INFO -    Survived: No
+2025-10-14 14:37:20,433 - INFO -    Unique Positions: 92
+2025-10-14 14:37:20,434 - INFO -    Level Ups: 13
+2025-10-14 14:37:21,722 - INFO - Training Step 174080: Actor Loss: -0.0136, Critic Loss: 16.1881, Entropy: 3.1332
+2025-10-14 14:37:21,723 - INFO - 🔄 Step 174080 Training Update:
+2025-10-14 14:37:21,724 - INFO -    Episode: 91, Step in Episode: 342
+2025-10-14 14:37:21,725 - INFO -    Current Episode Reward: 97.710
+2025-10-14 14:37:21,726 - INFO -    Actor Loss: -0.0136
+2025-10-14 14:37:21,727 - INFO -    Critic Loss: 16.1881
+2025-10-14 14:37:21,728 - INFO -    Entropy: 3.1332
+2025-10-14 14:37:21,729 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:23,905 - INFO - Episode 91: Raw Reward: 101.630, Shaped Reward: 83.165, Length: 929
+2025-10-14 14:37:23,906 - INFO - 📋 Episode 91 Complete:
+2025-10-14 14:37:23,907 - INFO -    Raw Reward: 101.630
+2025-10-14 14:37:23,908 - INFO -    Shaped Reward: 83.165
+2025-10-14 14:37:23,909 - INFO -    Episode Length: 929
+2025-10-14 14:37:23,910 - INFO -    Survived: No
+2025-10-14 14:37:23,911 - INFO -    Unique Positions: 120
+2025-10-14 14:37:23,913 - INFO -    Level Ups: 18
+2025-10-14 14:37:25,538 - INFO - Training Step 175104: Actor Loss: -0.0885, Critic Loss: 4.9824, Entropy: 3.1330
+2025-10-14 14:37:25,539 - INFO - 🔄 Step 175104 Training Update:
+2025-10-14 14:37:25,540 - INFO -    Episode: 92, Step in Episode: 437
+2025-10-14 14:37:25,542 - INFO -    Current Episode Reward: -0.470
+2025-10-14 14:37:25,543 - INFO -    Actor Loss: -0.0885
+2025-10-14 14:37:25,546 - INFO -    Critic Loss: 4.9824
+2025-10-14 14:37:25,549 - INFO -    Entropy: 3.1330
+2025-10-14 14:37:25,549 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:29,921 - INFO - Training Step 176128: Actor Loss: -0.0158, Critic Loss: 0.8252, Entropy: 3.1326
+2025-10-14 14:37:29,922 - INFO - 🔄 Step 176128 Training Update:
+2025-10-14 14:37:29,923 - INFO -    Episode: 92, Step in Episode: 1461
+2025-10-14 14:37:29,923 - INFO -    Current Episode Reward: 3.680
+2025-10-14 14:37:29,924 - INFO -    Actor Loss: -0.0158
+2025-10-14 14:37:29,924 - INFO -    Critic Loss: 0.8252
+2025-10-14 14:37:29,925 - INFO -    Entropy: 3.1326
+2025-10-14 14:37:29,925 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:33,938 - INFO - Training Step 177152: Actor Loss: -0.1293, Critic Loss: 1.4177, Entropy: 3.1325
+2025-10-14 14:37:33,938 - INFO - 🔄 Step 177152 Training Update:
+2025-10-14 14:37:33,939 - INFO -    Episode: 92, Step in Episode: 2485
+2025-10-14 14:37:33,941 - INFO -    Current Episode Reward: 11.930
+2025-10-14 14:37:33,942 - INFO -    Actor Loss: -0.1293
+2025-10-14 14:37:33,943 - INFO -    Critic Loss: 1.4177
+2025-10-14 14:37:33,946 - INFO -    Entropy: 3.1325
+2025-10-14 14:37:33,947 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:37,123 - INFO - Episode 92: Raw Reward: 9.550, Shaped Reward: -11.097, Length: 3356
+2025-10-14 14:37:37,123 - INFO - 📋 Episode 92 Complete:
+2025-10-14 14:37:37,124 - INFO -    Raw Reward: 9.550
+2025-10-14 14:37:37,125 - INFO -    Shaped Reward: -11.097
+2025-10-14 14:37:37,125 - INFO -    Episode Length: 3356
+2025-10-14 14:37:37,126 - INFO -    Survived: No
+2025-10-14 14:37:37,127 - INFO -    Unique Positions: 152
+2025-10-14 14:37:37,127 - INFO -    Level Ups: 15
+2025-10-14 14:37:37,779 - INFO - Training Step 178176: Actor Loss: -0.0736, Critic Loss: 4.4556, Entropy: 3.1328
+2025-10-14 14:37:37,779 - INFO - 🔄 Step 178176 Training Update:
+2025-10-14 14:37:37,780 - INFO -    Episode: 93, Step in Episode: 153
+2025-10-14 14:37:37,781 - INFO -    Current Episode Reward: 0.780
+2025-10-14 14:37:37,784 - INFO -    Actor Loss: -0.0736
+2025-10-14 14:37:37,785 - INFO -    Critic Loss: 4.4556
+2025-10-14 14:37:37,786 - INFO -    Entropy: 3.1328
+2025-10-14 14:37:37,789 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:42,082 - INFO - Training Step 179200: Actor Loss: -0.1125, Critic Loss: 0.6461, Entropy: 3.1328
+2025-10-14 14:37:42,083 - INFO - 🔄 Step 179200 Training Update:
+2025-10-14 14:37:42,084 - INFO -    Episode: 93, Step in Episode: 1177
+2025-10-14 14:37:42,084 - INFO -    Current Episode Reward: -6.070
+2025-10-14 14:37:42,085 - INFO -    Actor Loss: -0.1125
+2025-10-14 14:37:42,086 - INFO -    Critic Loss: 0.6461
+2025-10-14 14:37:42,087 - INFO -    Entropy: 3.1328
+2025-10-14 14:37:42,087 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:45,979 - INFO - Training Step 180224: Actor Loss: -0.0267, Critic Loss: 0.5711, Entropy: 3.1327
+2025-10-14 14:37:45,979 - INFO - 🔄 Step 180224 Training Update:
+2025-10-14 14:37:45,980 - INFO -    Episode: 93, Step in Episode: 2201
+2025-10-14 14:37:45,981 - INFO -    Current Episode Reward: -13.520
+2025-10-14 14:37:45,982 - INFO -    Actor Loss: -0.0267
+2025-10-14 14:37:45,983 - INFO -    Critic Loss: 0.5711
+2025-10-14 14:37:45,983 - INFO -    Entropy: 3.1327
+2025-10-14 14:37:45,984 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:49,760 - INFO - Training Step 181248: Actor Loss: 0.0423, Critic Loss: 1.1396, Entropy: 3.1326
+2025-10-14 14:37:49,760 - INFO - 🔄 Step 181248 Training Update:
+2025-10-14 14:37:49,761 - INFO -    Episode: 93, Step in Episode: 3225
+2025-10-14 14:37:49,762 - INFO -    Current Episode Reward: 6.940
+2025-10-14 14:37:49,763 - INFO -    Actor Loss: 0.0423
+2025-10-14 14:37:49,766 - INFO -    Critic Loss: 1.1396
+2025-10-14 14:37:49,768 - INFO -    Entropy: 3.1326
+2025-10-14 14:37:49,768 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:52,602 - INFO - Episode 93: Raw Reward: 51.160, Shaped Reward: 30.565, Length: 3972
+2025-10-14 14:37:52,603 - INFO - 📋 Episode 93 Complete:
+2025-10-14 14:37:52,604 - INFO -    Raw Reward: 51.160
+2025-10-14 14:37:52,605 - INFO -    Shaped Reward: 30.565
+2025-10-14 14:37:52,606 - INFO -    Episode Length: 3972
+2025-10-14 14:37:52,607 - INFO -    Survived: No
+2025-10-14 14:37:52,607 - INFO -    Unique Positions: 145
+2025-10-14 14:37:52,608 - INFO -    Level Ups: 11
+2025-10-14 14:37:54,097 - INFO - Training Step 182272: Actor Loss: -0.2477, Critic Loss: 25.8482, Entropy: 3.1326
+2025-10-14 14:37:54,098 - INFO - 🔄 Step 182272 Training Update:
+2025-10-14 14:37:54,098 - INFO -    Episode: 94, Step in Episode: 277
+2025-10-14 14:37:54,099 - INFO -    Current Episode Reward: -2.050
+2025-10-14 14:37:54,100 - INFO -    Actor Loss: -0.2477
+2025-10-14 14:37:54,100 - INFO -    Critic Loss: 25.8482
+2025-10-14 14:37:54,101 - INFO -    Entropy: 3.1326
+2025-10-14 14:37:54,102 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:37:57,925 - INFO - Training Step 183296: Actor Loss: 0.0234, Critic Loss: 1.6254, Entropy: 3.1324
+2025-10-14 14:37:57,926 - INFO - 🔄 Step 183296 Training Update:
+2025-10-14 14:37:57,927 - INFO -    Episode: 94, Step in Episode: 1301
+2025-10-14 14:37:57,927 - INFO -    Current Episode Reward: 8.390
+2025-10-14 14:37:57,928 - INFO -    Actor Loss: 0.0234
+2025-10-14 14:37:57,929 - INFO -    Critic Loss: 1.6254
+2025-10-14 14:37:57,929 - INFO -    Entropy: 3.1324
+2025-10-14 14:37:57,930 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:01,670 - INFO - Training Step 184320: Actor Loss: -0.0984, Critic Loss: 12.4327, Entropy: 3.1321
+2025-10-14 14:38:01,671 - INFO - 🔄 Step 184320 Training Update:
+2025-10-14 14:38:01,672 - INFO -    Episode: 94, Step in Episode: 2325
+2025-10-14 14:38:01,673 - INFO -    Current Episode Reward: 57.720
+2025-10-14 14:38:01,675 - INFO -    Actor Loss: -0.0984
+2025-10-14 14:38:01,677 - INFO -    Critic Loss: 12.4327
+2025-10-14 14:38:01,678 - INFO -    Entropy: 3.1321
+2025-10-14 14:38:01,679 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:05,155 - INFO - Episode 94: Raw Reward: 51.180, Shaped Reward: 33.051, Length: 3212
+2025-10-14 14:38:05,157 - INFO - 📋 Episode 94 Complete:
+2025-10-14 14:38:05,158 - INFO -    Raw Reward: 51.180
+2025-10-14 14:38:05,159 - INFO -    Shaped Reward: 33.051
+2025-10-14 14:38:05,160 - INFO -    Episode Length: 3212
+2025-10-14 14:38:05,161 - INFO -    Survived: No
+2025-10-14 14:38:05,162 - INFO -    Unique Positions: 207
+2025-10-14 14:38:05,163 - INFO -    Level Ups: 13
+2025-10-14 14:38:05,972 - INFO - Training Step 185344: Actor Loss: -0.1091, Critic Loss: 3.0199, Entropy: 3.1321
+2025-10-14 14:38:05,973 - INFO - 🔄 Step 185344 Training Update:
+2025-10-14 14:38:05,973 - INFO -    Episode: 95, Step in Episode: 137
+2025-10-14 14:38:05,974 - INFO -    Current Episode Reward: 2.050
+2025-10-14 14:38:05,975 - INFO -    Actor Loss: -0.1091
+2025-10-14 14:38:05,976 - INFO -    Critic Loss: 3.0199
+2025-10-14 14:38:05,978 - INFO -    Entropy: 3.1321
+2025-10-14 14:38:05,978 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:09,165 - INFO - Episode 95: Raw Reward: 30.390, Shaped Reward: 17.225, Length: 990
+2025-10-14 14:38:09,166 - INFO - 📋 Episode 95 Complete:
+2025-10-14 14:38:09,168 - INFO -    Raw Reward: 30.390
+2025-10-14 14:38:09,169 - INFO -    Shaped Reward: 17.225
+2025-10-14 14:38:09,170 - INFO -    Episode Length: 990
+2025-10-14 14:38:09,172 - INFO -    Survived: No
+2025-10-14 14:38:09,173 - INFO -    Unique Positions: 81
+2025-10-14 14:38:09,174 - INFO -    Level Ups: 12
+2025-10-14 14:38:09,879 - INFO - Training Step 186368: Actor Loss: -0.0225, Critic Loss: 5.7346, Entropy: 3.1321
+2025-10-14 14:38:09,880 - INFO - 🔄 Step 186368 Training Update:
+2025-10-14 14:38:09,881 - INFO -    Episode: 96, Step in Episode: 171
+2025-10-14 14:38:09,882 - INFO -    Current Episode Reward: 1.900
+2025-10-14 14:38:09,883 - INFO -    Actor Loss: -0.0225
+2025-10-14 14:38:09,884 - INFO -    Critic Loss: 5.7346
+2025-10-14 14:38:09,887 - INFO -    Entropy: 3.1321
+2025-10-14 14:38:09,888 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:13,684 - INFO - Training Step 187392: Actor Loss: -0.1106, Critic Loss: 0.5541, Entropy: 3.1317
+2025-10-14 14:38:13,685 - INFO - 🔄 Step 187392 Training Update:
+2025-10-14 14:38:13,686 - INFO -    Episode: 96, Step in Episode: 1195
+2025-10-14 14:38:13,687 - INFO -    Current Episode Reward: -5.590
+2025-10-14 14:38:13,688 - INFO -    Actor Loss: -0.1106
+2025-10-14 14:38:13,688 - INFO -    Critic Loss: 0.5541
+2025-10-14 14:38:13,689 - INFO -    Entropy: 3.1317
+2025-10-14 14:38:13,691 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:17,836 - INFO - Training Step 188416: Actor Loss: -0.0878, Critic Loss: 0.5770, Entropy: 3.1309
+2025-10-14 14:38:17,838 - INFO - 🔄 Step 188416 Training Update:
+2025-10-14 14:38:17,840 - INFO -    Episode: 96, Step in Episode: 2219
+2025-10-14 14:38:17,841 - INFO -    Current Episode Reward: -13.120
+2025-10-14 14:38:17,841 - INFO -    Actor Loss: -0.0878
+2025-10-14 14:38:17,843 - INFO -    Critic Loss: 0.5770
+2025-10-14 14:38:17,844 - INFO -    Entropy: 3.1309
+2025-10-14 14:38:17,846 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:21,802 - INFO - Training Step 189440: Actor Loss: 0.0148, Critic Loss: 1.2007, Entropy: 3.1304
+2025-10-14 14:38:21,803 - INFO - 🔄 Step 189440 Training Update:
+2025-10-14 14:38:21,803 - INFO -    Episode: 96, Step in Episode: 3243
+2025-10-14 14:38:21,805 - INFO -    Current Episode Reward: -20.930
+2025-10-14 14:38:21,807 - INFO -    Actor Loss: 0.0148
+2025-10-14 14:38:21,808 - INFO -    Critic Loss: 1.2007
+2025-10-14 14:38:21,808 - INFO -    Entropy: 3.1304
+2025-10-14 14:38:21,811 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:23,883 - INFO - Episode 96: Raw Reward: -25.100, Shaped Reward: -44.697, Length: 3793
+2025-10-14 14:38:23,883 - INFO - 📋 Episode 96 Complete:
+2025-10-14 14:38:23,885 - INFO -    Raw Reward: -25.100
+2025-10-14 14:38:23,886 - INFO -    Shaped Reward: -44.697
+2025-10-14 14:38:23,889 - INFO -    Episode Length: 3793
+2025-10-14 14:38:23,890 - INFO -    Survived: No
+2025-10-14 14:38:23,891 - INFO -    Unique Positions: 28
+2025-10-14 14:38:23,892 - INFO -    Level Ups: 12
+2025-10-14 14:38:25,694 - INFO - Training Step 190464: Actor Loss: 0.0448, Critic Loss: 4.9220, Entropy: 3.1307
+2025-10-14 14:38:25,695 - INFO - 🔄 Step 190464 Training Update:
+2025-10-14 14:38:25,696 - INFO -    Episode: 97, Step in Episode: 474
+2025-10-14 14:38:25,697 - INFO -    Current Episode Reward: 3.230
+2025-10-14 14:38:25,697 - INFO -    Actor Loss: 0.0448
+2025-10-14 14:38:25,699 - INFO -    Critic Loss: 4.9220
+2025-10-14 14:38:25,701 - INFO -    Entropy: 3.1307
+2025-10-14 14:38:25,702 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:29,796 - INFO - Training Step 191488: Actor Loss: -0.0767, Critic Loss: 0.6358, Entropy: 3.1305
+2025-10-14 14:38:29,797 - INFO - 🔄 Step 191488 Training Update:
+2025-10-14 14:38:29,797 - INFO -    Episode: 97, Step in Episode: 1498
+2025-10-14 14:38:29,798 - INFO -    Current Episode Reward: 2.590
+2025-10-14 14:38:29,799 - INFO -    Actor Loss: -0.0767
+2025-10-14 14:38:29,800 - INFO -    Critic Loss: 0.6358
+2025-10-14 14:38:29,801 - INFO -    Entropy: 3.1305
+2025-10-14 14:38:29,802 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:33,758 - INFO - Training Step 192512: Actor Loss: -0.1270, Critic Loss: 2.0842, Entropy: 3.1300
+2025-10-14 14:38:33,758 - INFO - 🔄 Step 192512 Training Update:
+2025-10-14 14:38:33,759 - INFO -    Episode: 97, Step in Episode: 2522
+2025-10-14 14:38:33,761 - INFO -    Current Episode Reward: 27.030
+2025-10-14 14:38:33,763 - INFO -    Actor Loss: -0.1270
+2025-10-14 14:38:33,764 - INFO -    Critic Loss: 2.0842
+2025-10-14 14:38:33,765 - INFO -    Entropy: 3.1300
+2025-10-14 14:38:33,767 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:37,521 - INFO - Training Step 193536: Actor Loss: -0.0017, Critic Loss: 0.8537, Entropy: 3.1291
+2025-10-14 14:38:37,522 - INFO - 🔄 Step 193536 Training Update:
+2025-10-14 14:38:37,523 - INFO -    Episode: 97, Step in Episode: 3546
+2025-10-14 14:38:37,524 - INFO -    Current Episode Reward: 27.030
+2025-10-14 14:38:37,525 - INFO -    Actor Loss: -0.0017
+2025-10-14 14:38:37,527 - INFO -    Critic Loss: 0.8537
+2025-10-14 14:38:37,528 - INFO -    Entropy: 3.1291
+2025-10-14 14:38:37,529 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:39,840 - INFO - Episode 97: Raw Reward: 22.530, Shaped Reward: -2.916, Length: 4175
+2025-10-14 14:38:39,841 - INFO - 📋 Episode 97 Complete:
+2025-10-14 14:38:39,842 - INFO -    Raw Reward: 22.530
+2025-10-14 14:38:39,844 - INFO -    Shaped Reward: -2.916
+2025-10-14 14:38:39,845 - INFO -    Episode Length: 4175
+2025-10-14 14:38:39,847 - INFO -    Survived: No
+2025-10-14 14:38:39,848 - INFO -    Unique Positions: 157
+2025-10-14 14:38:39,849 - INFO -    Level Ups: 17
+2025-10-14 14:38:41,620 - INFO - Training Step 194560: Actor Loss: -0.1033, Critic Loss: 3.4941, Entropy: 3.1275
+2025-10-14 14:38:41,622 - INFO - 🔄 Step 194560 Training Update:
+2025-10-14 14:38:41,624 - INFO -    Episode: 98, Step in Episode: 395
+2025-10-14 14:38:41,624 - INFO -    Current Episode Reward: 25.420
+2025-10-14 14:38:41,625 - INFO -    Actor Loss: -0.1033
+2025-10-14 14:38:41,625 - INFO -    Critic Loss: 3.4941
+2025-10-14 14:38:41,626 - INFO -    Entropy: 3.1275
+2025-10-14 14:38:41,627 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:45,651 - INFO - Training Step 195584: Actor Loss: -0.1046, Critic Loss: 3.1817, Entropy: 3.1271
+2025-10-14 14:38:45,652 - INFO - 🔄 Step 195584 Training Update:
+2025-10-14 14:38:45,652 - INFO -    Episode: 98, Step in Episode: 1419
+2025-10-14 14:38:45,654 - INFO -    Current Episode Reward: 33.880
+2025-10-14 14:38:45,655 - INFO -    Actor Loss: -0.1046
+2025-10-14 14:38:45,655 - INFO -    Critic Loss: 3.1817
+2025-10-14 14:38:45,657 - INFO -    Entropy: 3.1271
+2025-10-14 14:38:45,658 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:49,416 - INFO - Training Step 196608: Actor Loss: -0.1713, Critic Loss: 0.1554, Entropy: 3.1289
+2025-10-14 14:38:49,417 - INFO - 🔄 Step 196608 Training Update:
+2025-10-14 14:38:49,418 - INFO -    Episode: 98, Step in Episode: 2443
+2025-10-14 14:38:49,418 - INFO -    Current Episode Reward: 26.740
+2025-10-14 14:38:49,419 - INFO -    Actor Loss: -0.1713
+2025-10-14 14:38:49,420 - INFO -    Critic Loss: 0.1554
+2025-10-14 14:38:49,421 - INFO -    Entropy: 3.1289
+2025-10-14 14:38:49,421 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:50,445 - INFO - Episode 98: Raw Reward: 24.780, Shaped Reward: 7.871, Length: 2722
+2025-10-14 14:38:50,445 - INFO - 📋 Episode 98 Complete:
+2025-10-14 14:38:50,446 - INFO -    Raw Reward: 24.780
+2025-10-14 14:38:50,447 - INFO -    Shaped Reward: 7.871
+2025-10-14 14:38:50,449 - INFO -    Episode Length: 2722
+2025-10-14 14:38:50,450 - INFO -    Survived: No
+2025-10-14 14:38:50,451 - INFO -    Unique Positions: 153
+2025-10-14 14:38:50,452 - INFO -    Level Ups: 14
+2025-10-14 14:38:53,496 - INFO - Training Step 197632: Actor Loss: -0.0554, Critic Loss: 4.0896, Entropy: 3.1302
+2025-10-14 14:38:53,497 - INFO - 🔄 Step 197632 Training Update:
+2025-10-14 14:38:53,498 - INFO -    Episode: 99, Step in Episode: 745
+2025-10-14 14:38:53,499 - INFO -    Current Episode Reward: -1.630
+2025-10-14 14:38:53,501 - INFO -    Actor Loss: -0.0554
+2025-10-14 14:38:53,503 - INFO -    Critic Loss: 4.0896
+2025-10-14 14:38:53,503 - INFO -    Entropy: 3.1302
+2025-10-14 14:38:53,504 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:38:57,601 - INFO - Training Step 198656: Actor Loss: -0.0300, Critic Loss: 8.5570, Entropy: 3.1304
+2025-10-14 14:38:57,602 - INFO - 🔄 Step 198656 Training Update:
+2025-10-14 14:38:57,603 - INFO -    Episode: 99, Step in Episode: 1769
+2025-10-14 14:38:57,603 - INFO -    Current Episode Reward: 43.360
+2025-10-14 14:38:57,604 - INFO -    Actor Loss: -0.0300
+2025-10-14 14:38:57,605 - INFO -    Critic Loss: 8.5570
+2025-10-14 14:38:57,606 - INFO -    Entropy: 3.1304
+2025-10-14 14:38:57,606 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:39:01,359 - INFO - Training Step 199680: Actor Loss: -0.0351, Critic Loss: 0.8674, Entropy: 3.1303
+2025-10-14 14:39:01,360 - INFO - 🔄 Step 199680 Training Update:
+2025-10-14 14:39:01,361 - INFO -    Episode: 99, Step in Episode: 2793
+2025-10-14 14:39:01,362 - INFO -    Current Episode Reward: 36.360
+2025-10-14 14:39:01,363 - INFO -    Actor Loss: -0.0351
+2025-10-14 14:39:01,363 - INFO -    Critic Loss: 0.8674
+2025-10-14 14:39:01,364 - INFO -    Entropy: 3.1303
+2025-10-14 14:39:01,364 - INFO -    Clip Fraction: 0.0000
+2025-10-14 14:39:03,767 - INFO - Episode 99: Raw Reward: 31.500, Shaped Reward: 11.904, Length: 3439
+2025-10-14 14:39:03,767 - INFO - 📋 Episode 99 Complete:
+2025-10-14 14:39:03,769 - INFO -    Raw Reward: 31.500
+2025-10-14 14:39:03,771 - INFO -    Shaped Reward: 11.904
+2025-10-14 14:39:03,772 - INFO -    Episode Length: 3439
+2025-10-14 14:39:03,774 - INFO -    Survived: No
+2025-10-14 14:39:03,776 - INFO -    Unique Positions: 194
+2025-10-14 14:39:03,778 - INFO -    Level Ups: 15
+2025-10-14 14:39:03,780 - INFO - ================================================================================
+2025-10-14 14:39:03,781 - INFO - 📊 EXTENSIVE ANALYSIS - Episodes 91 to 100
+2025-10-14 14:39:03,782 - INFO - ================================================================================
+2025-10-14 14:39:03,783 - INFO - 🎯 Performance Metrics:
+2025-10-14 14:39:03,785 - INFO -    Average Raw Reward: 29.064
+2025-10-14 14:39:03,786 - INFO -    Average Shaped Reward: 10.194
+2025-10-14 14:39:03,787 - INFO -    Best Episode Reward: 101.630
+2025-10-14 14:39:03,788 - INFO -    Reward Standard Deviation: 33.054
+2025-10-14 14:39:03,789 - INFO -    Success Rate: 80.0%
+2025-10-14 14:39:03,791 - INFO -    Survival Rate: 0.0%
+2025-10-14 14:39:03,792 - INFO - 
+2025-10-14 14:39:03,793 - INFO - 🚀 Exploration Metrics:
+2025-10-14 14:39:03,794 - INFO -    Average Episode Length: 2834.7
+2025-10-14 14:39:03,795 - INFO -    Exploration Efficiency: 0.0469
+2025-10-14 14:39:03,797 - INFO -    Total Unique Positions: 1329
+2025-10-14 14:39:03,798 - INFO - 
+2025-10-14 14:39:03,799 - INFO - 🧠 Learning Metrics:
+2025-10-14 14:39:03,800 - INFO -    Average Actor Loss: -0.0718
+2025-10-14 14:39:03,800 - INFO -    Average Critic Loss: 3.3915
+2025-10-14 14:39:03,801 - INFO -    Average Entropy: 3.1324
+2025-10-14 14:39:03,802 - INFO -    Average Clip Fraction: 0.0000
+2025-10-14 14:39:03,804 - INFO -    Reward Trend: -2.280606
+2025-10-14 14:39:03,805 - INFO -    Learning Stability: 0.029
+2025-10-14 14:39:03,806 - INFO - ================================================================================
+2025-10-14 14:39:03,920 - INFO - 🎯 Final model saved: final_model_100_episodes.pth
+2025-10-14 14:39:03,928 - INFO - Metrics saved to training_logs/nethack_ppo_20251014_142607_metrics.json
+2025-10-14 14:39:03,929 - INFO - CSV logs saved to:
+2025-10-14 14:39:03,929 - INFO -   Episodes: training_logs/nethack_ppo_20251014_142607_episodes.csv
+2025-10-14 14:39:03,930 - INFO -   Training: training_logs/nethack_ppo_20251014_142607_training.csv
+2025-10-14 14:39:03,931 - INFO -   Extensive: training_logs/nethack_ppo_20251014_142607_extensive.csv
