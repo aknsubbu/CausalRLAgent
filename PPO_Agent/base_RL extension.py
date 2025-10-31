@@ -1165,7 +1165,7 @@ class NetHackSemanticDescriptor:
         
         return (y, x)  # Return as (row, col) for array indexing
     
-    def generate_full_description(self, obs, processed_obs,recent_actions):
+    def generate_full_description(self, obs, processed_obs, recent_actions):
         """Generate complete semantic description of game state"""
         if isinstance(obs, tuple):
             obs = obs[0]
@@ -1211,293 +1211,6 @@ Current Situation: You are exploring a dungeon. Your goal is to survive, gain ex
         return description
 
 
-# ========================================
-# UPDATE LLM-ENHANCED AGENT
-# ========================================
-
-class LLMEnhancedNetHackAgent:
-    """Base RL agent with optional minimal LLM guidance"""
-    
-    def __init__(self, action_dim=23, learning_rate=1e-4, gamma=0.99, clip_ratio=0.2,
-                 entropy_coef=0.02, value_coef=0.5, max_grad_norm=0.5, 
-                 enable_llm=False, llm_guidance_weight=0.05):
-        
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        print(f"Using device: {self.device}")
-        
-        # Networks
-        self.actor = LLMEnhancedPPOActor(action_dim=action_dim).to(self.device)
-        self.critic = RecurrentPPOCritic().to(self.device)
-        
-        # LLM settings
-        self.actor.use_llm = enable_llm
-        self.actor.llm_guidance_weight = llm_guidance_weight if enable_llm else 0.0
-        
-        # Optimizers
-        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=learning_rate)
-        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=learning_rate)
-        
-        # Hyperparameters
-        self.gamma = gamma
-        self.clip_ratio = clip_ratio
-        self.entropy_coef = entropy_coef
-        self.value_coef = value_coef
-        self.max_grad_norm = max_grad_norm
-        
-        # Components
-        self.buffer = PPOBuffer()
-        self.obs_processor = NetHackObservationProcessor()
-        self.reward_shaper = NetHackRewardShaper()
-        
-        # NEW: LLM components
-        self.llm_advisor = EnhancedLLMAdvisor(call_frequency=50) if enable_llm else None
-        self.state_extractor = NetHackSemanticDescriptor() if enable_llm else None
-        self.current_llm_hints = None
-        self.llm_call_count = 0
-        
-        # Tracking
-        self.episode_rewards = deque(maxlen=100)
-        self.episode_lengths = deque(maxlen=100)
-        self.shaped_rewards = deque(maxlen=100)
-        self.last_action = None
-        
-    def process_observation(self, obs):
-        """EXACT same as base RL"""
-        processed = self.obs_processor.process_observation(obs, self.last_action)
-        
-        tensor_obs = {}
-        for key, value in processed.items():
-            tensor_obs[key] = torch.FloatTensor(value).unsqueeze(0).to(self.device)
-        
-        return tensor_obs, obs  # Return both processed and raw obs
-    
-    async def select_action(self, processed_obs, raw_obs, reset_hidden=False, performance_metrics=None):
-        """Action selection with optional LLM hints"""
-        
-        # Get LLM hints if enabled and needed
-        if self.llm_advisor and self.state_extractor and performance_metrics:
-            if self.llm_advisor.should_call_llm(performance_metrics):
-                # Extract game state
-                game_state = self.state_extractor.extract_state(raw_obs)
-                
-                # Get LLM advice
-                print(f"🤖 Calling LLM... (Health: {game_state['health_ratio']*100:.0f}%, "
-                      f"Level: {game_state['level']}, "
-                      f"Monsters: {'Yes' if game_state['nearby_monsters'] else 'No'})")
-                
-                self.current_llm_hints = await self.llm_advisor.get_simple_advice(
-                    game_state, performance_metrics
-                )
-                self.llm_call_count += 1
-                
-                # Show which actions got boosted
-                boosted_actions = np.where(self.current_llm_hints > 0)[0]
-                if len(boosted_actions) > 0:
-                    action_names = [self.llm_advisor.action_names.get(a, str(a)) 
-                                  for a in boosted_actions if a in self.llm_advisor.action_names]
-                    print(f"   LLM suggests: {', '.join(action_names)}")
-        
-        # Select action (with or without LLM hints)
-        with torch.no_grad():
-            action_logits = self.actor(processed_obs, reset_hidden, self.current_llm_hints)
-            action_dist = Categorical(logits=action_logits)
-            action = action_dist.sample()
-            log_prob = action_dist.log_prob(action)
-            value = self.critic(processed_obs, reset_hidden)
-            
-            return action.item(), log_prob.item(), value.item()
-    
-    def update(self, epochs=4, batch_size=64):
-        """EXACT update from base RL - NO CHANGES"""
-        if len(self.buffer) < batch_size:
-            return {}
-        
-        self.buffer.compute_advantages(self.gamma)
-        
-        advantages = torch.tensor(self.buffer.advantages, dtype=torch.float32)
-        advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
-        self.buffer.advantages = advantages.tolist()
-        
-        actor_losses = []
-        critic_losses = []
-        entropies = []
-        clip_fractions = []
-        
-        for _ in range(epochs):
-            batch_obs, batch_actions, old_log_probs, batch_returns, batch_advantages = \
-                self.buffer.get_batch(min(batch_size, len(self.buffer)))
-            
-            batch_obs = {k: v.to(self.device) for k, v in batch_obs.items()}
-            batch_actions = batch_actions.to(self.device)
-            old_log_probs = old_log_probs.to(self.device)
-            batch_returns = batch_returns.to(self.device)
-            batch_advantages = batch_advantages.to(self.device)
-            
-            self.actor.reset_hidden_states()
-            self.critic.reset_hidden_states()
-            
-            # Actor update (no LLM hints in training)
-            action_logits = self.actor(batch_obs, reset_hidden=True, llm_hints=None)
-            action_dist = Categorical(logits=action_logits)
-            new_log_probs = action_dist.log_prob(batch_actions)
-            entropy = action_dist.entropy().mean()
-            
-            ratio = torch.exp(new_log_probs - old_log_probs)
-            surr1 = ratio * batch_advantages
-            surr2 = torch.clamp(ratio, 1 - self.clip_ratio, 1 + self.clip_ratio) * batch_advantages
-            
-            clip_fraction = torch.mean((torch.abs(ratio - 1) > self.clip_ratio).float()).item()
-            
-            policy_loss = -torch.min(surr1, surr2).mean()
-            entropy_loss = -self.entropy_coef * entropy
-            actor_loss = policy_loss + entropy_loss
-            
-            self.actor_optimizer.zero_grad()
-            actor_loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.max_grad_norm)
-            self.actor_optimizer.step()
-            
-            # Critic update
-            values = self.critic(batch_obs, reset_hidden=True).squeeze()
-            value_loss = F.mse_loss(values, batch_returns)
-            critic_loss = self.value_coef * value_loss
-            
-            self.critic_optimizer.zero_grad()
-            critic_loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.critic.parameters(), self.max_grad_norm)
-            self.critic_optimizer.step()
-            
-            actor_losses.append(actor_loss.item())
-            critic_losses.append(critic_loss.item())
-            entropies.append(entropy.item())
-            clip_fractions.append(clip_fraction)
-        
-        return {
-            'actor_loss': np.mean(actor_losses),
-            'critic_loss': np.mean(critic_losses),
-            'entropy': np.mean(entropies),
-            'clip_fraction': np.mean(clip_fractions),
-        }
-    
-    async def train(self, env, num_episodes=100, update_freq=1024, print_freq=10):
-        """Training loop with LLM integration"""
-        step_count = 0
-        
-        print(f"🚀 Training for {num_episodes} episodes")
-        print(f"   LLM Guidance: {'ENABLED' if self.actor.use_llm else 'DISABLED'}")
-        if self.actor.use_llm:
-            print(f"   LLM Guidance Weight: {self.actor.llm_guidance_weight:.3f}")
-            print(f"   LLM Call Frequency: Every {self.llm_advisor.call_frequency} steps (when struggling)")
-        print(f"   Update Frequency: {update_freq} steps")
-        print()
-        
-        for episode in range(num_episodes):
-            obs = env.reset()
-            episode_reward = 0
-            episode_shaped_reward = 0
-            episode_length = 0
-            
-            # Reset states
-            self.actor.reset_hidden_states()
-            self.critic.reset_hidden_states()
-            self.reward_shaper.reset()
-            self.last_action = None
-            self.current_llm_hints = None
-            
-            reset_hidden = True
-            
-            # Performance metrics for LLM
-            performance_metrics = {
-                'avg_reward': np.mean(list(self.episode_rewards)) if self.episode_rewards else 0,
-                'avg_length': np.mean(list(self.episode_lengths)) if self.episode_lengths else 0,
-            }
-            
-            while True:
-                processed_obs, raw_obs = self.process_observation(obs)
-                action, log_prob, value = await self.select_action(
-                    processed_obs, raw_obs, reset_hidden, performance_metrics
-                )
-                reset_hidden = False
-                
-                self.last_action = action
-                
-                # Store for buffer
-                processed_obs_for_buffer = {}
-                for key, tensor_val in processed_obs.items():
-                    processed_obs_for_buffer[key] = tensor_val.squeeze(0).cpu()
-                
-                # Environment step
-                step_result = env.step(action)
-                
-                if len(step_result) == 4:
-                    next_obs, reward, done, info = step_result
-                else:
-                    next_obs, reward, terminated, truncated, info = step_result
-                    done = terminated or truncated
-                
-                # Reward shaping
-                shaped_reward = self.reward_shaper.shape_reward(next_obs, reward, done, info)
-                
-                self.buffer.add(processed_obs_for_buffer, action, shaped_reward, value, log_prob, done)
-                
-                obs = next_obs
-                episode_reward += reward
-                episode_shaped_reward += shaped_reward
-                episode_length += 1
-                step_count += 1
-                
-                # Update - same schedule as base RL
-                if step_count % update_freq == 0:
-                    training_metrics = self.update()
-                    if training_metrics:
-                        print(f"  📊 Step {step_count}: "
-                              f"Actor Loss: {training_metrics['actor_loss']:.4f}, "
-                              f"Critic Loss: {training_metrics['critic_loss']:.4f}, "
-                              f"Entropy: {training_metrics['entropy']:.4f}")
-                    self.buffer.clear()
-                
-                if done:
-                    break
-            
-            # Store episode metrics
-            self.episode_rewards.append(episode_reward)
-            self.shaped_rewards.append(episode_shaped_reward)
-            self.episode_lengths.append(episode_length)
-            
-            # Print progress
-            if episode % print_freq == 0:
-                avg_reward = np.mean(list(self.episode_rewards)[-10:]) if len(self.episode_rewards) >= 10 else np.mean(list(self.episode_rewards))
-                avg_length = np.mean(list(self.episode_lengths)[-10:]) if len(self.episode_lengths) >= 10 else np.mean(list(self.episode_lengths))
-                
-                llm_info = f", LLM Calls: {self.llm_call_count}" if self.actor.use_llm else ""
-                print(f"📈 Episode {episode}: "
-                      f"Avg Reward (last 10): {avg_reward:.3f}, "
-                      f"Avg Length: {avg_length:.1f}"
-                      f"{llm_info}")
-        
-        if self.actor.use_llm:
-            print(f"\n🤖 Total LLM Calls: {self.llm_call_count}")
-        
-        return list(self.episode_rewards), list(self.shaped_rewards)
-    
-    def save_model(self, path):
-        """Save model"""
-        torch.save({
-            'actor_state_dict': self.actor.state_dict(),
-            'critic_state_dict': self.critic.state_dict(),
-            'actor_optimizer_state_dict': self.actor_optimizer.state_dict(),
-            'critic_optimizer_state_dict': self.critic_optimizer.state_dict(),
-        }, path)
-        print(f"💾 Model saved to {path}")
-    
-    def load_model(self, path):
-        """Load model"""
-        checkpoint = torch.load(path, map_location=self.device)
-        self.actor.load_state_dict(checkpoint['actor_state_dict'])
-        self.critic.load_state_dict(checkpoint['critic_state_dict'])
-        self.actor_optimizer.load_state_dict(checkpoint['actor_optimizer_state_dict'])
-        self.critic_optimizer.load_state_dict(checkpoint['critic_optimizer_state_dict'])
-        print(f"📂 Model loaded from {path}")
 
 # ========================================
 # MAIN TRAINING FUNCTION
@@ -1553,7 +1266,7 @@ async def main():
     )
     base_time = time.time() - start_time
     
-    base_agent.save_model("models/base_rl_model.pth")
+    base_agent.save_model("models_vx/base_rl_model.pth")
     
     print(f"\n✅ Base RL Training Complete!")
     print(f"   Time: {base_time:.1f}s")
@@ -1591,9 +1304,9 @@ async def main():
         print_freq=10
     )
     llm_time = time.time() - start_time
-    
-    llm_agent.save_model("models/llm_enhanced_model.pth")
-    
+
+    llm_agent.save_model("models_vx/llm_enhanced_model.pth")
+
     print(f"\n✅ LLM-Enhanced RL Training Complete!")
     print(f"   Time: {llm_time:.1f}s")
     print(f"   Final Avg Reward (last 10): {np.mean(llm_rewards[-10:]):.3f}")
@@ -1783,6 +1496,9 @@ if __name__ == "__main__":
     
     # Create models directory
     os.makedirs("models_vx", exist_ok=True)
+    print("Folder Created: models_vx/")
+    
+
     
     print("🚀 Starting NetHack RL Experiments...")
     print("   This will train two agents for 100 episodes each:")
