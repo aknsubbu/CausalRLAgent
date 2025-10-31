@@ -191,7 +191,7 @@ class NetHackRewardShaper:
         self.last_health = 0
         self.episode_start_time = None
 
-        
+
 class NetHackObservationProcessor:
     """Enhanced observation processor with memory features and CORRECT blstats parsing"""
     
@@ -2996,10 +2996,11 @@ AVOID (Negative Reward):
 - When injured (<40%), PRIORITIZE SURVIVAL over combat
 - NEVER spam same action repeatedly
 - Gold pickup is ALWAYS worthwhile
+- ALWAYS USE EXACT ACTION NAMES from the VALID ACTION SET below
 
 ═══ VALID ACTION SET ═══
 Movement: move_north, move_south, move_east, move_west, move_northeast, move_northwest, move_southeast, move_southwest
-Combat: kick (melee attack)
+Combat: kick 
 Items: pickup, drop, eat, drink, read, apply, wear, wield
 Utility: search, wait, open_door, close_door
 
