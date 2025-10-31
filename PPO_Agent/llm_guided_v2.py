@@ -2997,8 +2997,8 @@ async def main_monitored():
     # Create monitored agent with INCREASED LLM guidance weight
     agent = MonitoredLLMGuidedNetHackAgent(
         action_dim=env.action_space.n,
-        llm_guidance_weight=1.0,  # INCREASED from 0.5 to make LLM advice more influential
-        llm_call_frequency=20,
+        llm_guidance_weight=0.1,  
+        llm_call_frequency=40,
         baseline_metrics_path=baseline_path
     )
     
