@@ -261,7 +261,7 @@ class DoublyRobustEstimator:
     
     def analyze_heterogeneous_effects(self):
         """
-        Analyze treatment effect heterogeneity
+        Analyze treatment effect heterogeneity across MULTIPLE dimensions
         - Does LLM advice help more in certain situations?
         """
         print("\n🔍 Analyzing heterogeneous treatment effects...")
@@ -274,29 +274,123 @@ class DoublyRobustEstimator:
         Y0_hat = self.df['Y0_hat'].values
         self.df['ite'] = Y1_hat - Y0_hat
         
-        # Analyze by health status
-        health_bins = pd.qcut(self.df['health'], q=4, labels=['Critical', 'Low', 'Moderate', 'Good'])
-        self.df['health_bin'] = health_bins
-        
-        print("\n📊 Treatment Effect by Health Status:")
-        for health_cat in ['Critical', 'Low', 'Moderate', 'Good']:
-            mask = self.df['health_bin'] == health_cat
-            ate_health = self.df[mask]['ite'].mean()
-            n = mask.sum()
-            print(f"   {health_cat:12s}: ATE={ate_health:+.6f} (n={n:6d})")
-        
-        # Analyze by episode progress
-        progress_bins = pd.cut(self.df['episode_progress'], bins=[0, 0.25, 0.5, 0.75, 1.0], 
-                               labels=['Early', 'Mid-Early', 'Mid-Late', 'Late'])
+        # 1. BY EPISODE PROGRESS (most important according to propensity model!)
+        print("\n📊 Treatment Effect by Episode Progress:")
+        progress_bins = pd.cut(self.df['episode_progress'], 
+                               bins=[0, 0.25, 0.5, 0.75, 1.0], 
+                               labels=['Early', 'Mid-Early', 'Mid-Late', 'Late'],
+                               include_lowest=True)
         self.df['progress_bin'] = progress_bins
         
-        print("\n📊 Treatment Effect by Episode Progress:")
         for progress_cat in ['Early', 'Mid-Early', 'Mid-Late', 'Late']:
             mask = self.df['progress_bin'] == progress_cat
-            if mask.sum() > 0:
-                ate_progress = self.df[mask]['ite'].mean()
+            if mask.sum() > 100:  # Only show if enough data
+                ate = self.df[mask]['ite'].mean()
+                se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
                 n = mask.sum()
-                print(f"   {progress_cat:12s}: ATE={ate_progress:+.6f} (n={n:6d})")
+                sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                print(f"   {progress_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        
+        # 2. BY RECENT PERFORMANCE
+        print("\n📊 Treatment Effect by Recent Performance:")
+        perf_bins = pd.qcut(self.df['reward_ma10'], q=4, 
+                            labels=['Struggling', 'Below-Avg', 'Above-Avg', 'Doing-Well'],
+                            duplicates='drop')
+        self.df['perf_bin'] = perf_bins
+        
+        for perf_cat in perf_bins.cat.categories:
+            mask = self.df['perf_bin'] == perf_cat
+            if mask.sum() > 100:
+                ate = self.df[mask]['ite'].mean()
+                se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                n = mask.sum()
+                sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                print(f"   {perf_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        
+        # 3. BY DUNGEON DEPTH
+        print("\n📊 Treatment Effect by Dungeon Depth:")
+        try:
+            depth_bins = pd.qcut(self.df['depth'], q=3, 
+                                labels=['Shallow', 'Mid', 'Deep'],
+                                duplicates='drop')
+            self.df['depth_bin'] = depth_bins
+            
+            for depth_cat in depth_bins.cat.categories:
+                mask = self.df['depth_bin'] == depth_cat
+                if mask.sum() > 100:
+                    ate = self.df[mask]['ite'].mean()
+                    se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                    n = mask.sum()
+                    sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                    print(f"   {depth_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        except:
+            print("   ⚠️ Depth data too uniform for binning")
+        
+        # 4. BY REWARD VOLATILITY (risk/uncertainty)
+        print("\n📊 Treatment Effect by Reward Volatility:")
+        vol_bins = pd.qcut(self.df['recent_reward_std'], q=3,
+                           labels=['Stable', 'Moderate', 'Volatile'],
+                           duplicates='drop')
+        self.df['vol_bin'] = vol_bins
+        
+        for vol_cat in vol_bins.cat.categories:
+            mask = self.df['vol_bin'] == vol_cat
+            if mask.sum() > 100:
+                ate = self.df[mask]['ite'].mean()
+                se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                n = mask.sum()
+                sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                print(f"   {vol_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        
+        # 5. BY CHARACTER LEVEL
+        print("\n📊 Treatment Effect by Character Level:")
+        try:
+            level_bins = pd.cut(self.df['level'], 
+                               bins=[0, 1, 2, 3, 30],
+                               labels=['Level-1', 'Level-2', 'Level-3', 'Level-4+'],
+                               include_lowest=True)
+            self.df['level_bin'] = level_bins
+            
+            for level_cat in ['Level-1', 'Level-2', 'Level-3', 'Level-4+']:
+                mask = self.df['level_bin'] == level_cat
+                if mask.sum() > 100:
+                    ate = self.df[mask]['ite'].mean()
+                    se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                    n = mask.sum()
+                    sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                    print(f"   {level_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        except:
+            print("   ⚠️ Level data too uniform for binning")
+        
+        # 6. BY GOLD COLLECTED (proxy for success)
+        print("\n📊 Treatment Effect by Gold Collected:")
+        gold_bins = pd.cut(self.df['gold'], 
+                          bins=[-1, 0, 10, 50, 10000],
+                          labels=['None', 'Little', 'Some', 'Lots'],
+                          include_lowest=True)
+        self.df['gold_bin'] = gold_bins
+        
+        for gold_cat in ['None', 'Little', 'Some', 'Lots']:
+            mask = self.df['gold_bin'] == gold_cat
+            if mask.sum() > 100:
+                ate = self.df[mask]['ite'].mean()
+                se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                n = mask.sum()
+                sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                print(f"   {gold_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:6d}) {sig}")
+        
+        # 7. INTERACTION: Progress × Performance
+        print("\n📊 Treatment Effect by Progress × Performance Interaction:")
+        for progress_cat in ['Early', 'Late']:
+            for perf_cat in ['Struggling', 'Doing-Well']:
+                mask = (self.df['progress_bin'] == progress_cat) & \
+                       (self.df['perf_bin'] == perf_cat)
+                if mask.sum() > 50:
+                    ate = self.df[mask]['ite'].mean()
+                    se = self.df[mask]['ite'].std() / np.sqrt(mask.sum())
+                    n = mask.sum()
+                    sig = "✓" if abs(ate/se) > 1.96 else "✗"
+                    print(f"   {progress_cat} + {perf_cat:12s}: ATE={ate:+.6f} ±{se:.6f} (n={n:5d}) {sig}")
     
     def analyze_strategy_effectiveness(self):
         """Analyze which LLM strategies are most effective"""
@@ -345,7 +439,7 @@ class DoublyRobustEstimator:
         output_dir = Path(output_dir)
         output_dir.mkdir(exist_ok=True)
         
-        # 1. Propensity Score Distribution
+        # FIGURE 1: Core doubly robust analysis
         fig, axes = plt.subplots(2, 2, figsize=(15, 12))
         
         # Plot 1: Propensity scores
@@ -353,75 +447,139 @@ class DoublyRobustEstimator:
         treated_scores = self.df[self.df['treated']]['propensity_score']
         control_scores = self.df[~self.df['treated']]['propensity_score']
         
-        ax.hist(treated_scores, bins=50, alpha=0.6, label='Treated', density=True)
-        ax.hist(control_scores, bins=50, alpha=0.6, label='Control', density=True)
+        ax.hist(treated_scores, bins=50, alpha=0.6, label='Treated', density=True, color='blue')
+        ax.hist(control_scores, bins=50, alpha=0.6, label='Control', density=True, color='orange')
         ax.set_xlabel('Propensity Score')
         ax.set_ylabel('Density')
-        ax.set_title('Propensity Score Distribution')
+        ax.set_title('Propensity Score Distribution\n(Overlap Check)')
         ax.legend()
         ax.grid(True, alpha=0.3)
         
         # Plot 2: Individual Treatment Effects
         ax = axes[0, 1]
-        ax.hist(self.df['ite'], bins=100, alpha=0.7, edgecolor='black')
+        ax.hist(self.df['ite'], bins=100, alpha=0.7, edgecolor='black', color='steelblue')
         ax.axvline(self.ate_dr, color='red', linestyle='--', linewidth=2, label=f'ATE={self.ate_dr:.4f}')
+        ax.axvline(0, color='black', linestyle='-', linewidth=1, alpha=0.3)
         ax.set_xlabel('Individual Treatment Effect')
         ax.set_ylabel('Frequency')
         ax.set_title('Distribution of Individual Treatment Effects')
         ax.legend()
         ax.grid(True, alpha=0.3)
         
-        # Plot 3: Treatment Effect by Health
+        # Plot 3: Treatment Effect by Progress
         ax = axes[1, 0]
-        health_effects = self.df.groupby('health_bin')['ite'].mean()
-        health_effects.plot(kind='bar', ax=ax, color='steelblue', edgecolor='black')
-        ax.axhline(0, color='red', linestyle='--', alpha=0.5)
-        ax.set_xlabel('Health Status')
-        ax.set_ylabel('Average Treatment Effect')
-        ax.set_title('Treatment Effect by Health Status')
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
-        ax.grid(True, alpha=0.3)
+        if 'progress_bin' in self.df.columns:
+            progress_effects = self.df.groupby('progress_bin')['ite'].agg(['mean', 'std', 'count'])
+            progress_effects['se'] = progress_effects['std'] / np.sqrt(progress_effects['count'])
+            
+            ax.bar(range(len(progress_effects)), progress_effects['mean'],
+                   yerr=progress_effects['se'], capsize=5,
+                   color='steelblue', edgecolor='black', alpha=0.7)
+            ax.axhline(0, color='red', linestyle='--', alpha=0.5)
+            ax.set_xticks(range(len(progress_effects)))
+            ax.set_xticklabels(progress_effects.index, rotation=45)
+            ax.set_ylabel('Average Treatment Effect')
+            ax.set_title('Treatment Effect by Episode Progress')
+            ax.grid(True, alpha=0.3)
         
-        # Plot 4: Outcomes comparison
+        # Plot 4: Treatment Effect by Performance
         ax = axes[1, 1]
-        outcomes_data = {
-            'Treated (Observed)': self.df[self.df['treated']]['shaped_reward'].mean(),
-            'Control (Observed)': self.df[~self.df['treated']]['shaped_reward'].mean(),
-            'Treated (Predicted)': self.df['Y1_hat'].mean(),
-            'Control (Predicted)': self.df['Y0_hat'].mean(),
-        }
-        
-        bars = ax.bar(range(len(outcomes_data)), list(outcomes_data.values()), 
-                      color=['blue', 'orange', 'lightblue', 'lightsalmon'],
-                      edgecolor='black')
-        ax.set_xticks(range(len(outcomes_data)))
-        ax.set_xticklabels(list(outcomes_data.keys()), rotation=45, ha='right')
-        ax.set_ylabel('Average Shaped Reward')
-        ax.set_title('Observed vs Predicted Outcomes')
-        ax.axhline(0, color='red', linestyle='--', alpha=0.5)
-        ax.grid(True, alpha=0.3)
+        if 'perf_bin' in self.df.columns:
+            perf_effects = self.df.groupby('perf_bin')['ite'].agg(['mean', 'std', 'count'])
+            perf_effects['se'] = perf_effects['std'] / np.sqrt(perf_effects['count'])
+            
+            ax.bar(range(len(perf_effects)), perf_effects['mean'],
+                   yerr=perf_effects['se'], capsize=5,
+                   color='coral', edgecolor='black', alpha=0.7)
+            ax.axhline(0, color='red', linestyle='--', alpha=0.5)
+            ax.set_xticks(range(len(perf_effects)))
+            ax.set_xticklabels(perf_effects.index, rotation=45)
+            ax.set_ylabel('Average Treatment Effect')
+            ax.set_title('Treatment Effect by Recent Performance')
+            ax.grid(True, alpha=0.3)
         
         plt.tight_layout()
         plt.savefig(output_dir / 'doubly_robust_analysis.png', dpi=300, bbox_inches='tight')
         print(f"   ✅ Saved: {output_dir / 'doubly_robust_analysis.png'}")
         plt.close()
         
-        # 2. Strategy-specific analysis
+        # FIGURE 2: Multi-dimensional heterogeneity
+        fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+        
+        dimensions = [
+            ('progress_bin', 'Episode Progress', axes[0, 0]),
+            ('perf_bin', 'Recent Performance', axes[0, 1]),
+            ('vol_bin', 'Reward Volatility', axes[0, 2]),
+            ('depth_bin', 'Dungeon Depth', axes[1, 0]),
+            ('gold_bin', 'Gold Collected', axes[1, 1]),
+            ('level_bin', 'Character Level', axes[1, 2])
+        ]
+        
+        for col_name, title, ax in dimensions:
+            if col_name in self.df.columns:
+                effects = self.df.groupby(col_name)['ite'].agg(['mean', 'std', 'count'])
+                effects = effects[effects['count'] > 100]  # Only show if enough data
+                
+                if len(effects) > 0:
+                    effects['se'] = effects['std'] / np.sqrt(effects['count'])
+                    
+                    bars = ax.bar(range(len(effects)), effects['mean'],
+                                 yerr=effects['se'], capsize=5,
+                                 color='mediumseagreen', edgecolor='black', alpha=0.7)
+                    
+                    # Color code bars (red for negative, green for positive)
+                    for i, bar in enumerate(bars):
+                        if effects.iloc[i]['mean'] < 0:
+                            bar.set_color('indianred')
+                    
+                    ax.axhline(0, color='black', linestyle='-', linewidth=1, alpha=0.3)
+                    ax.set_xticks(range(len(effects)))
+                    ax.set_xticklabels(effects.index, rotation=45, ha='right')
+                    ax.set_ylabel('ATE')
+                    ax.set_title(f'Effect by {title}')
+                    ax.grid(True, alpha=0.3, axis='y')
+            else:
+                ax.text(0.5, 0.5, f'{title}\nData not available',
+                       ha='center', va='center', transform=ax.transAxes)
+                ax.set_title(f'Effect by {title}')
+        
+        plt.tight_layout()
+        plt.savefig(output_dir / 'heterogeneous_effects.png', dpi=300, bbox_inches='tight')
+        print(f"   ✅ Saved: {output_dir / 'heterogeneous_effects.png'}")
+        plt.close()
+        
+        # FIGURE 3: Strategy-specific analysis (if available)
         if 'strategy' in self.df.columns:
-            fig, ax = plt.subplots(figsize=(12, 6))
+            fig, axes = plt.subplots(1, 2, figsize=(15, 6))
             
+            # Strategy effectiveness
+            ax = axes[0]
             strategy_data = self.df[self.df['treated']].groupby('strategy')['shaped_reward'].agg(['mean', 'std', 'count'])
-            strategy_data = strategy_data[strategy_data['count'] > 50]  # Only strategies with enough data
+            strategy_data = strategy_data[strategy_data['count'] > 50]
             strategy_data = strategy_data.sort_values('mean', ascending=False)
+            strategy_data['se'] = strategy_data['std'] / np.sqrt(strategy_data['count'])
             
             ax.bar(range(len(strategy_data)), strategy_data['mean'], 
-                   yerr=strategy_data['std'] / np.sqrt(strategy_data['count']),
-                   capsize=5, color='steelblue', edgecolor='black')
+                   yerr=strategy_data['se'], capsize=5,
+                   color='steelblue', edgecolor='black', alpha=0.7)
             ax.set_xticks(range(len(strategy_data)))
             ax.set_xticklabels(strategy_data.index, rotation=45, ha='right')
             ax.set_ylabel('Average Shaped Reward')
-            ax.set_title('Performance by LLM Strategy (with SE)')
+            ax.set_title('Performance by LLM Strategy')
             ax.axhline(0, color='red', linestyle='--', alpha=0.5)
+            ax.grid(True, alpha=0.3)
+            
+            # Strategy distribution
+            ax = axes[1]
+            strategy_counts = self.df[self.df['treated']]['strategy'].value_counts()
+            strategy_counts = strategy_counts[strategy_counts > 50]
+            
+            ax.bar(range(len(strategy_counts)), strategy_counts.values,
+                   color='coral', edgecolor='black', alpha=0.7)
+            ax.set_xticks(range(len(strategy_counts)))
+            ax.set_xticklabels(strategy_counts.index, rotation=45, ha='right')
+            ax.set_ylabel('Frequency')
+            ax.set_title('Strategy Usage Distribution')
             ax.grid(True, alpha=0.3)
             
             plt.tight_layout()
@@ -467,9 +625,9 @@ class DoublyRobustEstimator:
 if __name__ == "__main__":
     # Update with your actual file paths
     estimator = DoublyRobustEstimator(
-        steps_file="causal_logs_v2/steps_20251101_222048.jsonl",
-        interventions_file="causal_logs_v2/interventions_20251101_222048.jsonl",
-        summary_file="causal_logs_v2/summary_20251101_222048.json"
+        steps_file="causal_logs_v2/steps_20251101_222630.jsonl",
+        interventions_file="causal_logs_v2/interventions_20251101_222630.jsonl",
+        summary_file="causal_logs_v2/summary_20251101_222630.json"
     )
     
     results = estimator.run_full_analysis()
