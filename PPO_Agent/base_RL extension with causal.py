@@ -14,7 +14,7 @@ import json
 import re
 import time
 
-from causal_logger import CausalLogger 
+from causal_logger import ImprovedCausalLogger 
 
 
 # ========================================
@@ -698,12 +698,14 @@ class LLMEnhancedNetHackAgent:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Using device: {self.device}")
 
-        self.causal_logger = CausalLogger(
-            log_dir="causal_logs",
-            buffer_size=100
+        self.causal_logger = ImprovedCausalLogger(
+            log_dir="causal_logs_v2",
+            window_size=50
         ) if enable_llm else None
-        
+
         print(f"   Causal Logging: {'ENABLED' if enable_llm else 'DISABLED'}")
+      
+    
         
         # Networks
         self.actor = LLMEnhancedPPOActor(action_dim=action_dim).to(self.device)
@@ -752,7 +754,7 @@ class LLMEnhancedNetHackAgent:
         return tensor_obs, processed, obs
     
     async def select_action(self, tensor_obs, processed_obs, raw_obs, 
-                           reset_hidden=False, performance_metrics=None):
+                       reset_hidden=False, performance_metrics=None, episode_length=0):
         """Action selection with enhanced LLM guidance"""
         
         # Get LLM hints if enabled
@@ -761,15 +763,14 @@ class LLMEnhancedNetHackAgent:
                 print(f"\n🤖 Calling LLM for strategic advice...")
                 
                 llm_start_time = time.time()
-
+                
                 # Get comprehensive advice
                 self.current_llm_hints = await self.llm_advisor.get_strategic_advice(
                     raw_obs, processed_obs, performance_metrics
                 )
-
+                
                 llm_call_duration = time.time() - llm_start_time
-
-
+                
                 self.llm_call_count += 1
                 
                 # Show which actions got boosted
@@ -778,28 +779,24 @@ class LLMEnhancedNetHackAgent:
                     action_meanings = self.llm_advisor.semantic_descriptor.action_meanings
                     action_names = [action_meanings.get(a, str(a)) for a in boosted_actions[:5]]
                     print(f"   Suggested actions: {', '.join(action_names)}")
-
+                
+                # Log intervention
                 if self.causal_logger:
-                    llm_call_data = {
+                    intervention_data = {
                         'episode': self.causal_logger.current_episode,
-                        'step': self.causal_logger.current_step,
+                        'step': episode_length,
                         'semantic_description': self.llm_advisor.semantic_descriptor.generate_full_description(
                             raw_obs, processed_obs, self.llm_advisor.recent_actions
                         ),
-                        'llm_response': self.llm_advisor.last_advice,  # You'll need to store this
-                        'strategy': self.llm_advisor.last_strategy,     # You'll need to store this
+                        'llm_response': self.llm_advisor.last_advice,
+                        'parsed_strategy': self.llm_advisor.last_strategy,
                         'action_hints': self.current_llm_hints,
                         'boosted_actions': boosted_actions.tolist(),
-                        'performance_metrics': performance_metrics.copy(),
-                        'raw_obs': raw_obs,
-                        'processed_obs': processed_obs,
                         'call_duration': llm_call_duration,
+                        'performance_before': performance_metrics.copy(),
+                        'raw_obs': raw_obs,
                     }
-                    call_id = self.causal_logger.log_llm_call(llm_call_data)
-                
-                    # Store call_id for later outcome logging
-                    self.last_llm_call_id = call_id
-    
+                    self.last_llm_call_id = self.causal_logger.log_llm_intervention(intervention_data)
         
         # Update action history for loop detection
         if self.llm_advisor and self.last_action is not None:
@@ -948,7 +945,8 @@ class LLMEnhancedNetHackAgent:
                 tensor_obs, processed_obs, raw_obs = self.process_observation(obs)
                 
                 action, log_prob, value = await self.select_action(
-                    tensor_obs, processed_obs, raw_obs, reset_hidden, performance_metrics
+                    tensor_obs, processed_obs, raw_obs, reset_hidden, performance_metrics,
+                    episode_length=episode_length  # ADD THIS
                 )
                 reset_hidden = False
                 
@@ -984,6 +982,10 @@ class LLMEnhancedNetHackAgent:
                         'shaped_reward': shaped_reward,
                         'done': done,
                         'value': value,
+                        # NEW: Add treatment indicators
+                        'llm_treatment': self.current_llm_hints is not None,
+                        'llm_hint_strength': float(np.max(self.current_llm_hints)) if self.current_llm_hints is not None else 0.0,
+                        'llm_treatment_id': getattr(self, 'last_llm_call_id', None),
                     })
 
                 obs = next_obs
@@ -1008,6 +1010,14 @@ class LLMEnhancedNetHackAgent:
             self.episode_rewards.append(episode_reward)
             self.shaped_rewards.append(episode_shaped_reward)
             self.episode_lengths.append(episode_length)
+
+            if self.causal_logger:
+                self.causal_logger.finalize_episode({
+                    'total_reward': episode_reward,
+                    'total_steps': episode_length,
+                    'died': self._check_if_died(obs),
+                    'final_health': self._get_final_health(obs),
+                })
             
             # Print progress
             if episode % print_freq == 0:
@@ -1022,8 +1032,26 @@ class LLMEnhancedNetHackAgent:
         
         if self.actor.use_llm:
             print(f"\n🤖 Total LLM Calls: {self.llm_call_count}")
-        
+
+            
+            # ADD THIS: Generate causal analysis
+            if self.causal_logger:
+                print(f"\n📊 Generating causal analysis...")
+                summary = self.causal_logger.save_summary()
+                
+                if summary and summary.get('causal_estimates'):
+                    ate = summary['causal_estimates']['average_treatment_effect']
+                    ci = summary['causal_estimates']['confidence_interval_95']
+                    sig = summary['causal_estimates']['statistically_significant']
+                    
+                    print(f"\n🔬 CAUSAL ANALYSIS RESULTS:")
+                    print(f"   Average Treatment Effect: {ate:.4f}")
+                    print(f"   95% CI: [{ci[0]:.4f}, {ci[1]:.4f}]")
+                    print(f"   Statistically Significant: {'YES ✓' if sig else 'NO ✗'}")
+
         return list(self.episode_rewards), list(self.shaped_rewards)
+        
+
     
     def save_model(self, path):
         torch.save({
