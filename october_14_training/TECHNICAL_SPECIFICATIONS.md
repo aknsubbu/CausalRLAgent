@@ -3,6 +3,7 @@
 ## 🏗️ Architecture Overview
 
 ### **Agent Type**: Proximal Policy Optimization (PPO) with Recurrent Memory
+
 - **Framework**: PyTorch 2.0+
 - **Environment**: NetHack-v0 (OpenAI Gym/Gymnasium)
 - **Action Space**: Discrete (23 actions)
@@ -13,6 +14,7 @@
 ## 🧠 Neural Network Architecture
 
 ### **Actor Network (Policy)**
+
 ```
 RecurrentPPOActor:
 ├── Glyph CNN + LSTM (Visual Processing)
@@ -35,6 +37,7 @@ Total Parameters: ~2.1M
 ```
 
 ### **Critic Network (Value Function)**
+
 ```
 RecurrentPPOCritic:
 ├── Identical feature extraction as Actor
@@ -46,6 +49,7 @@ Total Parameters: ~2.1M
 ```
 
 ### **Memory Components**
+
 - **Glyph LSTM**: Temporal visual pattern recognition
 - **Stats LSTM**: Game state sequence modeling
 - **Hidden State Management**: Episode-level reset, batch-level persistence
@@ -57,6 +61,7 @@ Total Parameters: ~2.1M
 ## 🔧 Training Configuration
 
 ### **Hyperparameters**
+
 ```yaml
 Learning Rate: 1e-4
 Gamma (Discount): 0.99
@@ -71,6 +76,7 @@ Update Frequency: 1024 steps
 ```
 
 ### **Optimization**
+
 - **Optimizer**: Adam
 - **Gradient Clipping**: L2 norm ≤ 0.5
 - **Advantage Normalization**: GAE (λ=0.95)
@@ -84,6 +90,7 @@ Update Frequency: 1024 steps
 ## 📊 Input Processing Pipeline
 
 ### **Multi-Modal Observation Space**
+
 ```
 1. Glyphs (Visual): [21 × 79] → CNN+LSTM → 256D
    - Normalized: values / 5976.0
@@ -107,6 +114,7 @@ Update Frequency: 1024 steps
 ```
 
 ### **Memory Features**
+
 - **Position Tracking**: 100-step position history
 - **Exploration Mapping**: Unique position set tracking
 - **Action Sequences**: 50-step action history buffer
@@ -117,6 +125,7 @@ Update Frequency: 1024 steps
 ## 🎯 Reward Engineering
 
 ### **Reward Shaping Components**
+
 ```python
 Base Reward: NetHack environment score
 + Exploration: +0.01 per unique position
@@ -130,6 +139,7 @@ Base Reward: NetHack environment score
 ```
 
 ### **Anti-Exploitation Measures**
+
 - **Position Loop Detection**: Tracks repeated positions
 - **Stuck Counter**: Penalizes excessive position repetition
 - **Exploration Incentives**: Rewards unique area coverage
@@ -140,6 +150,7 @@ Base Reward: NetHack environment score
 ## 🔍 Performance Monitoring
 
 ### **Training Metrics** (Real-time tracking)
+
 ```
 Episode Level (every episode):
 ├── Raw reward, shaped reward
@@ -163,6 +174,7 @@ Extensive Analysis (every 10 episodes):
 ```
 
 ### **Automatic Model Checkpointing**
+
 - **Trigger**: New best episode reward
 - **Saved Components**: Actor, critic, optimizers, training state
 - **Format**: PyTorch state dict (.pth files)
@@ -173,6 +185,7 @@ Extensive Analysis (every 10 episodes):
 ## 💾 Data Logging System
 
 ### **Three-Tier CSV Logging**
+
 ```
 1. Episode CSV (nethack_ppo_YYYYMMDD_HHMMSS_episodes.csv):
    - Per-episode metrics and game statistics
@@ -188,13 +201,14 @@ Extensive Analysis (every 10 episodes):
 ```
 
 ### **Metrics Schema**
+
 ```sql
 -- Episode metrics
 episode, timestamp, raw_reward, shaped_reward, episode_length,
 died, level_ups, max_health, items_collected, unique_positions,
 exploration_reward, survival_time, actions_taken
 
--- Training metrics  
+-- Training metrics
 step, timestamp, actor_loss, critic_loss, policy_loss,
 value_loss, entropy, clip_fraction, grad_norm, learning_rate
 
@@ -208,6 +222,7 @@ survival_rate, exploration_efficiency, learning_stability, etc.
 ## ⚡ Performance Specifications
 
 ### **Computational Requirements**
+
 ```
 Memory Usage:
 ├── Model Parameters: ~4.2M (Actor + Critic)
@@ -223,6 +238,7 @@ Compute Performance:
 ```
 
 ### **Convergence Properties**
+
 - **Sample Efficiency**: 200K environment steps
 - **Training Time**: ~2-3 hours (100 episodes, CPU)
 - **Convergence**: Stable learning in 75-100 episodes
@@ -233,18 +249,21 @@ Compute Performance:
 ## 🛡️ Robustness Features
 
 ### **Training Stability**
+
 - **Gradient Clipping**: Prevents exploding gradients
 - **Advantage Normalization**: Reduces training variance
 - **Entropy Regularization**: Maintains exploration
 - **Hidden State Management**: Prevents memory leaks
 
 ### **Observation Robustness**
+
 - **Safe Type Conversion**: Handles numpy/torch conversions
 - **Missing Data Handling**: Graceful degradation
 - **Dimension Consistency**: Automatic padding/truncation
 - **Error Recovery**: Exception handling in observation processing
 
 ### **Exploration Strategy**
+
 - **Entropy-Driven**: Policy entropy maintenance
 - **Position-Based**: Unique location rewards
 - **Anti-Stuck**: Loop detection and penalties
@@ -255,6 +274,7 @@ Compute Performance:
 ## 📈 Achieved Performance
 
 ### **Training Results** (100 Episodes)
+
 ```
 Peak Performance: 112.48 reward (Episode 76)
 Average Performance: 27.41 ± 32.43 reward
@@ -265,6 +285,7 @@ Exploration Efficiency: 0.142 unique positions/step
 ```
 
 ### **Model Variants Saved**
+
 1. **Initial Model** (Episode 0): 81.84 reward baseline
 2. **Early Improvement** (Episode 14): 86.36 reward (+5.5%)
 3. **Peak Performance** (Episode 76): 112.48 reward (+37.4%)
@@ -275,6 +296,7 @@ Exploration Efficiency: 0.142 unique positions/step
 ## 🔬 Research Contributions
 
 ### **Technical Innovations**
+
 1. **Multi-Modal Recurrent Architecture**: CNN+LSTM for visual-temporal processing
 2. **Comprehensive Reward Shaping**: 8-component reward engineering
 3. **Three-Tier Logging System**: Granular training analytics
@@ -282,6 +304,7 @@ Exploration Efficiency: 0.142 unique positions/step
 5. **Robust Observation Processing**: Production-ready error handling
 
 ### **Algorithmic Advances**
+
 - **Hybrid Memory**: Combines CNN spatial + LSTM temporal processing
 - **Multi-Scale Rewards**: Episode, action, and exploration-level incentives
 - **Adaptive Exploration**: Position-based + entropy-based exploration
@@ -289,5 +312,5 @@ Exploration Efficiency: 0.142 unique positions/step
 
 ---
 
-*Technical specifications extracted from successful NetHack PPO training (October 2025)*
-*Model achieved 37.4% improvement over baseline with stable convergence*
+_Technical specifications extracted from successful NetHack PPO training (October 2025)_
+_Model achieved 37.4% improvement over baseline with stable convergence_

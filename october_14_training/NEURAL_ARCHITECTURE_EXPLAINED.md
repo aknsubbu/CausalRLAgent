@@ -3,6 +3,7 @@
 ## 🧠 Architecture Overview: The Big Picture
 
 Think of your neural network as a **smart brain** that needs to:
+
 1. **See** the game world (like human vision)
 2. **Remember** what happened before (like human memory)
 3. **Understand** different types of information (multi-modal processing)
@@ -22,7 +23,7 @@ Actor Network (The Decision Maker):
 "What action should I take next?"
 Input: Game state → Output: Action probabilities
 
-Critic Network (The Evaluator):  
+Critic Network (The Evaluator):
 "How good is my current situation?"
 Input: Game state → Output: Value score
 ```
@@ -32,9 +33,11 @@ Input: Game state → Output: Value score
 ## 👁️ Step 1: Multi-Modal Input Processing
 
 ### **Why Multi-Modal?**
+
 NetHack gives you different types of information, like how humans use multiple senses:
+
 - **Visual**: What you see on screen (like your eyes)
-- **Statistical**: Your health, level, etc. (like feeling your pulse)  
+- **Statistical**: Your health, level, etc. (like feeling your pulse)
 - **Textual**: Game messages (like hearing sounds)
 - **Memory**: What you did recently (like remembering your path)
 
@@ -44,7 +47,7 @@ NetHack gives you different types of information, like how humans use multiple s
 1. GLYPHS (Visual Information) [21 × 79 grid]
    ┌─────────────────────────────────┐
    │ @ = Player    # = Wall          │
-   │ . = Floor     d = Dog           │  
+   │ . = Floor     d = Dog           │
    │ ) = Weapon    % = Food          │
    └─────────────────────────────────┘
    This is like a "screenshot" of the game world
@@ -55,7 +58,7 @@ NetHack gives you different types of information, like how humans use multiple s
    │ Strength: 18    Experience: 145 │
    │ Position: (5,10) etc...         │
    └─────────────────────────────────┘
-   
+
 3. MESSAGES (Text Information) [256 characters]
    ┌─────────────────────────────────┐
    │ "You kill the goblin!"          │
@@ -80,12 +83,13 @@ NetHack gives you different types of information, like how humans use multiple s
 ## 🔄 Step 2: Processing Each Input Stream
 
 ### **Stream 1: Visual Processing (Glyphs)**
+
 ```
-Raw Glyphs [21×79] 
+Raw Glyphs [21×79]
     ↓ (Convolutional Neural Network - like image recognition)
 Conv Layer 1: [21×79×1] → [21×79×32]  (Find basic patterns)
     ↓ (Pool down to half size)
-Conv Layer 2: [11×40×32] → [11×40×64]  (Find complex patterns)  
+Conv Layer 2: [11×40×32] → [11×40×64]  (Find complex patterns)
     ↓ (Pool down again)
 Conv Layer 3: [6×20×64] → [6×20×128]   (Find high-level features)
     ↓ (Flatten to 1D)
@@ -99,6 +103,7 @@ Final Output: 256 visual features that capture "what I see and remember seeing"
 **What this does**: Like how your brain processes vision - first detecting edges, then shapes, then objects, then remembering what you saw before.
 
 ### **Stream 2: Statistics Processing (Game Stats)**
+
 ```
 Raw Stats [26 numbers]
     ↓ (LSTM for temporal patterns)
@@ -110,6 +115,7 @@ Final Output: 64 features that capture "my character's condition over time"
 **What this does**: Tracks how your health, level, experience change over time - like remembering "I'm getting stronger" or "I'm low on health".
 
 ### **Stream 3: Message Processing (Text)**
+
 ```
 Raw Messages [256 characters]
     ↓ (Fully Connected layer)
@@ -119,19 +125,21 @@ Final Output: 128 features that capture "what the game is telling me"
 ```
 
 ### **Stream 4: Inventory Processing (Items)**
+
 ```
 Raw Inventory [55 item slots]
-    ↓ (Fully Connected layer)  
+    ↓ (Fully Connected layer)
 Dense: [55] → [64]
 
 Final Output: 64 features that capture "what items I have"
 ```
 
 ### **Stream 5: Action History Processing (Memory)**
+
 ```
 Raw Action History [50 recent actions]
     ↓ (Fully Connected layer)
-Dense: [50] → [32]  
+Dense: [50] → [32]
 
 Final Output: 32 features that capture "what I've been doing lately"
 ```
@@ -141,6 +149,7 @@ Final Output: 32 features that capture "what I've been doing lately"
 ## 🔗 Step 3: Combining Everything Together
 
 ### **Feature Fusion**
+
 ```
 Visual Features:    256D  ┐
 Stats Features:     64D   ├─► Concatenate → [544D combined vector]
@@ -162,6 +171,7 @@ Final Representation: 256D vector that captures EVERYTHING
 ## 🎭 Step 4: The Two Heads - Actor & Critic
 
 ### **Actor Network (The Decision Maker)**
+
 ```
 Combined Features [256D]
     ↓
@@ -171,9 +181,10 @@ Output: "I think I should go North (30%), Attack (25%), Pick up item (20%)..."
 ```
 
 ### **Critic Network (The Evaluator)**
+
 ```
 Combined Features [256D] (same processing as Actor)
-    ↓  
+    ↓
 Value Head: [256D] → [1D value score]
 
 Output: "This situation looks good/bad, score: +15.3"
@@ -188,7 +199,7 @@ Output: "This situation looks good/bad, score: +15.3"
 ```
 ACTOR NETWORK:
 ├── Glyph CNN: ~800K parameters
-├── Glyph LSTM: ~500K parameters  
+├── Glyph LSTM: ~500K parameters
 ├── Stats LSTM: ~50K parameters
 ├── Message FC: ~33K parameters
 ├── Inventory FC: ~4K parameters
@@ -198,9 +209,9 @@ ACTOR NETWORK:
 └── Action Head: ~6K parameters
 TOTAL ACTOR: ~2.1M parameters
 
-CRITIC NETWORK:  
+CRITIC NETWORK:
 ├── Same feature extraction as Actor: ~1.8M parameters
-└── Value Head: ~0.3K parameters  
+└── Value Head: ~0.3K parameters
 TOTAL CRITIC: ~2.1M parameters
 
 GRAND TOTAL: ~4.2M parameters
@@ -221,7 +232,7 @@ LSTM Cell at each timestep:
 ┌─────────────────────────────┐
 │ Previous Memory + New Info  │
 │         ↓                   │
-│ Decide what to:             │  
+│ Decide what to:             │
 │ • Remember (important info) │
 │ • Forget (old/useless info) │
 │ • Output (current decision) │
@@ -229,11 +240,12 @@ LSTM Cell at each timestep:
 
 Example:
 Step 1: See monster → Remember "monster at (5,7)"
-Step 2: Monster moves behind wall → Still remember "monster nearby" 
+Step 2: Monster moves behind wall → Still remember "monster nearby"
 Step 3: Explore → Use memory to avoid that area or prepare for fight
 ```
 
 ### **Hidden State Management**
+
 ```
 Episode Start: Reset all memories (fresh start)
 During Episode: Keep updating memories
@@ -245,11 +257,12 @@ Training: Process in batches, reset between episodes
 ## 🎯 How Training Works (PPO Algorithm)
 
 ### **The Learning Loop**
+
 ```
 1. COLLECT EXPERIENCE:
    Actor decides actions → Environment gives rewards → Store in buffer
 
-2. COMPUTE ADVANTAGES:  
+2. COMPUTE ADVANTAGES:
    Critic evaluates "How much better/worse was each action than expected?"
 
 3. UPDATE ACTOR:
@@ -264,6 +277,7 @@ Training: Process in batches, reset between episodes
 ```
 
 ### **Why PPO Specifically?**
+
 - **Stable**: Won't "forget" what it learned (no catastrophic forgetting)
 - **Sample Efficient**: Learns from each experience multiple times
 - **Robust**: Works well even if hyperparameters aren't perfect
@@ -304,15 +318,17 @@ NetHack Game State
 ## 💡 Key Insights
 
 ### **Why This Architecture Works**
+
 1. **Multi-Modal**: Handles different types of game information like human perception
-2. **Recurrent**: Remembers important events over time  
+2. **Recurrent**: Remembers important events over time
 3. **Hierarchical**: Processes low-level features → high-level understanding
 4. **Shared Features**: Actor and Critic understand the world the same way
 5. **Stable Training**: PPO ensures steady improvement without forgetting
 
 ### **Compared to Simpler Approaches**
+
 - **Basic DQN**: Only handles one type of input, no memory
-- **Simple Policy Gradient**: Less stable training, might forget good strategies  
+- **Simple Policy Gradient**: Less stable training, might forget good strategies
 - **Feed-forward only**: Can't remember what happened before
 
 Your architecture is like having a smart agent with good vision, memory, and decision-making - that's why it achieved 37.4% improvement!
@@ -324,7 +340,7 @@ Your architecture is like having a smart agent with good vision, memory, and dec
 **Q: Why so many parameters (4.2M)?**
 A: NetHack is complex! Need lots of "brain capacity" to handle visual patterns, text understanding, memory, and decision-making.
 
-**Q: Why two networks (Actor + Critic)?** 
+**Q: Why two networks (Actor + Critic)?**
 A: Actor focuses on "what to do", Critic focuses on "how good is this". Like having a decision-maker and an advisor.
 
 **Q: Why LSTM instead of simpler RNN?**
@@ -335,5 +351,5 @@ A: Yes! The multi-modal architecture could adapt to any game with visual, textua
 
 ---
 
-*This explanation breaks down the complex 4.2M parameter architecture into understandable components*  
-*Each part serves a specific purpose in creating intelligent game-playing behavior*
+_This explanation breaks down the complex 4.2M parameter architecture into understandable components_  
+_Each part serves a specific purpose in creating intelligent game-playing behavior_
