@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-01T23:34:59.884438",
+    "total_steps_logged": 160947,
+    "total_interventions": 3218,
+    "episodes_completed": 100
+  },
+  "sample_composition": {
+    "n_treated": 9775,
+    "n_control": 225,
+    "treatment_rate": 0.9775
+  },
+  "descriptive_statistics": {
+    "treated": {
+      "n_observations": 9775,
+      "avg_reward": -0.00249923273657289,
+      "std_reward": 0.011048573268902847,
+      "avg_shaped_reward": -0.02491482352941177,
+      "avg_health": 0.9632517354767993,
+      "avg_level": 0.999079283887468
+    },
+    "control": {
+      "n_observations": 225,
+      "avg_reward": -0.0027111111111111116,
+      "std_reward": 0.004445333244462218,
+      "avg_shaped_reward": -0.008755555555555556,
+      "avg_health": 0.9190476190476191,
+      "avg_level": 1.0
+    }
+  },
+  "causal_estimates": {
+    "average_treatment_effect": -0.0171803989769821,
+    "ate_std": 0.4593808326097777,
+    "ate_se": 0.004646377456135605,
+    "confidence_interval_95": [
+      -0.026287298791007885,
+      -0.008073499162956313
+    ],
+    "n_treated": 9775,
+    "n_control": 225,
+    "n_matched_pairs": 9775,
+    "statistically_significant": true
+  },
+  "intervention_summaries": {
+    "by_strategy": {
+      "explore": {
+        "n_uses": 1061,
+        "avg_outcome": -0.0003681836542345489,
+        "std_outcome": 0.1028499517969497
+      },
+      "collect": {
+        "n_uses": 1575,
+        "avg_outcome": 0.0032622222222222223,
+        "std_outcome": 0.1565750911735775
+      },
+      "wait": {
+        "n_uses": 582,
+        "avg_outcome": 0.021461626575028637,
+        "std_outcome": 0.22271364011493158
+      }
+    },
+    "best_performing": [
+      {
+        "intervention_id": 34,
+        "strategy": "collect",
+        "outcome": 4.993
+      },
+      {
+        "intervention_id": 50,
+        "strategy": "explore",
+        "outcome": 3.193
+      },
+      {
+        "intervention_id": 1187,
+        "strategy": "wait",
+        "outcome": 2.7949999999999995
+      },
+      {
+        "intervention_id": 1833,
+        "strategy": "wait",
+        "outcome": 2.3979999999999997
+      },
+      {
+        "intervention_id": 1494,
+        "strategy": "collect",
+        "outcome": 2.3949999999999996
+      }
+    ],
+    "worst_performing": [
+      {
+        "intervention_id": 2,
+        "strategy": "explore",
+        "outcome": -0.009999999999999998
+      },
+      {
+        "intervention_id": 16,
+        "strategy": "collect",
+        "outcome": -0.009999999999999998
+      },
+      {
+        "intervention_id": 18,
+        "strategy": "explore",
+        "outcome": -0.009999999999999998
+      },
+      {
+        "intervention_id": 28,
+        "strategy": "explore",
+        "outcome": -0.009999999999999998
+      },
+      {
+        "intervention_id": 35,
+        "strategy": "wait",
+        "outcome": -0.009999999999999998
+      }
+    ]
+  }
+}

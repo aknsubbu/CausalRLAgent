@@ -1,0 +1,25 @@
+{
+  "agent_name": "LLM-Guided PPO",
+  "timestamp": "20251030_150913",
+  "total_episodes": 2,
+  "episode_data": [
+    {
+      "raw_reward": -9.949999999999832,
+      "shaped_reward": -204.68500000000122,
+      "length": 1000,
+      "llm_calls": 0
+    },
+    {
+      "raw_reward": -9.989999999999831,
+      "shaped_reward": -207.1300000000013,
+      "length": 1000,
+      "llm_calls": 0
+    }
+  ],
+  "rolling_averages": {},
+  "summary": {
+    "avg_raw_reward": -9.969999999999832,
+    "avg_shaped_reward": -205.90750000000128,
+    "avg_length": 1000.0
+  }
+}

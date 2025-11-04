@@ -1,0 +1,36 @@
+{
+  "total_episodes": 5799,
+  "outcome_window": 10,
+  "treatment_variable_options": [
+    "high_quality_advice",
+    "specific_advice",
+    "combat_advice",
+    "advice_category"
+  ],
+  "outcome_variables": [
+    "total_reward",
+    "sr_change",
+    "hp_change",
+    "positive_reward_rate"
+  ],
+  "confounder_variables": [
+    "hp_before",
+    "level_before",
+    "reward_ma5_before",
+    "critical_hp_before"
+  ],
+  "treatment_balance": {
+    "high_quality": {
+      "treated": 3195,
+      "control": 2604
+    },
+    "specific": {
+      "treated": 3203,
+      "control": 2596
+    },
+    "combat": {
+      "treated": 3972,
+      "control": 1827
+    }
+  }
+}

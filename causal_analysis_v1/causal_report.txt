@@ -1,0 +1,72 @@
+================================================================================
+CAUSAL EFFECT ESTIMATION REPORT
+================================================================================
+
+🎯 MAIN FINDINGS
+
+
+HIGH QUALITY ADVICE:
+  total_reward:
+    ATE = 0.0016 (***)
+    95% CI: [0.0007, 0.0025]
+    → Treatment increases outcome (p=0.0004)
+  sr_change:
+    ATE = 0.0006 (NS)
+    95% CI: [-0.0003, 0.0014]
+    → No significant effect (p=0.1736)
+  hp_change:
+    ATE = 0.0246 (NS)
+    95% CI: [-0.0874, 0.1366]
+    → No significant effect (p=0.6671)
+  positive_reward_rate:
+    ATE = 0.0000 (NS)
+    95% CI: [-0.0004, 0.0005]
+    → No significant effect (p=0.9437)
+
+SPECIFIC ADVICE:
+  total_reward:
+    ATE = 0.0016 (***)
+    95% CI: [0.0007, 0.0025]
+    → Treatment increases outcome (p=0.0004)
+  sr_change:
+    ATE = 0.0006 (NS)
+    95% CI: [-0.0003, 0.0014]
+    → No significant effect (p=0.1740)
+  hp_change:
+    ATE = 0.0248 (NS)
+    95% CI: [-0.0873, 0.1369]
+    → No significant effect (p=0.6646)
+  positive_reward_rate:
+    ATE = 0.0000 (NS)
+    95% CI: [-0.0004, 0.0005]
+    → No significant effect (p=0.9424)
+
+COMBAT ADVICE:
+  total_reward:
+    ATE = -0.0009 (**)
+    95% CI: [-0.0015, -0.0003]
+    → Treatment decreases outcome (p=0.0041)
+  sr_change:
+    ATE = -0.0003 (NS)
+    95% CI: [-0.0008, 0.0002]
+    → No significant effect (p=0.2485)
+  hp_change:
+    ATE = 0.2761 (**)
+    95% CI: [0.0760, 0.4761]
+    → Treatment increases outcome (p=0.0068)
+  positive_reward_rate:
+    ATE = 0.0004 (NS)
+    95% CI: [-0.0000, 0.0008]
+    → No significant effect (p=0.0726)
+
+
+================================================================================
+INTERPRETATION GUIDE
+================================================================================
+
+- ATE (Average Treatment Effect): Expected change in outcome from treatment
+- Positive ATE: Treatment improves outcome
+- Negative ATE: Treatment worsens outcome
+- p-value < 0.05: Statistically significant effect
+- Doubly robust estimate is most reliable (consistent if either PS or outcome model correct)
+        

@@ -1,0 +1,4245 @@
+{
+  "episode_rewards": [
+    32.38999999999978,
+    5.670000000000027,
+    4.370000000000111,
+    0.2900000000002054,
+    -16.099999999999632,
+    106.35999999999473,
+    -6.879999999999899,
+    -3.629999999999899,
+    -13.359999999999673,
+    1.8300000000000727,
+    23.40999999999945,
+    -18.370000000000072,
+    27.460000000000605,
+    -3.7599999999999576,
+    -4.699999999999903,
+    42.29000000000297,
+    14.550000000000072,
+    6.850000000000406,
+    24.75999999999953,
+    2.2400000000000047,
+    5.190000000000031,
+    18.709999999999713,
+    -10.349999999999739,
+    -7.149999999999892,
+    11.94999999999795,
+    -0.4000000000000002,
+    8.920000000000016,
+    -5.959999999999747,
+    46.609999999999765,
+    5.240000000000304,
+    -1.2899999999997058,
+    13.180000000000271,
+    17.729999999999396,
+    104.91999999999462,
+    -8.699999999999687,
+    3.740000000000033,
+    26.91999999999945,
+    21.58999999999979,
+    64.12999999999967,
+    -1.7100000000000013,
+    -1.6899999999999322,
+    20.799999999999585,
+    2.0800000000000867,
+    20.10999999999868,
+    -17.05999999999983,
+    0.10000000000000413,
+    -0.23999999999996685,
+    -21.080000000000496,
+    -20.09000000000034,
+    40.83000000000389
+  ],
+  "episode_lengths": [
+    532,
+    307,
+    2180,
+    2437,
+    2743,
+    3474,
+    1319,
+    1597,
+    2842,
+    1109,
+    1013,
+    2405,
+    2552,
+    965,
+    1279,
+    2879,
+    757,
+    3335,
+    1437,
+    254,
+    769,
+    603,
+    2281,
+    1037,
+    3163,
+    66,
+    368,
+    2058,
+    861,
+    2682,
+    2216,
+    2204,
+    3143,
+    2836,
+    2804,
+    329,
+    651,
+    381,
+    1470,
+    245,
+    817,
+    864,
+    1196,
+    1462,
+    2897,
+    529,
+    1237,
+    3229,
+    2943,
+    3079
+  ],
+  "episode_shaped_rewards": [
+    19.362199999999845,
+    -7.352099999999972,
+    -12.360899999999775,
+    -15.169999999999767,
+    -33.90100000000007,
+    86.74009999999633,
+    -19.59489999999989,
+    -17.244999999999916,
+    -37.16579999999973,
+    -18.87779999999992,
+    7.707199999999734,
+    -36.268900000000166,
+    12.995100000000052,
+    -20.394799999999947,
+    -22.53589999999991,
+    26.63220000000156,
+    2.4252000000000606,
+    -11.313999999999584,
+    9.885199999999601,
+    -14.713099999999995,
+    -9.762199999999966,
+    2.348199999999874,
+    -23.12499999999976,
+    -24.530999999999892,
+    -7.481100000000964,
+    -16.419900000000002,
+    -6.731199999999983,
+    -20.344699999999747,
+    34.37799999999959,
+    -12.86809999999975,
+    -20.94399999999967,
+    -4.435799999999734,
+    -2.0217000000003456,
+    88.19099999999774,
+    -27.235899999999635,
+    -12.253799999999972,
+    8.539899999999648,
+    7.586099999999824,
+    47.665899999999674,
+    -16.477899999999998,
+    -11.724999999999934,
+    7.412199999999665,
+    -11.089899999999936,
+    4.742299999998961,
+    -35.33510000000006,
+    -14.2218,
+    -16.51869999999997,
+    -42.54600000000046,
+    -39.11890000000035,
+    25.51220000000231
+  ],
+  "moving_avg_rewards": [
+    32.38999999999978,
+    19.0299999999999,
+    14.143333333333304,
+    10.68000000000003,
+    5.3240000000000975,
+    22.163333333332535,
+    18.014285714285045,
+    15.308749999999428,
+    12.12333333333286,
+    11.093999999999582,
+    10.195999999999549,
+    7.79199999999954,
+    10.100999999999589,
+    9.695999999999573,
+    10.835999999999546,
+    4.42900000000037,
+    6.572000000000367,
+    7.620000000000397,
+    11.432000000000318,
+    11.473000000000312,
+    9.65100000000037,
+    13.359000000000346,
+    9.578000000000312,
+    9.23900000000032,
+    10.904000000000105,
+    6.634999999999806,
+    6.071999999999802,
+    4.790999999999787,
+    6.97599999999981,
+    7.27599999999984,
+    6.627999999999867,
+    6.074999999999922,
+    8.882999999999836,
+    20.089999999999286,
+    18.024999999999526,
+    18.438999999999528,
+    20.23899999999947,
+    22.993999999999424,
+    24.745999999999412,
+    24.050999999999384,
+    24.01099999999936,
+    24.77299999999929,
+    23.207999999999362,
+    14.726999999999768,
+    13.890999999999753,
+    13.526999999999749,
+    10.810999999999808,
+    6.543999999999779,
+    -1.878000000000221,
+    2.3760000000001686
+  ],
+  "moving_avg_lengths": [
+    532.0,
+    419.5,
+    1006.3333333333334,
+    1364.0,
+    1639.8,
+    1945.5,
+    1856.0,
+    1823.625,
+    1936.7777777777778,
+    1854.0,
+    1902.1,
+    2111.9,
+    2149.1,
+    2001.9,
+    1855.5,
+    1796.0,
+    1739.8,
+    1913.6,
+    1773.1,
+    1687.6,
+    1663.2,
+    1483.0,
+    1455.9,
+    1463.1,
+    1651.5,
+    1370.2,
+    1331.3,
+    1203.6,
+    1146.0,
+    1388.8,
+    1533.5,
+    1693.6,
+    1779.8,
+    1959.7,
+    1923.8,
+    1950.1,
+    1978.4,
+    1810.7,
+    1871.6,
+    1627.9,
+    1488.0,
+    1354.0,
+    1159.3,
+    1021.9,
+    1031.2,
+    1051.2,
+    1109.8,
+    1394.6,
+    1541.9,
+    1825.3
+  ],
+  "llm_calls": [
+    10,
+    3,
+    22,
+    24,
+    27,
+    35,
+    13,
+    16,
+    29,
+    11,
+    10,
+    24,
+    26,
+    9,
+    13,
+    29,
+    7,
+    34,
+    14,
+    3,
+    7,
+    6,
+    23,
+    11,
+    31,
+    1,
+    4,
+    20,
+    9,
+    27,
+    22,
+    22,
+    31,
+    29,
+    28,
+    3,
+    6,
+    4,
+    15,
+    2,
+    9,
+    8,
+    12,
+    15,
+    29,
+    5,
+    12,
+    33,
+    29,
+    31
+  ],
+  "attack_events": [
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 0,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 1,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 1,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 1,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 2,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 3,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 4,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 5,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 6,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 7,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 8,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 9,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 10,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 11,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 12,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 13,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 14,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 15,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 16,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 17,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 18,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 19,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 19,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 19,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 20,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 21,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 22,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 23,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 24,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 25,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 26,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 26,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 26,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 26,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 27,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 28,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 29,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 30,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 31,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 32,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 33,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 34,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 35,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 35,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 35,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 36,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 37,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 37,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 37,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 37,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 38,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 39,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 39,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 40,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 41,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 42,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 43,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 44,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 45,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 45,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 45,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 45,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 45,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 46,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 47,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 48,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    },
+    {
+      "episode": 49,
+      "type": "noise_injection"
+    }
+  ],
+  "actor_losses": [
+    -0.0045219119638204575,
+    0.006279848515987396,
+    -0.12425276264548302,
+    0.013651950284838676,
+    -0.06663995422422886,
+    -0.09259388502687216,
+    -0.0926706101745367,
+    -0.024862926453351974,
+    -0.10795342549681664,
+    -0.0772738866508007,
+    -0.03876872826367617,
+    -0.024903278797864914,
+    -0.17945655062794685,
+    -0.04929143749177456,
+    -0.09514257125556469,
+    -0.1433650180697441,
+    -0.03182767704129219,
+    -0.02104448713362217,
+    -0.1943693906068802,
+    -0.10012286715209484,
+    -0.06370480079203844,
+    -0.12090603820979595,
+    -0.07706765923649073,
+    -0.11032076086848974,
+    -0.0900120735168457,
+    -0.16833309270441532,
+    -0.05825672019273043,
+    -0.038599686697125435,
+    -0.01074386015534401,
+    -0.08045198395848274,
+    -0.13165248930454254,
+    -0.04666217602789402,
+    -0.0427091047167778,
+    -0.03770258463919163,
+    -0.03627386875450611,
+    -0.058312565088272095,
+    -0.034789906814694405,
+    -0.11612466350197792,
+    -0.11921212635934353,
+    -0.0061799269169569016,
+    -0.10040846280753613,
+    0.04520338959991932,
+    -0.1257434207946062,
+    -0.053170716390013695,
+    -0.176376111805439,
+    -0.008574610576033592,
+    -0.07359479926526546,
+    -0.05199993494898081,
+    0.004544435068964958,
+    -0.09283842798322439,
+    -0.08659262582659721,
+    -0.03323151730000973,
+    -0.10768619552254677,
+    -0.13148974999785423,
+    -0.10539646819233894,
+    -0.07186086103320122,
+    -0.032168672420084476,
+    -0.04365176986902952,
+    -0.01763322576880455,
+    -0.01758447475731373,
+    -0.04680518060922623,
+    0.0220506489276886,
+    -0.05060278996825218,
+    -0.1338673559948802,
+    -0.03907752223312855,
+    -0.06920769345015287,
+    -0.12434833869338036,
+    -0.06322945095598698,
+    -0.09063637256622314,
+    -0.11937551572918892,
+    -0.10310143604874611,
+    -0.12350155599415302,
+    -0.06399582140147686,
+    -0.07975821010768414,
+    -0.12616471014916897,
+    -0.05062596872448921,
+    -0.07793542928993702,
+    -0.07207641005516052,
+    -0.14909569174051285,
+    -0.04771667160093784,
+    -0.09632549062371254,
+    -0.11047100462019444,
+    -0.05808736011385918,
+    -0.006405923515558243,
+    -0.2183346524834633,
+    -0.19606656581163406,
+    -0.022252953611314297,
+    -0.10238481219857931,
+    -0.04892404563724995,
+    -0.052787208929657936,
+    -0.03895447961986065,
+    -0.09665266051888466,
+    -0.05157699063420296,
+    0.0031036771833896637,
+    0.047014860436320305,
+    -0.11879275366663933,
+    0.025684114545583725,
+    -0.11463286355137825,
+    -0.05841016583144665,
+    -0.07224639877676964,
+    -0.09883934073150158,
+    -0.07423367723822594,
+    -0.05884549021720886,
+    -0.05878048948943615,
+    -0.00962626188993454,
+    -0.015003766864538193,
+    -0.015329110436141491,
+    0.010208645835518837,
+    0.0372136402875185,
+    -0.0723724290728569,
+    -0.08913786709308624,
+    -0.07953191734850407,
+    -0.05592442583292723,
+    -0.02935708314180374,
+    -0.08005304262042046,
+    -0.010896408930420876,
+    -0.05334936548024416,
+    -0.09822870325297117,
+    -0.0635283961892128,
+    -0.05460680276155472,
+    -0.09449177607893944,
+    0.00837448425590992,
+    -0.12375973351299763,
+    -0.07122686319053173,
+    -0.15444578044116497,
+    -0.006541389971971512,
+    -0.060821399092674255,
+    -0.05006267596036196,
+    -0.12043424136936665,
+    -0.10033346898853779,
+    -0.07626772671937943,
+    -0.14849917218089104,
+    -0.01873090211302042,
+    -0.022330233827233315,
+    -0.011146735399961472,
+    -0.163560189306736,
+    -0.15261142514646053,
+    -0.10912311542779207,
+    -0.08332913182675838,
+    -0.06026092544198036,
+    -0.14421114139258862,
+    -0.060205742716789246,
+    0.06825796887278557,
+    -0.05057387426495552,
+    -0.01592607982456684,
+    -0.003573749214410782,
+    -0.006471393629908562,
+    -0.00026112422347068787,
+    -0.01901652291417122,
+    -0.0050550661981105804,
+    -0.11097145080566406,
+    -0.04145806096494198,
+    -0.05528613366186619,
+    -0.03773604892194271,
+    0.0038417652249336243,
+    -0.04777655005455017,
+    -0.07943884376436472,
+    -0.04326033219695091,
+    -0.09009329322725534,
+    -0.03362882323563099,
+    -0.06129967328161001,
+    0.040486883372068405,
+    -0.10027359426021576
+  ],
+  "critic_losses": [
+    2.8481570035219193,
+    4.63564920425415,
+    4.1342273354530334,
+    0.01425095391459763,
+    0.014398425351828337,
+    1.3061805218458176,
+    0.21472194232046604,
+    0.10666014347225428,
+    0.008956321398727596,
+    0.008667320245876908,
+    1.522559255361557,
+    0.007834134856238961,
+    0.01037765247747302,
+    0.011157748871482909,
+    0.1345051247626543,
+    0.025013590697199106,
+    4.9963531494140625,
+    0.03770348522812128,
+    0.32244348526000977,
+    4.6032779812812805,
+    4.495918333530426,
+    0.0468702781945467,
+    4.910473108291626,
+    0.025030183140188456,
+    0.01582718500867486,
+    0.9251840114593506,
+    0.015044368105009198,
+    0.018064178992062807,
+    1.840239703655243,
+    0.03029170911759138,
+    0.08160650730133057,
+    0.08536576759070158,
+    0.07177318865433335,
+    0.09267487423494458,
+    1.8078691810369492,
+    0.15464544668793678,
+    2.5440929532051086,
+    7.388259410858154,
+    0.6655850484967232,
+    0.1244797632098198,
+    0.2560492381453514,
+    0.10255949618294835,
+    0.48934879526495934,
+    0.29597603529691696,
+    7.131171345710754,
+    0.1946413889527321,
+    0.2825339138507843,
+    0.6299914494156837,
+    0.22178640868514776,
+    1.283345252275467,
+    0.3676117341965437,
+    0.24612377397716045,
+    1.1435693502426147,
+    26.670141100883484,
+    0.38342585414648056,
+    0.28422678261995316,
+    0.22999876737594604,
+    0.9537620544433594,
+    2.3397976756095886,
+    0.4554262198507786,
+    0.27538837864995,
+    0.1765251848846674,
+    5.151256024837494,
+    0.43919748440384865,
+    0.257591113448143,
+    1.4387672394514084,
+    1.42480930685997,
+    2.348639190196991,
+    1.3499388694763184,
+    1.0962721854448318,
+    1.243531197309494,
+    1.5577848851680756,
+    0.21815258264541626,
+    0.18964806012809277,
+    0.3028784841299057,
+    0.15852821711450815,
+    0.6741110533475876,
+    0.22110857255756855,
+    7.8060081005096436,
+    0.23510682582855225,
+    0.2351376060396433,
+    0.21828565001487732,
+    0.16887463256716728,
+    0.24487469345331192,
+    1.556049793958664,
+    0.5489910915493965,
+    0.15588346030563116,
+    0.35052481293678284,
+    0.3050471879541874,
+    3.463190495967865,
+    4.235508382320404,
+    0.5671106949448586,
+    0.11470981407910585,
+    0.09964883700013161,
+    1.1974659264087677,
+    0.17326664924621582,
+    1.8429383784532547,
+    0.17414097674190998,
+    0.12931627593934536,
+    0.3030034564435482,
+    1.5420832633972168,
+    0.14324497431516647,
+    0.28133372217416763,
+    0.12712255120277405,
+    5.799729645252228,
+    0.2942735105752945,
+    0.17726319655776024,
+    0.09282973408699036,
+    1.053731694817543,
+    0.4981076717376709,
+    0.13977881520986557,
+    5.718849360942841,
+    0.29962991178035736,
+    0.1795265879482031,
+    12.844884157180786,
+    0.38823673874139786,
+    0.803078293800354,
+    0.16432609222829342,
+    0.06464951718226075,
+    0.06761557701975107,
+    0.5492685213685036,
+    0.06697158748283982,
+    2.6145491898059845,
+    5.500218391418457,
+    5.904587626457214,
+    2.3253523409366608,
+    0.17547738179564476,
+    7.350538969039917,
+    1.1207866221666336,
+    1.0405795872211456,
+    2.0972060561180115,
+    0.691804975271225,
+    0.03559882286936045,
+    1.5032156109809875,
+    1.5997386127710342,
+    0.07368110027164221,
+    0.9412090703845024,
+    0.11167466267943382,
+    0.0933064017444849,
+    0.10064209625124931,
+    0.11049190908670425,
+    0.11985176429152489,
+    1.5146031081676483,
+    1.0278330296278,
+    0.25304847210645676,
+    2.1368557810783386,
+    0.18814693577587605,
+    0.1302147265523672,
+    0.1561358068138361,
+    0.13646916300058365,
+    0.26764823868870735,
+    1.6641339361667633,
+    0.23855788260698318,
+    0.2661381224170327,
+    0.18529275618493557,
+    0.271118045784533,
+    0.3101210203021765,
+    1.4185486733913422,
+    25.99495506286621,
+    0.36562269926071167,
+    0.25030313804745674,
+    0.15534003637731075,
+    0.3015369945205748
+  ],
+  "clip_fractions": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "degradation_over_time": [
+    54.82566248256574,
+    52.02924124023165,
+    46.47407594297939,
+    68.61592712312653,
+    82.23912463303942,
+    26.514146772769955,
+    32.06551018209485,
+    35.49797229683707,
+    42.51014278940103,
+    43.314087169794156,
+    27.05680354843717,
+    36.737842006986476,
+    20.04907392750097,
+    -28.970470869905718,
+    -58.88563049852527,
+    -22.111938240977427,
+    -130.43478260869995,
+    -116.66192777936222,
+    -18.294701986758373,
+    -37.30253709909409,
+    35.28031115879544,
+    14.8782974385088,
+    48.76430940408495,
+    48.83708051832777,
+    59.082892416224944,
+    77.3503106438183,
+    81.96507069027014,
+    85.85097900239266,
+    73.91661992895926,
+    74.65603120972554,
+    68.19577735124805,
+    80.7344686518886,
+    74.23499724454015,
+    41.14545188223405,
+    28.70985603543913,
+    20.09100758396701,
+    5.132652104623338,
+    -13.51698262243119,
+    -17.046637025823856,
+    2.9144633270112013,
+    22.838871392764176,
+    -25.560060821082576,
+    -61.02130021508213,
+    12.671963946868962,
+    40.5478279477855,
+    42.57514009169692,
+    57.33791089538752,
+    73.54463130659849,
+    106.850264453767,
+    88.36548819900017
+  ],
+  "summary": {
+    "mean_reward": 11.253999999999857,
+    "std_reward": 26.25277036809571,
+    "final_avg": 2.3760000000001686,
+    "best_episode": 106.35999999999473,
+    "worst_episode": -21.080000000000496,
+    "total_llm_calls": 843,
+    "total_attacks": 843,
+    "mean_degradation": 28.09190630347899
+  }
+}

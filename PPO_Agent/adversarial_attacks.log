@@ -1,0 +1,60 @@
+================================================================================
+📋 FINAL SUMMARY
+================================================================================
+
+Baseline:
+  Mean Reward: 20.366 ± 29.316
+  Final Avg (last 10): 20.422
+  Best/Worst: 105.780 / -21.140
+
+Noise Injection:
+  Mean Reward: 11.254 ± 26.253
+  Final Avg (last 10): 2.376
+  Best/Worst: 106.360 / -21.080
+  Mean Degradation: 28.1%
+  Total Attacks: 843
+
+State Inversion:
+  Mean Reward: -9.099 ± 41.458
+  Final Avg (last 10): -49.429
+  Best/Worst: 105.430 / -49.970
+  Mean Degradation: 78.9%
+  Total Attacks: 2220
+
+Strategic Poisoning:
+  Mean Reward: -16.246 ± 45.700
+  Final Avg (last 10): -49.275
+  Best/Worst: 97.400 / -49.990
+  Mean Degradation: 56.2%
+  Total Attacks: 2840
+
+✅ All visualizations generated!
+
+📁 Generated files:
+   - degradation_during_training.png
+   - attack_impact_heatmap.png
+   - baseline_monitor.json
+   - [attack_name]_monitor.json (for each attack)
+
+================================================================================
+🔍 ATTACK EFFECTIVENESS ANALYSIS
+================================================================================
+
+Noise Injection:
+  Early Phase:    28.62% degradation
+  Mid Phase:      27.93% degradation
+  Late Phase:     27.77% degradation
+  ➡️  Trend: STABLE impact
+
+State Inversion:
+  Early Phase:   -42.39% degradation
+  Mid Phase:     -27.75% degradation
+  Late Phase:    281.64% degradation
+  📈 Trend: INCREASING impact (agent becomes MORE vulnerable)
+
+Strategic Poisoning:
+  Early Phase:  -177.08% degradation
+  Mid Phase:       3.66% degradation
+  Late Phase:    310.27% degradation
+  📈 Trend: INCREASING impact (agent becomes MORE vulnerable)
+================================================================================

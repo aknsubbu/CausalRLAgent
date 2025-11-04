@@ -1,0 +1,3811 @@
+{
+  "episode_rewards": [
+    -28.230000000001613,
+    -10.689999999999646,
+    9.520000000000229,
+    1.9000000000000208,
+    1.630000000000032,
+    -8.939999999999749,
+    66.22999999999976,
+    0.1600000000002506,
+    3.310000000000012,
+    -2.9599999999996736,
+    4.080000000000111,
+    2.7399999999999998,
+    -18.71000000000007,
+    15.739999999999958,
+    4.720000000000056,
+    -21.570000000000572,
+    39.76000000000022,
+    87.77000000000005,
+    -16.199999999999733,
+    4.630000000000258,
+    -12.259999999999682,
+    102.45000000000007,
+    10.990000000000316,
+    -10.659999999999817,
+    4.840000000000046
+  ],
+  "episode_lengths": [
+    3920,
+    2733,
+    1662,
+    168,
+    818,
+    2370,
+    571,
+    2890,
+    111,
+    3252,
+    1693,
+    353,
+    3728,
+    632,
+    690,
+    3162,
+    3554,
+    2100,
+    2543,
+    2210,
+    2904,
+    2240,
+    2899,
+    1664,
+    307
+  ],
+  "episode_shaped_rewards": [
+    -48.51600000000097,
+    -25.845999999999663,
+    -10.929799999999798,
+    -15.005899999999983,
+    -12.741899999999987,
+    -25.69769999999975,
+    53.43009999999977,
+    -15.166099999999824,
+    -10.497099999999989,
+    -17.26789999999972,
+    -9.635999999999893,
+    -10.085899999999999,
+    -43.76990000000039,
+    2.4341000000000097,
+    -9.772999999999946,
+    -42.426900000000614,
+    23.794900000000155,
+    73.64180000000009,
+    -28.848899999999766,
+    -11.984799999999716,
+    -30.73589999999964,
+    89.17699999999996,
+    -4.7218999999996045,
+    -25.879899999999814,
+    -8.368099999999952
+  ],
+  "moving_avg_rewards": [
+    -28.230000000001613,
+    -19.46000000000063,
+    -9.800000000000344,
+    -6.875000000000252,
+    -5.174000000000196,
+    -5.8016666666667875,
+    4.488571428571291,
+    3.947499999999911,
+    3.8766666666665888,
+    3.1929999999999623,
+    6.4240000000001345,
+    7.7670000000001,
+    4.944000000000069,
+    6.328000000000063,
+    6.637000000000066,
+    5.373999999999983,
+    2.7270000000000296,
+    11.48800000000001,
+    9.537000000000035,
+    10.296000000000026,
+    8.662000000000049,
+    18.63300000000006,
+    21.603000000000097,
+    18.963000000000115,
+    18.975000000000115
+  ],
+  "moving_avg_lengths": [
+    3920.0,
+    3326.5,
+    2771.6666666666665,
+    2120.75,
+    1860.2,
+    1945.1666666666667,
+    1748.857142857143,
+    1891.5,
+    1693.6666666666667,
+    1849.5,
+    1626.8,
+    1388.8,
+    1595.4,
+    1641.8,
+    1629.0,
+    1708.2,
+    2006.5,
+    1927.5,
+    2170.7,
+    2066.5,
+    2187.6,
+    2376.3,
+    2293.4,
+    2396.6,
+    2358.3
+  ],
+  "llm_calls": [
+    78,
+    55,
+    33,
+    3,
+    17,
+    47,
+    11,
+    58,
+    2,
+    65,
+    34,
+    7,
+    75,
+    13,
+    13,
+    64,
+    71,
+    42,
+    25,
+    22,
+    29,
+    23,
+    29,
+    16,
+    3
+  ],
+  "attack_events": [
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 0,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 1,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 2,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 3,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 3,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 3,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 4,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 5,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 6,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 7,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 8,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 8,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 9,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 10,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 11,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 12,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 13,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 14,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 15,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 16,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 17,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 18,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 19,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 20,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 21,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 22,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 23,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 24,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 24,
+      "type": "strategic_poisoning"
+    },
+    {
+      "episode": 24,
+      "type": "strategic_poisoning"
+    }
+  ],
+  "actor_losses": [
+    -0.026635427959263325,
+    -0.07954662851989269,
+    -0.09978821687400341,
+    -0.05848630703985691,
+    -0.08966537844389677,
+    -0.13595080375671387,
+    -0.09104589559137821,
+    0.048972686752676964,
+    0.04165322054177523,
+    -0.013547810725867748,
+    -0.05857953056693077,
+    -0.06480298563838005,
+    -0.032102424651384354,
+    -0.05812470614910126,
+    -0.115938407368958,
+    -0.09449481219053268,
+    -0.09739814512431622,
+    0.043922508135437965,
+    -0.03261749446392059,
+    -0.13117576949298382,
+    -0.05768718756735325,
+    -0.10740475170314312,
+    -0.08790104929357767,
+    -0.030557380989193916,
+    0.02927720546722412,
+    -0.08489854075014591,
+    -0.111809141933918,
+    -0.015853524208068848,
+    -0.08333022706210613,
+    0.051721351221203804,
+    -0.22873189114034176,
+    -0.05325956083834171,
+    -0.014835799112915993,
+    -0.0354367159307003,
+    -0.055624280124902725,
+    -0.13236594200134277,
+    -0.06574934348464012,
+    -0.06193948723375797,
+    -0.04989446420222521,
+    -0.039562459103763103,
+    -0.15566804353147745,
+    -0.11337843909859657,
+    -0.003934195265173912,
+    -0.08388057071715593,
+    0.04517099168151617,
+    -0.006451821886003017,
+    0.0033996719866991043,
+    -0.030643904581665993,
+    0.045835914090275764,
+    -0.0481219794601202,
+    -0.10544360056519508,
+    -0.08767350390553474,
+    -0.09589413926005363,
+    -0.008982655592262745,
+    -0.11341688316315413,
+    -0.11906551755964756,
+    -0.10270607005804777,
+    -0.059450182132422924,
+    -0.02729787491261959,
+    -0.07916335575282574,
+    -0.16585340443998575,
+    -0.08408462908118963,
+    -0.010702594183385372,
+    -0.06432180665433407,
+    -0.0051988158375024796,
+    -0.03911995142698288,
+    -0.11993844341486692,
+    -0.1093275249004364,
+    -0.08023143373429775,
+    -0.12677735462784767,
+    -0.07835578545928001,
+    -0.12057464849203825,
+    -0.044081046245992184,
+    0.0008065123111009598,
+    -0.014624055474996567,
+    -0.01788288727402687,
+    0.0739416005089879,
+    -0.10086096078157425,
+    -0.08689268305897713,
+    -0.08390558324754238,
+    -0.0930029284209013,
+    -0.07641710806638002,
+    -0.03899711463600397,
+    -0.07265974767506123,
+    0.022815347649157047,
+    -0.005504032596945763,
+    -0.10331329051405191,
+    -0.043962822295725346,
+    -0.11838817410171032,
+    -0.04476455878466368,
+    -0.08729665074497461,
+    -0.09199948981404305,
+    0.03514015208929777,
+    -0.07127210311591625,
+    -0.03347001876682043,
+    -0.15265979804098606
+  ],
+  "critic_losses": [
+    0.0060467105358839035,
+    0.008199893753044307,
+    0.013675362104550004,
+    0.007020721212029457,
+    0.011087584542110562,
+    0.011948141735047102,
+    0.018532922258600593,
+    2.3267802298069,
+    0.03306979616172612,
+    0.05694409226998687,
+    0.1096221636980772,
+    0.7470005452632904,
+    1.2899753153324127,
+    0.5054556503891945,
+    0.2129243090748787,
+    0.3756748363375664,
+    3.1342554837465286,
+    0.25668424367904663,
+    0.9428636580705643,
+    0.4699758682399988,
+    0.3585840128362179,
+    0.5612766072154045,
+    1.0212911069393158,
+    21.829965829849243,
+    0.3018197938799858,
+    0.6826409250497818,
+    0.8696103096008301,
+    0.333584351465106,
+    0.6306786388158798,
+    1.0747412145137787,
+    1.2307079210877419,
+    0.49318810924887657,
+    0.3925800286233425,
+    0.5405073910951614,
+    0.3998754918575287,
+    0.6869050711393356,
+    0.7877822071313858,
+    0.49866925179958344,
+    1.258928194642067,
+    0.4552604556083679,
+    0.8045140877366066,
+    0.6685328558087349,
+    0.3988950364291668,
+    0.5051436275243759,
+    0.28571482188999653,
+    0.4335351884365082,
+    0.3708647806197405,
+    1.4632418602705002,
+    2.0828604996204376,
+    0.9680737257003784,
+    0.9601870253682137,
+    0.7531707733869553,
+    0.7961397171020508,
+    0.5100568979978561,
+    0.8231256753206253,
+    0.7934085056185722,
+    1.579274594783783,
+    0.5604321621358395,
+    5.3156386613845825,
+    0.6606713682413101,
+    5.474735379219055,
+    1.0599802881479263,
+    0.44991425052285194,
+    0.5003263056278229,
+    0.2950897952541709,
+    0.36014942824840546,
+    8.32534646987915,
+    12.69010466337204,
+    0.3810657933354378,
+    0.5303140729665756,
+    0.36816465482115746,
+    0.5387430116534233,
+    1.115878865122795,
+    0.5275994464755058,
+    0.3666180334985256,
+    0.2936706952750683,
+    1.1343042999505997,
+    0.7582013607025146,
+    0.5653693042695522,
+    0.5064000859856606,
+    0.5660834908485413,
+    0.40010395273566246,
+    1.161734253168106,
+    0.49839774519205093,
+    0.3513178788125515,
+    14.11172965168953,
+    27.157816767692566,
+    0.4216788820922375,
+    0.45759642869234085,
+    1.0272779203951359,
+    0.6033216118812561,
+    0.6277899816632271,
+    0.5998535975813866,
+    0.433171559125185,
+    0.4623299203813076,
+    1.0011976659297943
+  ],
+  "clip_fractions": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.015625,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0078125,
+    0.01171875,
+    0.0234375,
+    0.015625,
+    0.02734375,
+    0.015625,
+    0.01953125,
+    0.00390625,
+    0.015625,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.01953125,
+    0.0234375,
+    0.01171875,
+    0.0078125,
+    0.015625,
+    0.02734375,
+    0.01171875,
+    0.00390625,
+    0.015625,
+    0.0390625,
+    0.05078125,
+    0.015625,
+    0.02734375,
+    0.0390625,
+    0.02734375,
+    0.05859375
+  ],
+  "degradation_over_time": [],
+  "summary": {
+    "mean_reward": 9.210000000000035,
+    "std_reward": 31.594652332317313,
+    "final_avg": 18.975000000000115,
+    "best_episode": 102.45000000000007,
+    "worst_episode": -28.230000000001613,
+    "total_llm_calls": 835,
+    "total_attacks": 835,
+    "mean_degradation": 0
+  }
+}

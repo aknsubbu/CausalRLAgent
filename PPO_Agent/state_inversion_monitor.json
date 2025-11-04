@@ -1,0 +1,10173 @@
+{
+  "episode_rewards": [
+    28.940000000000573,
+    5.670000000000211,
+    19.039999999999768,
+    -9.219999999999763,
+    71.93000000000075,
+    88.31999999999493,
+    -15.32999999999938,
+    -12.919999999999769,
+    56.91000000000066,
+    5.120000000000058,
+    1.9200000000001065,
+    19.529999999999966,
+    -7.279999999999887,
+    70.18999999999538,
+    -2.9199999999998796,
+    -5.309999999999848,
+    27.269999999997953,
+    -0.12999999999999998,
+    2.8800000000002726,
+    -14.689999999999646,
+    105.42999999999925,
+    -1.779999999999849,
+    -0.09999999999999999,
+    47.230000000000665,
+    42.20000000000034,
+    -3.729999999999822,
+    -6.279999999999906,
+    -3.829999999999829,
+    -20.860000000000458,
+    40.77000000000025,
+    -49.6199999999987,
+    -49.86999999999865,
+    -49.81999999999866,
+    -49.91999999999864,
+    -45.65999999999869,
+    -49.94999999999863,
+    -49.929999999998635,
+    -49.93999999999863,
+    -44.979999999999556,
+    -49.93999999999863,
+    -48.909999999998995,
+    -49.879999999998645,
+    -49.95999999999863,
+    -49.88999999999864,
+    -49.84999999999865,
+    -45.96999999999934,
+    -49.91999999999864,
+    -49.96999999999863,
+    -49.96999999999863,
+    -49.96999999999863
+  ],
+  "episode_lengths": [
+    1797,
+    1981,
+    1813,
+    1805,
+    1618,
+    2928,
+    5000,
+    2119,
+    1540,
+    761,
+    1636,
+    88,
+    1918,
+    2704,
+    1739,
+    2011,
+    2323,
+    21,
+    2136,
+    2900,
+    1361,
+    1845,
+    25,
+    1154,
+    1447,
+    1921,
+    1757,
+    1975,
+    3206,
+    1703,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000,
+    5000
+  ],
+  "episode_shaped_rewards": [
+    12.4422000000005,
+    -11.941799999999827,
+    0.2792000000000634,
+    -25.579099999999734,
+    59.81500000000061,
+    70.7291999999975,
+    -35.27310000000007,
+    -25.230099999999787,
+    42.13300000000006,
+    -9.770299999999956,
+    -12.938899999999933,
+    4.764999999999969,
+    -22.008199999999903,
+    56.04889999999642,
+    -15.056299999999894,
+    -20.25979999999987,
+    10.840099999998305,
+    -15.064,
+    -10.607899999999729,
+    -31.079799999999633,
+    89.48999999999941,
+    -14.137999999999858,
+    -12.0828,
+    35.56800000000044,
+    28.9300000000002,
+    -18.097099999999887,
+    -20.996699999999926,
+    -17.16279999999984,
+    -40.31500000000025,
+    21.89160000000026,
+    -114.2186999999977,
+    -110.60989999999765,
+    -112.60109999999774,
+    -116.1527999999975,
+    -109.58489999999816,
+    -111.48589999999734,
+    -111.3017999999975,
+    -114.31489999999741,
+    -105.79509999999824,
+    -110.35499999999746,
+    -111.89269999999787,
+    -109.7037999999978,
+    -115.46259999999747,
+    -114.02569999999766,
+    -112.64049999999779,
+    -107.77489999999803,
+    -118.07669999999769,
+    -115.65079999999742,
+    -111.72099999999728,
+    -109.70579999999737
+  ],
+  "moving_avg_rewards": [
+    28.940000000000573,
+    17.30500000000039,
+    17.883333333333514,
+    11.107500000000195,
+    23.272000000000304,
+    34.11333333333274,
+    27.04999999999958,
+    22.053749999999667,
+    25.926666666666442,
+    23.845999999999805,
+    21.143999999999757,
+    22.52999999999973,
+    19.897999999999765,
+    27.83899999999928,
+    20.35399999999922,
+    10.99099999999974,
+    15.250999999999474,
+    16.529999999999454,
+    11.126999999999413,
+    9.145999999999443,
+    19.496999999999353,
+    17.365999999999374,
+    18.083999999999364,
+    15.787999999999894,
+    20.299999999999912,
+    20.45799999999992,
+    17.10300000000013,
+    16.733000000000146,
+    14.359000000000071,
+    19.905000000000065,
+    4.400000000000269,
+    -0.40899999999961023,
+    -5.380999999999476,
+    -15.095999999999407,
+    -23.88199999999931,
+    -28.503999999999188,
+    -32.86899999999906,
+    -37.479999999998945,
+    -39.89199999999885,
+    -48.96299999999874,
+    -48.891999999998774,
+    -48.89299999999877,
+    -48.90699999999877,
+    -48.90399999999876,
+    -49.322999999998764,
+    -48.92499999999884,
+    -48.92399999999884,
+    -48.926999999998834,
+    -49.42599999999874,
+    -49.42899999999874
+  ],
+  "moving_avg_lengths": [
+    1797.0,
+    1889.0,
+    1863.6666666666667,
+    1849.0,
+    1802.8,
+    1990.3333333333333,
+    2420.285714285714,
+    2382.625,
+    2289.0,
+    2136.2,
+    2120.1,
+    1930.8,
+    1941.3,
+    2031.2,
+    2043.3,
+    1951.6,
+    1683.9,
+    1474.1,
+    1533.7,
+    1747.6,
+    1720.1,
+    1895.8,
+    1706.5,
+    1551.5,
+    1522.3,
+    1513.3,
+    1456.7,
+    1652.1,
+    1759.1,
+    1639.4,
+    2003.3,
+    2318.8,
+    2816.3,
+    3200.9,
+    3556.2,
+    3864.1,
+    4188.4,
+    4490.9,
+    4670.3,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0,
+    5000.0
+  ],
+  "llm_calls": [
+    35,
+    20,
+    18,
+    18,
+    17,
+    29,
+    50,
+    21,
+    16,
+    7,
+    16,
+    1,
+    20,
+    27,
+    17,
+    20,
+    23,
+    1,
+    21,
+    29,
+    13,
+    19,
+    0,
+    12,
+    14,
+    19,
+    18,
+    20,
+    32,
+    17,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+  ],
+  "attack_events": [
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 0,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 1,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 2,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 3,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 4,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 5,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 6,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 7,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 8,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 9,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 10,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 11,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 12,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 13,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 14,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 15,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 16,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 17,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 18,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 19,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 20,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 21,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 23,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 24,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 25,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 26,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 27,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 28,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 29,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 30,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 31,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 32,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 33,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 34,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 35,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 36,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 37,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 38,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 39,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 40,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 41,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 42,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 43,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 44,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 45,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 46,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 47,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 48,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    },
+    {
+      "episode": 49,
+      "type": "state_inversion"
+    }
+  ],
+  "actor_losses": [
+    -0.1319907959550619,
+    -0.05058799497783184,
+    -0.16979479603469372,
+    -0.08402851782739162,
+    0.0025396347045898438,
+    -0.019098276272416115,
+    -0.05579957365989685,
+    -0.0690128430724144,
+    -0.0075860703364014626,
+    0.0497257225215435,
+    -0.0541443070396781,
+    -0.1061392817646265,
+    -0.10986808128654957,
+    -0.06818394549190998,
+    -0.08379433117806911,
+    0.005459384992718697,
+    -0.10549821238964796,
+    -0.06213688384741545,
+    -0.04027856420725584,
+    -0.08836641162633896,
+    -0.036842018365859985,
+    -0.11912011727690697,
+    -0.06928952410817146,
+    -0.0694879088550806,
+    -0.042558424174785614,
+    -0.014036670327186584,
+    -0.07664827071130276,
+    0.03558593150228262,
+    -0.02157123200595379,
+    -0.19036642368882895,
+    -0.07618572935461998,
+    -0.0701710507273674,
+    -0.1060863621532917,
+    -0.10098114795982838,
+    -0.08174755051732063,
+    -0.05457180179655552,
+    0.0012069232761859894,
+    -0.012339149601757526,
+    -0.016997458413243294,
+    0.03118485026061535,
+    -0.10954930260777473,
+    -0.052242742851376534,
+    -0.10587271396070719,
+    -0.06776131130754948,
+    -0.07467443868517876,
+    -0.16200917959213257,
+    0.007624289020895958,
+    -0.08702061790972948,
+    -0.0892985351383686,
+    -0.08306130580604076,
+    0.022668875753879547,
+    0.00011367443948984146,
+    -0.03221763949841261,
+    0.0029418859630823135,
+    -0.16631238907575607,
+    0.04290059953927994,
+    -0.13079404644668102,
+    -0.008794727735221386,
+    -0.025067967362701893,
+    -0.08580939657986164,
+    -0.0738550191745162,
+    0.027993908151984215,
+    -0.07621389906853437,
+    0.005429728887975216,
+    -0.03162278234958649,
+    -0.10204760078340769,
+    -0.05322417803108692,
+    0.04227982275187969,
+    -0.10027734562754631,
+    0.03746942151337862,
+    0.04981650598347187,
+    -0.01157733891159296,
+    -0.09137929789721966,
+    -0.05247000604867935,
+    -0.09016830008476973,
+    -0.1730603501200676,
+    0.0026202723383903503,
+    -0.07530855946242809,
+    -0.02702206466346979,
+    -0.06753367837518454,
+    0.011095788329839706,
+    -0.02077922783792019,
+    -0.02595946565270424,
+    -0.08525064121931791,
+    -0.04475935269147158,
+    -0.08184713963419199,
+    -0.11673279572278261,
+    -0.15149599686264992,
+    -0.0509871207177639,
+    -0.03635393921285868,
+    -0.06537489127367735,
+    -0.17937899939715862,
+    0.04330064356327057,
+    -0.08602969814091921,
+    -0.07546626683324575,
+    -0.036863560788333416,
+    0.0777146015316248,
+    0.013320092111825943,
+    -0.09252642374485731,
+    -0.027255771681666374,
+    -0.06051936559379101,
+    -0.01822396833449602,
+    -0.004384842701256275,
+    -0.05588290095329285,
+    0.025791101157665253,
+    -0.07408438809216022,
+    -0.00040765898302197456,
+    0.030756916850805283,
+    0.08868344034999609,
+    -0.014451643452048302,
+    0.006948630092665553,
+    0.005312459543347359,
+    -0.06030438677407801,
+    0.057100428733974695,
+    0.025332594756036997,
+    0.01775171933695674,
+    -0.02658519521355629,
+    0.06629668362438679,
+    -0.0787956976564601,
+    0.014864322729408741,
+    -0.09846205171197653,
+    -0.0056375120766460896,
+    -0.04726657667197287,
+    -0.06353670451790094,
+    -0.0029121399857103825,
+    0.053337045945227146,
+    0.015068341046571732,
+    0.0833165105432272,
+    -0.05725305061787367,
+    0.09277089312672615,
+    0.05706162052229047,
+    -0.0741295050829649,
+    0.07743853330612183,
+    0.05165343784028664,
+    0.12428623763844371,
+    0.0006963601335883141,
+    0.018471520394086838,
+    0.10196239314973354,
+    0.006924671120941639,
+    0.006027406081557274,
+    0.06415887596085668,
+    0.059967669658362865,
+    -0.018741745501756668,
+    0.03258573869243264,
+    0.00292760506272316,
+    0.0006454852409660816,
+    0.04856431297957897,
+    -0.11507669975981116,
+    0.030438819900155067,
+    0.016833576373755932,
+    0.05122191132977605,
+    -0.040113751543685794,
+    -0.11286936025135219,
+    0.049195680767297745,
+    -0.08135808864608407,
+    0.0560034429654479,
+    -0.07404835079796612,
+    -0.06961814453825355,
+    -0.003672056831419468,
+    -0.11491097696125507,
+    0.017217757180333138,
+    -0.100273247808218,
+    -0.035007109749130905,
+    0.054229858331382275,
+    0.04433284420520067,
+    0.026043380610644817,
+    0.03731132484972477,
+    -0.11197755206376314,
+    0.001555474940687418,
+    -0.12385938875377178,
+    0.02738683484494686,
+    0.09123393334448338,
+    -0.07302569597959518,
+    0.10160358203575015,
+    -0.06735286326147616,
+    -0.004363032057881355,
+    0.0007222486892715096,
+    0.043898454401642084,
+    0.02391938731307164,
+    0.038378765573725104,
+    -0.004871336743235588,
+    0.0029312707483768463,
+    -0.031640997156500816,
+    0.04719633632339537,
+    -0.035802186001092196,
+    -0.05948722315952182,
+    0.04805008601397276,
+    -0.05456400504044723,
+    0.09796237386763096,
+    -0.042216116562485695,
+    -0.05707100057043135,
+    -0.06863487511873245,
+    0.0665845952462405,
+    -0.0249932911247015,
+    0.020360959693789482,
+    0.04087175661697984,
+    0.09281465841922909,
+    0.012587364646606147,
+    -0.02114845998585224,
+    -0.07886462844908237,
+    0.10343090211972594,
+    -0.060254561714828014,
+    0.06121541187167168,
+    0.09504834402468987,
+    -0.028603890212252736,
+    0.03460407955572009,
+    -0.06012841314077377,
+    0.03062236960977316,
+    0.0036879455437883735,
+    -0.017869174480438232,
+    0.05397826246917248,
+    -0.13045219075866044,
+    -0.0487398961558938,
+    0.03137453485396691,
+    -0.008220314979553223,
+    -0.0008958554826676846,
+    0.008945693960413337,
+    -0.07362507004290819,
+    0.0391798852942884,
+    -0.11984097585082054,
+    0.030382777913473547,
+    0.1358364000916481,
+    -0.039410458877682686,
+    -0.009460006840527058,
+    -0.0021939482539892197,
+    -0.13976342417299747,
+    0.031324016861617565,
+    -0.05883756559342146,
+    -0.00284872530028224,
+    0.007893760921433568,
+    -0.032581232488155365,
+    0.03786800801753998,
+    0.02468443475663662,
+    -0.08890345093095675,
+    -0.0828841757029295,
+    0.05722391162998974,
+    0.07478771870955825,
+    -0.06668897904455662,
+    0.048599956557154655,
+    0.05058416957035661,
+    0.02721100766211748,
+    0.03433828614652157,
+    -0.12495760712772608,
+    -0.01305165103985928,
+    0.021012696262914687,
+    0.04075166815891862,
+    -0.00044493796303868294,
+    -0.0006099855527281761,
+    -0.02243117638863623,
+    -0.012240601237863302,
+    -0.035708533017896116,
+    0.028255388140678406,
+    -0.01489970926195383,
+    0.020209378097206354,
+    0.02557470928877592,
+    0.03228449821472168,
+    0.00900860270485282,
+    0.06051911599934101,
+    0.06491169985383749,
+    -0.015127222810406238,
+    0.0408971959259361,
+    0.07809066073969007,
+    0.01692414190620184,
+    -0.007328759878873825,
+    0.032935890601947904,
+    0.013300346210598946,
+    -0.006399387493729591,
+    -0.05179100017994642,
+    -0.030392018146812916,
+    0.010210830252617598,
+    -0.006692502647638321,
+    0.00017458945512771606,
+    0.0332185891456902,
+    0.09705071104690433,
+    -0.12364404741674662,
+    0.09123905538581312,
+    -0.08076192438602448,
+    -0.029331211932003498,
+    0.08599106827750802,
+    -0.02227906952612102,
+    0.09018028387799859,
+    -1.3539567589759827e-05,
+    0.04609806416556239,
+    0.026534220203757286,
+    0.06884776963852346,
+    -0.007583903148770332,
+    0.08578877546824515,
+    -0.03484100662171841,
+    0.0028084741352358833,
+    0.013471273356117308,
+    -0.04509907838655636,
+    0.07473277486860752,
+    0.04670519195497036,
+    0.09100313764065504,
+    0.09216202609241009,
+    -0.08835750102298334,
+    0.05219558929093182,
+    -0.015657944604754448,
+    0.006097635719925165,
+    -0.12892145290970802,
+    -0.08523448184132576,
+    -0.0033639874309301376,
+    -0.014995578676462173
+  ],
+  "critic_losses": [
+    0.6006080061197281,
+    4.652698427438736,
+    0.008649375173263252,
+    2.367334634065628,
+    0.007755029830150306,
+    0.24532505497336388,
+    0.008577833999879658,
+    1.7182251513004303,
+    1.5351771712303162,
+    0.010477829026058316,
+    2.8852537870407104,
+    0.0113686618860811,
+    0.007982752635143697,
+    0.13034868985414505,
+    1.5174431502819061,
+    0.007889852626249194,
+    29.91473698616028,
+    2.2823866605758667,
+    9.279111981391907,
+    0.007072037318721414,
+    8.453065633773804,
+    0.14015565812587738,
+    0.1672619916498661,
+    2.0552773028612137,
+    0.008122203638777137,
+    0.01379527966491878,
+    2.830569252371788,
+    0.009014300536364317,
+    0.012115542776882648,
+    0.014589122729375958,
+    0.013455515261739492,
+    0.007508719223551452,
+    0.010784195503219962,
+    1.0295192450284958,
+    0.003999592154286802,
+    0.004084089014213532,
+    0.013702541124075651,
+    2.883228898048401,
+    3.2552642226219177,
+    0.06576442997902632,
+    1.069893654435873,
+    3.297301411628723,
+    0.009308060863986611,
+    0.00674600969068706,
+    1.6800635904073715,
+    6.838613748550415,
+    0.03793064411729574,
+    0.04905657796189189,
+    2.6964499950408936,
+    6.854327023029327,
+    2.089582860469818,
+    0.15787765011191368,
+    0.0718758893199265,
+    0.07111129630357027,
+    1.1504640206694603,
+    0.09756800159811974,
+    0.21426304057240486,
+    0.9128575623035431,
+    0.20352763962000608,
+    0.39696359541267157,
+    0.5164956226944923,
+    3.0912564396858215,
+    0.38524720072746277,
+    0.35856435634195805,
+    0.3444839008152485,
+    1.701549082994461,
+    0.9639396667480469,
+    0.24816571548581123,
+    0.9662016406655312,
+    0.28398259822279215,
+    0.6513415351510048,
+    0.4171217121183872,
+    0.6460177972912788,
+    0.6234159171581268,
+    0.693151094019413,
+    0.8190823048353195,
+    0.4377874620258808,
+    51.497528076171875,
+    1.0535628199577332,
+    0.5485031269490719,
+    0.3268643915653229,
+    0.416775356978178,
+    1.1896305233240128,
+    7.652737140655518,
+    5.1376936584711075,
+    2.436949133872986,
+    0.6995467990636826,
+    0.8037683963775635,
+    0.3944467268884182,
+    0.2980049252510071,
+    1.0163333117961884,
+    0.8267742991447449,
+    0.20964207872748375,
+    0.47179247438907623,
+    1.2230351716279984,
+    0.4277223329991102,
+    0.31613939255476,
+    0.582215866073966,
+    0.7880125269293785,
+    0.4931280128657818,
+    0.7682592421770096,
+    0.39347043633461,
+    0.5237333960831165,
+    0.6940508298575878,
+    1.1412462294101715,
+    0.6099131554365158,
+    0.49911898002028465,
+    16.500894248485565,
+    0.23898838087916374,
+    0.6104654967784882,
+    0.5850103422999382,
+    0.6548432931303978,
+    1.201243631541729,
+    0.42673373222351074,
+    0.834460586309433,
+    0.8072498962283134,
+    0.9735949039459229,
+    0.9197494089603424,
+    1.3321384340524673,
+    0.8656980283558369,
+    1.078883320093155,
+    0.830870047211647,
+    0.8662588149309158,
+    0.9816511273384094,
+    0.7101242393255234,
+    0.503612395375967,
+    0.6804773285984993,
+    0.5081937834620476,
+    1.156655728816986,
+    0.38468730822205544,
+    0.5527157261967659,
+    1.2311755120754242,
+    0.36284803971648216,
+    0.7183597646653652,
+    0.4342701733112335,
+    1.035011425614357,
+    0.8996011391282082,
+    0.4673162251710892,
+    1.0425237230956554,
+    0.8592903316020966,
+    0.7842091172933578,
+    0.606388546526432,
+    1.0502795279026031,
+    0.7558526694774628,
+    1.0595255233347416,
+    0.9577985852956772,
+    0.9842316210269928,
+    1.6874738931655884,
+    0.8831380158662796,
+    1.0081517100334167,
+    0.573554590344429,
+    1.2446959614753723,
+    1.427383378148079,
+    0.7076258212327957,
+    1.2716983258724213,
+    1.1333297044038773,
+    1.255714789032936,
+    0.9020070433616638,
+    0.7578148022294044,
+    1.2063764482736588,
+    0.5110952369868755,
+    1.0051854699850082,
+    0.6252705007791519,
+    0.35689376294612885,
+    0.5003026444464922,
+    0.49693961814045906,
+    0.7464760467410088,
+    1.0124499648809433,
+    0.5783035829663277,
+    0.9478408619761467,
+    0.5729452967643738,
+    0.30897821113467216,
+    0.9875994920730591,
+    0.3303842954337597,
+    0.8590026572346687,
+    0.49121368676424026,
+    0.917037308216095,
+    0.42512062937021255,
+    0.6133193597197533,
+    0.4266173169016838,
+    0.6637575477361679,
+    0.6861937120556831,
+    0.6319273561239243,
+    0.44578130543231964,
+    0.685673862695694,
+    0.36284128203988075,
+    0.47551752999424934,
+    0.7244568914175034,
+    0.3392281187698245,
+    0.8612361047416925,
+    0.6563563421368599,
+    0.7328170388936996,
+    0.27842094749212265,
+    0.5568795949220657,
+    0.386291965842247,
+    0.506045013666153,
+    0.43793817702680826,
+    0.49466730654239655,
+    0.5937302336096764,
+    0.7799562141299248,
+    0.2277525933459401,
+    0.6534427925944328,
+    0.3521643914282322,
+    0.3012067689560354,
+    0.633812703192234,
+    0.590347059071064,
+    0.7992820739746094,
+    0.525393009185791,
+    0.5823594033718109,
+    0.6775922626256943,
+    0.5142773715779185,
+    0.9791681915521622,
+    0.7725939340889454,
+    0.4404982663691044,
+    0.6959338821470737,
+    0.9951205849647522,
+    0.5294485986232758,
+    0.7887612283229828,
+    0.4275345802307129,
+    0.837739497423172,
+    0.3550933226943016,
+    0.15768357180058956,
+    0.6099057234823704,
+    0.45805487409234047,
+    0.5857440195977688,
+    0.7914199233055115,
+    0.3433097265660763,
+    0.5448974221944809,
+    0.4106275476515293,
+    0.39012331515550613,
+    0.6355824116617441,
+    0.37844189442694187,
+    0.39418594539165497,
+    0.6410139948129654,
+    1.2558027356863022,
+    0.25700704753398895,
+    0.24384638853371143,
+    0.787412978708744,
+    0.34072299394756556,
+    0.35962798818945885,
+    0.513345442712307,
+    0.4470148291438818,
+    0.8497243672609329,
+    0.35985612869262695,
+    0.6026191487908363,
+    0.5137492679059505,
+    0.6545518822968006,
+    0.6195156052708626,
+    0.7184082940220833,
+    0.6800247207283974,
+    0.7022708877921104,
+    0.5085166394710541,
+    0.5859496705234051,
+    0.4550202712416649,
+    1.0756025314331055,
+    0.3987823985517025,
+    0.6736331731081009,
+    0.37500203773379326,
+    0.32188884168863297,
+    0.6337850987911224,
+    0.38670283555984497,
+    0.3327942527830601,
+    0.4868031442165375,
+    0.5299497358500957,
+    0.5538565367460251,
+    0.5142997354269028,
+    0.7068105638027191,
+    0.6168839670717716,
+    0.6793394163250923,
+    0.3654399663209915,
+    0.4387420956045389,
+    0.5078784227371216,
+    0.378317266702652,
+    1.792738825082779,
+    0.8920578770339489,
+    0.27177083119750023,
+    0.8832142427563667,
+    0.6005357727408409,
+    0.38142077438533306,
+    0.6019067317247391,
+    0.3141910433769226,
+    0.534660704433918,
+    0.4802095368504524,
+    1.3285903334617615,
+    0.41973369009792805,
+    0.5954347848892212,
+    0.24849816411733627,
+    0.8585870712995529,
+    0.6159142777323723,
+    0.4688791148364544,
+    0.6027391105890274,
+    0.42265937849879265,
+    0.35042680613696575,
+    0.5857103317975998,
+    0.299911480396986,
+    0.9293372221291065,
+    0.4266434386372566,
+    0.4922722429037094,
+    0.587225466966629,
+    1.0246221721172333,
+    0.8301910385489464,
+    0.46678202971816063,
+    0.512318342924118
+  ],
+  "clip_fractions": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.01171875,
+    0.01953125,
+    0.0078125,
+    0.015625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.01953125,
+    0.0078125,
+    0.02734375,
+    0.01171875,
+    0.00390625,
+    0.01953125,
+    0.02734375,
+    0.0234375,
+    0.00390625,
+    0.01171875,
+    0.0078125,
+    0.03125,
+    0.00390625,
+    0.0,
+    0.02734375,
+    0.03125,
+    0.01953125,
+    0.01171875,
+    0.015625,
+    0.0234375,
+    0.03515625,
+    0.015625,
+    0.01953125,
+    0.015625,
+    0.01953125,
+    0.01171875,
+    0.03515625,
+    0.0390625,
+    0.03515625,
+    0.0234375,
+    0.00390625,
+    0.03515625,
+    0.02734375,
+    0.02734375,
+    0.0234375,
+    0.015625,
+    0.0234375,
+    0.0546875,
+    0.03125,
+    0.0390625,
+    0.0546875,
+    0.03515625,
+    0.0625,
+    0.05859375,
+    0.0625,
+    0.03515625,
+    0.0390625,
+    0.08203125,
+    0.109375,
+    0.16015625,
+    0.14453125,
+    0.1484375,
+    0.19140625,
+    0.28125,
+    0.23046875,
+    0.23046875,
+    0.4296875,
+    0.38671875,
+    0.39453125,
+    0.32421875,
+    0.19140625,
+    0.203125,
+    0.19140625,
+    0.14453125,
+    0.11328125,
+    0.06640625,
+    0.0390625,
+    0.0390625,
+    0.0078125,
+    0.0234375,
+    0.03125,
+    0.015625,
+    0.0078125,
+    0.01171875,
+    0.015625,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0078125,
+    0.00390625,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.01171875,
+    0.0078125,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.00390625,
+    0.0,
+    0.0078125,
+    0.00390625,
+    0.0234375,
+    0.00390625,
+    0.015625,
+    0.00390625,
+    0.01953125,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.015625,
+    0.01171875,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.01171875,
+    0.00390625,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0078125,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.00390625,
+    0.0,
+    0.01171875,
+    0.0078125,
+    0.00390625,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0078125,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.01171875,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0,
+    0.0,
+    0.00390625,
+    0.0
+  ],
+  "degradation_over_time": [
+    59.63737796373627,
+    56.37761532644171,
+    32.31991926327621,
+    67.35968263297029,
+    22.364558313316213,
+    -13.107869142350173,
+    -2.009481736880412,
+    7.078527413494822,
+    -22.94641445808423,
+    -21.843544019211137,
+    -51.26627557590183,
+    -82.91791832426358,
+    -57.4956466677192,
+    -270.2979515828559,
+    -198.44574780057172,
+    -203.03280948440712,
+    -434.74754558200937,
+    -370.00284333235595,
+    -15.138658940391384,
+    -9.454284346570553,
+    -30.74704935621958,
+    -10.65375302663108,
+    3.2630790628038198,
+    12.57060582567294,
+    23.82453375361132,
+    30.163173346077315,
+    49.20102174171242,
+    50.583266885206356,
+    46.311460085996856,
+    30.66634156536204,
+    78.88675623800242,
+    101.29705388006094,
+    115.60750645357632,
+    144.22440310531564,
+    194.4549912988426,
+    223.52762730227224,
+    254.0686228555328,
+    285.03159557661604,
+    288.68602781193493,
+    297.6466314132282,
+    257.11806671379696,
+    347.81044095286046,
+    439.32560882536364,
+    389.9905123339634,
+    311.0977958484885,
+    307.6965528952254,
+    293.0626257842983,
+    297.7967335058174,
+    280.28816341418514,
+    342.0379982371907
+  ],
+  "summary": {
+    "mean_reward": -9.098999999999634,
+    "std_reward": 41.45777380660865,
+    "final_avg": -49.42899999999874,
+    "best_episode": 105.42999999999925,
+    "worst_episode": -49.96999999999863,
+    "total_llm_calls": 2220,
+    "total_attacks": 2220,
+    "mean_degradation": 78.94538168499653
+  }
+}
