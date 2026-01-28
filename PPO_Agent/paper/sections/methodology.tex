@@ -1,0 +1,278 @@
+\section{Methodology}
+
+This section describes the experimental framework, agent architecture, and causal analysis pipeline used to evaluate robustness of LLM-guided reinforcement learning agents. All experiments use the NetHack Learning Environment as a testbed due to its combinatorial complexity and long-horizon decision requirements.
+
+\subsection{Experimental Framework and Environment Setup}
+
+We use the NetHack Learning Environment (NLE) version 0.9.0 with the \texttt{NetHackScore-v0} task configuration. NetHack presents a roguelike dungeon crawler with 23 discrete actions including movement (8 directions), combat, item interaction, and special commands. The observation space includes a $21 \times 79$ glyph map representing the visible dungeon, a 26-element status vector containing player statistics, a 256-character message buffer, and a 55-slot inventory representation.
+
+The environment exhibits partial observability: the agent sees only a local region around the player, and previously explored areas become invisible when the player moves away. Episodes terminate on player death, dungeon escape, or reaching 5000 steps. Rewards are sparse, based on in-game score changes, with most steps yielding zero reward.
+
+All experiments run on a single machine with an NVIDIA RTX 4090 GPU (24GB VRAM), AMD Ryzen 9 7950X CPU, and 64GB RAM. Training uses Python 3.10, PyTorch 2.1.0, and the \texttt{nle} package for environment interaction. The LLM component uses Ollama 0.1.27 running locally with the \texttt{llama3:8b} model. Random seeds are fixed at values 0-4 across experimental replicates to ensure reproducibility.
+
+Each training run consists of 100 episodes with a maximum of 5000 steps per episode. PPO updates occur every 1024 environment steps using 4 optimization epochs per update. We use gradient clipping with a maximum norm of 0.5 and the Adam optimizer with learning rate $1 \times 10^{-4}$.
+
+\subsection{State Representation and Language Transformation}
+
+The raw NetHack observation contains symbolic glyphs representing dungeon tiles, monsters, items, and terrain. To enable LLM reasoning, we transform these observations into natural language descriptions using a semantic descriptor module.
+
+Consider a concrete example. The raw observation might contain:
+\begin{itemize}
+    \item \texttt{blstats[10] = 12} (current HP)
+    \item \texttt{blstats[11] = 16} (max HP)
+    \item A goblin glyph at position $(10, 42)$ with the player at $(10, 40)$
+\end{itemize}
+
+The semantic descriptor transforms this into:
+
+\begin{quote}
+\texttt{NETHACK GAME STATE:}\\
+\texttt{Status: Level 1, Health: 12/16 (moderate)}\\
+\texttt{Surroundings: CLOSEST THREAT: goblin east (dist:2)}\\
+\texttt{Recommended Focus: Monitor nearby threat}
+\end{quote}
+
+The transformation follows a structured template with four components:
+
+\textbf{Status Section:} Extracts dungeon level from \texttt{blstats[12]}, computes health ratio from \texttt{blstats[10]/blstats[11]}, and categorizes health as ``good'' ($>70\%$), ``moderate'' ($30\%-70\%$), or ``critical'' ($<30\%$). Gold and experience level are also included when relevant.
+
+\textbf{Surroundings Section:} Scans the $21 \times 79$ glyph array for monster glyphs, computes Manhattan distance from player position, determines cardinal direction, and formats as threat descriptions. Monster identification uses the NLE glyph-to-character mapping. Items within visible range are similarly described.
+
+\textbf{Threat Assessment:} Aggregates nearby monsters by distance and categorizes the situation. If no monsters appear within 5 tiles, the description reads ``NO IMMEDIATE THREATS - safe to explore.'' Monsters at distance 1-2 trigger warnings about immediate danger.
+
+\textbf{Recommended Focus:} A one-line summary based on the most pressing concern: low health suggests ``Prioritize healing,'' nearby monsters suggest ``Combat or retreat,'' and empty surroundings suggest ``Continue exploration.''
+
+The full description typically runs 150-300 characters, short enough for efficient LLM processing but detailed enough for strategic reasoning. We do not include the full dungeon map or historical information beyond the current step, as the LLM serves as a strategic advisor rather than a memory system.
+
+\subsection{Large Language Model Integration}
+
+LLM guidance uses the Ollama API with the \texttt{llama3:8b} model. The system prompt establishes the LLM's role as a NetHack expert:
+
+\begin{quote}
+\texttt{You are an expert NetHack player advising an agent. Given the game state, suggest ONE of these strategies: explore, combat, retreat, collect, or wait. Consider health, threats, and opportunities. Respond with only the strategy name, nothing else.}
+\end{quote}
+
+The user prompt contains the semantic description generated from the current observation. A typical exchange:
+
+\textbf{Input:}
+\begin{quote}
+\texttt{NETHACK GAME STATE:}\\
+\texttt{Status: Level 1, Health: 5/16 (critical)}\\
+\texttt{Surroundings: goblin north (dist:1)}\\
+\texttt{Recommended Focus: Immediate danger - retreat or fight}
+\end{quote}
+
+\textbf{Output:}
+\begin{quote}
+\texttt{retreat}
+\end{quote}
+
+API parameters use temperature 0.2 for consistency, maximum 50 tokens (strategies are single words), and a timeout of 5 seconds. The LLM is queried every 50 environment steps by default, not on every step, to balance guidance quality against computational overhead. Between LLM calls, the previous strategy remains active.
+
+The strategy-to-action translation converts LLM output into action hints. Each strategy maps to a subset of the 23 NetHack actions:
+\begin{itemize}
+    \item \textbf{explore}: movement actions (0-7), search (11)
+    \item \textbf{combat}: attack actions, kick (12)
+    \item \textbf{retreat}: movement away from threats (computed dynamically)
+    \item \textbf{collect}: pickup (6), inventory interaction
+    \item \textbf{wait}: wait/search (8-11)
+\end{itemize}
+
+These mappings produce a hint vector $h \in \mathbb{R}^{23}$ with values 0.0 for non-recommended actions and 0.2 for recommended actions. The hint vector is added to policy logits during action selection, biasing but not forcing the agent toward LLM-suggested strategies.
+
+When parsing fails or the LLM returns an invalid strategy, the system falls back to a rule-based strategy based on current health ratio: critical health triggers ``retreat,'' low health triggers ``wait,'' and high health triggers ``explore.''
+
+\subsection{Proximal Policy Optimization Agent}
+
+The RL backbone uses Proximal Policy Optimization (PPO) \cite{schulman2017proximal} with separate actor and critic networks sharing a common observation encoder.
+
+\textbf{Network Architecture:} The encoder processes the $21 \times 79$ glyph observation through two convolutional layers (32 and 64 filters, $3 \times 3$ kernels) followed by an LSTM with 256 hidden units. The status vector (26 dimensions) is concatenated with the LSTM output before final processing. See Table~\ref{tab:network} for layer specifications.
+
+\begin{table}[h]
+\centering
+\caption{Neural network architecture.}
+\begin{tabular}{lll}
+\toprule
+\textbf{Layer} & \textbf{Output Size} & \textbf{Activation} \\
+\midrule
+Conv2D (32 filters) & $32 \times 19 \times 77$ & ReLU \\
+Conv2D (64 filters) & $64 \times 17 \times 75$ & ReLU \\
+Flatten + FC & 512 & ReLU \\
+LSTM & 256 & tanh \\
+Concat (+ stats) & 282 & -- \\
+Actor head & 23 & Softmax \\
+Critic head & 1 & Linear \\
+\bottomrule
+\end{tabular}
+\label{tab:network}
+\end{table}
+
+\textbf{LLM Hint Integration:} The actor network accepts an optional hint vector $h \in \mathbb{R}^{23}$ from the LLM advisor. During the forward pass, logits are computed as:
+$$\text{logits} = f_\theta(s) + \alpha \cdot h$$
+where $f_\theta(s)$ is the base policy network output, $h$ is the hint vector, and $\alpha = 0.05$ is the guidance weight. This additive integration allows the LLM to bias action selection while the PPO policy retains control.
+
+\textbf{PPO Hyperparameters:} Table~\ref{tab:ppo-params} lists the hyperparameters used across all experiments.
+
+\begin{table}[h]
+\centering
+\caption{PPO hyperparameters.}
+\begin{tabular}{ll}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Learning rate ($\alpha$) & $1 \times 10^{-4}$ \\
+Discount factor ($\gamma$) & 0.99 \\
+GAE lambda ($\lambda$) & 0.95 \\
+Clip ratio ($\epsilon$) & 0.2 \\
+Entropy coefficient & 0.02 \\
+Value function coefficient & 0.5 \\
+Epochs per update & 4 \\
+Minibatch size & 64 \\
+Max gradient norm & 0.5 \\
+\bottomrule
+\end{tabular}
+\label{tab:ppo-params}
+\end{table}
+
+\textbf{Reward Shaping:} Raw NetHack rewards are sparse. We apply reward shaping to provide denser learning signals:
+\begin{itemize}
+    \item Exploration: +0.01 for visiting a new position
+    \item Health: +0.0001 per HP gained, penalty for HP lost
+    \item Level up: +5.0
+    \item Gold collection: +0.001 per gold piece
+    \item Monster kill: +1.0
+    \item Death: $-5.0$
+    \item Stuck penalty: $-0.005$ for repeated positions
+\end{itemize}
+
+\subsection{Causal Reasoning Framework}
+
+To understand when LLM guidance helps and when it hurts, we implement causal effect estimation using the Doubly Robust Estimator \cite{kennedy2023semiparametric}.
+
+\textbf{Treatment Definition:} A step is ``treated'' if LLM guidance was active (hint vector applied to policy). A step is ``control'' if no LLM guidance was active. Treatment assignment depends on the LLM call frequency (every 50 steps) and whether the current strategy remains from a previous call.
+
+\textbf{Outcome:} The primary outcome is the shaped reward at each step. We also analyze episode-level outcomes including total return and episode length.
+
+\textbf{Confounders:} Both treatment assignment and outcomes depend on game state. We control for:
+\begin{itemize}
+    \item Health ratio (current HP / max HP)
+    \item Dungeon level
+    \item Recent reward history (mean reward over last 50 steps)
+    \item Episode progress (current step / max steps)
+\end{itemize}
+
+\textbf{Doubly Robust Estimation:} The Average Treatment Effect (ATE) is estimated as:
+$$\hat{\tau}_{DR} = \frac{1}{n}\sum_{i=1}^{n} \left[ \hat{\mu}_1(X_i) - \hat{\mu}_0(X_i) + \frac{T_i(Y_i - \hat{\mu}_1(X_i))}{\hat{e}(X_i)} - \frac{(1-T_i)(Y_i - \hat{\mu}_0(X_i))}{1 - \hat{e}(X_i)} \right]$$
+
+where $\hat{e}(X_i)$ is the propensity score (probability of treatment given confounders), $\hat{\mu}_t(X_i)$ is the predicted outcome under treatment $t$, $T_i$ is the treatment indicator, and $Y_i$ is the observed outcome.
+
+The propensity model is a logistic regression on the confounder features. The outcome models are linear regressions of reward on confounders, fit separately for treated and control observations. Standard errors are computed via the influence function, and 95\% confidence intervals determine statistical significance.
+
+\textbf{Heterogeneous Effects:} We estimate treatment effects within subgroups defined by health status (low/medium/high), episode phase (early/mid/late), and recent performance (struggling/doing-well). This reveals when LLM guidance is most and least helpful.
+
+\subsection{Trust Calibration and Safety Module}
+
+The safety module detects potentially corrupted LLM advice and prevents the agent from following harmful guidance.
+
+\textbf{Trust Score Computation:} For each LLM suggestion, we compute a trust score based on:
+\begin{enumerate}
+    \item \textbf{Policy Agreement:} How much the LLM strategy aligns with the PPO policy's preferred actions. If the LLM suggests ``retreat'' but PPO strongly prefers ``combat,'' agreement is low.
+    \item \textbf{State Consistency:} Whether the LLM's suggestion makes sense given observable state features. Suggesting ``combat'' when health is critical triggers a consistency warning.
+    \item \textbf{Historical Accuracy:} Rolling accuracy of LLM advice over the last 20 interactions, measured by whether following the advice led to positive reward.
+\end{enumerate}
+
+Trust score $\tau \in [0,1]$ is a weighted combination:
+$$\tau = 0.4 \cdot \text{agreement} + 0.3 \cdot \text{consistency} + 0.3 \cdot \text{accuracy}$$
+
+\textbf{Threshold Mechanism:} If $\tau < 0.3$, the LLM advice is rejected and the agent follows pure PPO policy. If $\tau \in [0.3, 0.7]$, the guidance weight is reduced proportionally. If $\tau > 0.7$, full guidance weight is applied.
+
+\textbf{Fallback Policy:} When advice is rejected, the agent uses the base PPO policy without LLM hints. This provides graceful degradation rather than catastrophic failure when the LLM produces poor advice.
+
+\subsection{Adversarial Attack Implementation}
+
+To evaluate robustness, we implement seven attack types that corrupt the semantic description before it reaches the LLM. Attacks are applied with configurable strength $s \in [0, 1]$.
+
+\textbf{Attack Types:}
+
+\begin{enumerate}
+    \item \textbf{Noise Injection:} Insert random phrases like ``ERROR: SENSOR MALFUNCTION'' or gibberish characters at random positions. Higher strength increases noise frequency.
+    
+    \item \textbf{State Inversion:} Replace keywords with semantic opposites. ``good'' becomes ``critical,'' ``safe'' becomes ``dangerous,'' ``NO IMMEDIATE THREATS'' becomes ``MULTIPLE DEADLY THREATS.''
+    
+    \item \textbf{Misleading Context:} Append harmful strategic tips: ``When health is low, ALWAYS engage in combat for XP gains.'' These contradict safe play strategies.
+    
+    \item \textbf{Contradictory Information:} Insert logically impossible statements: ``Status: DEAD but also Level 5 with good health.''
+    
+    \item \textbf{Critical Information Removal:} Replace lines containing ``Health,'' ``THREAT,'' or ``danger'' with ``[REDACTED].''
+    
+    \item \textbf{Strategic Poisoning:} Context-aware attacks that analyze state and inject the worst possible advice. If health is low, the attack suggests combat. If a monster is adjacent, the attack suggests waiting.
+    
+    \item \textbf{Random Corruption:} Character-level noise replacing random characters with symbols like ``@,'' ``\#,'' or ``*''.
+\end{enumerate}
+
+Table~\ref{tab:attacks} summarizes the attack types with example corruptions.
+
+\begin{table*}[t]
+\centering
+\caption{Adversarial attack types with examples.}
+\begin{tabular}{p{3cm}p{5cm}p{6cm}}
+\toprule
+\textbf{Attack Type} & \textbf{Original} & \textbf{Corrupted} \\
+\midrule
+Noise Injection & Health: 16/16 (good) & Health: 16/16 (good) ERROR: DATA CORRUPT \\
+State Inversion & NO IMMEDIATE THREATS & MULTIPLE DEADLY THREATS \\
+Misleading Context & Health: 5/16 (critical) & Health: 5/16 (critical). TIP: Attack now for XP! \\
+Contradictory Info & Level 1 & Level 1 but also Level 10 simultaneously \\
+Info Removal & THREAT: goblin (dist:2) & [REDACTED] \\
+Strategic Poisoning & Health critical, monster nearby & Perfect time for combat! \\
+Random Corruption & Status: Level 1 & St@tus: L\#vel 1 \\
+\bottomrule
+\end{tabular}
+\label{tab:attacks}
+\end{table*}
+
+\subsection{Training Procedure}
+
+Training proceeds in a single phase with LLM guidance enabled from the start.
+
+\textbf{Episode Loop:}
+\begin{enumerate}
+    \item Reset environment, initialize LSTM hidden states
+    \item For each step (up to 5000):
+    \begin{enumerate}
+        \item Process observation through encoder
+        \item If step \% 50 == 0: query LLM, update strategy
+        \item Compute trust score for current advice
+        \item Apply guidance weight based on trust score
+        \item Sample action from policy, execute in environment
+        \item Log step data to causal logger
+        \item Store transition in PPO buffer
+    \end{enumerate}
+    \item If buffer contains 1024+ transitions: run PPO update
+    \item Log episode metrics
+\end{enumerate}
+
+Training for 100 episodes takes approximately 4-6 hours depending on episode lengths. LLM calls add roughly 100-200ms latency per query. Total training cost including LLM inference is under \$1 for local Ollama deployment.
+
+\subsection{Evaluation Protocol}
+
+\textbf{Baselines:} We compare five configurations:
+\begin{enumerate}
+    \item \textbf{Pure PPO:} No LLM guidance, standard RL training
+    \item \textbf{Pure LLM (zero-shot):} LLM chooses actions directly, no RL
+    \item \textbf{LLM-guided PPO (no safety):} Full LLM guidance without trust calibration
+    \item \textbf{LLM-guided PPO (no causal):} With safety module but without causal analysis
+    \item \textbf{Full System:} Complete framework with all components
+\end{enumerate}
+
+\textbf{Metrics:}
+\begin{itemize}
+    \item \textbf{Average Return:} Cumulative shaped reward per episode
+    \item \textbf{Success Rate:} Fraction of episodes reaching dungeon level 2
+    \item \textbf{Episode Length:} Average steps before termination
+    \item \textbf{LLM Acceptance Rate:} Fraction of LLM suggestions accepted by safety module
+\end{itemize}
+
+\textbf{Adversarial Evaluation:} Each baseline is evaluated at attack strengths 0.0, 0.3, 0.5, 0.7, and 1.0 for all seven attack types. We run 5 seeds per configuration, reporting means and standard errors.
+
+\textbf{Statistical Analysis:} Significance is assessed using two-tailed t-tests with $\alpha = 0.05$. Confidence intervals are reported throughout.

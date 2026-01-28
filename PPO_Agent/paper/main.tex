@@ -1,0 +1,316 @@
+\documentclass[10pt, twocolumn]{article}
+ 
+\title{\textbf{When Not to Trust the Oracle: Detecting Unsafe Advice in LLM-guided Reinforcement Learning}}
+
+\author{
+    \fontsize{11}{13}\selectfont 
+    1\ts{st} Anandkumar NS \\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    22z209@psgtech.ac.in\\
+    \and
+    \fontsize{11}{13}\selectfont 
+    2\ts{nd} Kishoreadhith V \\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    22z232@psgtech.ac.in\\
+    \and
+    \fontsize{11}{13}\selectfont 
+    3\ts{rd} Dhakkshin S R \\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    22z215@psgtech.ac.in\\
+    \and
+    \fontsize{11}{13}\selectfont 
+    4\ts{th} M Raj Ragavender  \\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    22z233@psgtech.ac.in\\
+    \and
+    \fontsize{11}{13}\selectfont 
+    5\ts{th} Rithvik K \\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    22z253@psgtech.ac.in\\
+    \and
+    6\ts{th} Dr. Arulanand N \\
+    \fontsize{10}{11}\selectfont 
+    Professor, \\
+    \fontsize{10}{11}\selectfont 
+    Department of Computer Science,\\
+    \fontsize{10}{11}\selectfont 
+    PSG College of Technology\\
+    \fontsize{10}{11}\selectfont 
+    Coimbatore, India\\
+    \fontsize{10}{11}\selectfont
+    naa.cse@psgtech.ac.in\\
+    \and
+    }
+
+\date{}
+
+%%%%%%%%%%%%%%%%%
+% import packages %
+%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}
+\usepackage{lmodern} % customize author's fontsize
+\usepackage{tabularx}
+\usepackage{booktabs} % for nice table rules
+
+
+% setting page settings and layout 
+% https://texdoc.org/serve/geometry/0
+\usepackage[
+layout=letterpaper, 
+paper=letterpaper, 
+portrait, 
+head=0.5in,
+foot=0.5in,
+top=1in, 
+bottom=1in, 
+left=0.75in, 
+right=0.75in
+]{geometry}
+
+\usepackage[english,brazilian]{babel}
+
+
+\setlength{\columnsep}{0.25in} % space/gap between columns
+\pagenumbering{gobble}  % supress page number
+
+\usepackage{xurl}
+\usepackage[hyperpageref]{backref}	 %  link to bib citations
+\usepackage[runin]{abstract}
+
+\usepackage{hyperref} % it needs to come before abntex2cite
+\hypersetup{
+colorlinks=true,
+urlcolor=blue,
+linkcolor=blue,
+citecolor=blue,
+pdftitle={@title - @author},
+pdfsubject={Systematic Review},
+pdfauthor={@author},
+pdfkeywords={list; here; your; keywords (key words)}
+}
+
+\usepackage[num,abnt-etal-cite=3]{abntex2cite}
+\citebrackets[] % use square brackets on citation
+% https://ctan.dcc.uchile.cl/macros/latex/contrib/abntex2/doc/abntex2cite.pdf pg. 7
+
+\usepackage{etoolbox}
+\usepackage{indentfirst} % ident section's paragraphs
+\def\ni{\noindent} % remove abstract pragraph
+
+\usepackage{custom_commands} % custom commands, including abstract text
+
+\usepackage{subfiles} % best loaded last in the preamble
+\usepackage[pdftex]{graphicx} % add images
+
+
+% multiple bibliografy files
+% https://www.overleaf.com/learn/latex/Questions/Creating_multiple_bibliographies_in_the_same_document
+\usepackage[resetlabels,labeled]{multibib}
+\newcites{LSR}{Literature Systematic Reviews Reading}
+\newcites{CC}{Computer Science Readings}
+
+\begin{document}
+\renewcommand{\abstractname}{} % remove 'Abstract' title
+
+
+\maketitle % create title and authors
+
+
+%%%%%%%%%%%%
+% Abstract %
+%%%%%%%%%%%%
+
+%% remover espaçamento do abstract
+\setlength{\absleftindent}{0em}
+\setlength{\absrightindent}{0em}
+
+\begin{abstract}
+Large language models (LLMs) have recently been explored as high-level planners for reinforcement learning (RL) agents in complex environments. This approach encounters issues when we take into consideration the fact that LLM-generated advice can be unreliable, particularly under corrupted or ambiguous conditions and state descriptions. This raises the question of safety concerns for the decision-making and other processes powered by the LLM generated advice. We aim to address this gap by proposing a lightweight safety framework that detects and tries to mitigate unsafe LLM guidance. We adopt the NetHack Learning Environment (NLE) as our testbed due to its rich combinatorial state space, partial observability, and long-horizon decision dependencies, which make it a challenging benchmark for evaluating robustness of LLM-guided agents. 
+
+The central inquiry guiding this review is: \textbf{"How can we make the LLM-guided Reinforcement Learning Agents interpretable and robust to misinformation, particularly in complex sequential descion-making environments?"}. This is the question that will be explored by this work and we will try to provide valid solutions to the issues that we enounter?
+
+
+This work contributes a practical methodology for trust calibration in LLM-guided RL and opens new directions for adversarial robustness in language-driven agents. Most research on LLM-guided reinforcement learning uses the LLM as a planner or “common sense” advisor, but leaves critical gaps. Current agents operate as black boxes: they map states to actions without understanding why strategies work, which limits generalization. 
+
+They also tend to blindly trust the LLM’s advice, even when the state description is corrupted or incomplete, leading to brittle performance. In addition, existing systems provide little interpretability—offering no clear way to debug or understand decisions—and they are rarely stress-tested under adversarial or misleading inputs. Together, these gaps raise serious concerns about safety, reliability, and trustworthiness in real-world applications.
+
+
+\end{abstract}
+
+%%%%%%%%%%%
+% Article %
+%%%%%%%%%%%
+\section{Theoretical Background}
+\subsection{Introduction to LLM-guided Reinforcement Learning}
+Reinforcement Learning (RL), a paradigm rooted in trial-and-error learning to optimize sequential policies, has traditionally been applied to environments with complex state-action spaces like robotics, games, and autonomous control. The intersection of these fields—leveraging the expressive power and knowledge embedded in LLMs to enhance RL agents—presents an enticing research frontier where LLMs can provide rich semantic guidance to improve decision-making efficiency and effectiveness.
+
+The motivation for integrating LLM with RL stems primarily from the challenges inherent in RL related to sample inefficiency, exploration complexity, and interpretability. LLMs, pretrained on vast corpora of text, embed rich world knowledge, hierarchical structure, and planning insights, which can be harnessed to guide RL agents strategically. Such integration promises not only to boost learning efficiency through informed exploration but also to enable more interpretable agent policies that can be understood and audited by humans. However, realizing this integration involves addressing critical challenges such as how to align LLM knowledge with environmental dynamics (grounding), how to maintain robustness when LLM knowledge is imperfect or misleading, and how to embed causal reasoning into decision-making processes. These challenges are intensified in complex sequential environments where uncertainty, partial observability, and long-horizon planning requirements prevail.
+
+\subsection{Research Objective and Scope}
+This literature survey focuses on the intersection of large language models with reinforcement learning, particularly with regard to strategic guidance, causal reasoning, and robustness in complex sequential decision-making environments. The scope emphasizes high-stakes and intricate game-like environments, such as NetHack and Minecraft, which have become standard benchmarks due to their rich state-action representations, need for long-term planning, and partial observability. By concentrating on these environments, the review aims to uncover how language-guided RL architectures shape learning dynamics, facilitate interpretable strategies, and address robustness under misinformation or adversarial perturbations.
+
+The survey uses a multi-tiered keyword strategy to ensure inclusivity and depth in identifying relevant contributions. Primary keywords focus on direct LLM-RL integration, strategic and causal aspects, and robustness, while secondary and tertiary terms extend coverage to hierarchical and symbolic RL, multimodal learning, and procedural content generation. This stratified search allows the survey to capture core methods, application domains, and emerging subfields. Additionally, the delimitation to strategic sequential decision-making excludes predominantly supervised or offline language tasks, maintaining alignment with the challenges of reinforcement-driven interactive learning systems.
+
+Zeng et al. (2023) provide a comprehensive survey of how LLMs are leveraged across robotics—spanning perception, planning, control, and interactive reasoning—while also highlighting emerging challenges such as resource constraints and safety in multimodal and embodied settings (Zeng et al., 2023) \cite{zeng2023largelanguagemodelsrobotics}. This sets a broad foundation for understanding where current architectural approaches (like RL-GPT or Voyager) fit into the larger landscape.
+
+\section{Current Methods of LLM and RL Integration}
+\subsection{Architectural Approaches for Integration}
+The integration of LLMs with RL agents has been explored primarily through several architectural paradigms aimed at balancing the benefits of each component. One predominant approach involves hierarchical frameworks where LLMs operate at a higher level of abstraction, providing strategic advice, policy shaping, or sub-goal generation, while RL agents implement low-level control and action execution. For instance, the hierarchical decomposition in RL-GPT introduces a two-level agent system comprising a slow agent responsible for high-level action planning (often encoded as code or symbolic instructions) and a fast agent that manages task-specific refinements and fast execution cycles \cite{3}. Such designs enable specialization of each module and improve sample efficiency due to better modularity.
+
+Another approach is advisory or hybrid models where LLMs provide consultative signals to RL agents in the form of natural language instructions, action suggestions, or policy priors. The GLAM approach exemplifies this strategy by progressively updating an LLM-based policy online during interactions with the environment, harnessing reinforcement learning to ground the abstract knowledge encoded in the LLM into concrete actions for spatial and navigation tasks \cite{1}. Hybrid models benefit from the complementary nature of LLMs’ abstract reasoning and RL’s environment-specific learning but require careful mechanisms to manage conflicts between language advice and sensory feedback.
+
+Ahn et al. (2022) introduced SayCan, a system where an LLM proposes high-level goals (Say), and a learned affordance/value model (“Can”) ensures the feasibility of these suggestions, effectively bridging symbolic planning with actionable robot control (Ahn et al., 2022) \cite{ahn2022icanisay}.
+DeepMind’s Code-as-Policies reformulates robot behavior as executable code generated by LLMs: the model composes API-driven policies, supports hierarchical code generation (e.g., loop and conditional structures), and generalizes across tasks—from pick-and-place to trajectory control (Liang et al., 2022) \cite{liang2023codepolicieslanguagemodel}.
+
+Notable integrated systems such as Voyager (a Minecraft agent) utilize LLMs for continual planning and task decomposition while RL handles exploration and low-level primitives, demonstrating architectural effectiveness in real-world-like embodied domains. It demonstrates continual skill acquisition: GPT-4 generates runnable code to build, explore, and self-improve over time—no fine-tuning required (Wang et al., 2023) \cite{wang2023voyageropenendedembodiedagent}. These architectures typically employ multi-modal inputs, hierarchical control, and reinforcement signals to enable scalable learning.
+
+Overall, architectural methods hinge on designing clear interfaces for translating between symbolic or language representations and actionable policies, balancing modularity and end-to-end optimization, and partitioning learning duties between LLMs and RL agents for scalable and interpretable decision-making.
+
+\subsection{Information flow and Communication Channels}
+Effectively integrating LLMs with RL hinges on the design of information flow and communication protocols that allow the transfer and transformation of guidance signals. Commonly, state information from the environment, which may be raw or structured, is first converted into a language-based or symbolic representation that the LLM can interpret. This state-to-language transformation serves as a shared abstraction layer, enabling the extensive pretrained knowledge of LLMs to be leveraged for strategy generation.
+
+The NetHack Learning Environment (NLE) language wrapper illustrates a practical implementation of this paradigm, translating complex game states into natural language descriptions used as input for LLM agents \cite{1}. This approach reduces the perceptual complexity the LLM faces and grounds its reasoning in semantically rich but interpretable representations. Similarly, the Thinker framework integrates an LLM with an external module managing cognitive tasks in a two-system reasoning hierarchy, where the LLM executes intuitive language processing and the external Thinker module handles complex logical reasoning, facilitated through a defined communication protocol \cite{4}. This separation ensures both interpretability and rigorous analysis of strategic inputs.
+
+The communication channels often rely on protocols that define the frequency, format, and scope of information transfer. For example, in interactive text-based environments, LLMs receive episodic textual inputs and output textual commands or plans, whereas in embodied domains, intermediate symbolic actions or code snippets serve as communication tokens. The language-to-action pipeline is critical, demanding robust parsers and executors to convert LLM-generated plans into executable RL policies.
+
+Huang et al. (2022) propose Inner Monologue, an approach where LLMs incorporate environment feedback—such as success detection and scene description—into their generative planning loop, enabling more effective replanning and error recovery in both simulated and real-world tabletop and mobile manipulation tasks (Huang et al., 2022) \cite{pmlr-v205-huang23c}.
+
+\subsection{Training Paradigms and Action Space Handling}
+Training LLM-assisted RL systems introduces methodological choices regarding how both components adapt to optimize joint performance. Training paradigms range from fine-tuning and instruction-based learning of LLMs to reinforcement learning with human feedback (RLHF) that aligns language models with task-specific objectives \cite{2}. Modular training, where the LLM and RL agent are trained separately but coordinated through an interface, complements end-to-end approaches where joint optimization is performed.
+
+Few-shot and zero-shot prompt tuning enable flexible deployment of LLMs without extensive retraining, facilitating incorporation of prior knowledge in RL tasks \cite{2}. Online RL techniques permit continuous adaptation as the agent interacts with the environment, progressively grounding LLM knowledge into task-relevant policies \cite{1}.
+
+Regarding action spaces, systems must handle discrete (e.g., game moves), continuous (e.g., robot joint controls), or hybrid actions, sometimes expressed via natural language commands. Hierarchical models such as IHAC (Imitation Hierarchical Actor-Critic) utilize LLMs to provide high-level commands or subgoals that an RL actor critic executes in low-dimensional or continuous control spaces. RL-GPT’s two-agent architecture differentiates between slow, coding-centric planning and fast execution of fine-tuned low-level actions, achieving state-of-the-art performance in embodied tasks such as Minecraft \cite{3}.
+
+These multimodal action representations and multi-agent decomposition strategies are critical to bridging the symbolic reasoning capabilities of LLMs and the reactive, sensorimotor competencies of RL.
+
+\subsection{Benchmarks and Evaluation Environments}
+A critical aspect of integrating LLMs with reinforcement learning is the choice of benchmark environments, which strongly influences the generality, interpretability, and robustness of the resulting systems. Several environments have emerged as de-facto standards for evaluating language-guided RL.
+
+The NetHack Learning Environment (NLE) has become a prominent testbed due to its combinatorial complexity, partial observability, and long-horizon decision dependencies. It provides a rich setting where language wrappers translate symbolic states into natural language descriptions, making it particularly well suited for evaluating robustness and interpretability of LLM-based guidance \cite{küttler2020nethacklearningenvironment}.
+
+In open-ended Minecraft-based environments, agents such as Voyager \cite{wang2023voyageropenendedembodiedagent} demonstrate continual skill acquisition, task decomposition, and code-driven exploration. Minecraft’s open world allows for the evaluation of long-horizon planning, exploration strategies, and the ability of agents to generalize to unseen tasks.
+
+Smaller-scale yet strategically important environments include BabyAI \cite{chevalierboisvert2019babyaiplatformstudysample}, a grid-world platform focused on language-conditioned policy learning. BabyAI is valuable for testing sample efficiency, hierarchical planning, and generalization to novel instructions. Similarly, AlfWorld \cite{shridhar2021alfworldaligningtextembodied} combines natural language instruction following with embodied reasoning in simulated household tasks, bridging text-only tasks with interactive, embodied RL.
+
+Finally, benchmarks such as CALVIN \cite{mees2022calvinbenchmarklanguageconditionedpolicy} extend these principles to robotic manipulation by offering language-conditioned long-horizon tasks. CALVIN highlights the gap between simulated environments and physical robot control, providing a pathway for testing how LLM-guided policies transfer to real-world applications.
+
+Together, these environments form a diverse ecosystem: from symbolic games (NetHack) to open-ended sandboxes (Minecraft) and grounded manipulation tasks (CALVIN). The use of multiple benchmarks is critical to avoid overfitting to a single environment and to stress-test LLM-RL integration across different modalities, complexities, and safety constraints.
+
+\subsection{Comparison of Representative Approaches}
+
+While the preceding subsections outlined architectural paradigms, communication channels, training paradigms, and benchmarks, it is useful to provide a structured comparison of representative systems. Table~\ref{tab:taxonomy} synthesizes key approaches across domains, highlighting the role of the LLM, strengths, and limitations. This comparative view enables a holistic understanding of how different design choices manifest in practice and how they relate to the technical gaps discussed in Section~III.  
+
+\begin{table*}[t]
+\centering
+\caption{Comparison of representative LLM-guided RL approaches across domains, roles, and limitations.}
+\begin{tabular}{p{2.5cm} p{2.5cm} p{3cm} p{4cm} p{4cm}}
+\toprule
+\textbf{Paper / System} & \textbf{Domain} & \textbf{LLM Role} & \textbf{Strengths} & \textbf{Limitations} \\
+\midrule
+RL-GPT \cite{3} & Minecraft / Embodied tasks & Hierarchical planner (slow + fast agents) & Improves modularity, sample efficiency via code-as-policy & Still black-box reasoning, limited causal modeling \\
+SayCan \cite{ahn2022icanisay} & Robotics & High-level planner with affordance grounding & Bridges language and robot affordances; safer than pure LLM & Dependent on quality of affordance model; limited generalization \\
+Code-as-Policies \cite{liang2023codepolicieslanguagemodel} & Robotics & Policy generation via code snippets & Modular, compositional policies; interpretable via code & Requires curated APIs; limited robustness to unseen tasks \\
+Voyager \cite{wang2023voyageropenendedembodiedagent} & Minecraft (open world) & Continual planner and code generator & Lifelong learning; self-improving skill library & High compute cost; prompt dependence; lacks causal reasoning \\
+Thinker \cite{4} & Text-based games (Werewolf) & Two-system reasoning (LLM + logic module) & Separation of intuitive vs logical reasoning; interpretable & Limited to symbolic domains; not tested in embodied settings \\
+NLE \cite{küttler2020nethacklearningenvironment} & NetHack (symbolic game) & Planner/advisor via natural language wrappers & Rich combinatorial state space; stress-tests robustness & Extremely sparse rewards; hard exploration \\
+\bottomrule
+\end{tabular}
+\label{tab:taxonomy}
+\end{table*}
+
+The table underscores recurring trade-offs. For example, robotics-focused methods such as SayCan and Code-as-Policies emphasize grounding and modularity but often lack robustness to distributional shifts. Game-based systems like Voyager and NLE excel at long-horizon reasoning but reveal blind trust and exploration challenges. These patterns reinforce the need for causal reasoning and robustness mechanisms, as elaborated in Section~III.  
+
+
+\section{Technical Gaps}
+We have identified a few technical gaps in existing research on LLM-guided RL systems. It uses the LLMs as a "common-sense" source or a simple planner. This leaves several fundamental gaps:
+\begin{enumerate}
+
+    \item \textbf{The Black Box Strategy Gap}
+    The problem in this case is that current agents learn what to do but not why a strategy works. They map states to actions based on rewards, but lack a deeper, transferable understanding of the game's underlying mechanics. The follow a black box strategy. This leads to poor generalization, when faced with a situation that is even slightly new, the agent can fail and it doesn't try to understand the core principles of the strategy. The causation of the strategy is not captured as well as could be.
+    
+    \item  \textbf{The Blind Trust Gap}
+    The RL agent almost always assumes the LLM's guidance is correct. It blindly trusts the advice it's given. If the state description sent to the LLM is slightly wrong, incomplete, or "corrupted," the LLM can give catastrophically bad advice. Current systems have no mechanism to "sanity check" or question the guidance, making them brittle and unreliable.
+
+    \item \textbf{The Interpretability Gap}
+    It is nearly impossible to ask a standard agent why it made a specific decision. You can't debug its reasoning or understand its logic, which makes it hard to trust, especially in complex situations. Without interpretability, we cannot understand failure modes, improve the agent’s reasoning, or be confident in its decisions.
+    
+    \item \textbf{The Robustness Gap}
+    No existing work systematically tests how these agents perform under adversarial conditions—that is, when the information they receive from the LLM used for guidance is deliberately made misleading. An AI that works perfectly with clean data but collapses at the first sign of unexpected or incorrect information is not useful in realistic, unpredictable environments.
+
+\end{enumerate}
+    
+
+    The “Concrete Problems in AI Safety” framework (Amodei et al., 2016) identifies five practical risks—including reward hacking, unsafe exploration, side effects, scalable oversight, and robustness to distributional shift—that are directly relevant to the Blind Trust and Robustness gaps in our context (Amodei et al., 2016) \cite{amodei2016concreteproblemsaisafety}. More recently, Raji \& Dobbe (2023) revisit these safety issues from a socio-technical vantage, underscoring that real-world deployments often fail due to stakeholder misalignment and systemic oversight—not merely algorithmic flaws (Raji \& Dobbe, 2023) \cite{raji2023concreteproblemsaisafety}.
+
+\section{Connections to AI Safety and Interpretability}
+
+The technical gaps identified above—black-box reasoning, blind trust, lack of interpretability, and fragility under adversarial perturbations—resonate strongly with the broader literature on AI safety and explainability. In particular, Amodei et al. \cite{amodei2016concreteproblemsaisafety} highlight reward misspecification, unsafe exploration, and robustness to distributional shift as central safety problems for reinforcement learning, many of which manifest directly in LLM-guided RL systems. More recent perspectives emphasize that failures often arise not only from algorithms themselves but also from misalignment with human oversight and socio-technical contexts \cite{raji2023concreteproblemsaisafety}.
+
+Interpretability has long been studied in the explainable AI (XAI) community through methods such as feature attribution (e.g., SHAP, LIME), saliency mapping, and surrogate models. While these tools have primarily targeted supervised settings, recent work is extending causal explainability to sequential decision-making and LLM-guided systems \cite{7}. Such approaches provide a foundation for diagnosing when an agent’s reasoning diverges from expected causal structures, thereby addressing both the interpretability and robustness gaps.
+
+In reinforcement learning specifically, a parallel strand of research has examined safe exploration, off-policy evaluation, and adversarial training as strategies to constrain agent behavior under uncertainty \cite{JMLR:v16:garcia15a}. These paradigms are increasingly relevant as LLMs are incorporated into RL pipelines, since language models can amplify both the strengths (e.g., informed exploration) and the risks (e.g., hallucinated unsafe strategies) of reinforcement-driven learning. Bridging these fields suggests that LLM-guided RL must be developed not in isolation but in conversation with safety and interpretability research, ensuring trustworthy deployment in complex environments.
+
+
+
+\section{Causal Reasoning in Reinforcement Learning with LLMs}
+\subsection{Learning Causal Models from RL Experience}
+Causal reasoning in reinforcement learning involves modeling how actions causally affect states and rewards, beyond mere correlations. Foundational frameworks established by Pearl and Bareinboim introduce structural causal models and do-calculus as mathematical underpinnings for this reasoning \cite{7}. However, integration of causal inference with LLM-guided RL remains nascent and sparsely explored. Most current LLM-RL architectures rely primarily on associative learning and lack explicit causal modeling.
+
+Some recent efforts incorporate latent causal structure discovery by leveraging LLMs’ instruction-following and counterfactual reasoning capabilities to identify latent or unobserved features impacting decisions \cite{7}. These methods allow the extraction of causal patterns from sequential interaction data that can potentially inform policy adjustments and strategic planning.
+
+Despite the potential, practical methods for real-time causal model learning from RL trajectories are underdeveloped, highlighting an important research frontier for embedding causal frameworks within scalable LLM-RL systems.
+
+\subsection{Role of Causal Models in Decision Making}
+Causal models provide several advantages in decision-making, including improved policy robustness, interpretability, and failure resilience. By understanding cause-effect relations, agents can generalize better across environmental changes and avoid spurious correlations leading to suboptimal or unsafe actions. Unlike purely correlation-based approaches, causal strategies facilitate explanation and justification of decisions, which is critical in safety-sensitive applications.
+
+Counterfactual reasoning—asking “what-if” questions to infer alternative outcomes—is a powerful tool enabled by causal models. When combined with LLMs’ natural language reasoning, this ability can enhance exploration strategies and support policy repair after failures. Causal models can also guide RL agents to recover from adversarial perturbations or misinformation by reasoning about the underlying causal factors affected.
+
+Initial demonstrations of integrating causal explainability into NLP and RL using LLMs show promising results in generating counterfactual explanations for black-box classifiers, indicating applicability to RL policy interpretability \cite{7,2}. However, extending this to comprehensive causal strategy learning in interactive environments remains an active challenge.
+
+\subsection{Implementation of Counterfactual Reasoning}
+Counterfactual reasoning through LLMs typically follows a three-step pipeline: identify latent features in input data, associate these with observable features, and generate counterfactual explanations or alternative policy recommendations based on identified causal dependencies \cite{7}. Adapting this pipeline for RL involves coupling counterfactual generation with policy evaluation and update loops, allowing agents to query how changes in decisions would affect future rewards.
+
+Challenges include computational overhead, ensuring interpretability of counterfactuals in high-dimensional state-action spaces, and integrating counterfactual signals smoothly into RL optimization procedures. Nonetheless, the potential for enhancing exploration, mitigating hallucinations, and improving robustness makes counterfactual causal reasoning a promising avenue for future LLM-guided RL frameworks.
+
+
+
+%%%%%%%%%%%%%%
+% Methodology
+%%%%%%%%%%%%%%
+\subfile{sections/methodology}
+
+%%%%%%%%%%%%%%
+% Results
+%%%%%%%%%%%%%%
+\subfile{sections/results}
+
+%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%
+\bibliography{refs}
+
+
+
+
+\end{document}

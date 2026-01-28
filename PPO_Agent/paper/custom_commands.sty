@@ -1,0 +1,62 @@
+\usepackage{titlesec}
+
+\renewcommand{\abstractnamefont}
+{\normalfont\small\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small} % Set the abstract itself to small italic text
+
+\newcommand{\abstractText}{
+    \noindent 
+    \textbf{Abstract --}
+    Context: Systematic reviews are important tools for researchers to get along with the state of art in their area of interest. Goal: This template aims to describe the general structure of a systematic review report, suggesting topics, contents and other aspects that the authors should pay attention when reporting their study. Method: This abstract has been written following the structure abstract style, which we strongly suggest to the authors. Results: The abstract should be written last and very carefully. The authors should have synthesis in mind when writing the abstract. Conclusion: Before writing your abstract, make sure you have read several other systematic review papers, and that you recognize what the most important information is to put here in the abstract. \textit{(Abstract)}
+    
+    \smallskip
+    \smallskip
+    
+    \textbf{Keywords -  list; here; your; keywords (key words)}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% customize section and subsection style %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\renewcommand{\thesection}{\Roman{section}} % section with roman numbers
+\titleformat{\section}%
+  {\centering\uppercase}{\thesection}{10pt}\textbf{{}}
+
+
+\renewcommand{\thesubsection}{\Alph{subsection}} % subsection with letters
+
+\renewcommand{\refname}{REFERENCES}
+
+\newcommand{\bibliographyLSR}[1]{\bibliography{#1}}
+
+\newcommand{\ts}{\textsuperscript} %sobrescrito 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BUG FIX ABNT2CITE - para apresentar a numeração da lista de referências entre colchetes
+% https://latex-br.narkive.com/9r6OosF0/referencia-numerica-com-colchetes-na-listagem-final-das-referencias
+\ifthenelse{\boolean{ABCIbiblabelonmargin}}
+{
+    \renewcommand{\@biblabel}[1]%
+    {\ifthenelse{\equal{#1}{}}{}{{\citenumstyle #1\hspace{\biblabelsep}}}}
+}
+{
+    \renewcommand{\@biblabel}[1]%
+{%
+    \ifthenelse{\equal{#1}{}
+}
+{}
+{%
+\def\biblabeltext{{\citenumstyle [#1]\hspace{\biblabelsep}}}%
+\settowidth{\ABCIauxlen}{\biblabeltext}%
+\ifthenelse{\lengthtest{\ABCIauxlen<\minimumbiblabelwidth}}
+{\setlength{\ABCIauxlen}{\minimumbiblabelwidth-\ABCIauxlen}}
+{\setlength{\ABCIauxlen}{0cm}}%
+{\biblabeltext\hspace{\ABCIauxlen}}%
+}%
+}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
